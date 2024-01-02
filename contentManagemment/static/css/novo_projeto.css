@@ -1,0 +1,7 @@
+:root {
+    --projetosColor: gray;
+}
+
+#content {
+    background-color: var(--projetosColor);
+}

@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block head %}
+<title>DisplayCast</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/postsProjetos/displayCast.css') }}">
+{% endblock %}
+
+
+{% block content %}
+
+<img src="{{ url_for('static', filename='imgs/postsProjetos/displayCast/displayCastBanner.png') }}" alt="DisplayCast Banner" width="100%" class="mb-3">
+
+<h1 id="tituloPrincipalDisplayCast" class="text-center">DisplayCast</h1>
+
+<div id="descricaoDisplayCast">
+    <p class="text-justify">
+        Bem-vindo ao DisplayCast, um podcast fascinante que explora o mundo da tecnologia e carreira. Junte-se a nós para descobrir os últimos avanços tecnológicos, insights valiosos sobre desenvolvimento profissional e discussões instigantes com especialistas da indústria. Se você é um entusiasta de tecnologia, profissional em transição de carreira ou busca conselhos para se destacar, este é o podcast perfeito para você. Aperte o play e embarque nesta jornada emocionante para explorar o mundo da tecnologia e desvendar os segredos do sucesso profissional juntos!
+    </p>
+    <h2>Episodios:</h2>
+</div>
+
+<div id="todosEpisodios">
+    <h2 class="text-white">Episodios em breve :)</h2>
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}

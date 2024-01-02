@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "productSans";
+    src: url("../fonts/Product\ Sans\ Regular.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "productSans";
+    src: url("../fonts/Product\ Sans\ Bold.ttf") format("ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "productSans";
+    src: url("../fonts/Product\ Sans\ Italic.ttf") format("ttf");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "productSans";
+    src: url("../fonts/Product\ Sans\ Bold\ Italic.ttf") format("ttf");
+    font-weight: bold;
+    font-style: italic;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#header {
+    justify-content: space-between;
+    height: 20%;
+    width: 100%;
+    border-color: #204b99 !important;
+}
+
+#loginAnchor {
+    margin-right: 20%;
+    background-color: #204b99;
+}
+
+nav {
+    width: 75%;
+}
+
+@media (max-width: 770px) {
+    nav {
+        width: 100% !important;
+    }
+
+    #content {
+        border-radius: 0px 0px .25rem .25rem !important;
+    }
+}
+
+#content {
+    width: 100%;
+    padding: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#footer {
+    
+}

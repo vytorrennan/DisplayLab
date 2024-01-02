@@ -1,0 +1,51 @@
+:root {
+    --projetosColor: #bb4c98;
+}
+
+#projetosNav {
+    background-color: var(--projetosColor);
+    color: white !important;
+}
+
+#content {
+    background-color: var(--projetosColor);
+    background-image: url("../imgs/projetos/background/textura-2.gif");
+}
+
+#cardsProjetos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.cardProjeto {
+    width: 95%;
+    margin: 40px;
+}
+
+.cardProjetosImage {
+    object-fit: cover;
+    height: 100%;
+}
+
+.saibaMaisBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10em;
+    height: 2.2em;
+    border: 0px;
+    background-color: #8c328c;
+    color: white;
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .saibaMaisBtn {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        top: 100%;
+    }
+}

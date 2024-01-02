@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+
+{% block head %}
+<title>Exterminando Drogas</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/postsProjetos/exterminandoDrogas.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h1 id="tituloExterminandoDrogas" class="text-center">Indisciplina 2D</h1>
+
+<div id="gameScreenshotDiv" class="m-3">
+    <img src="{{ url_for('static', filename='imgs/postsProjetos/indisciplina2D/capa.png') }}" alt="A screenshot of the game">
+</div>
+
+<article id="extermiandoDrogasArticle">
+    <div>
+        <p>
+            "Exterminando Drogas" é um emocionante jogo educativo desenvolvido por Vytor Rennan Alves Carvalho, no Laboratório Display. Trata-se de uma aventura em plataforma 2D desenhada à mão e desenvolvida na Unity, com o objetivo de conscientizar os jogadores sobre os perigos das drogas e proporcionar uma experiência interativa única.
+        </p>
+        <h2>Historia</h3>
+        <p>
+            A história do jogo se passa em um mundo fictício, onde os personagens principais, Rafael e Bruno, são dois irmãos corajosos em uma missão desesperada para resgatar sua amada irmã, Bia. Ela foi capturada por um traficante perigoso chamado Moisés, que se aproveitou de sua vulnerabilidade e a envolveu no mundo das drogas. Determinados a trazê-la de volta e combater o mal que assola as ilhas onde vivem, os dois irmãos embarcam em uma jornada repleta de desafios e perigos.
+            <br>
+            A aventura se desenrola em duas ilhas misteriosas, cada uma delas com sua própria atmosfera e desafios únicos. Os jogadores devem explorar ambientes cheios de plataformas desafiadoras, armadilhas traiçoeiras e inimigos perigosos que estão ligados ao tráfico de drogas. Para progredir na história, Rafael e Bruno devem superar obstáculos habilmente, coletar itens úteis e derrotar chefes poderosos.
+            <br>
+            Durante a jornada, os jogadores contarão com a ajuda de Leo, o melhor amigo do grupo de irmãos. Leo guiará os protagonistas com seus conselhos sábios e incentivará os jogadores a buscar conhecimento e habilidades especiais que os ajudarão em sua missão.
+        </p>
+        <h2>Gameplay</h3>
+        <p>
+            Ao longo da aventura, Rafael e Bruno encontrarão diversos desafios que exigirão trabalho em equipe e habilidades individuais. Cada personagem tem suas próprias características e habilidades únicas, que podem ser aprimoradas ao longo do jogo. Juntos, eles formam uma dupla poderosa, pronta para enfrentar qualquer desafio que o jogo apresente.
+            <br>
+            Além dos desafios de plataforma e combate, os jogadores também encontrarão personagens secundários ao longo da história. Esses personagens desempenham papéis importantes na narrativa, oferecendo missões secundárias, conselhos e informações valiosas para auxiliar os protagonistas em sua jornada.
+            <br>
+            <img id="personagemPrincipalImg" src="{{ url_for('static', filename='imgs/postsProjetos/exterminandoDrogas/mainCharacter.png') }}" alt="personagem principal do jogo exterminando drogas">
+            <br>
+            Em termos de jogabilidade, "Exterminando Drogas" apresenta controles intuitivos e responsivos, permitindo que os jogadores se sintam imersos na ação. Os gráficos desenhados à mão dão ao jogo um estilo artístico encantador, com cenários coloridos e detalhados que se adaptam ao tema de cada ilha. A trilha sonora envolvente cria uma atmosfera cativante, mergulhando os jogadores ainda mais na experiência.
+            <br>
+            No decorrer da aventura, os jogadores também terão a oportunidade de adquirir conhecimentos valiosos por meio de livros encontrados nas ilhas. Esses livros podem ser usados para aprimorar as habilidades dos personagens e desbloquear novos poderes.
+        </p>
+        <h2>Conclusão</h3>
+        <p>
+            "Exterminando Drogas" é muito mais do que um simples jogo de plataforma. É uma ferramenta educativa poderosa, projetada para conscientizar os jogadores sobre os perigos das drogas e incentivar escolhas saudáveis. Ao mesmo tempo em que os jogadores se divertem e se envolvem com a história emocionante, eles também aprendem sobre os riscos e as consequências do uso de drogas, capacitando-os a tomar decisões informadas em suas próprias vidas.
+            Prepare-se para embarcar nessa emocionante jornada com Rafael, Bruno, Leo e outros personagens cativantes. Enfrente desafios, adquira conhecimento e ajude a exterminar as drogas. Junte-se aos irmãos em sua missão de resgate e faça a diferença em um mundo virtual, que pode ter impactos reais na vida dos jogadores. Em "Exterminando Drogas", a aventura é educativa, e a luta é por um futuro livre das garras do tráfico de drogas.
+
+
+        </p>
+    </div>
+</article>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
