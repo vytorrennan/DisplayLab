@@ -1,7 +1,7 @@
 # DisplayLab
 Remake do site do laboratório do Display
 
-
+---
 
 ## Como rodar o projeto
 ### Crie e inicie o ambiente virtual
