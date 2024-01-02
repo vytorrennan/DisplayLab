@@ -3,8 +3,8 @@ Remake do site do laboratório do Display
 
 ---
 
-## Como rodar o projeto
-### Crie e inicie o ambiente virtual
+# Como rodar o projeto
+## Crie e inicie o ambiente virtual
 windows:
 
   `python -m venv .venv`
@@ -17,10 +17,10 @@ linux:
 
   `source .venv/bin/activate`
 
-### Instale Django
+## Instale Django
 `pip install django`
 
-### Execute o servidor
+## Execute o servidor
 windows: `python manage.py runserver`
 
 linux: `python3 manage.py runserver`
