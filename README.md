@@ -7,15 +7,15 @@ Remake do site do laboratório do Display
 ### Crie e inicie o ambiente virtual
 windows:
 
-`python -m venv .venv`
+  `python -m venv .venv`
 
-`./.venv/Scripts/activate`
+  `./.venv/Scripts/activate`
 
 linux: 
 
-`python3 -m venv .venv`
+  `python3 -m venv .venv`
 
-`source .venv/bin/activate`
+  `source .venv/bin/activate`
 
 ### Instale Django
 `pip install django`
