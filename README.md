@@ -1,6 +1,11 @@
 # DisplayLab
 Remake do site do laboratório do Display
 
+
+
+
+
+
 # Como rodar o projeto
 ## Instale Django
 `python -m venv .venv`
