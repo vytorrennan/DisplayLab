@@ -1,0 +1,57 @@
+:root {
+    --projetosColor: rgb(17,34,144,0.8);
+}
+
+#projetosNav {
+    background-color: var(--projetosColor);
+    color: white !important;
+}
+
+#content {
+    background-color: var(--projetosColor);
+    padding: 2em;
+}
+
+@media (min-width: 1440px) {
+    #content {
+        font-size: 1.5em;
+    }
+}
+
+#gameScreenshotDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#gameScreenshotDiv > img {
+    border-radius: 20px;
+    width: 70%;
+    box-shadow: 0px 0px 20px;
+    margin: 10px;
+}
+
+#educaRedesArticle {
+    display: flex;
+    justify-content: center;
+}
+
+#educaRedesArticle > div {
+    width: 90%;
+    text-align: justify;
+}
+
+#educaRedesArticle > div > h2 {
+    margin: 1em 0px;
+}
+
+#educaRedesArticle > div > p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gameScreenShots {
+    margin: 2em;
+    width: 90%;
+}

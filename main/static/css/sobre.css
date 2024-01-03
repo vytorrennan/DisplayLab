@@ -1,0 +1,61 @@
+:root {
+    --projetosColor: #f59f24;
+}
+
+#sobreNav {
+    background-color: var(--projetosColor);
+    color: white !important;
+}
+
+#content {
+    background-color: var(--projetosColor);
+    background-image: url("../imgs/sobre/background/textura-4.gif");
+    padding: 1.8em;
+}
+
+.integrantesCategoria {
+    --integrantesCategoriaColorBackground: #d76212;
+    background-color: var(--integrantesCategoriaColorBackground);
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.integrantesCategoria > div {
+    display: flex;
+    align-items: center;
+}
+
+.integrantesCategoria * {
+    margin: 0px;
+    padding: 0px;
+}
+
+.card {
+    border: 0px;
+    background-color: var(--integrantesCategoriaColorBackground);
+}
+
+.card > img{
+    width: 200px;
+}
+
+.card-body {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tituloCard {
+    background-color: #be3b17;
+    text-align: center;
+    padding: 5px 1em;
+    width: 100%;
+}
+
+.textCard {
+    background-color: #8c2a14;
+    width: 90%;
+    padding: 5px;
+}

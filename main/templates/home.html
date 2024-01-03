@@ -1,0 +1,119 @@
+{% extends "index.html" %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<title>Home</title>
+{% endblock %}
+
+
+{% block content %}
+<h2>NOTÍCIAS</h2>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href="/projetos/displayCast">
+            <img src="{% static 'imgs/home/carousel/displayCastBanner.svg' %}" class="d-block w-100" alt="Banner do DisplayCast">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="/projetos/exterminandoDrogas">
+            <img src="{% static 'imgs/home/carousel/exterminandoDrogasBanner.svg' %}" class="d-block w-100" alt="Banner do jogo Exterminando Drogas">
+        </a>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+
+<div id="cardSlider" class="row mx-auto mb-5 my-auto justify-content-center">
+    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="col-md-4">
+                    <div class="card border-card">
+                        <a href="/projetos/displayCast" class="text-decoration-none text-white">
+                            <div class="card-img">
+                                <img src="{% static 'imgs/home/cards/displayCast.png' %}" class="img-fluid" alt="DisplayCast">
+                            </div>
+                            <div class="">DisplayCast - O mais novo Podcast do Display</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="col-md-4">
+                    <div class="card border-card">
+                        <a href="/projetos/exterminandoDrogas" class="text-decoration-none text-white">
+                            <div class="card-img">
+                                <img src="{% static 'imgs/home/cards/exterminandoDrogas.png' %}" class="img-fluid" alt="Exterminando Drogas (GAME)">
+                            </div>
+                            <div class="">Exterminando Drogas - Uma aventura Educativa em 2D sobre drogas</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="col-md-4">
+                    <div class="card border-card">
+                        <a href="https://www.youtube.com/channel/UCxk8J5iEKDPZh35JzUBiGxg" class="text-decoration-none text-white">
+                            <div class="card-img">
+                                <img src="{% static 'imgs/home/cards/batePapoDeTI.png' %}" class="img-fluid">
+                            </div>
+                            <div class="">Bate-papo Tech - Confira o cronograma temporada 2023</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+</div>
+
+<h2 style="text-align: center;">CONHEÇA NOSSOS CONTEÚDOS</h2>
+
+<div id="conteudos" class="bg-white">
+    <div id="podcast">
+        <h3>DisplayCast</h3>
+        <p>Episodios em breve</p>
+    </div>
+    <div id="biblioteca">
+        <h3>Biblioteca</h3>
+        <p><a href="http://www.tise.cl/Volumen14/TISE2018/356.pdf" class="text-decoration-none text-dark">EducaRedes: Jogo Digital Educacional como ferramenta de Auxílio no Ensino da Arquitetura TCP/IP</a></p>
+        <p><a href="https://sol.sbc.org.br/index.php/desafie/article/view/12180" class="text-decoration-none text-dark">Jogo Digital Educacional como Ferramenta de Auxílio na Conscientização e Prevenção às Drogas</a></p>
+        <p><a href="https://www.even3.com.br/anais/sicaracuai/81664-indisciplina-2d--jogo-educacional-para-prevencao-de-indisciplina-em-sala-de-aula/" class="text-decoration-none text-dark">Indisciplina 2d - Jogo Educacional Para Prevenção De Indisciplina Em Sala De Aula</a></p>
+    </div>
+    <div id="games">
+        <h3>Games</h3>
+        <p>Indisciplina 2D</p>
+        <p>Exterminando Drogas</p>
+        <p>EducaRedes</p>
+        <p>Peruaçu Digital</p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

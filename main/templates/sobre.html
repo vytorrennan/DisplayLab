@@ -1,0 +1,75 @@
+{% extends "index.html" %}
+
+{% block head %}
+{% load static %}
+<title>Quem somos</title>
+<link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="categoria">
+    <div class="tituloCategoria w-100 text-white">
+        <h2>Servidores</h2>
+    </div>
+    <div class="integrantesCategoria w-100">
+        <div class="card text-white m-2" style="width: 15rem;">
+            <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title text-align-center tituloCard">Joselice Lima</h5>
+              <p class="card-text textCard">Professora e pesquisadora do IFNMG</p>
+            </div>
+        </div>
+
+        <div class="card text-white m-2" style="width: 15rem;">
+            <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title text-align-center tituloCard">Danilo Nunes</h5>
+              <p class="card-text textCard">Professor e pesquisador do IFNMG</p>
+            </div>
+        </div>
+
+        <div class="card text-white m-2" style="width: 15rem;">
+          <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-align-center tituloCard">Tiago Severino</h5>
+            <p class="card-text textCard">Professor e pesquisador do IFNMG</p>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="categoria">
+  <div class="tituloCategoria w-100 text-white">
+    <h2>Academicos</h2>
+  </div>
+  <div class="integrantesCategoria w-100">
+      <div class="card text-white m-2" style="width: 15rem;">
+          <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-align-center tituloCard">Vytor Rennan</h5>
+            <p class="card-text textCard">Academico de BSI</p>
+          </div>
+      </div>
+
+      <div class="card text-white m-2" style="width: 15rem;">
+          <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-align-center tituloCard">Guilherme Froes</h5>
+            <p class="card-text textCard">Academico de BSI</p>
+          </div>
+      </div>
+
+      <div class="card text-white m-2" style="width: 15rem;">
+          <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-align-center tituloCard">Marcio Ferreira</h5>
+            <p class="card-text textCard">Academico BSI</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
