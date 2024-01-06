@@ -6,9 +6,6 @@ from django.shortcuts import render
 def home(request):
     return render(request, "home.html")
 
-def projetos(request):
-    return render(request, "projetos.html")
-
 def institucional(request):
     return render(request, "institucional.html")
 
