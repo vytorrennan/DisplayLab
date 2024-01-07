@@ -29,7 +29,10 @@
         <div class="d-flex flex-column align-items-end justify-content-between" style="width: 25%;">
           {% if request.user.is_authenticated %}
             <a href="{% url 'logout' %}" id="logoutAnchor" class="text-decoration-none text-white p-2 rounded-bottom">LOGOUT</a>
-            <p class="p-2 rounded bg-secondary-subtle text-primary-emphasis m-1">{{ request.user.username }}</p>
+            <div>
+              <p class="p-1 rounded bg-secondary-subtle text-primary-emphasis text-center m-1">{{ request.user.username }}</p>
+              <a class="p-1 rounded bg-warning text-primary-emphasis text-center m-1" href="#">Content Management</a>
+            </div>
           {% else %}
             <a href="{% url 'login' %}" id="loginAnchor" class="text-decoration-none text-white p-2 rounded-bottom">LOGIN</a>
           {% endif %}
