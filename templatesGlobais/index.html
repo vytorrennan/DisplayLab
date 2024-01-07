@@ -27,7 +27,14 @@
           <img src="{% static 'imgs/index/displayTitulo.svg' %}" alt="DisplayLab Titulo" height="100%" width="100%">
         </div>
         <div class="d-flex flex-column align-items-end justify-content-between" style="width: 25%;">
-          <a href="#" id="loginAnchor" class="invisible text-decoration-none text-white p-2 rounded-bottom">LOGIN</a>
+          {% if request.user.is_authenticated %}
+            <div>
+              <p>{{ request.user.username }}</p>
+              <a href="{% url 'logout' %}">Logout</a>
+            </div>
+          {% else %}
+            <a href="{% url 'login' %}" id="loginAnchor" class="text-decoration-none text-white p-2 rounded-bottom">LOGIN</a>
+          {% endif %}
           <div class="d-flex flex-row align-items-end justify-content-end" style="margin-bottom: 10px; width: 75%;">
             <a href="https://www.facebook.com/batepapotecnologico?mibextid=ZbWKwL">
               <img src="{% static 'imgs/index/facebook.png' %}" alt="DisplayLab Titulo" height="100%" width="100%">

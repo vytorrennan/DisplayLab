@@ -22,4 +22,5 @@ urlpatterns = [
     path("", include('main.urls')),
     path("", include('projetos.urls')),
     path("contentManagement/", include('contentManagement.urls')),
+    path("", include('managementLoginSystem.urls')),
 ]

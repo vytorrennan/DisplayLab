@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main',
     'projetos',
     'contentManagement',
+    'managementLoginSystem',
 ]
 
 MIDDLEWARE = [
