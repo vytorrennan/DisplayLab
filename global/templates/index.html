@@ -31,10 +31,10 @@
             <a href="{% url 'logout' %}" id="logoutAnchor" class="text-decoration-none text-white p-2 rounded-bottom">LOGOUT</a>
             <div>
               <p class="p-1 rounded bg-secondary-subtle text-primary-emphasis text-center m-1">{{ request.user.username }}</p>
-              <a class="p-1 rounded bg-warning text-primary-emphasis text-center m-1" href="#">Content Management</a>
+              <a class="p-1 rounded bg-warning text-primary-emphasis text-center m-1" href="{% url 'contentManagement' %}">Content Management</a>
             </div>
           {% else %}
-            <a href="{% url 'login' %}" id="loginAnchor" class="text-decoration-none text-white p-2 rounded-bottom">LOGIN</a>
+            <a href="{% url 'login' %}" id="loginAnchor" class="invisible text-decoration-none text-white p-2 rounded-bottom">LOGIN</a>
           {% endif %}
           <div class="d-flex flex-row align-items-end justify-content-end" style="margin-bottom: 10px; width: 75%;">
             <a href="https://www.facebook.com/batepapotecnologico?mibextid=ZbWKwL">
