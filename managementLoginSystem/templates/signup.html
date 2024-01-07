@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+{% block head %}
+{% endblock%} 
+
+{% block content %}
+<h1>Signup</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Signup</button>
+    <a href="{% url 'login' %}">Já tenho uma conta</a>
+</form>
+{% endblock%}
+
+{% block script%}
+{% endblock%}

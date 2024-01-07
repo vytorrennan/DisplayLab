@@ -42,6 +42,11 @@ body {
     background-color: #204b99;
 }
 
+#logoutAnchor {
+    margin-right: 20%;
+    background-color: #9b1e1e;
+}
+
 nav {
     width: 75%;
 }
