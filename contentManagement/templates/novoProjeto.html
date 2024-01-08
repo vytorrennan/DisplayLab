@@ -8,17 +8,10 @@
 
 
 {% block content %}
-    <h2 class="text-white m-4 text-center">Novo Projeto</h2>
-    
-    <form action="/novo_projeto/post" method="post" class="d-flex flex-column gap-3 text-white">
-        <label for="NomeDoProjeto" class="fs-3">Nome do projeto</label>
-        <input type="text" name="NomeDoProjeto" id="NomeDoProjeto">
-        <label for="TituloComercial" class="fs-3">Título comercial</label>
-        <input type="text" name="TituloComercial" id="TituloComercial">
-        <label for="Resumo" class="fs-3">Resumo</label>
-        <textarea name="Resumo" id="Resumo" cols="30" rows="6"></textarea>
-        <label for="Pagina" class="fs-3">Página</label>
-        <textarea name="Pagina" id="Pagina" cols="30" rows="40"></textarea>
+    <h2 class="text-dark m-4 text-center">Novo Projeto</h2>
+    <form method="post" class="d-flex flex-column gap-3 text-dark fs-4">
+        {% csrf_token %}
+        {{ form.as_p }}
         <div>
             <input type="submit" value="Publicar" class="btn btn-primary">
             <input type="button" value="Cancelar" class="btn btn-danger">
