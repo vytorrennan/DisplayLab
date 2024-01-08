@@ -14,3 +14,10 @@ textarea {
     width: 100%;
 }
 
+#id_resumo {
+    height: 30vh;
+}
+
+#id_pagina {
+    height: 130vh;
+}
