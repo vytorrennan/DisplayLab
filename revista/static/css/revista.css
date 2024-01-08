@@ -1,0 +1,9 @@
+#content {
+    background-color: #197cc0;
+    padding: 2em;
+}
+
+#cardsRevista img {
+    max-height: 200px;
+    min-height: 200px;
+}
