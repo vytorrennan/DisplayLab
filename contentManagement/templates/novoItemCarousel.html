@@ -2,14 +2,13 @@
 
 {% block head%}
     {% load static %}
-    {{ form.media }}
-    <title>Novo Projeto</title>
+    <title>Novo Item do Carrousel</title>
     <link rel="stylesheet" href='{% static "/css/novo_projeto.css" %}'>
 {% endblock %}
 
 
 {% block content %}
-    <h2 class="text-dark m-4 text-center">Novo Projeto</h2>
+    <h2 class="text-dark m-4 text-center">Novo Item do Carrousel</h2>
     <form method="POST" class="d-flex flex-column gap-3 text-dark fs-4">
         {% csrf_token %}
         {{ form }}
