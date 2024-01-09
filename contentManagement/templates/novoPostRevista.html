@@ -9,6 +9,10 @@
 
 {% block content %}
     <h2 class="text-dark m-4 text-center">Novo Post De Revista</h2>
+
+    <p>Url: Digite o que virá depois de "/revista/"" não use espaços nem caracteres especiais - exempo: "/revista/comoCriarJogos" vc digitaria "comoCriarJogos"</p>
+    <p>Capa: Coloque o link da imagem que será a capa</p>
+
     <form method="POST" class="d-flex flex-column gap-3 text-dark fs-4">
         {% csrf_token %}
         {{ form }}
