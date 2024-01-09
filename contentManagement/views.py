@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .forms.novoItemCarousel import novoItemCarouselForm
 from .forms.novoProjeto import novoProjetoForm
 from .forms.novoPostRevista import novoPostRevistaForm
+from .forms.novoMembro import novoMembroForm
 
 
 # Create your views here.
@@ -51,3 +52,17 @@ def novoPostRevista(request):
     else: 
         context['form'] = novoPostRevistaForm()
     return render(request, "novoPostRevista.html", context)
+
+
+@login_required
+def novoMembro(request):
+    context = {}
+    if request.method == "POST":
+        context['form'] = novoMembroForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'] = "Não valido!"
+    else: 
+        context['form'] = novoMembroForm()
+    return render(request, "novoMembro.html", context)
