@@ -11,5 +11,12 @@ def contentManagement(request):
 @login_required
 def novoProjeto(request):
     context = {}
-    context['form'] = novoProjetoForm()
+    if request.method == "POST":
+        context['form'] = novoProjetoForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'] = "Não valido!"
+    else: 
+        context['form'] = novoProjetoForm()
     return render(request, "novoProjeto.html", context)

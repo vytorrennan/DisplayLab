@@ -2,6 +2,7 @@
 
 {% block head%}
     {% load static %}
+    {{ form.media }}
     <title>Novo Projeto</title>
     <link rel="stylesheet" href='{% static "/css/novo_projeto.css" %}'>
 {% endblock %}
@@ -9,9 +10,9 @@
 
 {% block content %}
     <h2 class="text-dark m-4 text-center">Novo Projeto</h2>
-    <form method="post" class="d-flex flex-column gap-3 text-dark fs-4">
+    <form method="POST" class="d-flex flex-column gap-3 text-dark fs-4">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form }}
         <div>
             <input type="submit" value="Publicar" class="btn btn-primary">
             <input type="button" value="Cancelar" class="btn btn-danger">
@@ -19,8 +20,7 @@
     </form>
 {% endblock %}
 {% block script %}
-    <script src='{% static "/js/novo_projeto/tinymce/tinymce.min.js" %}'></script>
-    <script src='{% static "/js/novo_projeto/novo_projeto.js" %}'></script>
+
 {% endblock %}
 
 

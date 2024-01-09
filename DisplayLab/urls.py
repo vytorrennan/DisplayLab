@@ -22,6 +22,7 @@ urlpatterns = [
     path("", include('main.urls')),
     path("", include('projetos.urls')),
     path("", include('revista.urls')),
+    path("tinymce/", include('tinymce.urls')),
     path("contentManagement/", include('contentManagement.urls')),
     path("", include('managementLoginSystem.urls')),
 ]
