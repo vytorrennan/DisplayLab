@@ -5,7 +5,9 @@ from .models import Projeto
 
 
 def projetos(request):
-    return render(request, "projetos.html")
+    projeto = Projeto.objects.all()
+    context = {"projeto": projeto }
+    return render(request, "projetos.html", context)
 
 def paginaDeProjeto(request, url):
     projeto = Projeto.objects.filter(url=url)
