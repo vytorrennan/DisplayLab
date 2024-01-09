@@ -12,9 +12,6 @@ input {
 
 textarea {
     width: 100%;
-}
-
-#id_resumo {
     height: 30vh;
 }
 

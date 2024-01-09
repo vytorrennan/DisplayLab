@@ -8,6 +8,5 @@ class novoPostRevistaForm(forms.ModelForm):
         model = Revista
         fields = ["url", "titulo", "capa", "resumo", "pagina"]
         widgets = {
-            'resumo': forms.Textarea(),
             'pagina': TinyMCE()
         }
