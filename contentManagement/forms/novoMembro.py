@@ -1,8 +1,8 @@
 from django import forms
-from main.models import Membros
+from main.models import Membro
 
 
 class novoMembroForm(forms.ModelForm):
     class Meta:
-        model = Membros
+        model = Membro
         fields = ["nome", "descricao", "categoria", "linkedin"]

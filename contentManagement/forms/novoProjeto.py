@@ -1,11 +1,11 @@
 from django import forms
-from projetos.models import Projetos
+from projetos.models import Projeto
 from tinymce.widgets import TinyMCE
 
 
 class novoProjetoForm(forms.ModelForm):
     class Meta:
-        model = Projetos
+        model = Projeto
         fields = ["url", "titulo", "capa", "resumo", "pagina"]
         widgets = {
             'resumo': forms.Textarea(),

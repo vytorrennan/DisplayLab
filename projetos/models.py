@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Projetos(models.Model):
+class Projeto(models.Model):
     id = models.AutoField(primary_key=True)
     deletado = models.BooleanField(default=False)
     gosteis = models.PositiveIntegerField(default=0)
