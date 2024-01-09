@@ -2,6 +2,7 @@ from django import forms
 from projetos.models import Projetos
 from tinymce.widgets import TinyMCE
 
+
 class novoProjetoForm(forms.ModelForm):
     class Meta:
         model = Projetos

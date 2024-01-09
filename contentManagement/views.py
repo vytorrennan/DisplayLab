@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .forms.novoProjeto import novoProjetoForm
 from .forms.novoItemCarousel import novoItemCarouselForm
+from .forms.novoProjeto import novoProjetoForm
+from .forms.novoPostRevista import novoPostRevistaForm
+
 
 # Create your views here.
 @login_required
@@ -35,3 +37,17 @@ def novoItemCarousel(request):
     else: 
         context['form'] = novoItemCarouselForm()
     return render(request, "novoItemCarousel.html", context)
+
+
+@login_required
+def novoPostRevista(request):
+    context = {}
+    if request.method == "POST":
+        context['form'] = novoPostRevistaForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'] = "Não valido!"
+    else: 
+        context['form'] = novoPostRevistaForm()
+    return render(request, "novoPostRevista.html", context)
