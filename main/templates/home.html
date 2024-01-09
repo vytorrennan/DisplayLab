@@ -12,20 +12,30 @@
 
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      {% for num in iterableNumItens %}
+        {% if num != 0 %}
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ num }}" aria-label="Slide {{ num }}"></button>
+        {% else %}
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ num }}" class="active" aria-current="true" aria-label="Slide {{ num }}"></button>
+        {% endif %}
+      {% endfor %}
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <a href="/projetos/displayCast">
-            <img src="{% static 'imgs/home/carousel/displayCastBanner.svg' %}" class="d-block w-100" alt="Banner do DisplayCast">
-        </a>
-      </div>
-      <div class="carousel-item">
-        <a href="/projetos/exterminandoDrogas">
-            <img src="{% static 'imgs/home/carousel/exterminandoDrogasBanner.svg' %}" class="d-block w-100" alt="Banner do jogo Exterminando Drogas">
-        </a>
-      </div>
+      {% for item in carousel %}
+        {% if item != carousel|first %}
+            <div class="carousel-item">
+                <a href="{{ item.url }}">
+                    <img src="{% get_static_prefix %}{{ item.imagem }}" class="d-block w-100" alt="">
+                </a>
+            </div>
+        {% else %}
+            <div class="carousel-item active">
+                <a href="{{ item.url }}">
+                    <img src="{% get_static_prefix %}{{ item.imagem }}" class="d-block w-100" alt="">
+                </a>
+            </div>
+        {% endif %}
+      {% endfor %}
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>

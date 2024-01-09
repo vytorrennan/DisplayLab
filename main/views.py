@@ -1,10 +1,14 @@
 from django.shortcuts import render
+from . import models
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, "home.html")
+    carousel = models.carouselItem.objects.all()
+    numItens = carousel.count()
+    context = {"carousel": carousel, "iterableNumItens": range(numItens)}
+    return render(request, "home.html", context)
 
 def institucional(request):
     return render(request, "institucional.html")
