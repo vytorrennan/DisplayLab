@@ -6,7 +6,7 @@ from tinymce.widgets import TinyMCE
 class novoPostRevistaForm(forms.ModelForm):
     class Meta:
         model = Revista
-        fields = ["url", "titulo", "capa", "resumo", "pagina"]
+        fields = ["titulo", "capa", "resumo", "pagina"]
         widgets = {
             'pagina': TinyMCE()
         }

@@ -6,7 +6,7 @@ from tinymce.widgets import TinyMCE
 class novoProjetoForm(forms.ModelForm):
     class Meta:
         model = Projeto
-        fields = ["url", "titulo", "capa", "resumo", "pagina"]
+        fields = ["titulo", "capa", "resumo", "pagina"]
         widgets = {
             'resumo': forms.Textarea(),
             'pagina': TinyMCE()
