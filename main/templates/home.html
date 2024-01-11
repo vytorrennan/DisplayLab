@@ -54,7 +54,7 @@
         </div>
         <div class="d-flex align-items-center">
             {% for post in ultimosPosts%}
-                <a class="d-flex flex-column align-items-center w-25 text-decoration-none text-white" href="#">
+                <a class="d-flex flex-column align-items-center w-25 text-decoration-none text-white m-2" href="#">
                     {% if post.capa|slice:"0:4" == "http" %}
                         <img src="{{ post.capa }}" alt="artigo da revista" class="m-3 object-fit-cover" id="artigo">
                     {% else%}

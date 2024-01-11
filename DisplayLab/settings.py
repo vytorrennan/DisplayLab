@@ -110,11 +110,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-BR'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
@@ -136,3 +138,5 @@ TINYMCE_DEFAULT_CONFIG = {
     "plugins": 'advlist autolink link image lists charmap preview anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking table emoticons template help',
     "toolbar": 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image | preview'
 }
+
+DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')

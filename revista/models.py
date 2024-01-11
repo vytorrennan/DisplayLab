@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from datetime import datetime
 
 # Create your models here.
 
@@ -9,6 +10,7 @@ class Revista(models.Model):
     deletado = models.BooleanField(default=False)
     gosteis = models.PositiveIntegerField(default=0)
     edicao = models.PositiveIntegerField(default=0)
+    dataHora = models.DateTimeField(default=datetime.now)
     url = models.SlugField(max_length=250, unique=True, default="")
     titulo = models.CharField(max_length=250, unique=True, default="")
     autor = models.CharField(max_length=250, default="")

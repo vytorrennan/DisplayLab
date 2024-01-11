@@ -5,12 +5,12 @@ from .models import Projeto
 
 
 def projetos(request):
-    projeto = Projeto.objects.all()
+    projeto = Projeto.objects.filter(deletado=False).order_by("-dataHora")
     context = {"projeto": projeto }
     return render(request, "projetos.html", context)
 
 
 def paginaDeProjeto(request, url):
-    projeto = Projeto.objects.filter(url=url)
+    projeto = Projeto.objects.filter(url=url, deletado=False)
     context = {"projeto": projeto[0]}
     return render(request, "paginaDeProjeto.html", context)
