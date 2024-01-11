@@ -8,6 +8,11 @@
     font-size: 0.9vw;
 }
 
+#redes-sociais {
+    top: 3vw;
+    right: 7vw;
+}
+
 .nav-link {
     color: #00a0dd;
 }
@@ -32,6 +37,12 @@
         width: 50%;
     }
 
+    #redes-sociais {
+        top: 0px !important;
+        position: relative !important;
+        flex-direction: row !important;
+    }
+
     nav {
         display: flex;
         flex-direction: row-reverse !important;
@@ -47,6 +58,14 @@
 
     #display-image {
         width: 60%;
+    }
+
+    #redes-sociais {
+        right: 0px !important;
+    }
+    
+    #redes-sociais img {
+        width: 6vw;
     }
 }
 

@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <title>Display Lab</title>
 </head>
-<body>
+<body class="position-relative">
     <nav>
-        <div id="ifnmg-display" class="d-flex justify-content-center align-items-center flex-wrap">
+        <div id="ifnmg-display" class="d-flex justify-content-center align-items-center flex-wrap w-100">
             <img src="{% static 'imgs/index/ifnmg.jpg' %}" alt="ifnmg" width="30%" id="ifnmg-image">
             <div class="d-flex align-items-center w-25">
                 <img src="{% static 'imgs/index/displayLogo.png' %}" alt="displayLogo" width="35%" id="display-image">
@@ -32,6 +32,17 @@
             {% else %}
                 <a href="{% url 'login' %}" id="loginAnchor" class="invisible text-decoration-none text-white p-2 rounded-bottom">LOGIN</a>
             {% endif %}
+            <div id="redes-sociais" class="d-flex flex-column position-absolute gap-1">
+                <a href="https://www.instagram.com/displaylabif?utm_source=qr&igshid=OGU0MmVlOWVjOQ%3D%3D">
+                    <img src="{% static 'imgs/index/instagram.svg' %}" alt="icone do facebook" width="30vw">
+                </a>
+                <a href="https://www.facebook.com/batepapotecnologico?mibextid=ZbWKwL">
+                    <img src="{% static 'imgs/index/facebook.svg' %}" alt="icone do facebook" width="30vw">
+                </a>
+                <a href="https://www.youtube.com/@DisplayLabIF">
+                    <img src="{% static 'imgs/index/youtube.svg' %}" alt="icone do facebook" width="30vw">
+                </a>
+            </div>
         </div>
         <div class="navbar navbar-expand-lg">
             <div class="container-fluid">
