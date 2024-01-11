@@ -2,13 +2,13 @@
 
 {% block head%}
     {% load static %}
-    <title>Novo Membro</title>
+    <title>Nova Categoria</title>
     <link rel="stylesheet" href='{% static "/css/basicForm.css" %}'>
 {% endblock %}
 
 
 {% block content %}
-    <h2 class="text-dark m-4 text-center">Novo Membro</h2>
+    <h2 class="text-dark m-4 text-center">Nova Categoria</h2>
 
     <form method="POST" class="d-flex flex-column gap-3 text-dark fs-4">
         {% csrf_token %}

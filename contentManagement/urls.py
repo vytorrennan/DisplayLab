@@ -7,4 +7,5 @@ urlpatterns = [
     path("novoProjeto/", views.novoProjeto, name="novoProjeto"),
     path("novoPostRevista/", views.novoPostRevista, name="novoPostRevista"),
     path("novoMembro/", views.novoMembro, name="novoMembro"),
+    path("novaCategoriaDeMembro/", views.novaCategoriaDeMembro, name="novaCategoriaDeMembro"),
 ]

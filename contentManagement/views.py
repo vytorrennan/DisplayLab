@@ -4,7 +4,7 @@ from .forms.novoItemCarousel import novoItemCarouselForm
 from .forms.novoProjeto import novoProjetoForm
 from .forms.novoPostRevista import novoPostRevistaForm
 from .forms.novoMembro import novoMembroForm
-
+from .forms.novaCategoriaDeMembro import novaCategoriaDeMembroForm
 
 # Create your views here.
 @login_required
@@ -66,3 +66,17 @@ def novoMembro(request):
     else: 
         context['form'] = novoMembroForm()
     return render(request, "novoMembro.html", context)
+
+
+@login_required
+def novaCategoriaDeMembro(request):
+    context = {}
+    if request.method == "POST":
+        context['form'] = novaCategoriaDeMembroForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'] = "Não valido!"
+    else: 
+        context['form'] = novaCategoriaDeMembroForm()
+    return render(request, "novaCategoriaDeMembro.html", context)

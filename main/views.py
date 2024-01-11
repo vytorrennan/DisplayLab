@@ -19,11 +19,7 @@ def institucional(request):
 
 def sobre(request):
     membros = models.Membro.objects.filter(deletado=False)
-    categoriaDeTodos = models.Membro.objects.values_list("categoria", flat=True)
-    categorias = []
-    for categ in categoriaDeTodos:
-        if categ not in categorias:
-            categorias.append(categ)
+    categorias = models.Categoria.objects.all()
     context = {"membros": membros, "categorias": categorias}
     return render(request, "sobre.html", context)
 
