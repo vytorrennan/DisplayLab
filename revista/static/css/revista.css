@@ -1,9 +1,11 @@
-#content {
-    background-color: #197cc0;
-    padding: 2em;
+#navRevista {
+    color: black;
 }
 
-#cardsRevista img {
-    max-height: 200px;
-    min-height: 200px;
+.card {
+    border: 0px;
+}
+
+.card img{
+    max-height: 50vh;
 }

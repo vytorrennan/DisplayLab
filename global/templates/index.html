@@ -1,80 +1,69 @@
-<!doctype html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <link rel="shortcut icon" href="{% static 'imgs/index/logoFavicon.png' %}" type="image/x-icon">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     {% block head %}
     {% endblock %}
-  </head>
-  <body>
-    <div class="container d-flex flex-column align-items-center">
-      <div id="header" class="d-flex border border-2 border-top-0 rounded-bottom">
-        <div class="d-flex justify-content-start" style="width: 25%;">
-          <img src="{% static 'imgs/index/logoDisplay.png' %}" alt="DisplayLab Titulo" width="61%">
-        </div>
-        <div class="d-flex justify-content-center" style="width: 25%;">
-          <img src="{% static 'imgs/index/displayTitulo.svg' %}" alt="DisplayLab Titulo" height="100%" width="100%">
-        </div>
-        <div class="d-flex flex-column align-items-end justify-content-between" style="width: 25%;">
-          {% if request.user.is_authenticated %}
-            <a href="{% url 'logout' %}" id="logoutAnchor" class="text-decoration-none text-white p-2 rounded-bottom">LOGOUT</a>
-            <div>
-              <p class="p-1 rounded bg-secondary-subtle text-primary-emphasis text-center m-1">{{ request.user.username }}</p>
-              <a class="p-1 rounded bg-warning text-primary-emphasis text-center m-1" href="{% url 'contentManagement' %}">Content Management</a>
+    <link rel="shortcut icon" href="{% static 'imgs/index/displayLogo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Display Lab</title>
+</head>
+<body>
+    <nav>
+        <div id="ifnmg-display" class="d-flex justify-content-center align-items-center flex-wrap">
+            <img src="{% static 'imgs/index/ifnmg.jpg' %}" alt="ifnmg" width="30%" id="ifnmg-image">
+            <div class="d-flex align-items-center w-25">
+                <img src="{% static 'imgs/index/displayLogo.png' %}" alt="displayLogo" width="35%" id="display-image">
+                <div class="text-center" id="display-name-lab">
+                    <p id="display-title" class="fw-bold m-0">display</p>
+                    <p id="lab-title" class="fw-bold m-0">Laboratório de Novas Tecnologias e Jogos Digitais</p>
+                </div>
             </div>
-          {% else %}
-            <a href="{% url 'login' %}" id="loginAnchor" class="invisible text-decoration-none text-white p-2 rounded-bottom">LOGIN</a>
-          {% endif %}
-          <div class="d-flex flex-row align-items-end justify-content-end" style="margin-bottom: 10px; width: 75%;">
-            <a href="https://www.facebook.com/batepapotecnologico?mibextid=ZbWKwL">
-              <img src="{% static 'imgs/index/facebook.png' %}" alt="DisplayLab Titulo" height="100%" width="100%">
-            </a>
-            <a href="https://www.instagram.com/displaylabif?utm_source=qr&igshid=OGU0MmVlOWVjOQ%3D%3D">
-              <img src="{% static 'imgs/index/instagram.png' %}" alt="DisplayLab Titulo" height="100%" width="100%">
-            </a>
-            <a href="https://www.youtube.com/@DisplayLabIF">
-              <img src="{% static 'imgs/index/youtube.png' %}" alt="DisplayLab Titulo" height="100%" width="100%">
-            </a>
-          </div>
+            {% if request.user.is_authenticated %}
+                <div class="d-flex justify-content-center align-items-center flex-column text-center">
+                    <a href="{% url 'logout' %}" class="text-decoration-none text-dark bg-danger p-2 m-1 rounded w-100">LOGOUT</a>
+                    <p class="p-1 rounded bg-secondary-subtle text-primary-emphasis m-1 w-100">{{ request.user.username }}</p>
+                    <a class="text-decoration-none p-1 rounded bg-warning text-primary-emphasis m-1 w-100" href="{% url 'contentManagement' %}">Content Management</a>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" id="loginAnchor" class="invisible text-decoration-none text-white p-2 rounded-bottom">LOGIN</a>
+            {% endif %}
         </div>
-      </div>
-
-      <nav class="nav nav-pills flex-column flex-sm-row flex-nowrap" style="margin-top: 20px;">
-        <a class="flex-sm-fill text-sm-center nav-link rounded-0 rounded-top text-dark" id="homeNav" href="{% url 'home' %}">HOME</a>
-        <a class="flex-sm-fill text-sm-center nav-link rounded-0 rounded-top text-dark" id="projetosNav" href="{% url 'projetos' %}">PROJETOS</a>
-        <a class="flex-sm-fill text-sm-center nav-link rounded-0 rounded-top text-dark" id="institucionalNav" href="{% url 'institucional' %}">INSTITUCIONAL</a>
-        <a class="flex-sm-fill text-sm-center nav-link rounded-0 rounded-top text-dark" id="sobreNav" href="{% url 'sobre' %}">QUEM SOMOS</a>
-      </nav>
-
-      <main class="w-100">
-        <div id="content" class="container rounded">
-          {% block content %}
-          {% endblock %}
+        <div class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                    <div class="navbar-nav gap-5">
+                        <a class="nav-link" id="navHome" aria-current="page" href="{% url 'home' %}">HOME</a>
+                        <a class="nav-link" id="navProjetos" href="{% url 'projetos' %}">PROJETOS</a>
+                        <a class="nav-link" id="navInstitucional" href="{% url 'institucional' %}">INSTITUCIONAL</a>
+                        <a class="nav-link" id="navRevista" href="{% url 'revista' %}">REVISTA</a>
+                        <a class="nav-link" id="navSobre" href="{% url 'sobre' %}">QUEM SOMOS</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </main>
+    </nav>
 
-      <footer>
-        <div id="footer" class="mt-5">
-          <p class="text-center m-0">Um produto por @IFNMG</p>
-          <p class="text-center m-0">Desenvolvido por Vytor Rennan Alves Carvalho</p>
-        </div>
-      </footer>
+    <div class="container mt-4 mb-5">
+        {% block content%}
+        {% endblock %}
     </div>
 
+    <footer class="w-100 text-center text-white">
+        <p class="m-0">Copyright@ 2024 Display - Todos os direitos reservados</p>
+        <p class="m-0">Desenvolvido por Vytor Rennan Alves Carvalho</p>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     {% block script %}
-    {% endblock %}
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-  </body>
+    {% endblock%}
+</body>
 </html>

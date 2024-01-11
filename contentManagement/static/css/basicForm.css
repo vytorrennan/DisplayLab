@@ -1,11 +1,3 @@
-:root {
-    --projetosColor: rgb(235, 235, 235);
-}
-
-#content {
-    background-color: var(--projetosColor);
-}
-
 input {
     width: 100%;
 }

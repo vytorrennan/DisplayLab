@@ -1,116 +1,31 @@
 {% extends "index.html" %}
-
 {% block head %}
 {% load static %}
-<title>Revista</title>
+<title>REVISTA</title>
 <link rel="stylesheet" href="{% static 'css/revista.css' %}">
 {% endblock %}
 
-{% block content %}
-<h2 class="text-white mb-5">REVISTA</h2>
-
-<div id="cardsRevista" class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-        <div class="card border-0">
-            <a href="#" class="text-decoration-none text-dark"> 
-                <img src="{% static 'imgs/skeletonAnimations.png' %}" class="card-img-top object-fit-cover" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">O que são skeleton animations?</h5>
-                <p class="card-text">Como skeleton animations pode deixar seu jogo mais rapido e leve.</p>
-                </div>
-            </a>
-        </div>
+{% block content%}
+    <h4>Revista</h4>
+    <div class="row row-cols-1 row-cols-md-2">
+        {% for post in posts %}
+            <div class="col">
+                <a class="card m-3 text-decoration-none" href="/revista/{{ post.url }}">
+                    {% if post.capa|slice:"0:4" == "http" %}
+                        <img src="{{ post.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ post.titulo }}">
+                    {% else%}
+                        <img src="{% get_static_prefix %}{{ post.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ post.titulo }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ post.titulo }}</h5>
+                        <p class="card-text"><small class="text-body-secondary">Edição: {{ post.edicao }} - {{ post.autor }}</small></p>
+                        <p class="card-text">{{ post.resumo }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor%}
     </div>
-    <div class="col">
-        <div class="card border-0">
-            <a href="#" class="text-decoration-none text-dark">  
-                <img src="{% static 'imgs/xboxDoPalmeiras.png' %}" class="card-img-top object-fit-cover" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">As skins de video game mais inusitadas</h5>
-                <p class="card-text">Sim é isso mesmo que você viu na imagem, xbox do palmeiras!</p>
-                </div>
-            </a>
-      </div>
-    </div>
-    <div class="col">
-        <div class="card border-0">
-            <a href="#" class="text-decoration-none text-dark"> 
-                <img src="{% static 'imgs/skeletonAnimations.png' %}" class="card-img-top object-fit-cover" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card border-0">
-            <a href="#" class="text-decoration-none text-dark">  
-                <img src="{% static 'imgs/xboxDoPalmeiras.png' %}" class="card-img-top object-fit-cover" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </a>
-      </div>
-    </div>
-    <div class="col">
-        <div class="card border-0">
-            <a href="#" class="text-decoration-none text-dark"> 
-                <img src="{% static 'imgs/skeletonAnimations.png' %}" class="card-img-top object-fit-cover" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card border-0">
-            <a href="#" class="text-decoration-none text-dark">  
-                <img src="{% static 'imgs/xboxDoPalmeiras.png' %}" class="card-img-top object-fit-cover" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </a>
-      </div>
-    </div>
-    <div class="col">
-        <div class="card border-0">
-            <a href="#" class="text-decoration-none text-dark"> 
-                <img src="{% static 'imgs/skeletonAnimations.png' %}" class="card-img-top object-fit-cover" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card border-0">
-            <a href="#" class="text-decoration-none text-dark">  
-                <img src="{% static 'imgs/xboxDoPalmeiras.png' %}" class="card-img-top object-fit-cover" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </a>
-      </div>
-    </div>
-    <div class="col">
-        <div class="card border-0">
-            <a href="#" class="text-decoration-none text-dark"> 
-                <img src="{% static 'imgs/skeletonAnimations.png' %}" class="card-img-top object-fit-cover" alt="...">
-                <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
 {% endblock %}
 
 {% block script %}
-{% endblock %}
+{% endblock%}

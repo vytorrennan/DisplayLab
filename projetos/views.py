@@ -9,6 +9,7 @@ def projetos(request):
     context = {"projeto": projeto }
     return render(request, "projetos.html", context)
 
+
 def paginaDeProjeto(request, url):
     projeto = Projeto.objects.filter(url=url)
     context = {"projeto": projeto[0]}

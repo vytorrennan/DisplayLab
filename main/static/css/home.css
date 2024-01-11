@@ -1,125 +1,48 @@
-:root {
-    --homeColor: #197cc0;
+#navHome {
+    color: black;
 }
 
-#homeNav {
-    background-color: var(--homeColor);
-    color: white !important;
+#revista {
+    background-color: #173f44;
+    font-size: 1vw;
 }
 
-#content {
-    background-color: var(--homeColor);
-    padding: 2em;
-    background-image: url("../imgs/home/background/textura-1.gif");
+#revista img {
+    max-height: 150px;
 }
 
-#content > div {
-    margin-bottom: 5vh;
+#revista-header p{
+    font-size: 1.5vw;
 }
 
-h2 {
-    color: white;
+#revista-header a{
+    font-size: 1.1vw;
 }
 
-.card {
-    background-color: transparent;
-    color: white;
-    font-weight: bold;
-}
-
-.card-img > img {
-    width: 100% !important;
-}
-
-.border-card {
-    border: 20px solid transparent !important;
-}
-
-#cardSlider > #recipeCarousel > .carousel-control-prev,
-#cardSlider > #recipeCarousel > .carousel-control-next {
-  background-color: #e1e1e1;
-  width: 5vh;
-  height: 5vh;
-  border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-@media (max-width: 767px) {
-    #cardSlider > #recipeCarousel > .carousel-inner .carousel-item > div {
-        display: none;
+@media (max-width: 600px) {
+    #revista {
+        font-size: 3.5vw !important;
     }
-    #cardSlider > #recipeCarousel > .carousel-inner .carousel-item > div:first-child {
-        display: block;
-    }
-}
 
-#cardSlider > #recipeCarousel > .carousel-inner .carousel-item.active,
-#cardSlider > #recipeCarousel > .carousel-inner .carousel-item-next,
-#cardSlider > #recipeCarousel > .carousel-inner .carousel-item-prev {
-    display: flex;
-}
-
-/* medium and up screens */
-@media (min-width: 768px) {
-    
-    #cardSlider > #recipeCarousel > .carousel-inner .carousel-item-end.active,
-    #cardSlider > #recipeCarousel > .carousel-inner .carousel-item-next {
-      transform: translateX(33.33333%);
+    #revista-header p{
+        font-size: 4vw !important;
     }
     
-    #cardSlider > #recipeCarousel > .carousel-inner .carousel-item-start.active, 
-    #cardSlider > #recipeCarousel > .carousel-inner .carousel-item-prev {
-      transform: translateX(-33.33333%);
+    #revista-header a{
+        font-size: 2.9vw !important;
     }
 }
 
-#cardSlider > #recipeCarousel > .carousel-inner .carousel-item-end,
-#cardSlider > #recipeCarousel > .carousel-inner .carousel-item-start { 
-  transform: translateX(0);
-}
-
-
-#conteudos {
-    display: flex;
-    gap: 10%;
-    padding: 2% 5%;
-    font-weight: bold;
-}
-
-@media (max-width: 990px) {
-    #conteudos {
-        flex-direction: column;
+@media (max-width: 940px) {
+    #revista {
+        font-size: 2vw;
     }
-}
 
-#conteudos > div {
-    margin: 10px 0px;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-#conteudos > div > h3 {
-    color: whitesmoke;
-}
-
-#podcast {
-    background-image: url("../imgs/home/conteudos/banner3.svg");
-    background-size: cover !important;
-    /*background-color: #38649c;*/
-}
-
-#biblioteca {
-    background-image: url("../imgs/home/conteudos/banner4.svg");
-    background-size: cover !important;
-    /*background-color: #80247c;*/
-}
-
-#games {
-    background-image: url("../imgs/home/conteudos/banner5.svg");
-    background-size: cover !important;
-    /*background-color: #203c8c;*/
+    #revista-header p{
+        font-size: 3vw;
+    }
+    
+    #revista-header a{
+        font-size: 2vw;
+    }
 }

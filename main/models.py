@@ -13,5 +13,10 @@ class Membro(models.Model):
     deletado = models.BooleanField(default=False)
     nome = models.CharField(max_length=200, default="")
     categoria = models.CharField(max_length=200, default="")
-    linkedin = models.CharField(max_length=512, default="")
+    saibaMais = models.CharField(max_length=512, default="")
+    foto = models.CharField(max_length=512, default="")
     descricao  = models.CharField(max_length=200, default="")
+
+
+    def __str__(self):
+        return self.nome

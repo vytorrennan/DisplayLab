@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block head%}
+    {% load static %}
+    <title>{{ post.titulo }}</title>
+{% endblock %}
+
+
+{% block content %}
+    {{ post.pagina | safe }}
+{% endblock %}
+
+{% block script %}
+{% endblock %}

@@ -1,129 +1,71 @@
 {% extends "index.html" %}
-
 {% block head %}
 {% load static %}
+<title>HOME</title>
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
-<title>Home</title>
 {% endblock %}
 
-
-{% block content %}
-<h2>NOTÍCIAS</h2>
-
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      {% for num in iterableNumItens %}
-        {% if num != 0 %}
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ num }}" aria-label="Slide {{ num }}"></button>
-        {% else %}
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ num }}" class="active" aria-current="true" aria-label="Slide {{ num }}"></button>
-        {% endif %}
-      {% endfor %}
-    </div>
-    <div class="carousel-inner">
-      {% for item in carousel %}
-        {% if item != carousel|first %}
-            <div class="carousel-item">
-                <a href="{{ item.url }}">
-                    <img src="{% get_static_prefix %}{{ item.imagem }}" class="d-block w-100" alt="">
-                </a>
-            </div>
-        {% else %}
-            <div class="carousel-item active">
-                <a href="{{ item.url }}">
-                    <img src="{% get_static_prefix %}{{ item.imagem }}" class="d-block w-100" alt="">
-                </a>
-            </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-</div>
-
-
-
-<div id="cardSlider" class="row mx-auto mb-5 my-auto justify-content-center">
-    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <div class="col-md-4">
-                    <div class="card border-card">
-                        <a href="/projetos/displayCast" class="text-decoration-none text-white">
-                            <div class="card-img">
-                                <img src="{% static 'imgs/home/cards/displayCast.png' %}" class="img-fluid" alt="DisplayCast">
-                            </div>
-                            <div class="">DisplayCast - O mais novo Podcast do Display</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-4">
-                    <div class="card border-card">
-                        <a href="/projetos/exterminandoDrogas" class="text-decoration-none text-white">
-                            <div class="card-img">
-                                <img src="{% static 'imgs/home/cards/exterminandoDrogas.png' %}" class="img-fluid" alt="Exterminando Drogas (GAME)">
-                            </div>
-                            <div class="">Exterminando Drogas - Uma aventura Educativa em 2D sobre drogas</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-4">
-                    <div class="card border-card">
-                        <a href="https://www.youtube.com/channel/UCxk8J5iEKDPZh35JzUBiGxg" class="text-decoration-none text-white">
-                            <div class="card-img">
-                                <img src="{% static 'imgs/home/cards/batePapoDeTI.png' %}" class="img-fluid">
-                            </div>
-                            <div class="">Bate-papo Tech - Confira o cronograma temporada 2023</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+{% block content%}
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+        {% for num in iterableNumItens %}
+            {% if num != 0 %}
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ num }}" aria-label="Slide {{ num }}"></button>
+            {% else %}
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ num }}" class="active" aria-current="true" aria-label="Slide {{ num }}"></button>
+            {% endif %}
+        {% endfor %}
         </div>
-        <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </a>
+        <div class="carousel-inner">
+        {% for item in carousel %}
+            {% if item != carousel|first %}
+                <div class="carousel-item">
+            {% else %}
+                <div class="carousel-item active">
+            {% endif %}
+                    <a href="{{ item.url }}">
+                        {% if p.capa|slice:"0:4" == "http" %}
+                            <img src="{{ item.imagem }}" class="d-block w-100" alt="">
+                        {% else%}
+                            <img src="{% get_static_prefix %}{{ item.imagem }}" class="d-block w-100" alt="">
+                        {% endif %}
+                    </a>
+                </div>   
+        {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
     </div>
-</div>
 
-<h2 style="text-align: center;">CONHEÇA NOSSOS CONTEÚDOS</h2>
 
-<div id="conteudos" class="bg-white">
-    <div id="podcast">
-        <h3>DisplayCast</h3>
-        <p>Episodios em breve</p>
+    <div id="revista" class="mt-5 p-4 rounded rounded-3 text-white fw-bold">
+        <div id="revista-header" class="d-flex justify-content-between">
+            <p>Revista</p>
+            <a href="#" class="d-flex flex-nowrap align-items-center p-2 rounded rounded-5 border border-1 text-decoration-none text-white">
+                ver tudo
+                <img src="{% static 'imgs/home/seta.svg' %}" alt="seta" width="30em">
+            </a>
+        </div>
+        <div class="d-flex align-items-center">
+            {% for post in ultimosPosts%}
+                <a class="d-flex flex-column align-items-center w-25 text-decoration-none text-white" href="#">
+                    {% if post.capa|slice:"0:4" == "http" %}
+                        <img src="{{ post.capa }}" alt="artigo da revista" class="m-3 object-fit-cover" id="artigo">
+                    {% else%}
+                        <img src="{% get_static_prefix %}{{ post.capa }}" alt="artigo da revista" class="m-3 object-fit-cover" id="artigo">
+                    {% endif %}
+                    <p class="">{{ post.titulo }}</p>
+                </a>
+            {% endfor %}
+        </div>
     </div>
-    <div id="biblioteca">
-        <h3>Biblioteca</h3>
-        <p><a href="http://www.tise.cl/Volumen14/TISE2018/356.pdf" class="text-decoration-none text-dark">EducaRedes: Jogo Digital Educacional como ferramenta de Auxílio no Ensino da Arquitetura TCP/IP</a></p>
-        <p><a href="https://sol.sbc.org.br/index.php/desafie/article/view/12180" class="text-decoration-none text-dark">Jogo Digital Educacional como Ferramenta de Auxílio na Conscientização e Prevenção às Drogas</a></p>
-        <p><a href="https://www.even3.com.br/anais/sicaracuai/81664-indisciplina-2d--jogo-educacional-para-prevencao-de-indisciplina-em-sala-de-aula/" class="text-decoration-none text-dark">Indisciplina 2d - Jogo Educacional Para Prevenção De Indisciplina Em Sala De Aula</a></p>
-    </div>
-    <div id="games">
-        <h3>Games</h3>
-        <p>Indisciplina 2D</p>
-        <p>Exterminando Drogas</p>
-        <p>EducaRedes</p>
-        <p>Peruaçu Digital</p>
-    </div>
-</div>
-
 {% endblock %}
 
 {% block script %}
-<script src="{% static 'js/home.js' %}"></script>
-{% endblock %}
+{% endblock%}

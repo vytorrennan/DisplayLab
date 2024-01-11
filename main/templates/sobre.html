@@ -1,75 +1,43 @@
 {% extends "index.html" %}
-
 {% block head %}
 {% load static %}
-<title>Quem somos</title>
+<title>QUEM SOMOS</title>
 <link rel="stylesheet" href="{% static 'css/sobre.css' %}">
 {% endblock %}
 
-{% block content %}
-<div class="categoria">
-    <div class="tituloCategoria w-100 text-white">
-        <h2>Servidores</h2>
-    </div>
-    <div class="integrantesCategoria w-100">
-        <div class="card text-white m-2" style="width: 15rem;">
-            <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title text-align-center tituloCard">Joselice Lima</h5>
-              <p class="card-text textCard">Professora e pesquisadora do IFNMG</p>
+{% block content%}
+
+{% for categ in categorias %}
+    <div class="mb-5">
+        <h2>{{ categ }}</h2>
+        <div>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for membro in membros%}
+                    {% if membro.categoria == categ %}
+                        <div class="col">
+                            <div class="card h-100 d-flex align-items-center">
+                                {% if membro.foto|slice:"0:4" == "http" %}
+                                    <img src="{{ membro.foto }}" class="card-img-top" alt="foto de {{ membro.nome }}">
+                                {% else%}
+                                    <img src="{% get_static_prefix %}{{ membro.foto }}" class="card-img-top" alt="foto de {{ membro.nome }}">
+                                {% endif %}
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">{{ membro.nome }}</h5>
+                                    <p class="card-text">{{ membro.descricao }}</p>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ membro.saibaMais }}" class="saiba-mais card-tex text-decoration-none text-white fw-bold rounded rounded-5">SAIBA MAIS</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
-
-        <div class="card text-white m-2" style="width: 15rem;">
-            <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title text-align-center tituloCard">Danilo Nunes</h5>
-              <p class="card-text textCard">Professor e pesquisador do IFNMG</p>
-            </div>
-        </div>
-
-        <div class="card text-white m-2" style="width: 15rem;">
-          <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-align-center tituloCard">Tiago Severino</h5>
-            <p class="card-text textCard">Professor e pesquisador do IFNMG</p>
-          </div>
-        </div>
     </div>
-</div>
-
-<div class="categoria">
-  <div class="tituloCategoria w-100 text-white">
-    <h2>Academicos</h2>
-  </div>
-  <div class="integrantesCategoria w-100">
-      <div class="card text-white m-2" style="width: 15rem;">
-          <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-align-center tituloCard">Vytor Rennan</h5>
-            <p class="card-text textCard">Academico de BSI</p>
-          </div>
-      </div>
-
-      <div class="card text-white m-2" style="width: 15rem;">
-          <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-align-center tituloCard">Guilherme Froes</h5>
-            <p class="card-text textCard">Academico de BSI</p>
-          </div>
-      </div>
-
-      <div class="card text-white m-2" style="width: 15rem;">
-          <img src="{% static 'imgs/sobre/logo.jpg' %}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-align-center tituloCard">Marcio Ferreira</h5>
-            <p class="card-text textCard">Academico BSI</p>
-          </div>
-      </div>
-  </div>
-</div>
+{% endfor %}
 
 {% endblock %}
 
 {% block script %}
-{% endblock %}
+{% endblock%}

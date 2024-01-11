@@ -1,33 +1,7 @@
-:root {
-    --projetosColor: #639830;
+#navInstitucional {
+    color: black;
 }
 
-#institucionalNav {
-    background-color: var(--projetosColor);
-    color: white !important;
-}
-
-#content {
-    background-color: var(--projetosColor);
-    background-image: url("../imgs/institucional/background/textura-3.gif");
-    padding: 2em;
-}
-
-#historiaDoDisplay {
-    background-color: white;
-    padding: 2em;
-}
-
-#historiaDoDisplay img {
-    object-fit: cover;
-}
-
-#historiaDoDisplay p {
-    text-align: justify;
-}
-
-@media (min-width: 1440px) {
-    #historiaDoDisplay {
-        font-size: 1.3em;
-    }
+.card {
+    border: 0px;
 }

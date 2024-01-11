@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from . import models
+from revista.models import Revista
 
 # Create your views here.
 
@@ -7,14 +8,22 @@ from . import models
 def home(request):
     carousel = models.carouselItem.objects.all()
     numItens = carousel.count()
-    context = {"carousel": carousel, "iterableNumItens": range(numItens)}
+    ultimosPosts = Revista.objects.all()[0:4]
+    context = {"carousel": carousel, "iterableNumItens": range(numItens), "ultimosPosts": ultimosPosts}
     return render(request, "home.html", context)
 
 def institucional(request):
     return render(request, "institucional.html")
 
 def sobre(request):
-    return render(request, "sobre.html")
+    membros = models.Membro.objects.all()
+    categoriaDeTodos = models.Membro.objects.values_list("categoria", flat=True)
+    categorias = []
+    for categ in categoriaDeTodos:
+        if categ not in categorias:
+            categorias.append(categ)
+    context = {"membros": membros, "categorias": categorias}
+    return render(request, "sobre.html", context)
 
 
 #temporarios-------

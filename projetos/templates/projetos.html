@@ -1,99 +1,35 @@
 {% extends "index.html" %}
-
 {% block head %}
 {% load static %}
-<title>Projetos</title>
+<title>PROJETOS</title>
 <link rel="stylesheet" href="{% static 'css/projetos.css' %}">
 {% endblock %}
 
-{% block content %}
-<h2 class="text-white m-4">OS PROJETOS DO DISPLAY</h2>
-
-<div id="cardsProjetos">
+{% block content%}
 
     {% for p in projeto %}
-        <div class="card mb-3 cardProjeto layout1 border-0">
+        <div class="card mb-5">
             <div class="row g-0">
-                <div class="col-md-10 position-relative d-flex flex-column">
-                    <div class="card-body mb-3">
+                <div class="col-md-2">
+                    {% if p.capa|slice:"0:4" == "http" %}
+                        <img src="{{ p.capa }}" class="object-fit-cover" width="100%" height="100%" alt="capa de {{ p.titulo }}">
+                    {% else%}
+                        <img src="{% get_static_prefix %}{{ p.capa }}" class="rounded-start object-fit-cover" width="100%" height="100%" alt="capa de {{ p.titulo }}">
+                    {% endif %}
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body h-100">
                         <h5 class="card-title">{{ p.titulo }}</h5>
                         <p class="card-text">{{ p.resumo }}</p>
                     </div>
-                    <a href="/projetos/{{ p.url }}" class="saibaMaisBtn rounded-3 mb-3 text-center text-decoration-none">SAIBA MAIS</a>
-                </div>
-                <div class="col-md-2">
-                    <img src="{{ p.capa }}" class="img-fluid rounded-end cardProjetosImage" width="100%" alt="imagem de um personagem do jogo EducaRedes">
+                    <div class="d-flex justify-content-center">
+                        <a href="/projetos/{{ p.url }}" class="saiba-mais card-tex text-decoration-none text-white fw-bold rounded rounded-5">SAIBA MAIS</a>
+                    </div>
                 </div>
             </div>
         </div>
     {% endfor %}
-
-    <div class="card mb-3 cardProjeto layout1 border-0">
-        <div class="row g-0">
-            <div class="col-md-10 position-relative d-flex flex-column">
-                <div class="card-body mb-3">
-                    <h5 class="card-title">DisplayCast</h5>
-                    <p class="card-text">Um podcast fascinante que mergulha no mundo da tecnologia e carreira! Junte-se a nós enquanto exploramos os últimos avanços tecnológicos, compartilhamos insights valiosos sobre desenvolvimento profissional e mergulhamos em discussões instigantes com especialistas da indústria.
-                        Se você é um entusiasta de tecnologia em busca de conhecimento, um profissional em transição de carreira ou alguém que busca conselhos valiosos para se destacar na indústria, esse o DisplayCast é perfeito para você. Aperte o play e embarque nesta jornada emocionante com a gente. Vamos explorar o mundo da tecnologia e descobrir os segredos para o sucesso profissional juntos!</p>
-                </div>
-                <a href="{% url 'displayCast' %}" class="saibaMaisBtn rounded-3 mb-3 text-center text-decoration-none">SAIBA MAIS</a>
-            </div>
-            <div class="col-md-2">
-                <img src="{% static 'imgs/projetos/displayCast.png' %}" class="img-fluid rounded-end cardProjetosImage" width="100%" alt="logo do DisplayCast">
-            </div>
-        </div>
-    </div>
-
-    <div class="card mb-3 cardProjeto layout2 border-0">
-        <div class="row g-0">
-            <div class="col-md-10 position-relative d-flex flex-column">
-                <div class="card-body mb-3">
-                    <h5 class="card-title">Exterminando Drogas</h5>
-                    <p class="card-text">"Exterminando Drogas" é um emocionante jogo educacional em 2D que busca conscientizar os jogadores sobre os perigos das drogas. Com gráficos desenhados à mão, o jogo transporta os jogadores para duas ilhas misteriosas, onde vivem dois corajosos irmãos. Infelizmente, sua amada irmã foi capturada por uma gangue de traficantes.
-                        Determinados a resgatar sua irmã e combater o mal que assola as ilhas, os dois irmãos embarcam em uma jornada cheia de desafios e perigos. Nessa aventura de plataforma, eles devem superar obstáculos e enfrentar inimigos!</p>
-                </div>
-                <a href="{% url 'exterminandoDrogas' %}" class="saibaMaisBtn rounded-3 mb-3 text-center text-decoration-none">SAIBA MAIS</a>
-            </div>
-            <div class="col-md-2">
-                <img src="{% static 'imgs/postsProjetos/exterminandoDrogas/gameScreenshot.png' %}" class="img-fluid rounded-end cardProjetosImage" width="100%" alt="screenshot do jogo Exterminando drogas">
-            </div>
-        </div>
-    </div>
-
-    <div class="card mb-3 cardProjeto layout1 border-0">
-        <div class="row g-0">
-            <div class="col-md-10 position-relative d-flex flex-column">
-                <div class="card-body mb-3">
-                    <h5 class="card-title">Peruaçu Digital</h5>
-                    <p class="card-text">A tecnologia tem se destacado como uma ferramenta crucial na educação e disseminação do conhecimento. O projeto Peruaçu Digital é uma iniciativa inovadora que utiliza tecnologias de simulação para oferecer uma experiência virtual e educativa das cavernas do Parque Estadual do Peruaçu.
-                        Através dessa simulação realista, os usuários podem explorar esses locais sem a necessidade de deslocamento físico, contribuindo para a formação de profissionais mais capacitados e para a preservação do meio ambiente. A utilização de tecnologias de simulação demonstrou ser eficaz ao proporcionar experiências imersivas e educacionais, contribuindo para o conhecimento sobre as belezas naturais do Brasil e a proteção de áreas sensíveis.</p>
-                </div>
-                <a href="{% url 'peruacuDigital' %}" class="saibaMaisBtn rounded-3 mb-3 text-center text-decoration-none">SAIBA MAIS</a>
-            </div>
-            <div class="col-md-2">
-                <img src="{% static 'imgs/projetos/peruacuDigital.png' %}" class="img-fluid rounded-end cardProjetosImage" width="100%" alt="screenshot do jogo Peruaçu Digital">
-            </div>
-        </div>
-    </div>
-
-    <div class="card mb-3 cardProjeto layout1 border-0">
-        <div class="row g-0">
-            <div class="col-md-10 position-relative d-flex flex-column">
-                <div class="card-body mb-3">
-                    <h5 class="card-title">EducaRedes</h5>
-                    <p class="card-text">A tecnologia está revolucionando a sociedade, e a educação busca incorporar recursos tecnológicos para tornar a aprendizagem mais dinâmica. Os jogos educacionais, como o EducaRedes, destacam-se ao ensinar temas complexos, como a arquitetura TCP/IP, de forma acessível e interessante.
-                        Utilizando a gamificação e a metodologia SCRUM4Games, o EducaRedes mostrou-se uma ferramenta eficaz, com interface intuitiva e nível de dificuldade adequado. Sendo uma plataforma open source, é livre e acessível a todos, permitindo contribuições para aprimoramento contínuo. Em resumo, o EducaRedes é uma alternativa inovadora e lúdica para o ensino da arquitetura TCP/IP, tornando o aprendizado mais prazeroso e eficiente.</p>
-                </div>
-                <a href="{% url 'educaRedes' %}" class="saibaMaisBtn rounded-3 mb-3 text-center text-decoration-none">SAIBA MAIS</a>
-            </div>
-            <div class="col-md-2">
-                <img src="{% static 'imgs/projetos/educaRedes.png' %}" class="img-fluid rounded-end cardProjetosImage" width="100%" alt="imagem de um personagem do jogo EducaRedes">
-            </div>
-        </div>
-    </div>
-</div>
-
 {% endblock %}
 
 {% block script %}
-{% endblock %}
+{% endblock%}
