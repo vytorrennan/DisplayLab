@@ -5,6 +5,10 @@ from .forms.novoProjeto import novoProjetoForm
 from .forms.novoPostRevista import novoPostRevistaForm
 from .forms.novoMembro import novoMembroForm
 from .forms.novaCategoriaDeMembro import novaCategoriaDeMembroForm
+from .forms.novaEdicaoDeRevista import novaEdicaoDeRevistaForm
+
+
+
 
 # Create your views here.
 @login_required
@@ -52,6 +56,20 @@ def novoPostRevista(request):
     else: 
         context['form'] = novoPostRevistaForm()
     return render(request, "novoPostRevista.html", context)
+
+
+@login_required
+def novaEdicaoDeRevista(request):
+    context = {}
+    if request.method == "POST":
+        context['form'] = novaEdicaoDeRevistaForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'] = "Essa edição já existe!"
+    else: 
+        context['form'] = novaEdicaoDeRevistaForm()
+    return render(request, "novaEdicaoDeRevista.html", context)
 
 
 @login_required
