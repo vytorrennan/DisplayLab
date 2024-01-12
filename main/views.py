@@ -19,7 +19,7 @@ def institucional(request):
 
 def sobre(request):
     membros = models.Membro.objects.filter(oculto=False)
-    categorias = models.Categoria.objects.all()
+    categorias = models.membroCategoria.objects.all()
     context = {"membros": membros, "categorias": categorias}
     return render(request, "sobre.html", context)
 

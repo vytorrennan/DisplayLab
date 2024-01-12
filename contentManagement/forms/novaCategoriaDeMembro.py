@@ -1,8 +1,8 @@
 from django import forms
-from main.models import Categoria
+from main.models import membroCategoria
 
 
 class novaCategoriaDeMembroForm(forms.ModelForm):
     class Meta:
-        model = Categoria
+        model = membroCategoria
         fields = ["categoria"]

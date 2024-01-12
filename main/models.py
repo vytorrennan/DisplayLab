@@ -11,7 +11,7 @@ class carouselItem(models.Model):
         return self.url
 
 
-class Categoria(models.Model):
+class membroCategoria(models.Model):
     id = models.AutoField(primary_key=True)
     categoria = models.CharField(max_length=200, unique=True, default="")
 
@@ -23,7 +23,7 @@ class Membro(models.Model):
     id = models.AutoField(primary_key=True)
     oculto = models.BooleanField(default=False)
     nome = models.CharField(max_length=200, default="")
-    categoria = models.ForeignKey(Categoria, to_field='categoria', on_delete=models.PROTECT)
+    categoria = models.ForeignKey(membroCategoria, to_field='categoria', on_delete=models.PROTECT)
     saibaMais = models.CharField(max_length=512, default="")
     foto = models.CharField(max_length=512, default="")
     descricao  = models.CharField(max_length=200, default="")

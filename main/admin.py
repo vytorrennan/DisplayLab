@@ -4,4 +4,4 @@ from . import models
 # Register your models here.
 admin.site.register(models.carouselItem)
 admin.site.register(models.Membro)
-admin.site.register(models.Categoria)
+admin.site.register(models.membroCategoria)
