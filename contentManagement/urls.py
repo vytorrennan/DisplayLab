@@ -3,8 +3,10 @@ from . import views
 
 urlpatterns = [
     path("", views.contentManagement, name="contentManagement"),
-    
+
     path("novoItemCarousel/", views.novoItemCarousel, name="novoItemCarousel"),
+    path("editarItemCarousel/", views.editarItemCarousel, name="editarItemCarousel"),
+    path("editarItemCarousel/<int:id>", views.editarItemCarouselId, name="editarItemCarouselId"),
 
     path("novoProjeto/", views.novoProjeto, name="novoProjeto"),
     path("editarProjeto/", views.editarProjeto, name="editarProjeto"),

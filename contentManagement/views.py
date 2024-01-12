@@ -6,8 +6,9 @@ from .forms.novoOuEditarPostRevista import novoOuEditarPostRevistaForm
 from .forms.novoOuEditarMembro import novoOuEditarMembroForm
 from .forms.novaCategoriaDeMembro import novaCategoriaDeMembroForm
 from .forms.novaEdicaoDeRevista import novaEdicaoDeRevistaForm
-from revista.models import Revista
+from main.models import carouselItem
 from projetos.models import Projeto
+from revista.models import Revista
 from main.models import Membro
 from main.models import membroCategoria
 
@@ -36,6 +37,31 @@ def novoItemCarousel(request):
 
 
 @login_required
+def editarItemCarousel(request):
+    context = {}
+    items = carouselItem.objects.all()
+    context["items"] = items
+    return render(request, "editarItemCarousel.html", context)
+
+
+@login_required
+def editarItemCarouselId(request, id):
+    context = {"titulo": "Editando Item De Carousel", 
+               "observacoes": ["Imagem: coloque o link da imagem que aparecerá no carousel, a imagem devera ser 1600x900", 
+                               "Url: link de onde o usuario irá quando clicar na imagem"]}
+    instance = carouselItem.objects.filter(id=id)[0]
+    if request.method == "POST":
+        context['form'] = novoOuEditarItemCarouselForm(request.POST, instance=instance)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = novoOuEditarItemCarouselForm(instance=instance)
+    return render(request, "basicForm.html", context)
+
+
+@login_required
 def novoProjeto(request):
     context = {"titulo": "Novo Projeto", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
     if request.method == "POST":
@@ -52,8 +78,8 @@ def novoProjeto(request):
 @login_required
 def editarProjeto(request):
     context = {}
-    items = Projeto.objects.all().order_by("-dataHora")
-    context["items"] = items
+    Projetos = Projeto.objects.all().order_by("-dataHora")
+    context["Projetos"] = Projetos
     return render(request, "editarProjeto.html", context)
 
 
@@ -104,8 +130,8 @@ def novaEdicaoDeRevista(request):
 @login_required
 def editarPostRevista(request):
     context = {}
-    items = Revista.objects.all().order_by("-edicao", "-dataHora")
-    context["items"] = items
+    Posts = Revista.objects.all().order_by("-edicao", "-dataHora")
+    context["Posts"] = Posts
     return render(request, "editarPostRevista.html", context)
 
 

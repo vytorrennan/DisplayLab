@@ -2,7 +2,6 @@
 
 {% block head%}
     {% load static %}
-    {{ form.media }}
     <title>Pagina de seleção</title>
     <link rel="stylesheet" href='{% static "/css/paginaDeSelecao.css" %}'>
 {% endblock %}
@@ -12,16 +11,16 @@
     <h2 class="text-dark m-4">Selecione qual deseja: </h2>
 
     <div class="row row-cols-1 row-cols-md-4 g-4">
-        {% for item in items %}
+        {% for post in Posts %}
             <div class="col">
-                <a class="card text-decoration-none" href="{% url 'editarPostRevistaId' item.id %}">
-                    {% if item.capa|slice:"0:4" == "http" %}
-                        <img src="{{ item.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ item.titulo }}">
+                <a class="card text-decoration-none" href="{% url 'editarPostRevistaId' post.id %}">
+                    {% if post.capa|slice:"0:4" == "http" %}
+                        <img src="{{ post.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ post.titulo }}">
                     {% else%}
-                        <img src="{% get_static_prefix %}{{ item.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ item.titulo }}">
+                        <img src="{% get_static_prefix %}{{ post.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ post.titulo }}">
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">{{ item.titulo }}</h5>
+                        <h5 class="card-title">{{ post.titulo }}</h5>
                     </div>
                 </a>
             </div>

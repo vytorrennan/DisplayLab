@@ -12,9 +12,17 @@
     <div class="d-flex gap-3 mb-3">
         <div class="card w-25">
             <div class="card-body">
-                <h5 class="card-title">Novo item do Carousel de projetos</h5>
-                <p class="card-text">Envie uma imagem(1600x900) e um link para criar um novo item no carrosel de projetos</p>
+                <h5 class="card-title">Novo item do Carousel</h5>
+                <p class="card-text">Envie uma imagem(1600x900) e um link para criar um novo item no carrosel</p>
                 <a href="{% url 'novoItemCarousel' %}" class="btn btn-primary">Novo Item</a>
+            </div>
+        </div>
+
+        <div class="card w-25">
+            <div class="card-body">
+              <h5 class="card-title">Editar item do Carousel</h5>
+              <p class="card-text">Escolha um item do Carousel para editar</p>
+              <a href="{% url 'editarItemCarousel' %}" class="btn btn-primary">Editar item do Carousel</a>
             </div>
         </div>
     </div>
