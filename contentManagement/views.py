@@ -7,6 +7,7 @@ from .forms.novoMembro import novoMembroForm
 from .forms.novaCategoriaDeMembro import novaCategoriaDeMembroForm
 from .forms.novaEdicaoDeRevista import novaEdicaoDeRevistaForm
 from revista.models import Revista
+from projetos.models import Projeto
 
 
 
@@ -14,6 +15,20 @@ from revista.models import Revista
 @login_required
 def contentManagement(request):
     return render(request, "contentManagement.html")
+
+
+@login_required
+def novoItemCarousel(request):
+    context = {}
+    if request.method == "POST":
+        context['form'] = novoItemCarouselForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = novoItemCarouselForm()
+    return render(request, "novoItemCarousel.html", context)
 
 
 @login_required
@@ -31,17 +46,25 @@ def novoProjeto(request):
 
 
 @login_required
-def novoItemCarousel(request):
+def editarProjeto(request):
+    context = {}
+    items = Projeto.objects.all().order_by("-dataHora")
+    context["items"] = items
+    return render(request, "editarProjeto.html", context)
+
+
+@login_required
+def editarProjetoId(request, id):
     context = {}
     if request.method == "POST":
-        context['form'] = novoItemCarouselForm(request.POST)
+        context['form'] = novoProjetoForm(request.POST)
         if context['form'].is_valid():
             context['form'].save()
         else:
             context['form'].errors
     else: 
-        context['form'] = novoItemCarouselForm()
-    return render(request, "novoItemCarousel.html", context)
+        context['form'] = novoProjetoForm(instance=Projeto.objects.filter(id=id)[0])
+    return render(request, "novoProjeto.html", context)
 
 
 @login_required
@@ -74,7 +97,15 @@ def novaEdicaoDeRevista(request):
 
 
 @login_required
-def editarPostRevista(request, id):
+def editarPostRevista(request):
+    context = {}
+    items = Revista.objects.all().order_by("-edicao", "-dataHora")
+    context["items"] = items
+    return render(request, "editarPostRevista.html", context)
+
+
+@login_required
+def editarPostRevistaId(request, id):
     context = {}
     if request.method == "POST":
         context['form'] = novoPostRevistaForm(request.POST)
