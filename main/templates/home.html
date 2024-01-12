@@ -44,21 +44,21 @@
     </div>
 
 
-    <div id="revista" class="mt-5 p-4 rounded rounded-3 text-white fw-bold">
+    <div id="revista" class="mt-5 p-4 rounded rounded-3 text-white fw-bold" onclick="adaptLastPosts();">
         <div id="revista-header" class="d-flex justify-content-between">
-            <p>Revista</p>
+            <p onclick="adaptLastPosts();">Revista</p>
             <a href="{% url 'revista' %}" class="d-flex flex-nowrap align-items-center p-2 rounded rounded-5 border border-1 text-decoration-none text-white">
                 ver tudo
                 <img src="{% static 'imgs/home/seta.svg' %}" alt="seta" width="30em">
             </a>
         </div>
         <div id="ultimosPosts" class="d-flex align-items-center justify-content-center">
-            {% for post in ultimosPosts%}
+            {% for post in ultimosPosts %}
                 <a class="d-flex flex-column align-items-center text-decoration-none text-white m-2" href="/revista/{{ post.url }}">
                     {% if post.capa|slice:"0:4" == "http" %}
-                        <img src="{{ post.capa }}" alt="artigo da revista" class="m-3 object-fit-cover" id="artigo">
+                        <img src="{{ post.capa }}" alt="capa de {{ post.titulo }}" class="m-3 object-fit-cover" id="artigo">
                     {% else%}
-                        <img src="{% get_static_prefix %}{{ post.capa }}" alt="artigo da revista" class="m-3 object-fit-cover" id="artigo">
+                        <img src="{% get_static_prefix %}{{ post.capa }}" alt="capa de {{ post.titulo }}" class="m-3 object-fit-cover" id="artigo">
                     {% endif %}
                     <p class="">{{ post.titulo }}</p>
                 </a>

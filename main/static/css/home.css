@@ -18,3 +18,11 @@
 #revista-header a{
     font-size: 0.9em;
 }
+
+#ultimosPosts {
+    overflow: hidden;
+}
+
+#ultimosPosts a {
+    overflow: hidden;
+}
