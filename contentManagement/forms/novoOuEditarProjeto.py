@@ -3,7 +3,7 @@ from projetos.models import Projeto
 from tinymce.widgets import TinyMCE
 
 
-class novoProjetoForm(forms.ModelForm):
+class novoOuEditarProjetoForm(forms.ModelForm):
 
     class Meta:
         model = Projeto

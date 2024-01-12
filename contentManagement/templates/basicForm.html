@@ -2,13 +2,18 @@
 
 {% block head%}
     {% load static %}
-    <title>Nova Categoria</title>
+    {{ form.media }}
+    <title>{{ titulo }}</title>
     <link rel="stylesheet" href='{% static "/css/basicForm.css" %}'>
 {% endblock %}
 
 
 {% block content %}
-    <h2 class="text-dark m-4 text-center">Nova Categoria</h2>
+    <h2 class="text-dark m-4 text-center">{{ titulo }}</h2>
+
+    {% for observacao in observacoes %}
+        <p>{{ observacao }}</p>
+    {% endfor %}
 
     <form method="POST" class="d-flex flex-column gap-3 text-dark fs-4">
         {% csrf_token %}
