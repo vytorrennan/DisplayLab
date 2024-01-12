@@ -4,7 +4,7 @@
 
 #revista {
     background-color: #173f44;
-    font-size: 1vw;
+    font-size: 1em;
 }
 
 #revista img {
@@ -12,37 +12,9 @@
 }
 
 #revista-header p{
-    font-size: 1.5vw;
+    font-size: 1.3em;
 }
 
 #revista-header a{
-    font-size: 1.1vw;
-}
-
-@media (max-width: 600px) {
-    #revista {
-        font-size: 3.5vw !important;
-    }
-
-    #revista-header p{
-        font-size: 4vw !important;
-    }
-    
-    #revista-header a{
-        font-size: 2.9vw !important;
-    }
-}
-
-@media (max-width: 940px) {
-    #revista {
-        font-size: 2vw;
-    }
-
-    #revista-header p{
-        font-size: 3vw;
-    }
-    
-    #revista-header a{
-        font-size: 2vw;
-    }
+    font-size: 0.9em;
 }

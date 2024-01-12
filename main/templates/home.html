@@ -52,9 +52,9 @@
                 <img src="{% static 'imgs/home/seta.svg' %}" alt="seta" width="30em">
             </a>
         </div>
-        <div class="d-flex align-items-center">
+        <div id="ultimosPosts" class="d-flex align-items-center justify-content-center">
             {% for post in ultimosPosts%}
-                <a class="d-flex flex-column align-items-center w-25 text-decoration-none text-white m-2" href="#">
+                <a class="d-flex flex-column align-items-center text-decoration-none text-white m-2" href="/revista/{{ post.url }}">
                     {% if post.capa|slice:"0:4" == "http" %}
                         <img src="{{ post.capa }}" alt="artigo da revista" class="m-3 object-fit-cover" id="artigo">
                     {% else%}
@@ -68,4 +68,5 @@
 {% endblock %}
 
 {% block script %}
+    <script src="{% static 'js/home.js' %}"></script>
 {% endblock%}
