@@ -8,7 +8,7 @@ from revista.models import Revista
 def home(request):
     carousel = models.carouselItem.objects.all()
     numItens = carousel.count()
-    ultimosPosts = Revista.objects.filter(deletado=False).order_by("-edicao", "-dataHora")[0:4]
+    ultimosPosts = Revista.objects.filter(oculto=False).order_by("-edicao", "-dataHora")[0:4]
     context = {"carousel": carousel, "iterableNumItens": range(numItens), "ultimosPosts": ultimosPosts}
     return render(request, "home.html", context)
 
@@ -18,7 +18,7 @@ def institucional(request):
 
 
 def sobre(request):
-    membros = models.Membro.objects.filter(deletado=False)
+    membros = models.Membro.objects.filter(oculto=False)
     categorias = models.Categoria.objects.all()
     context = {"membros": membros, "categorias": categorias}
     return render(request, "sobre.html", context)

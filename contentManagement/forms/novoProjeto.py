@@ -7,7 +7,7 @@ class novoProjetoForm(forms.ModelForm):
 
     class Meta:
         model = Projeto
-        fields = ["titulo", "capa", "dataHora", "resumo", "pagina"]
+        fields = ["oculto", "titulo", "capa", "dataHora", "resumo", "pagina"]
         widgets = {
             'dataHora': forms.DateTimeInput(),
             'resumo': forms.Textarea(),

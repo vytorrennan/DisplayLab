@@ -6,7 +6,7 @@ from .forms.novoPostRevista import novoPostRevistaForm
 from .forms.novoMembro import novoMembroForm
 from .forms.novaCategoriaDeMembro import novaCategoriaDeMembroForm
 from .forms.novaEdicaoDeRevista import novaEdicaoDeRevistaForm
-
+from revista.models import Revista
 
 
 
@@ -71,6 +71,20 @@ def novaEdicaoDeRevista(request):
         context['form'] = novaEdicaoDeRevistaForm()
         context['erro'] = ""
     return render(request, "novaEdicaoDeRevista.html", context)
+
+
+@login_required
+def editarPostRevista(request, id):
+    context = {}
+    if request.method == "POST":
+        context['form'] = novoPostRevistaForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = novoPostRevistaForm(instance=Revista.objects.filter(id=id)[0])
+    return render(request, "novoPostRevista.html", context)
 
 
 @login_required

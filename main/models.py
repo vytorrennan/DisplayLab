@@ -21,7 +21,7 @@ class Categoria(models.Model):
 
 class Membro(models.Model):
     id = models.AutoField(primary_key=True)
-    deletado = models.BooleanField(default=False)
+    oculto = models.BooleanField(default=False)
     nome = models.CharField(max_length=200, default="")
     categoria = models.ForeignKey(Categoria, to_field='categoria', on_delete=models.PROTECT)
     saibaMais = models.CharField(max_length=512, default="")
