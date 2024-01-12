@@ -13,6 +13,7 @@ class carouselItem(models.Model):
 
 class membroCategoria(models.Model):
     id = models.AutoField(primary_key=True)
+    oculto = models.BooleanField(default=False)
     categoria = models.CharField(max_length=200, unique=True, default="")
 
     def __str__(self):
