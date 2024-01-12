@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .forms.novoItemCarousel import novoItemCarouselForm
+from .forms.novoOuEditarItemCarousel import novoOuEditarItemCarouselForm
 from .forms.novoOuEditarProjeto import novoOuEditarProjetoForm
 from .forms.novoOuEditarPostRevista import novoOuEditarPostRevistaForm
-from .forms.novoMembro import novoMembroForm
+from .forms.novoOuEditarMembro import novoOuEditarMembroForm
 from .forms.novaCategoriaDeMembro import novaCategoriaDeMembroForm
 from .forms.novaEdicaoDeRevista import novaEdicaoDeRevistaForm
 from revista.models import Revista
 from projetos.models import Projeto
+from main.models import Membro
 
 
 
@@ -23,13 +24,13 @@ def novoItemCarousel(request):
                "observacoes": ["Imagem: coloque o link da imagem que aparecerá no carousel, a imagem devera ser 1600x900", 
                                "Url: link de onde o usuario irá quando clicar na imagem"],}
     if request.method == "POST":
-        context['form'] = novoItemCarouselForm(request.POST)
+        context['form'] = novoOuEditarItemCarouselForm(request.POST)
         if context['form'].is_valid():
             context['form'].save()
         else:
             context['form'].errors
     else: 
-        context['form'] = novoItemCarouselForm()
+        context['form'] = novoOuEditarItemCarouselForm()
     return render(request, "basicForm.html", context)
 
 
@@ -110,7 +111,7 @@ def editarPostRevista(request):
 @login_required
 def editarPostRevistaId(request, id):
     context = {"titulo": "Editando Post De Revista", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
-    instance=Revista.objects.filter(id=id)[0]
+    instance = Revista.objects.filter(id=id)[0]
     if request.method == "POST":
         context['form'] = novoOuEditarPostRevistaForm(request.POST, instance=instance)
         if context['form'].is_valid():
@@ -126,13 +127,36 @@ def editarPostRevistaId(request, id):
 def novoMembro(request):
     context = {"titulo": "Novo Membro", "observacoes": [""]}
     if request.method == "POST":
-        context['form'] = novoMembroForm(request.POST)
+        context['form'] = novoOuEditarMembroForm(request.POST)
         if context['form'].is_valid():
             context['form'].save()
         else:
             context['form'].errors
     else: 
-        context['form'] = novoMembroForm()
+        context['form'] = novoOuEditarMembroForm()
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def editarMembro(request):
+    context = {}
+    Membros = Membro.objects.all()
+    context["Membros"] = Membros
+    return render(request, "editarMembro.html", context)
+
+
+@login_required
+def editarMembroId(request, id):
+    context = {"titulo": "Editando membro", "observacoes": [""]}
+    instance = Membro.objects.filter(id=id)[0]
+    if request.method == "POST":
+        context['form'] = novoOuEditarMembroForm(request.POST, instance=instance)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = novoOuEditarMembroForm(instance=instance)
     return render(request, "basicForm.html", context)
 
 
