@@ -21,6 +21,7 @@
                         <img src="{% get_static_prefix %}{{ membro.foto }}" class="card-img-top object-fit-cover" alt="capa de {{ membro.nome }}">
                     {% endif %}
                     <div class="card-body">
+                        <p>{{ membro.categoria }}</p>
                         <h5 class="card-title">{{ membro.nome }}</h5>
                     </div>
                 </a>

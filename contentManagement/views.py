@@ -9,6 +9,7 @@ from .forms.novaEdicaoDeRevista import novaEdicaoDeRevistaForm
 from revista.models import Revista
 from projetos.models import Projeto
 from main.models import Membro
+from main.models import membroCategoria
 
 
 
@@ -140,7 +141,7 @@ def novoMembro(request):
 @login_required
 def editarMembro(request):
     context = {}
-    Membros = Membro.objects.all()
+    Membros = Membro.objects.order_by("-categoria")
     context["Membros"] = Membros
     return render(request, "editarMembro.html", context)
 
