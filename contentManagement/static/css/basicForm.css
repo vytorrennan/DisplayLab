@@ -10,3 +10,7 @@ textarea {
 #id_pagina {
     height: 130vh;
 }
+
+ul {
+    color: red;
+}

@@ -24,7 +24,7 @@ def novoProjeto(request):
         if context['form'].is_valid():
             context['form'].save()
         else:
-            context['form'] = "Não valido!"
+            context['form'].errors
     else: 
         context['form'] = novoProjetoForm()
     return render(request, "novoProjeto.html", context)
@@ -38,7 +38,7 @@ def novoItemCarousel(request):
         if context['form'].is_valid():
             context['form'].save()
         else:
-            context['form'] = "Não valido!"
+            context['form'].errors
     else: 
         context['form'] = novoItemCarouselForm()
     return render(request, "novoItemCarousel.html", context)
@@ -52,7 +52,7 @@ def novoPostRevista(request):
         if context['form'].is_valid():
             context['form'].save()
         else:
-            context['form'] = "Não valido!"
+            context['form'].errors
     else: 
         context['form'] = novoPostRevistaForm()
     return render(request, "novoPostRevista.html", context)
@@ -66,9 +66,10 @@ def novaEdicaoDeRevista(request):
         if context['form'].is_valid():
             context['form'].save()
         else:
-            context['form'] = "Essa edição já existe!"
+            context['form'].errors
     else: 
         context['form'] = novaEdicaoDeRevistaForm()
+        context['erro'] = ""
     return render(request, "novaEdicaoDeRevista.html", context)
 
 
@@ -80,7 +81,7 @@ def novoMembro(request):
         if context['form'].is_valid():
             context['form'].save()
         else:
-            context['form'] = "Não valido!"
+            context['form'].errors
     else: 
         context['form'] = novoMembroForm()
     return render(request, "novoMembro.html", context)
@@ -94,7 +95,7 @@ def novaCategoriaDeMembro(request):
         if context['form'].is_valid():
             context['form'].save()
         else:
-            context['form'] = "Não valido!"
+            context['form'].errors
     else: 
         context['form'] = novaCategoriaDeMembroForm()
     return render(request, "novaCategoriaDeMembro.html", context)
