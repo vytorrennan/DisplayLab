@@ -53,7 +53,7 @@
 
 @media (max-width: 600px) {
     #ifnmg-image {
-        width: 60%;
+        width: 60% !important;
     }
 
     #display-image {
