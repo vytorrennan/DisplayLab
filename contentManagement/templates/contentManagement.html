@@ -7,121 +7,131 @@
 {% endblock%} 
 
 {% block content %}
-        <h2>Content Management</h2>
+    <h2>Content Management</h2>
 
 
-        <h2 class="mt-4">HOME</h2>
-        <div class="d-flex gap-3 mb-3 row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Novo item do Carousel</h5>
-                        <p class="card-text">Envie uma imagem(1600x900) e um link para criar um novo item no carrosel</p>
-                        <a href="{% url 'novoItemCarousel' %}" class="btn btn-primary">Novo Item</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col">
-                <div class="col card">
-                    <div class="card-body">
-                    <h5 class="card-title">Editar item do Carousel</h5>
-                    <p class="card-text">Escolha um item do Carousel para editar</p>
-                    <a href="{% url 'editarItemCarousel' %}" class="btn btn-primary">Editar item do Carousel</a>
-                    </div>
+    <h2 class="mt-4">HOME</h2>
+    <div class="d-flex mb-3 row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Novo item do Carousel</h5>
+                    <p class="card-text">Envie uma imagem(1600x900) e um link para criar um novo item no carrosel</p>
+                    <a href="{% url 'novoItemCarousel' %}" class="btn btn-primary">Novo Item</a>
                 </div>
             </div>
         </div>
-    
-        <h2 class="mt-4">PROJETOS</h2>
-        <div class="d-flex gap-3 mb-3 row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="col card">
-                    <div class="card-body">
-                        <h5 class="card-title">Novo projeto</h5>
-                        <p class="card-text">Escreva sobre um novo projeto de pesquisa do laboratório</p>
-                        <a href="{% url 'novoProjeto' %}" class="btn btn-primary">Novo projeto</a>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col">
-                <div class="col card">
-                    <div class="card-body">
-                    <h5 class="card-title">Editar projeto</h5>
-                    <p class="card-text">Escolha um projeto para editar</p>
-                    <a href="{% url 'editarProjeto' %}" class="btn btn-primary">Editar projeto</a>
-                    </div>
+        
+        <div class="col">
+            <div class="col card">
+                <div class="card-body">
+                <h5 class="card-title">Editar item do Carousel</h5>
+                <p class="card-text">Escolha um item do Carousel para editar</p>
+                <a href="{% url 'editarItemCarousel' %}" class="btn btn-primary">Editar item do Carousel</a>
                 </div>
             </div>
         </div>
-    
-        <h2 class="mt-4">REVISTA</h2>
-        <div class="d-flex gap-3 mb-3 row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="col card">
-                    <div class="card-body">
-                    <h5 class="card-title">Novo post de revista</h5>
-                    <p class="card-text">Escreva um post para a revista do laboratório</p>
-                    <a href="{% url 'novoPostRevista' %}" class="btn btn-primary">Novo post</a>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col">
-                <div class="col card">
-                    <div class="card-body">
-                    <h5 class="card-title">Editar post de revista</h5>
-                    <p class="card-text">Escolha um post da revista para editar</p>
-                    <a href="{% url 'editarPostRevista' %}" class="btn btn-primary">Editar post de revista</a>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col">
-                <div class="col card">
-                    <div class="card-body">
-                    <h5 class="card-title">Nova edição de revista</h5>
-                    <p class="card-text">Digite o número da nova edição da revista</p>
-                    <a href="{% url 'novaEdicaoDeRevista' %}" class="btn btn-primary">Nova edição</a>
-                    </div>
-                </div>
-            </div>
-    
-        </div>
-    
-        <h2 class="mt-4">QUEM SOMOS</h2>
-        <div class="d-flex gap-3 mb-3 row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="col card">
-                    <div class="card-body">
-                    <h5 class="card-title">Novo membro</h5>
-                    <p class="card-text">Digite as crendenciais para o novo membro da pagina Quem Somos (Só faça isso se você recebeu permissão!)</p>
-                    <a href="{% url 'novoMembro' %}" class="btn btn-primary">Novo membro</a>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col">
-                <div class="col card">
-                    <div class="card-body">
-                    <h5 class="card-title">Editar membro</h5>
-                    <p class="card-text">Escolha um membro para editar</p>
-                    <a href="{% url 'editarMembro' %}" class="btn btn-primary">Editar membro</a>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col">
-                <div class="col card">
-                    <div class="card-body">
-                    <h5 class="card-title">Nova Categoria De Membro</h5>
-                    <p class="card-text">Digite uma nova categoria para membros</p>
-                    <a href="{% url 'novaCategoriaDeMembro' %}" class="btn btn-primary">Nova categoria</a>
-                    </div>
+    </div>
+
+    <h2 class="mt-4">PROJETOS</h2>
+    <div class="d-flex mb-3 row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+            <div class="col card">
+                <div class="card-body">
+                    <h5 class="card-title">Novo projeto</h5>
+                    <p class="card-text">Escreva sobre um novo projeto de pesquisa do laboratório</p>
+                    <a href="{% url 'novoProjeto' %}" class="btn btn-primary">Novo projeto</a>
                 </div>
             </div>
         </div>
+
+        <div class="col">
+            <div class="col card">
+                <div class="card-body">
+                <h5 class="card-title">Editar projeto</h5>
+                <p class="card-text">Escolha um projeto para editar</p>
+                <a href="{% url 'editarProjeto' %}" class="btn btn-primary">Editar projeto</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="mt-4">REVISTA</h2>
+    <div class="d-flex mb-3 row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+            <div class="col card">
+                <div class="card-body">
+                <h5 class="card-title">Novo post de revista</h5>
+                <p class="card-text">Escreva um post para a revista do laboratório</p>
+                <a href="{% url 'novoPostRevista' %}" class="btn btn-primary">Novo post</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col card">
+                <div class="card-body">
+                <h5 class="card-title">Editar post de revista</h5>
+                <p class="card-text">Escolha um post da revista para editar</p>
+                <a href="{% url 'editarPostRevista' %}" class="btn btn-primary">Editar post de revista</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col card">
+                <div class="card-body">
+                <h5 class="card-title">Nova edição de revista</h5>
+                <p class="card-text">Digite o número da nova edição da revista</p>
+                <a href="{% url 'novaEdicaoDeRevista' %}" class="btn btn-primary">Nova edição</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2 class="mt-4">QUEM SOMOS</h2>
+    <div class="d-flex mb-3 row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+            <div class="col card">
+                <div class="card-body">
+                <h5 class="card-title">Novo membro</h5>
+                <p class="card-text">Digite as crendenciais para o novo membro da pagina Quem Somos (Só faça isso se você recebeu permissão!)</p>
+                <a href="{% url 'novoMembro' %}" class="btn btn-primary">Novo membro</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col card">
+                <div class="card-body">
+                <h5 class="card-title">Editar membro</h5>
+                <p class="card-text">Escolha um membro para editar</p>
+                <a href="{% url 'editarMembro' %}" class="btn btn-primary">Editar membro</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col card">
+                <div class="card-body">
+                <h5 class="card-title">Nova Categoria De Membro</h5>
+                <p class="card-text">Digite uma nova categoria para membros</p>
+                <a href="{% url 'novaCategoriaDeMembro' %}" class="btn btn-primary">Nova categoria</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="col card">
+                <div class="card-body">
+                <h5 class="card-title">Editar Categoria De Membro</h5>
+                <p class="card-text">Escolha uma categoria para editar</p>
+                <a href="{% url 'editarCategoriaDeMembro' %}" class="btn btn-primary">Editar categoria de membro</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock%}
 

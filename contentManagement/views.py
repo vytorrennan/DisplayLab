@@ -4,7 +4,7 @@ from .forms.novoOuEditarItemCarousel import novoOuEditarItemCarouselForm
 from .forms.novoOuEditarProjeto import novoOuEditarProjetoForm
 from .forms.novoOuEditarPostRevista import novoOuEditarPostRevistaForm
 from .forms.novoOuEditarMembro import novoOuEditarMembroForm
-from .forms.novaCategoriaDeMembro import novaCategoriaDeMembroForm
+from .forms.novoOuEditarCategoriaDeMembro import novoOuEditarCategoriaDeMembroForm
 from .forms.novaEdicaoDeRevista import novaEdicaoDeRevistaForm
 from main.models import carouselItem
 from projetos.models import Projeto
@@ -191,11 +191,34 @@ def editarMembroId(request, id):
 def novaCategoriaDeMembro(request):
     context = {"titulo": "Nova Categoria de Memebro", "observacoes": [""]}
     if request.method == "POST":
-        context['form'] = novaCategoriaDeMembroForm(request.POST)
+        context['form'] = novoOuEditarCategoriaDeMembroForm(request.POST)
         if context['form'].is_valid():
             context['form'].save()
         else:
             context['form'].errors
     else: 
-        context['form'] = novaCategoriaDeMembroForm()
+        context['form'] = novoOuEditarCategoriaDeMembroForm()
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def editarCategoriaDeMembro(request):
+    context = {}
+    Categorias = membroCategoria.objects.order_by("-categoria")
+    context["Categorias"] = Categorias
+    return render(request, "editarCategoriaDeMembro.html", context)
+
+
+@login_required
+def editarCategoriaDeMembroId(request, id):
+    context = {"titulo": "Editando Categoria", "observacoes": [""]}
+    instance = membroCategoria.objects.filter(id=id)[0]
+    if request.method == "POST":
+        context['form'] = novoOuEditarCategoriaDeMembroForm(request.POST, instance=instance)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = novoOuEditarCategoriaDeMembroForm(instance=instance)
     return render(request, "basicForm.html", context)

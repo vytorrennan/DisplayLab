@@ -21,4 +21,6 @@ urlpatterns = [
     path("editarMembro/", views.editarMembro, name="editarMembro"),
     path("editarMembro/<int:id>", views.editarMembroId, name="editarMembroId"),
     path("novaCategoriaDeMembro/", views.novaCategoriaDeMembro, name="novaCategoriaDeMembro"),
+    path("editarCategoriaDeMembro/", views.editarCategoriaDeMembro, name="editarCategoriaDeMembro"),
+    path("editarCategoriaDeMembro/<int:id>", views.editarCategoriaDeMembroId, name="editarCategoriaDeMembroId"),
 ]
