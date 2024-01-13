@@ -5,10 +5,11 @@ from .forms.novoOuEditarProjeto import novoOuEditarProjetoForm
 from .forms.novoOuEditarPostRevista import novoOuEditarPostRevistaForm
 from .forms.novoOuEditarMembro import novoOuEditarMembroForm
 from .forms.novoOuEditarCategoriaDeMembro import novoOuEditarCategoriaDeMembroForm
-from .forms.novaEdicaoDeRevista import novaEdicaoDeRevistaForm
+from .forms.novoOuEditarEdicaoDeRevista import novoOuEditarEdicaoDeRevistaForm
 from main.models import carouselItem
 from projetos.models import Projeto
 from revista.models import Revista
+from revista.models import edicao
 from main.models import Membro
 from main.models import membroCategoria
 
@@ -113,21 +114,6 @@ def novoPostRevista(request):
 
 
 @login_required
-def novaEdicaoDeRevista(request):
-    context = {"titulo": "Nova Edição", "observacoes": [""]}
-    if request.method == "POST":
-        context['form'] = novaEdicaoDeRevistaForm(request.POST)
-        if context['form'].is_valid():
-            context['form'].save()
-        else:
-            context['form'].errors
-    else: 
-        context['form'] = novaEdicaoDeRevistaForm()
-        context['erro'] = ""
-    return render(request, "basicForm.html", context)
-
-
-@login_required
 def editarPostRevista(request):
     context = {}
     Posts = Revista.objects.all().order_by("-edicao", "-dataHora")
@@ -147,6 +133,44 @@ def editarPostRevistaId(request, id):
             context['form'].errors
     else: 
         context['form'] = novoOuEditarPostRevistaForm(instance=instance)
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def novaEdicaoDeRevista(request):
+    context = {"titulo": "Nova Edição", "observacoes": [""]}
+    if request.method == "POST":
+        context['form'] = novoOuEditarEdicaoDeRevistaForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = novoOuEditarEdicaoDeRevistaForm()
+        context['erro'] = ""
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def editarEdicaoDeRevista(request):
+    context = {}
+    Edicoes = edicao.objects.all().order_by("-edicao")
+    context["Edicoes"] = Edicoes
+    return render(request, "editarEdicaoDeRevista.html", context)
+
+
+@login_required
+def editarEdicaoDeRevistaId(request, id):
+    context = {"titulo": "Editando Edição De Revista", "observacoes": [""]}
+    instance = edicao.objects.filter(id=id)[0]
+    if request.method == "POST":
+        context['form'] = novoOuEditarEdicaoDeRevistaForm(request.POST, instance=instance)
+        if context['form'].is_valid():
+            context['form'].save()
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = novoOuEditarEdicaoDeRevistaForm(instance=instance)
     return render(request, "basicForm.html", context)
 
 
@@ -189,7 +213,7 @@ def editarMembroId(request, id):
 
 @login_required
 def novaCategoriaDeMembro(request):
-    context = {"titulo": "Nova Categoria de Memebro", "observacoes": [""]}
+    context = {"titulo": "Nova Categoria de Membro", "observacoes": [""]}
     if request.method == "POST":
         context['form'] = novoOuEditarCategoriaDeMembroForm(request.POST)
         if context['form'].is_valid():
