@@ -11,6 +11,7 @@
 {% block content %}
     <h2 class="text-dark m-4 text-center">{{ titulo }}</h2>
 
+    <p class="text-success fw-bold bg-success-subtle text-center fs-4 w-100 rounded">{{ success }}</p>
     {% for observacao in observacoes %}
         <p>{{ observacao }}</p>
     {% endfor %}

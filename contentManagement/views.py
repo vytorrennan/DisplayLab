@@ -24,12 +24,14 @@ def contentManagement(request):
 @login_required
 def novoItemCarousel(request):
     context = {"titulo": "Novo Item do Carrousel", 
+               "success": "",
                "observacoes": ["Imagem: coloque o link da imagem que aparecerá no carousel, a imagem devera ser 1600x900", 
                                "Url: link de onde o usuario irá quando clicar na imagem"],}
     if request.method == "POST":
         context['form'] = novoOuEditarItemCarouselForm(request.POST)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Novo item de carousel cadastrado com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -47,7 +49,8 @@ def editarItemCarousel(request):
 
 @login_required
 def editarItemCarouselId(request, id):
-    context = {"titulo": "Editando Item De Carousel", 
+    context = {"titulo": "Editando Item De Carousel",
+               "success": "", 
                "observacoes": ["Imagem: coloque o link da imagem que aparecerá no carousel, a imagem devera ser 1600x900", 
                                "Url: link de onde o usuario irá quando clicar na imagem"]}
     instance = carouselItem.objects.filter(id=id)[0]
@@ -55,6 +58,7 @@ def editarItemCarouselId(request, id):
         context['form'] = novoOuEditarItemCarouselForm(request.POST, instance=instance)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Item de carousel editado com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -64,11 +68,12 @@ def editarItemCarouselId(request, id):
 
 @login_required
 def novoProjeto(request):
-    context = {"titulo": "Novo Projeto", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
+    context = {"titulo": "Novo Projeto", "success": "", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
     if request.method == "POST":
         context['form'] = novoOuEditarProjetoForm(request.POST)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Novo projeto cadastrado com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -86,12 +91,13 @@ def editarProjeto(request):
 
 @login_required
 def editarProjetoId(request, id):
-    context = {"titulo": "Editando Projeto", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
+    context = {"titulo": "Editando Projeto", "success": "", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
     instance = Projeto.objects.filter(id=id)[0]
     if request.method == "POST":
         context['form'] = novoOuEditarProjetoForm(request.POST, instance=instance)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Projeto editado com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -101,11 +107,12 @@ def editarProjetoId(request, id):
 
 @login_required
 def novoPostRevista(request):
-    context = {"titulo": "Novo Post De Revista", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
+    context = {"titulo": "Novo Post De Revista", "success": "", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
     if request.method == "POST":
         context['form'] = novoOuEditarPostRevistaForm(request.POST)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Novo post de revista cadastrado com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -123,12 +130,13 @@ def editarPostRevista(request):
 
 @login_required
 def editarPostRevistaId(request, id):
-    context = {"titulo": "Editando Post De Revista", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
+    context = {"titulo": "Editando Post De Revista", "success": "", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
     instance = Revista.objects.filter(id=id)[0]
     if request.method == "POST":
         context['form'] = novoOuEditarPostRevistaForm(request.POST, instance=instance)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Post de revista editado com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -138,11 +146,12 @@ def editarPostRevistaId(request, id):
 
 @login_required
 def novaEdicaoDeRevista(request):
-    context = {"titulo": "Nova Edição", "observacoes": [""]}
+    context = {"titulo": "Nova Edição", "success": "", "observacoes": [""]}
     if request.method == "POST":
         context['form'] = novoOuEditarEdicaoDeRevistaForm(request.POST)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Nova edição de revista cadastrada com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -161,12 +170,13 @@ def editarEdicaoDeRevista(request):
 
 @login_required
 def editarEdicaoDeRevistaId(request, id):
-    context = {"titulo": "Editando Edição De Revista", "observacoes": [""]}
+    context = {"titulo": "Editando Edição De Revista", "success": "", "observacoes": [""]}
     instance = edicao.objects.filter(id=id)[0]
     if request.method == "POST":
         context['form'] = novoOuEditarEdicaoDeRevistaForm(request.POST, instance=instance)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Edição editada com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -176,11 +186,12 @@ def editarEdicaoDeRevistaId(request, id):
 
 @login_required
 def novoMembro(request):
-    context = {"titulo": "Novo Membro", "observacoes": [""]}
+    context = {"titulo": "Novo Membro", "success": "", "observacoes": [""]}
     if request.method == "POST":
         context['form'] = novoOuEditarMembroForm(request.POST)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Novo membro cadastrado com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -198,12 +209,13 @@ def editarMembro(request):
 
 @login_required
 def editarMembroId(request, id):
-    context = {"titulo": "Editando membro", "observacoes": [""]}
+    context = {"titulo": "Editando membro", "success": "", "observacoes": [""]}
     instance = Membro.objects.filter(id=id)[0]
     if request.method == "POST":
         context['form'] = novoOuEditarMembroForm(request.POST, instance=instance)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Membro editado com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -213,11 +225,12 @@ def editarMembroId(request, id):
 
 @login_required
 def novaCategoriaDeMembro(request):
-    context = {"titulo": "Nova Categoria de Membro", "observacoes": [""]}
+    context = {"titulo": "Nova Categoria de Membro", "success": "", "observacoes": [""]}
     if request.method == "POST":
         context['form'] = novoOuEditarCategoriaDeMembroForm(request.POST)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Nova categoria de membro cadastrado com sucesso!"
         else:
             context['form'].errors
     else: 
@@ -235,12 +248,13 @@ def editarCategoriaDeMembro(request):
 
 @login_required
 def editarCategoriaDeMembroId(request, id):
-    context = {"titulo": "Editando Categoria", "observacoes": [""]}
+    context = {"titulo": "Editando Categoria", "success": "", "observacoes": [""]}
     instance = membroCategoria.objects.filter(id=id)[0]
     if request.method == "POST":
         context['form'] = novoOuEditarCategoriaDeMembroForm(request.POST, instance=instance)
         if context['form'].is_valid():
             context['form'].save()
+            context['success'] = "Categoria de membro editado com sucesso!"
         else:
             context['form'].errors
     else: 
