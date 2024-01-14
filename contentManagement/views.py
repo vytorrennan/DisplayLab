@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms.novoOuEditarItemCarousel import novoOuEditarItemCarouselForm
 from .forms.novoOuEditarProjeto import novoOuEditarProjetoForm
+from .forms.imagens.membroCarouselNovaColecaoDeImagens import membroCarouselNovaColecaoDeImagensForm
+from .forms.imagens.membroCarouselNovaImagem import membroCarouselNovaImagemForm
 from .forms.imagens.projetoNovaColecaoDeImagens import projetoNovaColecaoDeImagensForm
 from .forms.imagens.projetoNovaImagem import projetoNovaImagemForm
 from .forms.novoOuEditarPostRevista import novoOuEditarPostRevistaForm
@@ -11,6 +13,8 @@ from .forms.imagens.revistaNovaImagem import revistaNovaImagemForm
 from .forms.novoOuEditarMembro import novoOuEditarMembroForm
 from .forms.novoOuEditarCategoriaDeMembro import novoOuEditarCategoriaDeMembroForm
 from main.models import carouselItem
+from main.models import membroCarouselColecaoDeImagem
+from main.models import membroCarouselImagem
 from projetos.models import projetoColecaoDeImagem
 from projetos.models import projetoImagem
 from projetos.models import Projeto
@@ -71,6 +75,58 @@ def editarItemCarouselId(request, id):
     else: 
         context['form'] = novoOuEditarItemCarouselForm(instance=instance)
     return render(request, "basicForm.html", context)
+
+
+@login_required
+def membroCarouselColecoes(request):
+    context = {"urlNovaColecao": "membroCarouselNovaColecao",
+               "urlAdicionarImagem": "membroCarouselAdicionarImagem",
+               "urllinksImagens": "linksImagensMembroCarousel"}
+    Colecoes = membroCarouselColecaoDeImagem.objects.all()
+    context["Colecoes"] = Colecoes
+    return render(request, "colecoesDeImagens.html", context)
+
+
+@login_required
+def membroCarouselNovaColecao(request):
+    context = {"titulo": "Nova coleção de imagens", 
+               "success": "", 
+               "observacoes": ["Digite o nome da coleção (Nome do membro ou projeto)"]}
+    if request.method == "POST":
+        context['form'] = membroCarouselNovaColecaoDeImagensForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+            context['success'] = "Nova coleção cadastrada com sucesso!"
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = membroCarouselNovaColecaoDeImagensForm()
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def membroCarouselAdicionarImagem(request):
+    context = {"titulo": "Nova imagem", 
+                "success": ""}
+    if request.method == "POST":
+        request.FILES['imagem'].name = request.FILES['imagem'].name.replace(" ", "")
+        context['form'] = membroCarouselNovaImagemForm(request.POST, request.FILES)
+        if context['form'].is_valid():
+            context['form'].save()
+            context['success'] = "Nova imagem adicionada com sucesso!"
+        else:
+            context['form'].errors
+    else:
+        context['form'] = membroCarouselNovaImagemForm()
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def linksImagensMembroCarousel(request, colecao):
+    context = {"titulo": "Coleção: " + colecao,
+               "parteParaRemoverDaUrl": "main/static/"}
+    context['Imagens'] = membroCarouselImagem.objects.filter(colecao=colecao)
+    return render(request, "linksDeImagens.html", context)
 
 
 @login_required
@@ -141,7 +197,7 @@ def projetoNovaColecao(request):
 
 @login_required
 def projetoAdicionarImagem(request):
-    context = {"titulo": "Novo Item do Carrousel", 
+    context = {"titulo": "Nova imagem", 
                 "success": ""}
     if request.method == "POST":
         request.FILES['imagem'].name = request.FILES['imagem'].name.replace(" ", "")
@@ -257,7 +313,7 @@ def revistaColecoes(request):
 def revistaNovaColecao(request):
     context = {"titulo": "Nova coleção de imagens", 
                "success": "", 
-               "observacoes": ["Digite o nome da coleção (Nome do projeto)"]}
+               "observacoes": ["Digite o nome da coleção (Nome do post de revista)"]}
     if request.method == "POST":
         context['form'] = revistaNovaColecaoDeImagensForm(request.POST)
         if context['form'].is_valid():
@@ -272,7 +328,7 @@ def revistaNovaColecao(request):
 
 @login_required
 def revistaAdicionarImagem(request):
-    context = {"titulo": "Novo Item do Carrousel", 
+    context = {"titulo": "Nova imagem", 
                 "success": ""}
     if request.method == "POST":
         request.FILES['imagem'].name = request.FILES['imagem'].name.replace(" ", "")
