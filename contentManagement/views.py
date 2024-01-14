@@ -5,14 +5,18 @@ from .forms.novoOuEditarProjeto import novoOuEditarProjetoForm
 from .forms.imagens.projetoNovaColecaoDeImagens import projetoNovaColecaoDeImagensForm
 from .forms.imagens.projetoNovaImagem import projetoNovaImagemForm
 from .forms.novoOuEditarPostRevista import novoOuEditarPostRevistaForm
+from .forms.novoOuEditarEdicaoDeRevista import novoOuEditarEdicaoDeRevistaForm
+from .forms.imagens.revistaNovaColecaoDeImagens import revistaNovaColecaoDeImagensForm
+from .forms.imagens.revistaNovaImagem import revistaNovaImagemForm
 from .forms.novoOuEditarMembro import novoOuEditarMembroForm
 from .forms.novoOuEditarCategoriaDeMembro import novoOuEditarCategoriaDeMembroForm
-from .forms.novoOuEditarEdicaoDeRevista import novoOuEditarEdicaoDeRevistaForm
 from main.models import carouselItem
-from projetos.models import colecaoDeImagem
+from projetos.models import projetoColecaoDeImagem
 from projetos.models import projetoImagem
 from projetos.models import Projeto
 from revista.models import Revista
+from revista.models import revistaColecaoDeImagem
+from revista.models import revistaImagem
 from revista.models import edicao
 from main.models import Membro
 from main.models import membroCategoria
@@ -22,56 +26,6 @@ from main.models import membroCategoria
 @login_required
 def contentManagement(request):
     return render(request, "contentManagement.html")
-
-
-@login_required
-def projetoColecoes(request):
-    context = {}
-    Colecoes = colecaoDeImagem.objects.all()
-    context["Colecoes"] = Colecoes
-    return render(request, "colecoesDeImagens.html", context)
-
-
-@login_required
-def projetoNovaColecao(request):
-    context = {"titulo": "Nova coleção de imagens", 
-               "success": "", 
-               "observacoes": ["Digite o nome da coleção (Nome do projeto)"]}
-    if request.method == "POST":
-        context['form'] = projetoNovaColecaoDeImagensForm(request.POST)
-        if context['form'].is_valid():
-            context['form'].save()
-            context['success'] = "Nova coleção cadastrada com sucesso!"
-        else:
-            context['form'].errors
-    else: 
-        context['form'] = projetoNovaColecaoDeImagensForm()
-    return render(request, "basicForm.html", context)
-
-
-@login_required
-def projetoAdicionarImagem(request):
-    context = {"titulo": "Novo Item do Carrousel", 
-                "success": ""}
-    if request.method == "POST":
-        request.FILES['imagem'].name = request.FILES['imagem'].name.replace(" ", "")
-        context['form'] = projetoNovaImagemForm(request.POST, request.FILES)
-        if context['form'].is_valid():
-            context['form'].save()
-            context['success'] = "Nova imagem e coleção adicionadas com sucesso!"
-        else:
-            context['form'].errors
-    else:
-        context['form'] = projetoNovaImagemForm()
-    return render(request, "basicForm.html", context)
-
-
-@login_required
-def linksImagensProjeto(request, colecao):
-    context = {"titulo": "Coleção: " + colecao,
-               "parteParaRemoverDaUrl": "projetos/static/"}
-    context['Imagens'] = projetoImagem.objects.filter(colecao=colecao)
-    return render(request, "linksDeImagens.html", context)
 
 
 @login_required
@@ -159,6 +113,58 @@ def editarProjetoId(request, id):
 
 
 @login_required
+def projetoColecoes(request):
+    context = {"urlNovaColecao": "projetoNovaColecao",
+               "urlAdicionarImagem": "projetoAdicionarImagem",
+               "urllinksImagens": "linksImagensProjeto"}
+    Colecoes = projetoColecaoDeImagem.objects.all()
+    context["Colecoes"] = Colecoes
+    return render(request, "colecoesDeImagens.html", context)
+
+
+@login_required
+def projetoNovaColecao(request):
+    context = {"titulo": "Nova coleção de imagens", 
+               "success": "", 
+               "observacoes": ["Digite o nome da coleção (Nome do projeto)"]}
+    if request.method == "POST":
+        context['form'] = projetoNovaColecaoDeImagensForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+            context['success'] = "Nova coleção cadastrada com sucesso!"
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = projetoNovaColecaoDeImagensForm()
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def projetoAdicionarImagem(request):
+    context = {"titulo": "Novo Item do Carrousel", 
+                "success": ""}
+    if request.method == "POST":
+        request.FILES['imagem'].name = request.FILES['imagem'].name.replace(" ", "")
+        context['form'] = projetoNovaImagemForm(request.POST, request.FILES)
+        if context['form'].is_valid():
+            context['form'].save()
+            context['success'] = "Nova imagem adicionada com sucesso!"
+        else:
+            context['form'].errors
+    else:
+        context['form'] = projetoNovaImagemForm()
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def linksImagensProjeto(request, colecao):
+    context = {"titulo": "Coleção: " + colecao,
+               "parteParaRemoverDaUrl": "projetos/static/"}
+    context['Imagens'] = projetoImagem.objects.filter(colecao=colecao)
+    return render(request, "linksDeImagens.html", context)
+
+
+@login_required
 def novoPostRevista(request):
     context = {"titulo": "Novo Post De Revista", "success": "", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
     if request.method == "POST":
@@ -235,6 +241,58 @@ def editarEdicaoDeRevistaId(request, id):
     else: 
         context['form'] = novoOuEditarEdicaoDeRevistaForm(instance=instance)
     return render(request, "basicForm.html", context)
+
+
+@login_required
+def revistaColecoes(request):
+    context = {"urlNovaColecao": "revistaNovaColecao",
+               "urlAdicionarImagem": "revistaAdicionarImagem",
+               "urllinksImagens": "linksImagensRevista"}
+    Colecoes = revistaColecaoDeImagem.objects.all()
+    context["Colecoes"] = Colecoes
+    return render(request, "colecoesDeImagens.html", context)
+
+
+@login_required
+def revistaNovaColecao(request):
+    context = {"titulo": "Nova coleção de imagens", 
+               "success": "", 
+               "observacoes": ["Digite o nome da coleção (Nome do projeto)"]}
+    if request.method == "POST":
+        context['form'] = revistaNovaColecaoDeImagensForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+            context['success'] = "Nova coleção cadastrada com sucesso!"
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = revistaNovaColecaoDeImagensForm()
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def revistaAdicionarImagem(request):
+    context = {"titulo": "Novo Item do Carrousel", 
+                "success": ""}
+    if request.method == "POST":
+        request.FILES['imagem'].name = request.FILES['imagem'].name.replace(" ", "")
+        context['form'] = revistaNovaImagemForm(request.POST, request.FILES)
+        if context['form'].is_valid():
+            context['form'].save()
+            context['success'] = "Nova imagem adicionada com sucesso!"
+        else:
+            context['form'].errors
+    else:
+        context['form'] = revistaNovaImagemForm()
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def linksImagensRevista(request, colecao):
+    context = {"titulo": "Coleção: " + colecao,
+               "parteParaRemoverDaUrl": "revista/static/"}
+    context['Imagens'] = revistaImagem.objects.filter(colecao=colecao)
+    return render(request, "linksDeImagens.html", context)
 
 
 @login_required

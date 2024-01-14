@@ -4,11 +4,10 @@ from . import views
 urlpatterns = [
     path("", views.contentManagement, name="contentManagement"),
 
-    path("projetoColecoes/", views.projetoColecoes, name="projetoColecoes"),
-    path("projetoColecoes/novaColecao", views.projetoNovaColecao, name="projetoNovaColecao"),
-    path("projetoColecoes/projetoAdicionarImagem", views.projetoAdicionarImagem, name="projetoAdicionarImagem"),
-    path("projetoColecoes/linksImagensProjeto/<str:colecao>", views.linksImagensProjeto, name="linksImagensProjeto"),
-
+    path("revistaColecoes/", views.revistaColecoes, name="revistaColecoes"),
+    path("revistaColecoes/novaColecao", views.revistaNovaColecao, name="revistaNovaColecao"),
+    path("revistaColecoes/projetoAdicionarImagem", views.revistaAdicionarImagem, name="revistaAdicionarImagem"),
+    path("revistaColecoes/linksImagensProjeto/<str:colecao>", views.linksImagensRevista, name="linksImagensRevista"),
 
     path("novoItemCarousel/", views.novoItemCarousel, name="novoItemCarousel"),
     path("editarItemCarousel/", views.editarItemCarousel, name="editarItemCarousel"),
@@ -17,6 +16,10 @@ urlpatterns = [
     path("novoProjeto/", views.novoProjeto, name="novoProjeto"),
     path("editarProjeto/", views.editarProjeto, name="editarProjeto"),
     path("editarProjeto/<int:id>", views.editarProjetoId, name="editarProjetoId"),
+    path("projetoColecoes/", views.projetoColecoes, name="projetoColecoes"),
+    path("projetoColecoes/novaColecao", views.projetoNovaColecao, name="projetoNovaColecao"),
+    path("projetoColecoes/projetoAdicionarImagem", views.projetoAdicionarImagem, name="projetoAdicionarImagem"),
+    path("projetoColecoes/linksImagensProjeto/<str:colecao>", views.linksImagensProjeto, name="linksImagensProjeto"),
 
     path("novoPostRevista/", views.novoPostRevista, name="novoPostRevista"),
     path("novaEdicaoDeRevista/", views.novaEdicaoDeRevista, name="novaEdicaoDeRevista"),

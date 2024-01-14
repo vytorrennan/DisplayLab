@@ -1,8 +1,8 @@
 from django import forms
-from projetos.models import colecaoDeImagem
+from projetos.models import projetoColecaoDeImagem
 
 
 class projetoNovaColecaoDeImagensForm(forms.ModelForm):
     class Meta:
-        model = colecaoDeImagem
+        model = projetoColecaoDeImagem
         fields = ["colecao"]

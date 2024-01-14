@@ -2,7 +2,7 @@
 
 {% block head%}
     {% load static %}
-    <title>Pagina de seleção</title>
+    <title>Pagina de coleção de imagens</title>
     <link rel="stylesheet" href='{% static "/css/paginaDeSelecao.css" %}'>
 {% endblock %}
 
@@ -10,18 +10,18 @@
 {% block content %}
     <h2 class="text-dark m-4">Selecione a coleção que deseja ver o link das imagens: </h2>
 
-    <a class="text-decoration-none text-white fw-bold p-2 rounded bg-primary m-3" href="{% url 'projetoNovaColecao' %}">
+    <a class="text-decoration-none text-white fw-bold p-2 rounded bg-primary m-3" href="{% url urlNovaColecao %}">
        Adicionar nova coleção 
     </a>
 
-    <a class="text-decoration-none text-white fw-bold p-2 rounded bg-primary m-3" href="{% url 'projetoAdicionarImagem' %}">
+    <a class="text-decoration-none text-white fw-bold p-2 rounded bg-primary m-3" href="{% url urlAdicionarImagem %}">
         Adicionar nova imagem em coleção existente
      </a>
 
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
         {% for colecao in Colecoes %}
             <div class="col">
-                <a class="card text-decoration-none" href="{% url 'linksImagensProjeto' colecao.colecao %}">
+                <a class="card text-decoration-none" href="{% url urllinksImagens colecao.colecao %}">
                     <div class="card-body">
                         <h5 class="card-title">{{ colecao.colecao }}</h5>
                     </div>
