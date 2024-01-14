@@ -91,7 +91,7 @@ def membroCarouselColecoes(request):
 def membroCarouselNovaColecao(request):
     context = {"titulo": "Nova coleção de imagens", 
                "success": "", 
-               "observacoes": ["Digite o nome da coleção (Nome do membro ou projeto)", "Use somente letras e/ou numeros"]}
+               "observacoes": ["Digite o nome da coleção (Nome do membro ou projeto)", "Use somente letras e/ou numeros, sem espaços"]}
     if request.method == "POST":
         context['form'] = membroCarouselNovaColecaoDeImagensForm(request.POST)
         if context['form'].is_valid():
@@ -182,7 +182,7 @@ def projetoColecoes(request):
 def projetoNovaColecao(request):
     context = {"titulo": "Nova coleção de imagens", 
                "success": "", 
-               "observacoes": ["Digite o nome da coleção (Nome do projeto)", "Use somente letras e/ou numeros"]}
+               "observacoes": ["Digite o nome da coleção (Nome do projeto)", "Use somente letras e/ou numeros, sem espaços"]}
     if request.method == "POST":
         context['form'] = projetoNovaColecaoDeImagensForm(request.POST)
         if context['form'].is_valid():
@@ -313,7 +313,7 @@ def revistaColecoes(request):
 def revistaNovaColecao(request):
     context = {"titulo": "Nova coleção de imagens", 
                "success": "", 
-               "observacoes": ["Digite o nome da coleção (Nome do post de revista)", "Use somente letras e/ou numeros"]}
+               "observacoes": ["Digite o nome da coleção (Nome do post de revista)", "Use somente letras e/ou numeros, sem espaços"]}
     if request.method == "POST":
         context['form'] = revistaNovaColecaoDeImagensForm(request.POST)
         if context['form'].is_valid():
