@@ -18,7 +18,7 @@ linux:
   `source .venv/bin/activate`
 
 ## Instale Django
-`pip install django`
+`pip install -r requirements.txt`
 
 ## Execute o servidor
 windows: `python manage.py runserver`
