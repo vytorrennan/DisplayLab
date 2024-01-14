@@ -16,7 +16,7 @@
         <p>{{ observacao }}</p>
     {% endfor %}
 
-    <form method="POST" class="d-flex flex-column gap-3 text-dark fs-4">
+    <form method="POST" class="d-flex flex-column gap-3 text-dark fs-4" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <div>

@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block head%}
+    {% load static %}
+    {{ form.media }}
+    <title>{{ titulo }}</title>
+    <link rel="stylesheet" href='{% static "/css/basicForm.css" %}'>
+{% endblock %}
+
+
+{% block content %}
+    <h2 class="text-dark m-4 text-center">{{ titulo }}</h2>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for image in Imagens %}
+            <div class="col">
+                <div class="card text-decoration-none">
+                    <img src="{% get_static_prefix %}{{ image.imagem | cut:parteParaRemoverDaUrl }}" class="card-img-top object-fit-cover" alt="imagem da coleção {{ image.colecao }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ image.imagem | cut:parteParaRemoverDaUrl }}</h5>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

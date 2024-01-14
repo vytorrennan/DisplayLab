@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+
+{% block head%}
+    {% load static %}
+    <title>Pagina de seleção</title>
+    <link rel="stylesheet" href='{% static "/css/paginaDeSelecao.css" %}'>
+{% endblock %}
+
+
+{% block content %}
+    <h2 class="text-dark m-4">Selecione a coleção que deseja ver o link das imagens: </h2>
+
+    <a class="text-decoration-none text-white fw-bold p-2 rounded bg-primary m-3" href="{% url 'projetoNovaColecao' %}">
+       Adicionar nova coleção 
+    </a>
+
+    <a class="text-decoration-none text-white fw-bold p-2 rounded bg-primary m-3" href="{% url 'projetoAdicionarImagem' %}">
+        Adicionar nova imagem em coleção existente
+     </a>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
+        {% for colecao in Colecoes %}
+            <div class="col">
+                <a class="card text-decoration-none" href="{% url 'linksImagensProjeto' colecao.colecao %}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ colecao.colecao }}</h5>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

@@ -2,17 +2,20 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms.novoOuEditarItemCarousel import novoOuEditarItemCarouselForm
 from .forms.novoOuEditarProjeto import novoOuEditarProjetoForm
+from .forms.imagens.projetoNovaColecaoDeImagens import projetoNovaColecaoDeImagensForm
+from .forms.imagens.projetoNovaImagem import projetoNovaImagemForm
 from .forms.novoOuEditarPostRevista import novoOuEditarPostRevistaForm
 from .forms.novoOuEditarMembro import novoOuEditarMembroForm
 from .forms.novoOuEditarCategoriaDeMembro import novoOuEditarCategoriaDeMembroForm
 from .forms.novoOuEditarEdicaoDeRevista import novoOuEditarEdicaoDeRevistaForm
 from main.models import carouselItem
+from projetos.models import colecaoDeImagem
+from projetos.models import projetoImagem
 from projetos.models import Projeto
 from revista.models import Revista
 from revista.models import edicao
 from main.models import Membro
 from main.models import membroCategoria
-
 
 
 # Create your views here.
@@ -22,11 +25,61 @@ def contentManagement(request):
 
 
 @login_required
+def projetoColecoes(request):
+    context = {}
+    Colecoes = colecaoDeImagem.objects.all()
+    context["Colecoes"] = Colecoes
+    return render(request, "colecoesDeImagens.html", context)
+
+
+@login_required
+def projetoNovaColecao(request):
+    context = {"titulo": "Nova coleção de imagens", 
+               "success": "", 
+               "observacoes": ["Digite o nome da coleção (Nome do projeto)"]}
+    if request.method == "POST":
+        context['form'] = projetoNovaColecaoDeImagensForm(request.POST)
+        if context['form'].is_valid():
+            context['form'].save()
+            context['success'] = "Nova coleção cadastrada com sucesso!"
+        else:
+            context['form'].errors
+    else: 
+        context['form'] = projetoNovaColecaoDeImagensForm()
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def projetoAdicionarImagem(request):
+    context = {"titulo": "Novo Item do Carrousel", 
+                "success": ""}
+    if request.method == "POST":
+        request.FILES['imagem'].name = request.FILES['imagem'].name.replace(" ", "")
+        context['form'] = projetoNovaImagemForm(request.POST, request.FILES)
+        if context['form'].is_valid():
+            context['form'].save()
+            context['success'] = "Nova imagem e coleção adicionadas com sucesso!"
+        else:
+            context['form'].errors
+    else:
+        context['form'] = projetoNovaImagemForm()
+    return render(request, "basicForm.html", context)
+
+
+@login_required
+def linksImagensProjeto(request, colecao):
+    context = {"titulo": "Coleção: " + colecao,
+               "parteParaRemoverDaUrl": "projetos/static/"}
+    context['Imagens'] = projetoImagem.objects.filter(colecao=colecao)
+    return render(request, "linksDeImagens.html", context)
+
+
+@login_required
 def novoItemCarousel(request):
     context = {"titulo": "Novo Item do Carrousel", 
                "success": "",
                "observacoes": ["Imagem: coloque o link da imagem que aparecerá no carousel, a imagem devera ser 1600x900", 
-                               "Url: link de onde o usuario irá quando clicar na imagem"],}
+                               "Url: link de onde o usuario irá quando clicar na imagem"]}
     if request.method == "POST":
         context['form'] = novoOuEditarItemCarouselForm(request.POST)
         if context['form'].is_valid():
@@ -76,7 +129,7 @@ def novoProjeto(request):
             context['success'] = "Novo projeto cadastrado com sucesso!"
         else:
             context['form'].errors
-    else: 
+    else:
         context['form'] = novoOuEditarProjetoForm()
     return render(request, "basicForm.html", context)
 

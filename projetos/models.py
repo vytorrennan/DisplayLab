@@ -1,8 +1,30 @@
 from django.db import models
 from django.utils.text import slugify
+from DisplayLab.settings import STATIC_URL
 from datetime import datetime
 
 # Create your models here.
+
+
+class colecaoDeImagem(models.Model):
+    id = models.AutoField(primary_key=True)
+    colecao = models.SlugField(max_length=250, unique=True, default="")
+
+    def __str__(self):
+        return self.colecao
+
+
+def image_upload_path(instance, filename):
+    return "./projetos/static/uploads/" + instance.colecao.colecao + "/" + filename
+
+
+class projetoImagem(models.Model):
+    id = models.AutoField(primary_key=True)
+    colecao = models.ForeignKey(colecaoDeImagem, to_field='colecao', on_delete=models.PROTECT)
+    imagem = models.ImageField(upload_to=image_upload_path)
+
+    def __str__(self):
+        return self.imagem.name.replace("projetos/static/uploads/", "")
 
 
 class Projeto(models.Model):

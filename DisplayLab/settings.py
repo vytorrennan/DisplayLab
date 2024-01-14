@@ -140,3 +140,5 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
+
+MEDIA_ROOT = BASE_DIR

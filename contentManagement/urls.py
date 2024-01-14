@@ -4,6 +4,12 @@ from . import views
 urlpatterns = [
     path("", views.contentManagement, name="contentManagement"),
 
+    path("projetoColecoes/", views.projetoColecoes, name="projetoColecoes"),
+    path("projetoColecoes/novaColecao", views.projetoNovaColecao, name="projetoNovaColecao"),
+    path("projetoColecoes/projetoAdicionarImagem", views.projetoAdicionarImagem, name="projetoAdicionarImagem"),
+    path("projetoColecoes/linksImagensProjeto/<str:colecao>", views.linksImagensProjeto, name="linksImagensProjeto"),
+
+
     path("novoItemCarousel/", views.novoItemCarousel, name="novoItemCarousel"),
     path("editarItemCarousel/", views.editarItemCarousel, name="editarItemCarousel"),
     path("editarItemCarousel/<int:id>", views.editarItemCarouselId, name="editarItemCarouselId"),

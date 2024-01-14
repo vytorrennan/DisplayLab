@@ -8,7 +8,7 @@
 
 {% block content %}
     <h2>Content Management</h2>
-
+    
 
     <h2 class="mt-4">HOME</h2>
     <div class="d-flex mb-3 row row-cols-1 row-cols-md-4 g-4">
@@ -51,6 +51,16 @@
                 <h5 class="card-title">Editar projeto</h5>
                 <p class="card-text">Escolha um projeto para editar</p>
                 <a href="{% url 'editarProjeto' %}" class="btn btn-primary">Editar projeto</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Coleções de imagens</h5>
+                    <p class="card-text">Enviar ou ver link de imagens para projetos</p>
+                    <a href="{% url 'projetoColecoes' %}" class="btn btn-primary">Coleções de imagens</a>
                 </div>
             </div>
         </div>
