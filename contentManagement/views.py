@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from .forms.main.novoOuEditarItemCarousel import novoOuEditarItemCarouselForm
 from .forms.projetos.novoOuEditarProjeto import novoOuEditarProjetoForm
 from .forms.main.membroCarouselNovaColecaoDeImagens import membroCarouselNovaColecaoDeImagensForm
@@ -24,6 +25,20 @@ from revista.models import revistaImagem
 from revista.models import edicao
 from main.models import Membro
 from main.models import membroCategoria
+
+
+def rangePages(quantasPaginasMostrar, page_obj):
+    if (page_obj.number <= page_obj.paginator.num_pages - (quantasPaginasMostrar + 1)):
+        if (page_obj.number == 1):
+            rangePages = range(page_obj.number, page_obj.number + (quantasPaginasMostrar + 1))
+        else:
+            rangePages = range(page_obj.number - 1, page_obj.number + (quantasPaginasMostrar + 1))
+    else:
+        if (page_obj.number == 1):
+            rangePages = range(page_obj.number, page_obj.paginator.num_pages + 1)
+        else:
+            rangePages = range(page_obj.number - 1, page_obj.paginator.num_pages + 1)
+    return rangePages
 
 
 # Create your views here.
@@ -83,7 +98,12 @@ def membroCarouselColecoes(request):
                "urlAdicionarImagem": "membroCarouselAdicionarImagem",
                "urllinksImagens": "linksImagensMembroCarousel"}
     Colecoes = membroCarouselColecaoDeImagem.objects.all()
-    context["Colecoes"] = Colecoes
+    paginator = Paginator(Colecoes, 30)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    quantasPaginasMostrar = 9
+    context["page_obj"] = page_obj
+    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
     return render(request, "colecoesDeImagens.html", context)
 
 
@@ -174,7 +194,12 @@ def projetoColecoes(request):
                "urlAdicionarImagem": "projetoAdicionarImagem",
                "urllinksImagens": "linksImagensProjeto"}
     Colecoes = projetoColecaoDeImagem.objects.all()
-    context["Colecoes"] = Colecoes
+    paginator = Paginator(Colecoes, 30)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    quantasPaginasMostrar = 9
+    context["page_obj"] = page_obj
+    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
     return render(request, "colecoesDeImagens.html", context)
 
 
@@ -305,7 +330,12 @@ def revistaColecoes(request):
                "urlAdicionarImagem": "revistaAdicionarImagem",
                "urllinksImagens": "linksImagensRevista"}
     Colecoes = revistaColecaoDeImagem.objects.all()
-    context["Colecoes"] = Colecoes
+    paginator = Paginator(Colecoes, 30)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    quantasPaginasMostrar = 9
+    context["page_obj"] = page_obj
+    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
     return render(request, "colecoesDeImagens.html", context)
 
 

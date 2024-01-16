@@ -19,7 +19,7 @@
      </a>
 
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
-        {% for colecao in Colecoes %}
+        {% for colecao in page_obj %}
             <div class="col">
                 <a class="card text-decoration-none" href="{% url urllinksImagens colecao.colecao %}">
                     <div class="card-body">
@@ -28,6 +28,32 @@
                 </a>
             </div>
         {% endfor %}
+    </div>
+
+    <div class="d-flex justify-content-between w-100">
+        <div>
+            {% if page_obj.has_previous %}
+                <a href="?page=1" class="text-decoration-none text-primary">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="text-decoration-none text-primary">previous</a>
+            {% endif %}
+        </div>
+        
+        <div>
+            {% for page in rangePages %}
+                {% if page == page_obj.number%}
+                    <a href="?page={{ page }}" class="text-decoration-none text-white bg-primary p-1">{{ page }}</a>
+                {% else %}
+                    <a href="?page={{ page }}" class="text-decoration-none text-dark p-1">{{ page }}</a>
+                {% endif %}
+            {% endfor %}    
+        </div>
+        
+        <div>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="text-decoration-none text-primary">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="text-decoration-none text-primary">last &raquo;</a>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
 
