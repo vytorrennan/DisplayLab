@@ -69,7 +69,12 @@ def novoItemCarousel(request):
 def editarItemCarousel(request):
     context = {}
     items = carouselItem.objects.all()
-    context["items"] = items
+    paginator = Paginator(items, 30)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    quantasPaginasMostrar = 9
+    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
+    context["page_obj"] = page_obj
     return render(request, "editarItemCarousel.html", context)
 
 
@@ -168,7 +173,12 @@ def novoProjeto(request):
 def editarProjeto(request):
     context = {}
     Projetos = Projeto.objects.all().order_by("-dataHora")
-    context["Projetos"] = Projetos
+    paginator = Paginator(Projetos, 30)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    quantasPaginasMostrar = 9
+    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
+    context["page_obj"] = page_obj
     return render(request, "editarProjeto.html", context)
 
 
@@ -264,7 +274,12 @@ def novoPostRevista(request):
 def editarPostRevista(request):
     context = {}
     Posts = Revista.objects.all().order_by("-edicao", "-dataHora")
-    context["Posts"] = Posts
+    paginator = Paginator(Posts, 30)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    quantasPaginasMostrar = 9
+    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
+    context["page_obj"] = page_obj
     return render(request, "editarPostRevista.html", context)
 
 
@@ -304,7 +319,12 @@ def novaEdicaoDeRevista(request):
 def editarEdicaoDeRevista(request):
     context = {}
     Edicoes = edicao.objects.all().order_by("-edicao")
-    context["Edicoes"] = Edicoes
+    paginator = Paginator(Edicoes, 30)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    quantasPaginasMostrar = 9
+    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
+    context["page_obj"] = page_obj
     return render(request, "editarEdicaoDeRevista.html", context)
 
 
@@ -400,7 +420,12 @@ def novoMembro(request):
 def editarMembro(request):
     context = {}
     Membros = Membro.objects.order_by("-categoria")
-    context["Membros"] = Membros
+    paginator = Paginator(Membros, 30)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    quantasPaginasMostrar = 9
+    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
+    context["page_obj"] = page_obj
     return render(request, "editarMembro.html", context)
 
 
@@ -439,7 +464,12 @@ def novaCategoriaDeMembro(request):
 def editarCategoriaDeMembro(request):
     context = {}
     Categorias = membroCategoria.objects.order_by("-categoria")
-    context["Categorias"] = Categorias
+    paginator = Paginator(Categorias, 30)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    quantasPaginasMostrar = 9
+    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
+    context["page_obj"] = page_obj
     return render(request, "editarCategoriaDeMembro.html", context)
 
 
