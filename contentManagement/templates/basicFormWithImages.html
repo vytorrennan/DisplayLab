@@ -4,7 +4,7 @@
     {% load static %}
     {{ form.media }}
     <title>{{ titulo }}</title>
-    <link rel="stylesheet" href='{% static "/css/basicForm.css" %}'>
+    <link rel="stylesheet" href="{% static '/css/basicForm.css' %}">
 {% endblock %}
 
 
@@ -16,15 +16,20 @@
         <p>{{ observacao }}</p>
     {% endfor %}
 
+    <button onclick="toggleIframe();" class="p-2 bg-primary text-white border-0 rounded rounded-3">Imagens</button>
+
+    <iframe src="{% url linkColecao %}" data-url="{% url linkColecao%}" frameborder="0" class="w-100" id="iframe"></iframe>
+
     <form method="POST" class="d-flex flex-column gap-3 text-dark fs-4" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <div>
             <input type="submit" value="Publicar" class="btn btn-primary mb-1">
-            <a href="javascript:history.back();" id="cancelAnchor"><input type="button" value="Cancelar" class="btn btn-danger"></a>
+            <a href="{% url 'contentManagement' %}"><input type="button" value="Cancelar" class="btn btn-danger"></a>
         </div>
     </form>
 {% endblock %}
 
 {% block script %}
+    <script defer src="{% static 'js/basicFormWithImages.js' %}"></script>
 {% endblock %}

@@ -10,6 +10,8 @@
 {% block content %}
     <h2 class="text-dark m-4">Selecione qual deseja: </h2>
 
+    <a href="javascript:history.back()"><input type="button" value="Voltar" class="btn btn-danger mb-3"></a>
+
     <div class="row row-cols-1 row-cols-md-4 g-4">
         {% for categoria in page_obj %}
             <div class="col">

@@ -52,7 +52,8 @@ def novoItemCarousel(request):
     context = {"titulo": "Novo Item do Carrousel", 
                "success": "",
                "observacoes": ["Imagem: coloque o link da imagem que aparecerá no carousel, a imagem devera ser 1600x900", 
-                               "Url: link de onde o usuario irá quando clicar na imagem"]}
+                               "Url: link de onde o usuario irá quando clicar na imagem"],
+                "linkColecao": "membroCarouselColecoes"}
     if request.method == "POST":
         context['form'] = novoOuEditarItemCarouselForm(request.POST)
         if context['form'].is_valid():
@@ -62,7 +63,7 @@ def novoItemCarousel(request):
             context['form'].errors
     else: 
         context['form'] = novoOuEditarItemCarouselForm()
-    return render(request, "basicForm.html", context)
+    return render(request, "basicFormWithImages.html", context)
 
 
 @login_required
@@ -156,7 +157,10 @@ def linksImagensMembroCarousel(request, colecao):
 
 @login_required
 def novoProjeto(request):
-    context = {"titulo": "Novo Projeto", "success": "", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
+    context = {"titulo": "Novo Projeto", 
+               "success": "", 
+               "observacoes": ["Capa: Coloque o link da imagem que será a capa"],
+               "linkColecao": "projetoColecoes"}
     if request.method == "POST":
         context['form'] = novoOuEditarProjetoForm(request.POST)
         if context['form'].is_valid():
@@ -166,7 +170,7 @@ def novoProjeto(request):
             context['form'].errors
     else:
         context['form'] = novoOuEditarProjetoForm()
-    return render(request, "basicForm.html", context)
+    return render(request, "basicFormWithImages.html", context)
 
 
 @login_required
@@ -257,7 +261,10 @@ def linksImagensProjeto(request, colecao):
 
 @login_required
 def novoPostRevista(request):
-    context = {"titulo": "Novo Post De Revista", "success": "", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
+    context = {"titulo": "Novo Post De Revista", 
+               "success": "", 
+               "observacoes": ["Capa: Coloque o link da imagem que será a capa"],
+               "linkColecao": "revistaColecoes"}
     if request.method == "POST":
         context['form'] = novoOuEditarPostRevistaForm(request.POST)
         if context['form'].is_valid():
@@ -267,7 +274,7 @@ def novoPostRevista(request):
             context['form'].errors
     else: 
         context['form'] = novoOuEditarPostRevistaForm()
-    return render(request, "basicForm.html", context)
+    return render(request, "basicFormWithImages.html", context)
 
 
 @login_required
@@ -403,7 +410,10 @@ def linksImagensRevista(request, colecao):
 
 @login_required
 def novoMembro(request):
-    context = {"titulo": "Novo Membro", "success": "", "observacoes": [""]}
+    context = {"titulo": "Novo Membro", 
+               "success": "", 
+               "observacoes": [""],
+               "linkColecao": "membroCarouselColecoes"}
     if request.method == "POST":
         context['form'] = novoOuEditarMembroForm(request.POST)
         if context['form'].is_valid():
@@ -413,7 +423,7 @@ def novoMembro(request):
             context['form'].errors
     else: 
         context['form'] = novoOuEditarMembroForm()
-    return render(request, "basicForm.html", context)
+    return render(request, "basicFormWithImages.html", context)
 
 
 @login_required
