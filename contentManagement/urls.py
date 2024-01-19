@@ -31,10 +31,10 @@ urlpatterns = [
     path("revistaColecoes/AdicionarImagem", views.revistaAdicionarImagem.as_view(), name="revistaAdicionarImagem"),
     path("revistaColecoes/linksImagens/<str:colecao>", views.linksImagensRevista.as_view(), name="linksImagensRevista"),
 
-    path("novoMembro/", views.novoMembro, name="novoMembro"),
-    path("editarMembro/", views.editarMembro, name="editarMembro"),
-    path("editarMembro/<int:id>", views.editarMembroId, name="editarMembroId"),
-    path("novaCategoriaDeMembro/", views.novaCategoriaDeMembro, name="novaCategoriaDeMembro"),
-    path("editarCategoriaDeMembro/", views.editarCategoriaDeMembro, name="editarCategoriaDeMembro"),
-    path("editarCategoriaDeMembro/<int:id>", views.editarCategoriaDeMembroId, name="editarCategoriaDeMembroId"),
+    path("novoMembro/", views.novoMembro.as_view(), name="novoMembro"),
+    path("editarMembro/", views.editarMembro.as_view(), name="editarMembro"),
+    path("editarMembro/<int:id>", views.editarMembroId.as_view(), name="editarMembroId"),
+    path("novaCategoriaDeMembro/", views.novaCategoriaDeMembro.as_view(), name="novaCategoriaDeMembro"),
+    path("editarCategoriaDeMembro/", views.editarCategoriaDeMembro.as_view(), name="editarCategoriaDeMembro"),
+    path("editarCategoriaDeMembro/<int:id>", views.editarCategoriaDeMembroId.as_view(), name="editarCategoriaDeMembroId"),
 ]
