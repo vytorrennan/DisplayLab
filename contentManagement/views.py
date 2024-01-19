@@ -1,6 +1,11 @@
+from django.views import View
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
+from django.utils.text import slugify
 from .forms.main.novoOuEditarItemCarousel import novoOuEditarItemCarouselForm
 from .forms.projetos.novoOuEditarProjeto import novoOuEditarProjetoForm
 from .forms.main.membroCarouselNovaColecaoDeImagens import membroCarouselNovaColecaoDeImagensForm
@@ -42,117 +47,134 @@ def rangePages(quantasPaginasMostrar, page_obj):
 
 
 # Create your views here.
-@login_required
-def contentManagement(request):
-    return render(request, "contentManagement.html")
+@method_decorator(login_required, name="dispatch")
+class contentManagement(View):
+    def get(self, request):
+        return render(request, "contentManagement.html")
 
 
-@login_required
-def novoItemCarousel(request):
-    context = {"titulo": "Novo Item do Carrousel", 
-               "success": "",
+@method_decorator(login_required, name="dispatch")
+class novoItemCarousel(View):
+    context = {"titulo": "Novo Item do Carrousel",
                "observacoes": ["Imagem: coloque o link da imagem que aparecerá no carousel, a imagem devera ser 1600x900", 
-                               "Url: link de onde o usuario irá quando clicar na imagem"],
+                               "Url: link de onde o usuario irá quando clicar na imagem"], 
                 "linkColecao": "membroCarouselColecoes"}
-    if request.method == "POST":
-        context['form'] = novoOuEditarItemCarouselForm(request.POST)
-        if context['form'].is_valid():
-            context['form'].save()
-            context['success'] = "Novo item de carousel cadastrado com sucesso!"
+    
+    def get(self, request):
+        self.context['form'] = novoOuEditarItemCarouselForm()
+        return render(request, "basicFormWithImages.html", self.context)
+    
+    def post(self, request):
+        self.context['form'] = novoOuEditarItemCarouselForm(request.POST)
+        if self.context['form'].is_valid():
+            self.context['form'].save()
+            messages.success(request, "Novo item de carousel cadastrado com sucesso!")
         else:
-            context['form'].errors
-    else: 
-        context['form'] = novoOuEditarItemCarouselForm()
-    return render(request, "basicFormWithImages.html", context)
+            self.context['form'].errors
+        return render(request, "basicFormWithImages.html", self.context)
 
 
-@login_required
-def editarItemCarousel(request):
+@method_decorator(login_required, name="dispatch")
+class editarItemCarousel(View):
     context = {}
-    items = carouselItem.objects.all()
-    paginator = Paginator(items, 30)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    quantasPaginasMostrar = 9
-    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
-    context["page_obj"] = page_obj
-    return render(request, "editarItemCarousel.html", context)
+    def get(self, request):
+        items = carouselItem.objects.all()
+        paginator = Paginator(items, 30)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        quantasPaginasMostrar = 9
+        self.context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
+        self.context["page_obj"] = page_obj
+        return render(request, "editarItemCarousel.html", self.context)
 
 
-@login_required
-def editarItemCarouselId(request, id):
+@method_decorator(login_required, name="dispatch")
+class editarItemCarouselId(View):
     context = {"titulo": "Editando Item De Carousel",
-               "success": "", 
-               "observacoes": ["Imagem: coloque o link da imagem que aparecerá no carousel, a imagem devera ser 1600x900", 
-                               "Url: link de onde o usuario irá quando clicar na imagem"]}
-    instance = carouselItem.objects.filter(id=id)[0]
-    if request.method == "POST":
-        context['form'] = novoOuEditarItemCarouselForm(request.POST, instance=instance)
-        if context['form'].is_valid():
-            context['form'].save()
-            context['success'] = "Item de carousel editado com sucesso!"
+                "observacoes": ["Imagem: coloque o link da imagem que aparecerá no carousel, a imagem devera ser 1600x900", 
+                                "Url: link de onde o usuario irá quando clicar na imagem"]}
+
+    def get(self, request, *args, **kwargs):
+        instance = get_object_or_404(carouselItem, id=kwargs['id'])
+        self.context['form'] = novoOuEditarItemCarouselForm(instance=instance)
+        return render(request, "basicForm.html", self.context)
+    
+    def post(self, request, *args, **kwargs):
+        instance = get_object_or_404(carouselItem, id=kwargs['id'])
+        self.context['form'] = novoOuEditarItemCarouselForm(request.POST, instance=instance)
+        if self.context['form'].is_valid():
+            self.context['form'].save()
+            messages.success(request, "Item de carousel editado com sucesso!")
         else:
-            context['form'].errors
-    else: 
-        context['form'] = novoOuEditarItemCarouselForm(instance=instance)
-    return render(request, "basicForm.html", context)
+            self.context['form'].errors
+        return render(request, "basicForm.html", self.context)
 
 
-@login_required
-def membroCarouselColecoes(request):
+@method_decorator(login_required, name="dispatch")
+class membroCarouselColecoes(View):
     context = {"urlNovaColecao": "membroCarouselNovaColecao",
-               "urlAdicionarImagem": "membroCarouselAdicionarImagem",
-               "urllinksImagens": "linksImagensMembroCarousel"}
-    Colecoes = membroCarouselColecaoDeImagem.objects.all()
-    paginator = Paginator(Colecoes, 30)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    quantasPaginasMostrar = 9
-    context["page_obj"] = page_obj
-    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
-    return render(request, "colecoesDeImagens.html", context)
+                "urlAdicionarImagem": "membroCarouselAdicionarImagem",
+                "urllinksImagens": "linksImagensMembroCarousel"}
+    
+    def get(self, request):
+        Colecoes = membroCarouselColecaoDeImagem.objects.all()
+        paginator = Paginator(Colecoes, 30)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        quantasPaginasMostrar = 9
+        self.context["page_obj"] = page_obj
+        self.context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
+        return render(request, "colecoesDeImagens.html", self.context)
 
 
-@login_required
-def membroCarouselNovaColecao(request):
+@method_decorator(login_required, name="dispatch")
+class membroCarouselNovaColecao(View):
     context = {"titulo": "Nova coleção de imagens", 
-               "success": "", 
                "observacoes": ["Digite o nome da coleção (Nome do membro ou projeto)", "Use somente letras e/ou numeros, sem espaços"]}
-    if request.method == "POST":
-        context['form'] = membroCarouselNovaColecaoDeImagensForm(request.POST)
-        if context['form'].is_valid():
-            context['form'].save()
-            context['success'] = "Nova coleção cadastrada com sucesso!"
+    
+    def get(self, request):
+        self.context['form'] = membroCarouselNovaColecaoDeImagensForm()
+        return render(request, "basicForm.html", self.context)
+
+    def post(self, request):
+        self.context['form'] = membroCarouselNovaColecaoDeImagensForm(request.POST)
+        if self.context['form'].is_valid():
+            self.context['form'].save()
+            messages.success(request, "Nova coleção cadastrada com sucesso!")
         else:
-            context['form'].errors
-    else: 
-        context['form'] = membroCarouselNovaColecaoDeImagensForm()
-    return render(request, "basicForm.html", context)
+            self.context['form'].errors
+        return render(request, "basicForm.html", self.context)
 
 
-@login_required
-def membroCarouselAdicionarImagem(request):
-    context = {"titulo": "Nova imagem", 
-                "success": ""}
-    if request.method == "POST":
-        request.FILES['imagem'].name = request.FILES['imagem'].name.replace(" ", "")
-        context['form'] = membroCarouselNovaImagemForm(request.POST, request.FILES)
-        if context['form'].is_valid():
-            context['form'].save()
-            context['success'] = "Nova imagem adicionada com sucesso!"
+@method_decorator(login_required, name="dispatch")
+class membroCarouselAdicionarImagem(View):
+    context = {"titulo": "Nova imagem"}
+
+    def get(self, request):
+        self.context['form'] = membroCarouselNovaImagemForm()
+        return render(request, "basicForm.html", self.context)
+    
+    def post(self, request):
+        fileName = request.FILES['imagem'].name
+        fileExtensionPosition = fileName.rfind(".")
+        fileExtension = fileName[fileExtensionPosition:]
+        request.FILES['imagem'].name = slugify(fileName[:fileExtensionPosition]) + fileExtension
+        self.context['form'] = membroCarouselNovaImagemForm(request.POST, request.FILES)
+        if self.context['form'].is_valid():
+            self.context['form'].save()
+            messages.success(request, "Nova imagem adicionada com sucesso!")
         else:
-            context['form'].errors
-    else:
-        context['form'] = membroCarouselNovaImagemForm()
-    return render(request, "basicForm.html", context)
+            self.context['form'].errors
+        return render(request, "basicForm.html", self.context)
 
 
-@login_required
-def linksImagensMembroCarousel(request, colecao):
-    context = {"titulo": "Coleção: " + colecao,
-               "parteParaRemoverDaUrl": "main/static/"}
-    context['Imagens'] = membroCarouselImagem.objects.filter(colecao=colecao)
-    return render(request, "linksDeImagens.html", context)
+@method_decorator(login_required, name="dispatch")
+class linksImagensMembroCarousel(View):
+    def get(self, request, *args, **kwargs):
+        context = {"titulo": "Coleção: " + kwargs['colecao'],
+                   "parteParaRemoverDaUrl": "main/static/"}
+        context['Imagens'] = membroCarouselImagem.objects.filter(colecao=kwargs['colecao'])
+        return render(request, "linksDeImagens.html", context)
 
 
 @login_required

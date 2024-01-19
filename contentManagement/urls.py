@@ -2,15 +2,15 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.contentManagement, name="contentManagement"),
+    path("", views.contentManagement.as_view(), name="contentManagement"),
 
-    path("novoItemCarousel/", views.novoItemCarousel, name="novoItemCarousel"),
-    path("editarItemCarousel/", views.editarItemCarousel, name="editarItemCarousel"),
-    path("editarItemCarousel/<int:id>", views.editarItemCarouselId, name="editarItemCarouselId"),
-    path("membroCarouselColecoes/", views.membroCarouselColecoes, name="membroCarouselColecoes"),
-    path("membroCarouselColecoes/novaColecao", views.membroCarouselNovaColecao, name="membroCarouselNovaColecao"),
-    path("membroCarouselColecoes/AdicionarImagem", views.membroCarouselAdicionarImagem, name="membroCarouselAdicionarImagem"),
-    path("membroCarouselColecoes/linksImagens/<str:colecao>", views.linksImagensMembroCarousel, name="linksImagensMembroCarousel"),
+    path("novoItemCarousel/", views.novoItemCarousel.as_view(), name="novoItemCarousel"),
+    path("editarItemCarousel/", views.editarItemCarousel.as_view(), name="editarItemCarousel"),
+    path("editarItemCarousel/<int:id>", views.editarItemCarouselId.as_view(), name="editarItemCarouselId"),
+    path("membroCarouselColecoes/", views.membroCarouselColecoes.as_view(), name="membroCarouselColecoes"),
+    path("membroCarouselColecoes/novaColecao", views.membroCarouselNovaColecao.as_view(), name="membroCarouselNovaColecao"),
+    path("membroCarouselColecoes/AdicionarImagem", views.membroCarouselAdicionarImagem.as_view(), name="membroCarouselAdicionarImagem"),
+    path("membroCarouselColecoes/linksImagens/<str:colecao>", views.linksImagensMembroCarousel.as_view(), name="linksImagensMembroCarousel"),
 
     path("novoProjeto/", views.novoProjeto, name="novoProjeto"),
     path("editarProjeto/", views.editarProjeto, name="editarProjeto"),
