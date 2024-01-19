@@ -78,7 +78,7 @@ class novoItemCarousel(View):
 class editarItemCarousel(View):
     context = {}
     def get(self, request):
-        items = carouselItem.objects.all()
+        items = carouselItem.objects.order_by("-id")
         paginator = Paginator(items, 30)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
@@ -117,7 +117,7 @@ class membroCarouselColecoes(View):
                 "urllinksImagens": "linksImagensMembroCarousel"}
     
     def get(self, request):
-        Colecoes = membroCarouselColecaoDeImagem.objects.all()
+        Colecoes = membroCarouselColecaoDeImagem.objects.order_by("-id")
         paginator = Paginator(Colecoes, 30)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
@@ -173,112 +173,130 @@ class linksImagensMembroCarousel(View):
     def get(self, request, *args, **kwargs):
         context = {"titulo": "Coleção: " + kwargs['colecao'],
                    "parteParaRemoverDaUrl": "main/static/"}
-        context['Imagens'] = membroCarouselImagem.objects.filter(colecao=kwargs['colecao'])
+        context['Imagens'] = membroCarouselImagem.objects.filter(colecao=kwargs['colecao']).order_by("-id")
         return render(request, "linksDeImagens.html", context)
 
 
-@login_required
-def novoProjeto(request):
-    context = {"titulo": "Novo Projeto", 
-               "success": "", 
+@method_decorator(login_required, name="dispatch")
+class novoProjeto(View):
+    context = {"titulo": "Novo Projeto",
                "observacoes": ["Capa: Coloque o link da imagem que será a capa"],
                "linkColecao": "projetoColecoes"}
-    if request.method == "POST":
-        context['form'] = novoOuEditarProjetoForm(request.POST)
-        if context['form'].is_valid():
-            context['form'].save()
-            context['success'] = "Novo projeto cadastrado com sucesso!"
+
+    def get(self, request):
+        self.context['form'] = novoOuEditarProjetoForm()
+        return render(request, "basicFormWithImages.html", self.context)
+    
+    def post(self, request):
+        self.context['form'] = novoOuEditarProjetoForm(request.POST)
+        if self.context['form'].is_valid():
+            self.context['form'].save()
+            messages.success(request, "Novo projeto cadastrado com sucesso!")
         else:
-            context['form'].errors
-    else:
-        context['form'] = novoOuEditarProjetoForm()
-    return render(request, "basicFormWithImages.html", context)
+            self.context['form'].errors
+        return render(request, "basicFormWithImages.html", self.context)
 
 
-@login_required
-def editarProjeto(request):
+@method_decorator(login_required, name="dispatch")
+class editarProjeto(View):
     context = {}
-    Projetos = Projeto.objects.all().order_by("-dataHora")
-    paginator = Paginator(Projetos, 30)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    quantasPaginasMostrar = 9
-    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
-    context["page_obj"] = page_obj
-    return render(request, "editarProjeto.html", context)
+
+    def get(self, request):
+        Projetos = Projeto.objects.all().order_by("-dataHora")
+        paginator = Paginator(Projetos, 30)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        quantasPaginasMostrar = 9
+        self.context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
+        self.context["page_obj"] = page_obj
+        return render(request, "editarProjeto.html", self.context)
 
 
-@login_required
-def editarProjetoId(request, id):
-    context = {"titulo": "Editando Projeto", "success": "", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
-    instance = Projeto.objects.filter(id=id)[0]
-    if request.method == "POST":
-        context['form'] = novoOuEditarProjetoForm(request.POST, instance=instance)
-        if context['form'].is_valid():
-            context['form'].save()
-            context['success'] = "Projeto editado com sucesso!"
+@method_decorator(login_required, name="dispatch")
+class editarProjetoId(View):
+    context = {"titulo": "Editando Projeto", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
+
+    def get(self, request, *args, **kwargs):
+        instance = get_object_or_404(Projeto, id=kwargs['id'])
+        self.context['form'] = novoOuEditarProjetoForm(instance=instance)
+        return render(request, "basicForm.html", self.context)
+    
+    def post(self, request, *args, **kwargs):
+        instance = get_object_or_404(Projeto, id=kwargs['id'])
+        self.context['form'] = novoOuEditarProjetoForm(request.POST, instance=instance)
+        if self.context['form'].is_valid():
+            self.context['form'].save()
+            messages.success(request, "Projeto editado com sucesso!")
         else:
-            context['form'].errors
-    else: 
-        context['form'] = novoOuEditarProjetoForm(instance=instance)
-    return render(request, "basicForm.html", context)
+            self.context['form'].errors
+        return render(request, "basicForm.html", self.context)
 
 
-@login_required
-def projetoColecoes(request):
+@method_decorator(login_required, name="dispatch")
+class projetoColecoes(View):
     context = {"urlNovaColecao": "projetoNovaColecao",
                "urlAdicionarImagem": "projetoAdicionarImagem",
                "urllinksImagens": "linksImagensProjeto"}
-    Colecoes = projetoColecaoDeImagem.objects.all()
-    paginator = Paginator(Colecoes, 30)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    quantasPaginasMostrar = 9
-    context["page_obj"] = page_obj
-    context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
-    return render(request, "colecoesDeImagens.html", context)
+    
+    def get(self, request):
+        Colecoes = projetoColecaoDeImagem.objects.order_by("-id")
+        paginator = Paginator(Colecoes, 30)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        quantasPaginasMostrar = 9
+        self.context["page_obj"] = page_obj
+        self.context["rangePages"] = rangePages(quantasPaginasMostrar, page_obj)
+        return render(request, "colecoesDeImagens.html", self.context)
 
 
-@login_required
-def projetoNovaColecao(request):
+@method_decorator(login_required, name="dispatch")
+class projetoNovaColecao(View):
     context = {"titulo": "Nova coleção de imagens", 
-               "success": "", 
                "observacoes": ["Digite o nome da coleção (Nome do projeto)", "Use somente letras e/ou numeros, sem espaços"]}
-    if request.method == "POST":
-        context['form'] = projetoNovaColecaoDeImagensForm(request.POST)
-        if context['form'].is_valid():
-            context['form'].save()
-            context['success'] = "Nova coleção cadastrada com sucesso!"
+    
+    def get(self, request):
+        self.context['form'] = projetoNovaColecaoDeImagensForm()
+        return render(request, "basicForm.html", self.context)
+
+    def post(self, request):
+        self.context['form'] = projetoNovaColecaoDeImagensForm(request.POST)
+        if self.context['form'].is_valid():
+            self.context['form'].save()
+            messages.success(request, "Nova coleção cadastrada com sucesso!")
         else:
-            context['form'].errors
-    else: 
-        context['form'] = projetoNovaColecaoDeImagensForm()
-    return render(request, "basicForm.html", context)
+            self.context['form'].errors
+        return render(request, "basicForm.html", self.context)
 
 
-@login_required
-def projetoAdicionarImagem(request):
-    context = {"titulo": "Nova imagem", 
-                "success": ""}
-    if request.method == "POST":
-        request.FILES['imagem'].name = request.FILES['imagem'].name.replace(" ", "")
-        context['form'] = projetoNovaImagemForm(request.POST, request.FILES)
-        if context['form'].is_valid():
-            context['form'].save()
-            context['success'] = "Nova imagem adicionada com sucesso!"
+@method_decorator(login_required, name="dispatch")
+class projetoAdicionarImagem(View):
+    context = {"titulo": "Nova imagem"}
+
+    def get(self, request):
+        self.context['form'] = projetoNovaImagemForm()
+        return render(request, "basicForm.html", self.context)
+    
+    def post(self, request):
+        fileName = request.FILES['imagem'].name
+        fileExtensionPosition = fileName.rfind(".")
+        fileExtension = fileName[fileExtensionPosition:]
+        request.FILES['imagem'].name = slugify(fileName[:fileExtensionPosition]) + fileExtension
+        self.context['form'] = projetoNovaImagemForm(request.POST, request.FILES)
+        if self.context['form'].is_valid():
+            self.context['form'].save()
+            messages.success(request, "Nova imagem adicionada com sucesso!")
         else:
-            context['form'].errors
-    else:
-        context['form'] = projetoNovaImagemForm()
-    return render(request, "basicForm.html", context)
+            self.context['form'].errors
+        return render(request, "basicForm.html", self.context)
 
 
-@login_required
-def linksImagensProjeto(request, colecao):
-    context = {"titulo": "Coleção: " + colecao,
-               "parteParaRemoverDaUrl": "projetos/static/"}
-    context['Imagens'] = projetoImagem.objects.filter(colecao=colecao)
-    return render(request, "linksDeImagens.html", context)
+@method_decorator(login_required, name="dispatch")
+class linksImagensProjeto(View):
+    def get(self, request, *args, **kwargs):
+        context = {"titulo": "Coleção: " + kwargs['colecao'],
+                   "parteParaRemoverDaUrl": "projetos/static/"}
+        context['Imagens'] = projetoImagem.objects.filter(colecao=kwargs['colecao']).order_by("-id")
+        return render(request, "linksDeImagens.html", context)
 
 
 @login_required
