@@ -17,7 +17,7 @@
                 <div class="card text-decoration-none">
                     <img src="{% get_static_prefix %}{{ image.imagem | cut:parteParaRemoverDaUrl }}" class="card-img-top object-fit-cover" alt="imagem da coleção {{ image.colecao }}">
                     <div class="card-body">
-                        <h5 class="card-title">{{ image.imagem | cut:parteParaRemoverDaUrl }}</h5>
+                        <h5 class="card-title">/static/{{ image.imagem | cut:parteParaRemoverDaUrl }}</h5>
                     </div>
                 </div>
             </div>

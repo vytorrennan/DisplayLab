@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from django.utils.text import slugify
+from ..forms.projetos.novoOuEditarProjeto import novoOuEditarProjetoForm
 from ..forms.projetos.projetoNovaColecaoDeImagens import projetoNovaColecaoDeImagensForm
 from ..forms.projetos.projetoNovaImagem import projetoNovaImagemForm
 from projetos.models import projetoColecaoDeImagem
