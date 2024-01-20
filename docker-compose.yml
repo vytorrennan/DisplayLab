@@ -1,0 +1,23 @@
+version: '4.0'
+
+services:
+  db:
+    image: postgres:16.1
+    env_file:
+      - .env
+    volumes:
+      - ./db:/var/lib/postgresql/data
+
+  displaylab:
+    build: .
+    expose:
+      - "8000"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
