@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path("revista/", views.revista, name="revista"),
-    path("revista/<slug:url>/", views.paginaDePost, name="paginaDePost"),
+    path("revista/", views.revista.as_view(), name="revista"),
+    path("revista/<slug:url>/", views.paginaDePost.as_view(), name="paginaDePost"),
 ]

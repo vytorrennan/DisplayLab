@@ -1,24 +1,31 @@
+from django.views import View
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from .forms import UserCreationForm, LoginForm
 
-# Create your views here.
 
-@login_required
-def userSignup(request):
-    if request.method == 'POST':
+@method_decorator(login_required, name="dispatch")
+class userSignup(View):
+    def get(self, request):
+        form = UserCreationForm()
+        return render(request, 'signup.html', {'form': form})
+    
+    def post(self, request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
-    else:
-        form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+        return render(request, 'signup.html', {'form': form})
 
 
-def userLogin(request):
-    if request.method == 'POST':
+class userLogin(View):
+    def get(self, request):
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form})
+
+    def post(self, request):
         form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -27,11 +34,11 @@ def userLogin(request):
             if user:
                 login(request, user)
                 return redirect('home')
-    else:
-        form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+        return render(request, 'login.html', {'form': form})
 
 
-def userLogout(request):
-    logout(request)
-    return redirect('login')
+@method_decorator(login_required, name="dispatch")
+class userLogout(View):
+    def get(self, request):
+        logout(request)
+        return redirect('login')
