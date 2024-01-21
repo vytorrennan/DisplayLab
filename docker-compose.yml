@@ -5,6 +5,8 @@ services:
     image: postgres:16.1
     env_file:
       - app/.env
+    volumes:
+      - ./db:/var/lib/postgresql/data
 
   displaylab:
     build: .
