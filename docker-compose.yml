@@ -13,16 +13,16 @@ services:
     expose:
       - "8000"
     # Create Super User
-    #command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 20 && python app/manage.py migrate && python app/createSuperUser.py"
+    #command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 30 && python app/manage.py migrate && python app/createSuperUser.py"
 
     # Make backup
-    #command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 20 && python app/manage.py dbbackup && python app/manage.py mediabackup"
+    #command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 30 && python app/manage.py dbbackup && python app/manage.py mediabackup"
 
     # Restore backup
-    #command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 20 && python app/manage.py migrate && python app/manage.py dbrestore --noinput && python app/manage.py mediarestore --noinput"
+    #command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 30 && python app/manage.py migrate && python app/manage.py dbrestore --noinput && python app/manage.py mediarestore --noinput"
     
     # Run server
-    command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 20 && python app/manage.py migrate && python app/manage.py runserver 0:8000"
+    command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 30 && python app/manage.py migrate && python app/manage.py runserver 0:8000"
     volumes:
       - .:/DisplayLab
     ports:
