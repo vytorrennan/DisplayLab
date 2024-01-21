@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-lxtw_6rckr=(skjuv!t+nd6sm@4*^t$))gv^3qh6mb-x8rc(d2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.109']
+ALLOWED_HOSTS = ['192.168.1.109', '0.0.0.0']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dbbackup',
     'main',
     'projetos',
     'revista',
@@ -94,6 +95,7 @@ DATABASES = {
         'HOST': 'db',
         'PORT': 5432,
     }
+
 }
 
 
@@ -153,3 +155,6 @@ DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
 MEDIA_ROOT = BASE_DIR
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': './backups'}
