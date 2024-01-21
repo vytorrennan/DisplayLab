@@ -24,11 +24,7 @@
                 <div class="carousel-item active">
             {% endif %}
                     <a href="{{ item.url }}">
-                        {% if p.capa|slice:"0:4" == "http" %}
-                            <img src="{{ item.imagem }}" class="d-block w-100" alt="">
-                        {% else%}
-                            <img src="{% get_static_prefix %}{{ item.imagem }}" class="d-block w-100" alt="">
-                        {% endif %}
+                        <img src="{{ item.imagem }}" class="d-block w-100" alt="">
                     </a>
                 </div>   
         {% endfor %}

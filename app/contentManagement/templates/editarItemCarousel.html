@@ -16,11 +16,7 @@
         {% for item in page_obj %}
             <div class="col">
                 <a class="card text-decoration-none" href="{% url 'editarItemCarouselId' item.id %}">
-                    {% if item.imagem|slice:"0:4" == "http" %}
-                        <img src="{{ item.imagem }}" class="card-img-top object-fit-cover" alt="imagem para {{ item.url }}">
-                    {% else%}
-                        <img src="{% get_static_prefix %}{{ item.imagem }}" class="card-img-top object-fit-cover" alt="imagem para {{ item.url }}"">
-                    {% endif %}
+                    <img src="{{ item.imagem }}" class="card-img-top object-fit-cover" alt="imagem para {{ item.url }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ item.url }}</h5>
                     </div>

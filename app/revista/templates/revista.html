@@ -11,11 +11,7 @@
         {% for post in page_obj %}
             <div class="col">
                 <a class="card m-3 text-decoration-none" href="/revista/{{ post.url }}">
-                    {% if post.capa|slice:"0:4" == "http" %}
-                        <img src="{{ post.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ post.titulo }}">
-                    {% else%}
-                        <img src="{% get_static_prefix %}{{ post.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ post.titulo }}">
-                    {% endif %}
+                    <img src="{{ post.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ post.titulo }}">
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ post.titulo }}</h5>
                         <p class="card-text"><small class="text-body-secondary">Edição: {{ post.edicao }} - {{ post.autor }}</small></p>

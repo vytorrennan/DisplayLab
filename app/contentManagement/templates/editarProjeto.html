@@ -16,11 +16,7 @@
         {% for projeto in page_obj %}
             <div class="col">
                 <a class="card text-decoration-none" href="{% url 'editarProjetoId' projeto.id %}">
-                    {% if projeto.capa|slice:"0:4" == "http" %}
-                        <img src="{{ projeto.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ projeto.titulo }}">
-                    {% else%}
-                        <img src="{% get_static_prefix %}{{ projeto.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ projeto.titulo }}">
-                    {% endif %}
+                    <img src="{{ projeto.capa }}" class="card-img-top object-fit-cover" alt="capa de {{ projeto.titulo }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ projeto.titulo }}</h5>
                     </div>

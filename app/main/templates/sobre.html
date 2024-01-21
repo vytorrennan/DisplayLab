@@ -16,11 +16,7 @@
                     {% if membro.categoria == categ %}
                         <div class="col">
                             <div class="card h-100 d-flex align-items-center">
-                                {% if membro.foto|slice:"0:4" == "http" %}
-                                    <img src="{{ membro.foto }}" class="card-img-top" alt="foto de {{ membro.nome }}">
-                                {% else%}
-                                    <img src="{% get_static_prefix %}{{ membro.foto }}" class="card-img-top" alt="foto de {{ membro.nome }}">
-                                {% endif %}
+                                <img src="{{ membro.foto }}" class="card-img-top" alt="foto de {{ membro.nome }}">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">{{ membro.nome }}</h5>
                                     <p class="card-text">{{ membro.descricao }}</p>
