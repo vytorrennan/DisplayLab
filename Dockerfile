@@ -1,6 +1,7 @@
 FROM python:3.12.1-alpine3.19
 
 RUN apk add --no-cache \
+    bash \
     postgresql-client \
     postgresql-dev \
     pkgconfig \
@@ -11,7 +12,7 @@ RUN apk add --no-cache \
     gpgme-dev \
     libc-dev
 
-WORKDIR /app
+WORKDIR /DisplayLab
 
 COPY ./requirements.txt ./
 

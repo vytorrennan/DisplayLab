@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:16.1
     env_file:
-      - .env
+      - app/.env
     volumes:
       - ./db:/var/lib/postgresql/data
 
@@ -12,14 +12,14 @@ services:
     build: .
     expose:
       - "8000"
-    #command: /bin/sh -c "python manage.py dbbackup && python manage.py mediabackup" # make backup
-    #command: /bin/sh -c "python manage.py migrate && python manage.py dbrestore --noinput && python manage.py mediarestore --noinput" # restore backup
-    command: /bin/sh -c "python manage.py migrate && python manage.py runserver 0:8000"
+    #command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 20 && python app/manage.py dbbackup && python app/manage.py mediabackup" # make backup
+    #command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 20 && python app/manage.py migrate && python app/manage.py dbrestore --noinput && python app/manage.py mediarestore --noinput" # restore backup
+    command: /bin/sh -c "scripts/wait-for-it.sh db:5432 -t 20 && python app/manage.py migrate && python app/manage.py runserver 0:8000"
     volumes:
-      - .:/app
+      - .:/DisplayLab
     ports:
       - "8000:8000"
     depends_on:
       - db
     env_file:
-      - .env
+      - app/.env

@@ -67,7 +67,7 @@ ROOT_URLCONF = 'DisplayLab.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./global/templates'],
+        'DIRS': [BASE_DIR / 'global/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
