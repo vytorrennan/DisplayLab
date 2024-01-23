@@ -1,5 +1,5 @@
 # DisplayLab
-Remake do site do laboratório do Display
+Website oficial do laboratório Display do Instituto Federal do Norte de Minas Gerais
 
 ---
 
