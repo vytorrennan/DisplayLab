@@ -1,8 +1,6 @@
 # DisplayLab
 Website oficial do laboratório Display do Instituto Federal do Norte de Minas Gerais
 
-
-
 ---
 
 # Como rodar o projeto
