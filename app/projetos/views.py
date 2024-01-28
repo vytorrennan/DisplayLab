@@ -2,7 +2,7 @@ from django.views import View
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import Projeto
-
+from django.core.cache import cache
 
 class projetos(View):
     def get(self, request):

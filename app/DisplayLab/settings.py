@@ -33,7 +33,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.1.109', '0.0.0.0']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -96,6 +95,17 @@ DATABASES = {
         'PORT': 5432,
     }
 
+}
+
+CACHES = {
+        'default': {
+            'BACKEND': "django_redis.cache.RedisCache",
+            'LOCATION': 'redis://redis:6379',
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+                'PASSWORD': env('REDIS_PASSWORD')
+            }
+        }
 }
 
 

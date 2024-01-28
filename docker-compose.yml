@@ -29,7 +29,18 @@ services:
       - "8000:8000"
     depends_on:
       - pgdb
+      - redis
     env_file:
       - app/.env
+  
+  redis:
+    image: redis:7.2.4-alpine
+    env_file:
+      - app/.env
+    command: /bin/sh -c 'redis-server --requirepass "$${REDIS_PASSWORD:?REDIS_PASSWORD variable is not set}"'
+    volumes:
+      - redisData:/data
+    
 volumes:
   pgdbData:
+  redisData:
