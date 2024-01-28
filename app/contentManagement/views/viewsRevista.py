@@ -19,21 +19,23 @@ from .viewsHome import rangePages
 
 @method_decorator(login_required, name="dispatch")
 class novoPostRevista(View):
-    context = {"titulo": "Novo Post De Revista", 
-               "observacoes": ["Capa: Coloque o link da imagem que será a capa"],
-               "linkColecao": "revistaColecoes"}
+    context = {
+        "titulo": "Novo Post De Revista",
+        "observacoes": ["Capa: Coloque o link da imagem que será a capa"],
+        "linkColecao": "revistaColecoes",
+    }
 
     def get(self, request):
-        self.context['form'] = novoOuEditarPostRevistaForm()
+        self.context["form"] = novoOuEditarPostRevistaForm()
         return render(request, "basicFormWithImages.html", self.context)
-    
+
     def post(self, request):
-        self.context['form'] = novoOuEditarPostRevistaForm(request.POST)
-        if self.context['form'].is_valid():
-            self.context['form'].save()
+        self.context["form"] = novoOuEditarPostRevistaForm(request.POST)
+        if self.context["form"].is_valid():
+            self.context["form"].save()
             messages.success(request, "Novo post de revista cadastrado com sucesso!")
         else:
-            self.context['form'].errors
+            self.context["form"].errors
         return render(request, "basicFormWithImages.html", self.context)
 
 
@@ -54,21 +56,26 @@ class editarPostRevista(View):
 
 @method_decorator(login_required, name="dispatch")
 class editarPostRevistaId(View):
-    context = {"titulo": "Editando Post De Revista", "observacoes": ["Capa: Coloque o link da imagem que será a capa"]}
+    context = {
+        "titulo": "Editando Post De Revista",
+        "observacoes": ["Capa: Coloque o link da imagem que será a capa"],
+    }
 
     def get(self, request, *args, **kwargs):
-        instance = get_object_or_404(Revista, id=kwargs['id'])
-        self.context['form'] = novoOuEditarPostRevistaForm(instance=instance)
+        instance = get_object_or_404(Revista, id=kwargs["id"])
+        self.context["form"] = novoOuEditarPostRevistaForm(instance=instance)
         return render(request, "basicForm.html", self.context)
-    
+
     def post(self, request, *args, **kwargs):
-        instance = get_object_or_404(Revista, id=kwargs['id'])
-        self.context['form'] = novoOuEditarPostRevistaForm(request.POST, instance=instance)
-        if self.context['form'].is_valid():
-            self.context['form'].save()
+        instance = get_object_or_404(Revista, id=kwargs["id"])
+        self.context["form"] = novoOuEditarPostRevistaForm(
+            request.POST, instance=instance
+        )
+        if self.context["form"].is_valid():
+            self.context["form"].save()
             messages.success(request, "Post de revista editado com sucesso!")
         else:
-            self.context['form'].errors
+            self.context["form"].errors
         return render(request, "basicForm.html", self.context)
 
 
@@ -77,16 +84,16 @@ class novaEdicaoDeRevista(View):
     context = {"titulo": "Nova Edição", "observacoes": [""]}
 
     def get(self, request):
-        self.context['form'] = novoOuEditarEdicaoDeRevistaForm()
+        self.context["form"] = novoOuEditarEdicaoDeRevistaForm()
         return render(request, "basicForm.html", self.context)
-    
+
     def post(self, request):
-        self.context['form'] = novoOuEditarEdicaoDeRevistaForm(request.POST)
-        if self.context['form'].is_valid():
-            self.context['form'].save()
+        self.context["form"] = novoOuEditarEdicaoDeRevistaForm(request.POST)
+        if self.context["form"].is_valid():
+            self.context["form"].save()
             messages.success(request, "Nova edição de revista cadastrada com sucesso!")
         else:
-            self.context['form'].errors
+            self.context["form"].errors
         return render(request, "basicForm.html", self.context)
 
 
@@ -110,27 +117,31 @@ class editarEdicaoDeRevistaId(View):
     context = {"titulo": "Editando Edição De Revista", "observacoes": [""]}
 
     def get(self, request, *args, **kwargs):
-        instance = get_object_or_404(edicao, id=kwargs['id'])
-        self.context['form'] = novoOuEditarEdicaoDeRevistaForm(instance=instance)
+        instance = get_object_or_404(edicao, id=kwargs["id"])
+        self.context["form"] = novoOuEditarEdicaoDeRevistaForm(instance=instance)
         return render(request, "basicForm.html", self.context)
-    
+
     def post(self, request, *args, **kwargs):
-        instance = get_object_or_404(edicao, id=kwargs['id'])
-        self.context['form'] = novoOuEditarEdicaoDeRevistaForm(request.POST, instance=instance)
-        if self.context['form'].is_valid():
-            self.context['form'].save()
+        instance = get_object_or_404(edicao, id=kwargs["id"])
+        self.context["form"] = novoOuEditarEdicaoDeRevistaForm(
+            request.POST, instance=instance
+        )
+        if self.context["form"].is_valid():
+            self.context["form"].save()
             messages.success(request, "Edição editada com sucesso!")
         else:
-            self.context['form'].errors
+            self.context["form"].errors
         return render(request, "basicForm.html", self.context)
 
 
 @method_decorator(login_required, name="dispatch")
 class revistaColecoes(View):
-    context = {"urlNovaColecao": "revistaNovaColecao",
-               "urlAdicionarImagem": "revistaAdicionarImagem",
-               "urllinksImagens": "linksImagensRevista"}
-    
+    context = {
+        "urlNovaColecao": "revistaNovaColecao",
+        "urlAdicionarImagem": "revistaAdicionarImagem",
+        "urllinksImagens": "linksImagensRevista",
+    }
+
     def get(self, request):
         Colecoes = revistaColecaoDeImagem.objects.order_by("-id")
         paginator = Paginator(Colecoes, 30)
@@ -144,20 +155,25 @@ class revistaColecoes(View):
 
 @method_decorator(login_required, name="dispatch")
 class revistaNovaColecao(View):
-    context = {"titulo": "Nova coleção de imagens", 
-               "observacoes": ["Digite o nome da coleção (Nome do post de revista)", "Use somente letras e/ou numeros, sem espaços"]}
-    
+    context = {
+        "titulo": "Nova coleção de imagens",
+        "observacoes": [
+            "Digite o nome da coleção (Nome do post de revista)",
+            "Use somente letras e/ou numeros, sem espaços",
+        ],
+    }
+
     def get(self, request):
-        self.context['form'] = revistaNovaColecaoDeImagensForm()
+        self.context["form"] = revistaNovaColecaoDeImagensForm()
         return render(request, "basicForm.html", self.context)
 
     def post(self, request):
-        self.context['form'] = revistaNovaColecaoDeImagensForm(request.POST)
-        if self.context['form'].is_valid():
-            self.context['form'].save()
+        self.context["form"] = revistaNovaColecaoDeImagensForm(request.POST)
+        if self.context["form"].is_valid():
+            self.context["form"].save()
             messages.success(request, "Nova coleção cadastrada com sucesso!")
         else:
-            self.context['form'].errors
+            self.context["form"].errors
         return render(request, "basicForm.html", self.context)
 
 
@@ -166,27 +182,33 @@ class revistaAdicionarImagem(View):
     context = {"titulo": "Nova imagem"}
 
     def get(self, request):
-        self.context['form'] = revistaNovaImagemForm()
+        self.context["form"] = revistaNovaImagemForm()
         return render(request, "basicForm.html", self.context)
-    
+
     def post(self, request):
-        fileName = request.FILES['imagem'].name
+        fileName = request.FILES["imagem"].name
         fileExtensionPosition = fileName.rfind(".")
         fileExtension = fileName[fileExtensionPosition:]
-        request.FILES['imagem'].name = slugify(fileName[:fileExtensionPosition]) + fileExtension
-        self.context['form'] = revistaNovaImagemForm(request.POST, request.FILES)
-        if self.context['form'].is_valid():
-            self.context['form'].save()
+        request.FILES["imagem"].name = (
+            slugify(fileName[:fileExtensionPosition]) + fileExtension
+        )
+        self.context["form"] = revistaNovaImagemForm(request.POST, request.FILES)
+        if self.context["form"].is_valid():
+            self.context["form"].save()
             messages.success(request, "Nova imagem adicionada com sucesso!")
         else:
-            self.context['form'].errors
+            self.context["form"].errors
         return render(request, "basicForm.html", self.context)
 
 
 @method_decorator(login_required, name="dispatch")
 class linksImagensRevista(View):
     def get(self, request, *args, **kwargs):
-        context = {"titulo": "Coleção: " + kwargs['colecao'],
-                   "parteParaRemoverDaUrl": "revista"}
-        context['Imagens'] = revistaImagem.objects.filter(colecao=kwargs['colecao']).order_by("-id")
+        context = {
+            "titulo": "Coleção: " + kwargs["colecao"],
+            "parteParaRemoverDaUrl": "revista",
+        }
+        context["Imagens"] = revistaImagem.objects.filter(
+            colecao=kwargs["colecao"]
+        ).order_by("-id")
         return render(request, "linksDeImagens.html", context)
