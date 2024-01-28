@@ -6,7 +6,7 @@ services:
     env_file:
       - app/.env
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
 
   displaylab:
     build: .
@@ -31,3 +31,5 @@ services:
       - db
     env_file:
       - app/.env
+volumes:
+  db:

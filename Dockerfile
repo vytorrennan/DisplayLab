@@ -21,3 +21,5 @@ RUN pip install -r requirements.txt --no-cache-dir --disable-pip-version-check
 COPY ./ ./
 
 EXPOSE 8000
+
+RUN chmod +x ./scripts/wait-for-it.sh
