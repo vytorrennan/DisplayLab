@@ -3,14 +3,15 @@ from django.shortcuts import render
 from . import models
 from revista.models import Revista
 
-# Create your views here.
 
 class home(View):
     def get(self, request):
         carousel = models.carouselItem.objects.all()
         numItens = carousel.count()
         ultimosPosts = Revista.objects.filter(oculto=False).order_by("-edicao", "-dataHora")[0:4]
-        context = {"carousel": carousel, "iterableNumItens": range(numItens), "ultimosPosts": ultimosPosts}
+        context = {"carousel": carousel,
+                   "iterableNumItens": range(numItens),
+                   "ultimosPosts": ultimosPosts}
         return render(request, "home.html", context)
 
 

@@ -24,11 +24,11 @@ class Membro(models.Model):
     id = models.AutoField(primary_key=True)
     oculto = models.BooleanField(default=False)
     nome = models.CharField(max_length=200, default="")
-    categoria = models.ForeignKey(membroCategoria, to_field='categoria', on_delete=models.PROTECT)
+    categoria = models.ForeignKey(membroCategoria, to_field='categoria',
+                                  on_delete=models.PROTECT)
     saibaMais = models.CharField(max_length=512, default="")
     foto = models.CharField(max_length=512, default="")
-    descricao  = models.CharField(max_length=200, default="")
-
+    descricao = models.CharField(max_length=200, default="")
 
     def __str__(self):
         return self.nome
@@ -48,7 +48,8 @@ def image_upload_path(instance, filename):
 
 class membroCarouselImagem(models.Model):
     id = models.AutoField(primary_key=True)
-    colecao = models.ForeignKey(membroCarouselColecaoDeImagem, to_field='colecao', on_delete=models.PROTECT)
+    colecao = models.ForeignKey(membroCarouselColecaoDeImagem,
+                                to_field='colecao', on_delete=models.PROTECT)
     imagem = models.ImageField(upload_to=image_upload_path)
 
     def __str__(self):
