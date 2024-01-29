@@ -8,10 +8,12 @@ from contentManagement.views.viewsHome import rangePages
 class projetos(View):
     def get(self, request):
         projeto = Projeto.objects.filter(oculto=False).order_by("-dataHora")
-        paginator = Paginator(projeto, 9)
+        itensPerPage = 9
+        paginator = Paginator(projeto, itensPerPage)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
-        rangePage = rangePages(9, page_obj)
+        maxNumberOfPages = 9
+        rangePage = rangePages(maxNumberOfPages, page_obj)
         context = {"page_obj": page_obj, "rangePages": rangePage}
         return render(request, "projetos.html", context)
 
@@ -19,5 +21,5 @@ class projetos(View):
 class paginaDeProjeto(View):
     def get(self, request, *args, **kwargs):
         projeto = Projeto.objects.filter(url=kwargs["url"], oculto=False)
-        context = {"projeto": projeto[0]}
+        context = {"projeto": projeto}
         return render(request, "paginaDeProjeto.html", context)

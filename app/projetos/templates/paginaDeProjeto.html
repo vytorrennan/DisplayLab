@@ -2,13 +2,16 @@
 
 {% block head%}
     {% load static %}
+    {% load cache %}
     <title>{{ projeto.titulo }}</title>
     <link rel="stylesheet" href="{% static 'css/paginaDeProjeto.css' %}">
 {% endblock %}
 
 
 {% block content %}
-    {{ projeto.pagina | safe }}
+{% cache 10 projeto request.get_full_path %}
+    {{ projeto.first.pagina | safe }}
+{% endcache %}
 {% endblock %}
 
 {% block script %}

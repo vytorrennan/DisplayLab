@@ -1,11 +1,14 @@
 {% extends "index.html" %}
 {% block head %}
 {% load static %}
+{% load cache %}
 <title>PROJETOS</title>
 <link rel="stylesheet" href="{% static 'css/projetos.css' %}">
 {% endblock %}
 
+
 {% block content%}
+{% cache 10 projetos request.get_full_path %}
 
     {% for p in page_obj %}
         <div class="card mb-5">
@@ -25,7 +28,6 @@
             </div>
         </div>
     {% endfor %}
-
     
     <div class="d-flex justify-content-between w-100">
         <div>
@@ -52,7 +54,10 @@
             {% endif %}
         </div>
     </div>
+{% endcache %}
+
 {% endblock %}
+
 
 {% block script %}
 {% endblock%}
