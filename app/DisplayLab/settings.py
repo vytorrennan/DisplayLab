@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-lxtw_6rckr=(skjuv!t+nd6sm@4*^t$))gv^3qh6mb-x8rc(d2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0']
+CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0', 'https://displaylab.ifnmg.edu.br']
 ALLOWED_HOSTS = ['*']
 
 
