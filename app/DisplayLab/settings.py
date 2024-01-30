@@ -29,9 +29,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-lxtw_6rckr=(skjuv!t+nd6sm@4*^t$))gv^3qh6mb-x8rc(d2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.109', '0.0.0.0']
+CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0']
+ALLOWED_HOSTS = ['*']
 
 
 def show_toolbar(request):
@@ -161,6 +162,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+STATIC_ROOT = '/static/'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'global/static'
