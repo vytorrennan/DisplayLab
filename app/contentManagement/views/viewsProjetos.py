@@ -147,7 +147,7 @@ class linksImagensProjeto(View):
     def get(self, request, *args, **kwargs):
         context = {
             "titulo": "Coleção: " + kwargs["colecao"],
-            "parteParaRemoverDaUrl": "projetos",
+            "parteParaRemoverDaUrl": "projetos/",
         }
         context["Imagens"] = projetoImagem.objects.filter(
             colecao=kwargs["colecao"]

@@ -180,7 +180,7 @@ class linksImagensMembroCarousel(View):
     def get(self, request, *args, **kwargs):
         context = {
             "titulo": "Coleção: " + kwargs["colecao"],
-            "parteParaRemoverDaUrl": "main",
+            "parteParaRemoverDaUrl": "main/",
         }
         context["Imagens"] = membroCarouselImagem.objects.filter(
             colecao=kwargs["colecao"]

@@ -25,7 +25,6 @@ services:
     entrypoint: ["/bin/bash", "scripts/displaylab.sh"]
     volumes:
       - .:/DisplayLab
-      - static:/static
     ports:
       - "8000:8000"
     depends_on:
@@ -45,7 +44,7 @@ services:
   nginx:
     build: ./nginx
     volumes:
-      - static:/static
+      - .:/DisplayLab
     ports:
       - "80:80"
     depends_on:
@@ -53,5 +52,4 @@ services:
     
 volumes:
   pgdbData:
-  static:
   redisData:

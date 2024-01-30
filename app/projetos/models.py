@@ -33,7 +33,7 @@ class projetoColecaoDeImagem(models.Model):
 
 
 def image_upload_path(instance, filename):
-    return "./projetos/static/uploads/" + instance.colecao.colecao + "/" + filename
+    return "./projetos/static/uploadsProjetos/" + instance.colecao.colecao + "/" + filename
 
 
 class projetoImagem(models.Model):
