@@ -34,18 +34,6 @@ DEBUG = False
 CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0', 'https://displaylab.ifnmg.edu.br']
 ALLOWED_HOSTS = ['*']
 
-
-def show_toolbar(request):
-    if DEBUG is True:
-        return True
-    else:
-        return False
-
-
-DEBUG_TOOLBAR_CONFIG = {
-    'SHOW_TOOLBAR_CALLBACK': show_toolbar,
-}
-
 # Application definition
 
 INSTALLED_APPS = [

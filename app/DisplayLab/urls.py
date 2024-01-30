@@ -27,6 +27,3 @@ urlpatterns = [
     path("contentManagement/", include('contentManagement.urls')),
     path("", include('managementLoginSystem.urls')),
 ]
-
-if settings.DEBUG is True:
-    urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
