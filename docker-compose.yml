@@ -22,7 +22,7 @@ services:
     #command: /bin/sh -c "scripts/wait-for-it.sh pgdb:5432 -t 30 && python app/manage.py migrate && python app/manage.py dbrestore --noinput && python app/manage.py mediarestore --noinput"
     
     # Run server
-    command: /bin/sh -c "scripts/wait-for-it.sh pgdb:5432 -t 30 && cd app && python manage.py migrate --no-input && python manage.py collectstatic --no-input && gunicorn DisplayLab.wsgi:application --bind 0.0.0.0:8000"
+    entrypoint: ["/bin/bash", "scripts/displaylab.sh"]
     volumes:
       - .:/DisplayLab
       - static:/static

@@ -24,4 +24,5 @@ COPY ./ ./
 
 EXPOSE 8000
 
+RUN chmod +x ./scripts/displaylab.sh
 RUN chmod +x ./scripts/wait-for-it.sh
