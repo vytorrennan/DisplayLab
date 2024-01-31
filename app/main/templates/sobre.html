@@ -9,7 +9,7 @@
 {% block content%}
 
 {% for categ in categorias %}
-{% cache 10 sobre request.get_full_path %}
+{% cache 300 sobre request.get_full_path %}
     <div class="mb-5">
         <h2>{{ categ }}</h2>
         <div>

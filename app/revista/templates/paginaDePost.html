@@ -9,7 +9,7 @@
 
 
 {% block content %}
-{% cache 10 post request.get_full_path %}
+{% cache 300 post request.get_full_path %}
     {{ post.pagina | safe }}
 {% endcache %}
 {% endblock %}

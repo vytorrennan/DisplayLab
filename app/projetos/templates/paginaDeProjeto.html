@@ -9,7 +9,7 @@
 
 
 {% block content %}
-{% cache 10 projeto request.get_full_path %}
+{% cache 300 projeto request.get_full_path %}
     {{ projeto.first.pagina | safe }}
 {% endcache %}
 {% endblock %}
