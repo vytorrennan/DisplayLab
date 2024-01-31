@@ -46,7 +46,7 @@ services:
     volumes:
       - .:/DisplayLab
     ports:
-      - "80:80"
+      - "8081:80"
     depends_on:
       - displaylab
     
