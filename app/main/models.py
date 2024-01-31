@@ -43,7 +43,7 @@ class membroCarouselColecaoDeImagem(models.Model):
 
 
 def image_upload_path(instance, filename):
-    return "./main/static/uploadsMain/" + instance.colecao.colecao + "/" + filename
+    return "./main/media/uploadsMain/" + instance.colecao.colecao + "/" + filename
 
 
 class membroCarouselImagem(models.Model):

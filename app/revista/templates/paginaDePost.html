@@ -2,13 +2,16 @@
 
 {% block head%}
     {% load static %}
+    {% load cache %}
     <title>{{ post.titulo }}</title>
     <link rel="stylesheet" href="{% static 'css/paginaDePost.css' %}">
 {% endblock %}
 
 
 {% block content %}
+{% cache 10 post request.get_full_path %}
     {{ post.pagina | safe }}
+{% endcache %}
 {% endblock %}
 
 {% block script %}

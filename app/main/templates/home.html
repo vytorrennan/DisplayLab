@@ -1,11 +1,13 @@
 {% extends "index.html" %}
 {% block head %}
 {% load static %}
+{% load cache %}
 <title>HOME</title>
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block content%}
+{% cache 10 home request.get_full_path %}
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
         {% for num in iterableNumItens %}
@@ -61,6 +63,7 @@
             {% endfor %}
         </div>
     </div>
+{% endcache %}
 {% endblock %}
 
 {% block script %}

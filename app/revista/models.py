@@ -45,7 +45,7 @@ class revistaColecaoDeImagem(models.Model):
 
 
 def image_upload_path(instance, filename):
-    return "./revista/static/uploadsRevista/" + instance.colecao.colecao + "/" + filename
+    return "./revista/media/uploadsRevista/" + instance.colecao.colecao + "/" + filename
 
 
 class revistaImagem(models.Model):

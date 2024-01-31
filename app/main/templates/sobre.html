@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 {% block head %}
 {% load static %}
+{% load cache %}
 <title>QUEM SOMOS</title>
 <link rel="stylesheet" href="{% static 'css/sobre.css' %}">
 {% endblock %}
@@ -8,6 +9,7 @@
 {% block content%}
 
 {% for categ in categorias %}
+{% cache 10 sobre request.get_full_path %}
     <div class="mb-5">
         <h2>{{ categ }}</h2>
         <div>
@@ -31,6 +33,7 @@
             </div>
         </div>
     </div>
+{% endcache %}
 {% endfor %}
 
 {% endblock %}

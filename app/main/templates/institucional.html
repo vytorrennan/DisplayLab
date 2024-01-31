@@ -1,11 +1,13 @@
 {% extends "index.html" %}
 {% block head %}
 {% load static %}
+{% load cache %}
 <title>INSTITUCIONAL</title>
 <link rel="stylesheet" href="{% static 'css/institucional.css' %}">
 {% endblock %}
 
 {% block content%}
+{% cache 10 institucional request.get_full_path %}
 <h2 class="mb-4">História do Laboratório de Desenvolvimento de Jogos Display</h2>
 
 <div id="historiaDoDisplay">
@@ -77,6 +79,7 @@
     
     <p>O Laboratório de Desenvolvimento de Jogos Display continua seu trabalho incansável, buscando sempre novas maneiras de combinar entretenimento e aprendizado. Sob a liderança dedicada de Joselice Lima, o laboratório continua a inspirar estudantes, educadores e pesquisadores a explorar o potencial dos jogos como ferramenta educacional, deixando um impacto duradouro na educação da região e além.</p>
 </div>
+{% endcache %}
 {% endblock %}
 
 {% block script %}

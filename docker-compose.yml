@@ -25,8 +25,22 @@ services:
     entrypoint: ["/bin/bash", "scripts/displaylab.sh"]
     volumes:
       - .:/DisplayLab
+      - static:/static
     ports:
       - "8000:8000"
+    depends_on:
+      - pgdb
+      - redis
+    env_file:
+      - app/.env
+
+  cronjobs:
+    build: .
+    entrypoint: ["/bin/sh", "scripts/cronjobs.sh"]
+    command: crond -f
+    volumes:
+      - .:/DisplayLab
+      - static:/static
     depends_on:
       - pgdb
       - redis
@@ -45,6 +59,7 @@ services:
     build: ./nginx
     volumes:
       - .:/DisplayLab
+      - static:/static
     ports:
       - "8081:80"
     depends_on:
@@ -52,4 +67,5 @@ services:
     
 volumes:
   pgdbData:
+  static:
   redisData:

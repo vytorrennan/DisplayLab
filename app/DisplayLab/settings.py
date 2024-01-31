@@ -39,6 +39,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -150,6 +151,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+STATIC_ROOT = '/static/'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'global/static'
@@ -173,8 +175,15 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 DBBACKUP_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 DBBACKUP_STORAGE_OPTIONS = {
-    'oauth2_access_token': env('DROPBOX_TOKEN_FOR_BACKUP'),
+    'oauth2_access_token': env('DROPBOX_ACCESS_TOKEN_FOR_BACKUP'),
+    'oauth2_refresh_token': env('DROPBOX_REFRESH_TOKEN_FOR_BACKUP'),
+    'app_key': env('DROPBOX_APP_KEY'),
+    'app_secret': env('DROPBOX_APP_SECRET')
 }
+
+CRONJOBS = [
+    ('*/1 * * * *', 'DisplayLab.cron.backup')
+]
 
 # Show SQL commands in terminal
 # LOGGING = {
