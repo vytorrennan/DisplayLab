@@ -182,7 +182,7 @@ DBBACKUP_STORAGE_OPTIONS = {
 }
 
 CRONJOBS = [
-    ('*/1 * * * *', 'DisplayLab.cron.backup')
+    ('30 2 * * *', 'DisplayLab.cron.backup')
 ]
 
 # Show SQL commands in terminal
