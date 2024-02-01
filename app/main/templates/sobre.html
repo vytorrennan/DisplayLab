@@ -7,9 +7,9 @@
 {% endblock %}
 
 {% block content%}
+{% cache 300 sobre request.get_full_path %}
 
 {% for categ in categorias %}
-{% cache 300 sobre request.get_full_path %}
     <div class="mb-5">
         <h2>{{ categ }}</h2>
         <div>
@@ -33,8 +33,8 @@
             </div>
         </div>
     </div>
-{% endcache %}
 {% endfor %}
+{% endcache %}
 
 {% endblock %}
 

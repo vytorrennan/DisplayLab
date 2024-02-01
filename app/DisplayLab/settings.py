@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from os import path
 import environ
 
 env = environ.Env()
@@ -26,14 +25,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lxtw_6rckr=(skjuv!t+nd6sm@4*^t$))gv^3qh6mb-x8rc(d2'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env('DEBUG')
 
 CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0',
                         "http://0.0.0.0:8081",
                         'https://displaylab.ifnmg.edu.br']
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 ALLOWED_HOSTS = ['*']
 
 # Application definition
