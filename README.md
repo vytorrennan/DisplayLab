@@ -1,6 +1,6 @@
 <p>
-  <img src="https://raw.githubusercontent.com/vytorrennan/DisplayLab/main/app/revista/static/imgs/paginaDePost/nascimentoVirtualDisplayLab/ifnmg.jpg" width="34%"/>
-  <img src="https://raw.githubusercontent.com/vytorrennan/DisplayLab/main/app/revista/static/imgs/paginaDePost/nascimentoVirtualDisplayLab/logoNomeDiplay.png" width="30%"/>
+  <img src="https://raw.githubusercontent.com/vytorrennan/DisplayLab/main/app/revista/static/imgs/paginaDePost/nascimentoVirtualDisplayLab/ifnmg.jpg" width="49%"/>
+  <img src="https://raw.githubusercontent.com/vytorrennan/DisplayLab/main/app/revista/static/imgs/paginaDePost/nascimentoVirtualDisplayLab/logoNomeDiplay.png" width="43.5%"/>
 </p>
 
 # DisplayLab
