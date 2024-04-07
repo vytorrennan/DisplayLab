@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/vytorrennan/DisplayLab/main/app/revista/static/imgs/paginaDePost/nascimentoVirtualDisplayLab/ifnmg.jpg" width="34%"/>
+  <img src="https://raw.githubusercontent.com/vytorrennan/DisplayLab/main/app/revista/static/imgs/paginaDePost/nascimentoVirtualDisplayLab/logoNomeDiplay.png" width="30%"/>
+</p>
+
 # DisplayLab
 Website oficial do laboratório Display do Instituto Federal do Norte de Minas Gerais
 
