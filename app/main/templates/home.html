@@ -53,11 +53,7 @@
         <div id="ultimosPosts" class="d-flex align-items-center justify-content-center">
             {% for post in ultimosPosts %}
                 <a class="d-flex flex-column align-items-center text-decoration-none text-white m-2" href="/revista/{{ post.url }}">
-                    {% if post.capa|slice:"0:4" == "http" %}
-                        <img src="{{ post.capa }}" alt="capa de {{ post.titulo }}" class="m-3 object-fit-cover" id="artigo">
-                    {% else%}
-                        <img src="{% get_static_prefix %}{{ post.capa }}" alt="capa de {{ post.titulo }}" class="m-3 object-fit-cover" id="artigo">
-                    {% endif %}
+                    <img src="{{ post.capa }}" alt="capa de {{ post.titulo }}" class="m-3 object-fit-cover" id="artigo">
                     <p class="">{{ post.titulo }}</p>
                 </a>
             {% endfor %}
