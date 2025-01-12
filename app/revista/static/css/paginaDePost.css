@@ -2,3 +2,16 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+#titleDiv {
+  margin-bottom: 1% !important;
+}
+
+#edicao {
+  max-width: fit-content;
+  color: #006674;
+  border: 2px solid #00879A;
+  border-radius: 12px;
+  padding: 1% 2% 1% 2%;
+  background-color: #C8E5E9;
+}

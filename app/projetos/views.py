@@ -2,6 +2,7 @@ from django.views import View
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import Projeto
+from revista.models import Revista
 from contentManagement.views.viewsHome import rangePages
 
 
@@ -14,7 +15,10 @@ class projetos(View):
         page_obj = paginator.get_page(page_number)
         maxNumberOfPages = 9
         rangePage = rangePages(maxNumberOfPages, page_obj)
-        context = {"page_obj": page_obj, "rangePages": rangePage}
+
+        ultimosPosts = Revista.objects.filter(oculto=False).order_by("-edicao", "-dataHora")[0:2]
+
+        context = {"page_obj": page_obj, "rangePages": rangePage, "ultimosPosts": ultimosPosts}
         return render(request, "projetos.html", context)
 
 

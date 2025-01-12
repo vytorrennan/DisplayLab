@@ -3,7 +3,7 @@ iframe.onload = hideAndRemoveNavAndFooter;
 
 function hideAndRemoveNavAndFooter() {
     let iframe = document.getElementById("iframe");
-    let nav = iframe.contentWindow.document.getElementsByTagName("nav")[0];
+    let nav = iframe.contentWindow.document.getElementsByTagName("header")[0];
     nav.style.display = "none";
     let footer = iframe.contentWindow.document.getElementsByTagName("footer")[0];
     footer.style.display = "none";

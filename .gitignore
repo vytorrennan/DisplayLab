@@ -1,5 +1,8 @@
 # Custumizado do DisplayLab
 db
+uploadsMain/
+uploadsProjetos/
+uploadsRevista/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

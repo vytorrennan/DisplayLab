@@ -31,7 +31,8 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0',
-                        "http://0.0.0.0:8081",
+                        'http://0.0.0.0:8081',
+                        'http://localhost:8081',
                         'https://displaylab.ifnmg.edu.br']
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
@@ -104,6 +105,7 @@ DATABASES = {
 
 CACHES = {
         'default': {
+            # 'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
             'BACKEND': "django_redis.cache.RedisCache",
             'LOCATION': 'redis://redis:6379',
             'OPTIONS': {
@@ -114,6 +116,7 @@ CACHES = {
 }
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_CACHE_ALIAS = "default"
 
 # Password validation

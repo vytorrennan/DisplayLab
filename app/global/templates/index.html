@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,70 +11,214 @@
     {% endblock %}
     <link rel="shortcut icon" href="{% static 'imgs/index/displayLogo.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!--CSS-->
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <!--Script-->
+    <script src="{% static 'js/script.js' %}" defer></script>
+
+
     <title>Display Lab</title>
 </head>
 <body class="position-relative">
 {% cache 300 nav request.user.username %}
-    <nav>
-        <div id="ifnmg-display" class="d-flex justify-content-center align-items-center flex-wrap w-100">
-            <a href="https://www.ifnmg.edu.br/" id="ifnmg-image" style="width: 30%;">
-                <img src="{% static 'imgs/index/ifnmg.jpg' %}" alt="ifnmg" width="100%">
-            </a>
-            <div class="d-flex align-items-center w-25">
-                <img src="{% static 'imgs/index/displayLogo.png' %}" alt="displayLogo" width="35%" id="display-image">
-                <div class="text-center" id="display-name-lab">
-                    <p id="display-title" class="fw-bold m-0">display</p>
-                    <p id="lab-title" class="fw-bold m-0">Laboratório de Novas Tecnologias e Jogos Digitais</p>
-                </div>
-            </div>
+    <!--<nav>-->
+    <!--    <div id="ifnmg-display" class="d-flex justify-content-center align-items-center flex-wrap w-100">-->
+    <!--        <a href="https://www.ifnmg.edu.br/" id="ifnmg-image" style="width: 30%;">-->
+    <!--            <img src="{% static 'imgs/index/ifnmg.jpg' %}" alt="ifnmg" width="100%">-->
+    <!--        </a>-->
+    <!--        <div class="d-flex align-items-center w-25">-->
+    <!--            <img src="{% static 'imgs/index/displayLogo.png' %}" alt="displayLogo" width="35%" id="display-image">-->
+    <!--            <div class="text-center" id="display-name-lab">-->
+    <!--                <p id="display-title" class="fw-bold m-0">display</p>-->
+    <!--                <p id="lab-title" class="fw-bold m-0">Laboratório de Novas Tecnologias e Jogos Digitais</p>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div id="redes-sociais" class="d-flex flex-column position-absolute gap-1">-->
+    <!--            <a href="https://www.instagram.com/displaylabif?utm_source=qr&igshid=OGU0MmVlOWVjOQ%3D%3D">-->
+    <!--                <img src="{% static 'imgs/index/instagram.svg' %}" alt="icone do facebook" width="30vw">-->
+    <!--            </a>-->
+    <!--            <a href="https://www.facebook.com/batepapotecnologico?mibextid=ZbWKwL">-->
+    <!--                <img src="{% static 'imgs/index/facebook.svg' %}" alt="icone do facebook" width="30vw">-->
+    <!--            </a>-->
+    <!--            <a href="https://www.youtube.com/@DisplayLabIF">-->
+    <!--                <img src="{% static 'imgs/index/youtube.svg' %}" alt="icone do facebook" width="30vw">-->
+    <!--            </a>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="navbar navbar-expand-lg">-->
+    <!--        <div class="container-fluid">-->
+    <!--            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
+    <!--                <span class="navbar-toggler-icon"></span>-->
+    <!--            </button>-->
+    <!--            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">-->
+    <!--                <div class="navbar-nav gap-5">-->
+    <!--                    <a class="nav-link" id="navHome" aria-current="page" href="{% url 'home' %}">HOME</a>-->
+    <!--                    <a class="nav-link" id="navProjetos" href="{% url 'projetos' %}">PROJETOS</a>-->
+    <!--                    <a class="nav-link" id="navInstitucional" href="{% url 'institucional' %}">INSTITUCIONAL</a>-->
+    <!--                    <a class="nav-link" id="navRevista" href="{% url 'revista' %}">REVISTA</a>-->
+    <!--                    <a class="nav-link" id="navSobre" href="{% url 'sobre' %}">QUEM SOMOS</a>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</nav>-->
+
+    <header>
+        <div class="navbar p-0">
+          <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
+
+            <nav class="menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'projetos' %}">Projetos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'revista' %}">Revista</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'sobre' %}">Quem somos</a>
+                    </li>
+                </ul>
+            </nav>
+
             {% if request.user.is_authenticated %}
-                <div class="d-flex justify-content-center align-items-center flex-column text-center">
+                <div class="d-flex justify-content-center align-items-center flex-column text-center fs-3">
                     <a href="{% url 'logout' %}" class="text-decoration-none text-dark bg-danger p-2 m-1 rounded w-100">LOGOUT</a>
                     <p class="p-1 rounded bg-secondary-subtle text-primary-emphasis m-1 w-100">{{ request.user.username }}</p>
                     <a class="text-decoration-none p-1 rounded bg-warning text-primary-emphasis m-1 w-100" href="{% url 'contentManagement' %}">Content Management</a>
                 </div>
-            {% else %}
-                <a href="{% url 'login' %}" id="loginAnchor" class="invisible text-decoration-none text-white p-2 rounded-bottom">LOGIN</a>
             {% endif %}
-            <div id="redes-sociais" class="d-flex flex-column position-absolute gap-1">
-                <a href="https://www.instagram.com/displaylabif?utm_source=qr&igshid=OGU0MmVlOWVjOQ%3D%3D">
-                    <img src="{% static 'imgs/index/instagram.svg' %}" alt="icone do facebook" width="30vw">
-                </a>
-                <a href="https://www.facebook.com/batepapotecnologico?mibextid=ZbWKwL">
-                    <img src="{% static 'imgs/index/facebook.svg' %}" alt="icone do facebook" width="30vw">
-                </a>
-                <a href="https://www.youtube.com/@DisplayLabIF">
-                    <img src="{% static 'imgs/index/youtube.svg' %}" alt="icone do facebook" width="30vw">
-                </a>
-            </div>
+
+
+            <button class="btn-default header-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <button class="mobile-btn header-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
-        <div class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-                    <div class="navbar-nav gap-5">
-                        <a class="nav-link" id="navHome" aria-current="page" href="{% url 'home' %}">HOME</a>
-                        <a class="nav-link" id="navProjetos" href="{% url 'projetos' %}">PROJETOS</a>
-                        <a class="nav-link" id="navInstitucional" href="{% url 'institucional' %}">INSTITUCIONAL</a>
-                        <a class="nav-link" id="navRevista" href="{% url 'revista' %}">REVISTA</a>
-                        <a class="nav-link" id="navSobre" href="{% url 'sobre' %}">QUEM SOMOS</a>
-                    </div>
-                </div>
-            </div>
+        
+        <div>
+            <nav class="mobile-menu">
+                <ul class="mobile-nav-list">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a href="{% url 'projetos' %}">Projetos</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="{% url 'revista' %}">Revista</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'sobre' %}">Quem somos</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
+
 {% endcache %}
 
-    <div class="container mt-4 mb-5">
+    <div id="content" >
         {% block content%}
         {% endblock %}
     </div>
 
-    <footer class="w-100 text-center text-white">
-        <p class="m-0">Copyright@ 2024 Display - Todos os direitos reservados</p>
-        <p class="m-0">Desenvolvido por Vytor Rennan Alves Carvalho</p>
+    <footer>
+        <div class="info-main">
+            <div class="info">
+                <div class="info-display">
+                  <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
+                    <div class="info-display-text">
+                        <h2>display</h2>
+                        <p>Laboratório de Novas Tecnologias e Jogos Digitais</p>
+                    </div>
+                </div>
+        
+                <div class="info-if">
+                  <img src="{% static 'imgs/index/new/if.png' %}" alt="Logo do IFNMG">
+                  <p>Instituto Federal do Norte de Minas Gerais Campus Januária</p>
+                </div>
+        
+                <div class="social-media">
+                    <h2>Confira nossas redes sociais:</h2>
+                    <div class="img-social-media">
+                      <img src="{% static 'imgs/index/new/Ellipse 2.png' %}" alt="instagram">
+                      <img src="{% static 'imgs/index/new/Ellipse 3.png' %}" alt="facebook">
+                      <img src="{% static 'imgs/index/new/Ellipse 4.png' %}" alt="youtube">
+                      <img src="{% static 'imgs/index/new/Ellipse 5.png' %}" alt="tiktok">
+                    </div>
+                </div>  
+            </div>
+    
+    
+            <div class="basic-info">
+                <div class="footer-project">
+                    <h2>PROJETOS</h2>
+                    <ul>
+                        <li>&emsp;Revista / Blog</li>
+                        <li>&emsp;Display Cast</li>
+                        <li>&emsp;Jogos Digitais</li>
+                        <li>&emsp;Projetos em Desenvolvimento</li>
+                        <li>&emsp;Projetos Concluídos</li>
+                        <li>&emsp;Publicações Técnicas e Científicas</li>
+                    </ul>
+                </div>
+    
+                <div class="footer-institutional">
+                    <h2>INSTITUCIONAL</h2>
+                    <ul>
+                        <li>&emsp;Sobre o Display Lab</li>
+                        <li>&emsp;Parceiros</li>
+                    </ul>
+                </div>
+    
+                <div class="footer-us">
+                    <h2>QUEM SOMOS</h2>
+                    <ul>
+                        <li>&emsp;Expediente</li>
+                        <li>&emsp;Alumni</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+    <div class="partners">
+        <h2>PARCEIROS</h2>
+        <div class="img-partners">
+          <img src="{% static 'imgs/index/new/RNP.png' %}" alt="RNP">
+            <img src="{% static 'imgs/index/new/FAPEMIG.png' %}" alt="FAPEMIG">
+            <img src="{% static 'imgs/index/new/CNPq.png' %}" alt="CNPq">
+        </div>
+    </div> 
+
+    <hr>
+    
+    <div class="final-info">
+        <p>Fazenda São Geraldo, S/N Km 06 - Bom Jardim, Januária - MG, 39480-000</p>
+        <p class="bold m-0">Copyright© {% now "Y" %} Display - Todos os direitos reservados <br/><br/><br/>
+        Desenvolvido por Vytor Rennan Alves Carvalho</p>
+    </div>
     </footer>
 
 

@@ -14,7 +14,10 @@ class revista(View):
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
         rangePage = rangePages(12, page_obj)
-        context = {"page_obj": page_obj, "rangePages": rangePage}
+
+        ultimosPosts = Revista.objects.filter(oculto=False).order_by("-edicao", "-dataHora")[0:2]
+
+        context = {"page_obj": page_obj, "rangePages": rangePage, "ultimosPosts": ultimosPosts}
         return render(request, "revista.html", context)
 
 

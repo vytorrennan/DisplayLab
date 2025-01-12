@@ -8,7 +8,7 @@ class home(View):
     def get(self, request):
         carousel = models.carouselItem.objects.all()
         numItens = carousel.count()
-        ultimosPosts = Revista.objects.filter(oculto=False).order_by("-edicao", "-dataHora")[0:4]
+        ultimosPosts = Revista.objects.filter(oculto=False).order_by("-edicao", "-dataHora")[0:3]
         context = {"carousel": carousel,
                    "iterableNumItens": range(numItens),
                    "ultimosPosts": ultimosPosts}

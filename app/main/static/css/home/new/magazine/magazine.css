@@ -1,0 +1,77 @@
+.magazine{
+    background-color: white;
+    padding-top: calc(4.4rem * .6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.magazine h3{
+    font-weight: 700;
+    font-size: calc(1.8rem * .6);
+    text-align: center;
+    color: var(--magazine-title-color);
+    margin-bottom: calc(4.2rem * .6);
+}
+
+.magazine-container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: calc(4.3rem * .6);
+    flex-wrap: wrap;
+    max-width 90%;
+}
+
+.notices-magazine-container{
+    max-width: calc(35rem * .6);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.notices-magazine-container img{
+    margin-bottom: calc(1.4rem * .6);
+    max-height: 233.33px;
+    object-fit: cover;
+}
+
+.notices-magazine-container h4{
+    font-weight: 400;
+    font-size: calc(2rem * .6);
+    color: black;
+    margin-bottom: calc(2.5rem * .6);
+}
+
+.notices-magazine-container p.publication-date{
+    font-weight: 300;
+    font-size: calc(1.4rem * .6);
+    color: black;
+}
+
+.notices-magazine-container p{
+    font-weight: 300;
+    font-size: calc(1.6rem * .6);
+    line-height: calc(2rem * .6);
+    margin-top: calc(.9rem * .6);
+    color: black;
+    text-align: justify;
+}
+
+.magazine-btn{
+    width: calc(11rem * .6);
+    height: calc(4.9rem * .6);
+    background-color: var(--btn-news);
+    border-radius: calc(9rem * .6);
+    color: white;
+    box-shadow: -1px 1px 5.7px 0px #0000004D;
+    font-size: calc(1.5rem * .6);
+    font-weight: 500;
+    font-family: "Inter", sans-serif;   
+    margin-top: calc(5rem * .6);
+    margin-bottom: calc(5.7rem * .6);
+    margin-right: auto;
+    margin-left: auto;
+    border: none;
+}

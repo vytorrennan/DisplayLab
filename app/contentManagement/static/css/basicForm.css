@@ -22,3 +22,11 @@ textarea {
 ul {
     color: red;
 }
+
+#content * {
+    font-size: medium;
+}
+
+#content {
+    margin: 2%;
+}

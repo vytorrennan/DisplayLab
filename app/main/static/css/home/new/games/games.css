@@ -1,0 +1,64 @@
+.games{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: var(--games-background);
+    padding-top: calc(3.1rem * .6);
+}
+
+.games h2{
+    align-self: flex-start;
+    font-weight: 700;
+    font-size: calc(7.4rem * .6);
+    color: var(--games-font-color-title);
+    margin-left: calc(5rem * .6);
+}
+
+.games-container{
+    display: flex;
+    align-items: center;
+    gap: calc(5.7rem * .6);
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.games-container .game-content .picture{
+    width: calc(26.2rem * .6);
+    height: calc(26.3rem * .6);
+    border-radius: calc(.2rem * .6) 0 0 0;
+    background-color: var(--background-color-picture-game);
+    box-shadow: 0px 4px 4px 0px #00000040;
+    margin-bottom: calc(4.7rem * .6);
+}
+
+.picture img{
+    margin-top: calc(1.4rem * .6);
+    margin-bottom: calc(2.3rem * .6);
+    margin-left: calc(1.7rem * .6);
+    margin-right: calc(1.7rem * .6);
+}
+
+.picture h3{
+    font-size: calc(1.8rem * .6);
+    font-weight: 400;
+    text-align: center;
+    color: var(--news-text-color);
+}
+
+.games-btn{
+    width: calc(15rem * .6);
+    height: calc(4.9rem * .6);
+    background-color: var(--btn-news);
+    border-radius: calc(9rem * .6);
+    color: white;
+    box-shadow: -1px 1px 5.7px 0px #0000004D;
+    font-size: calc(1.5rem * .6);
+    font-weight: 500;
+    font-family: "Inter", sans-serif;   
+    margin-top: calc(5rem * .6);
+    margin-bottom: calc(5.7rem * .6);
+    margin-right: auto;
+    margin-left: auto;
+    border: none;
+}

@@ -1,6 +1,21 @@
 {% extends "index.html" %}
 
 {% block head %}
+<style>
+    #content {
+        text-align: start;
+    }
+
+    #content * {
+        font-size: medium;
+        margin: 7px;
+    }
+
+    #content button {
+        width: 5%;
+        min-width: 70px;
+    }
+</style>
 {% endblock%} 
 
 {% block content %}
@@ -8,7 +23,7 @@
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Signup</button>
+    <button type="submit" class="bg-primary rounded-4 text-white" >Signup</button>
     <a href="{% url 'login' %}">Já tenho uma conta</a>
 </form>
 {% endblock%}

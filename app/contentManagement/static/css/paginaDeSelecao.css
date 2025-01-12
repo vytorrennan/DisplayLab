@@ -2,3 +2,11 @@
     max-width: 400px;
     max-height: 200px;
 }
+
+#content * {
+    font-size: medium;
+}
+
+#content {
+    margin: 2%;
+}

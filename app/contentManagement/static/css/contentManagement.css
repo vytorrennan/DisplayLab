@@ -1,3 +1,11 @@
 .card {
     height: 100%;
 }
+
+#content * {
+    font-size: medium;
+}
+
+#content {
+    margin: 2%;
+}

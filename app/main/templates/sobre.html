@@ -3,28 +3,62 @@
 {% load static %}
 {% load cache %}
 <title>QUEM SOMOS</title>
-<link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+<link rel="stylesheet" href="{% static 'css/sobre/new/sobre.css' %}">
 {% endblock %}
 
 {% block content%}
 {% cache 300 sobre request.get_full_path %}
+<!---->
+<!--{% for categ in categorias %}-->
+<!--    <div class="mb-5">-->
+<!--        <h2>{{ categ }}</h2>-->
+<!--        <div>-->
+<!--            <div class="row row-cols-1 row-cols-md-3 g-4">-->
+<!--                {% for membro in membros%}-->
+<!--                    {% if membro.categoria == categ %}-->
+<!--                        <div class="col">-->
+<!--                            <div class="card h-100 d-flex align-items-center">-->
+<!--                                <img src="{{ membro.foto }}" class="card-img-top" alt="foto de {{ membro.nome }}">-->
+<!--                                <div class="card-body text-center">-->
+<!--                                    <h5 class="card-title">{{ membro.nome }}</h5>-->
+<!--                                    <p class="card-text">{{ membro.descricao }}</p>-->
+<!--                                </div>-->
+<!--                                <div class="d-flex justify-content-center">-->
+<!--                                    <a href="{{ membro.saibaMais }}" class="saiba-mais card-tex text-decoration-none text-white fw-bold rounded rounded-5">SAIBA MAIS</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    {% endif %}-->
+<!--                {% endfor %}-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--{% endfor %}-->
+
+<main class="container mt-4">
+    <p id="pagePath">HOME / QUEM SOMOS</p>
+    <div id="titleDiv">
+      <h1 id="title">QUEM SOMOS</h1>
+    </div>
+
+
 
 {% for categ in categorias %}
     <div class="mb-5">
-        <h2>{{ categ }}</h2>
-        <div>
+        <h2 class="categoria mb-4">{{ categ }}</h2>
+        <div class="categoriaDiv">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for membro in membros%}
                     {% if membro.categoria == categ %}
                         <div class="col">
-                            <div class="card h-100 d-flex align-items-center">
+                            <div class="card h-100 d-flex align-items-center p-4">
                                 <img src="{{ membro.foto }}" class="card-img-top" alt="foto de {{ membro.nome }}">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">{{ membro.nome }}</h5>
                                     <p class="card-text">{{ membro.descricao }}</p>
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ membro.saibaMais }}" class="saiba-mais card-tex text-decoration-none text-white fw-bold rounded rounded-5">SAIBA MAIS</a>
+                                    <a href="{{ membro.saibaMais }}" class="mt-4 saiba-mais text-decoration-none">SAIBA MAIS</a>
                                 </div>
                             </div>
                         </div>
@@ -34,6 +68,10 @@
         </div>
     </div>
 {% endfor %}
+
+</main>
+
+
 {% endcache %}
 
 {% endblock %}

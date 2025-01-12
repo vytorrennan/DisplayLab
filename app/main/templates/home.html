@@ -4,61 +4,154 @@
 {% load cache %}
 <title>HOME</title>
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/home/new/home.css' %}">
 {% endblock %}
 
 {% block content%}
 {% cache 300 home request.get_full_path %}
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-        {% for num in iterableNumItens %}
-            {% if num != 0 %}
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ num }}" aria-label="Slide {{ num }}"></button>
-            {% else %}
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ num }}" class="active" aria-current="true" aria-label="Slide {{ num }}"></button>
-            {% endif %}
-        {% endfor %}
-        </div>
-        <div class="carousel-inner">
-        {% for item in carousel %}
-            {% if item != carousel|first %}
-                <div class="carousel-item">
-            {% else %}
-                <div class="carousel-item active">
-            {% endif %}
-                    <a href="{{ item.url }}">
-                        <img src="{{ item.imagem }}" class="d-block w-100" alt="">
+    <!--<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">-->
+    <!--    <div class="carousel-indicators">-->
+    <!--    {% for num in iterableNumItens %}-->
+    <!--        {% if num != 0 %}-->
+    <!--            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ num }}" aria-label="Slide {{ num }}"></button>-->
+    <!--        {% else %}-->
+    <!--            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ num }}" class="active" aria-current="true" aria-label="Slide {{ num }}"></button>-->
+    <!--        {% endif %}-->
+    <!--    {% endfor %}-->
+    <!--    </div>-->
+    <!--    <div class="carousel-inner">-->
+    <!--    {% for item in carousel %}-->
+    <!--        {% if item != carousel|first %}-->
+    <!--            <div class="carousel-item">-->
+    <!--        {% else %}-->
+    <!--            <div class="carousel-item active">-->
+    <!--        {% endif %}-->
+    <!--                <a href="{{ item.url }}">-->
+    <!--                    <img src="{{ item.imagem }}" class="d-block w-100" alt="">-->
+    <!--                </a>-->
+    <!--            </div>   -->
+    <!--    {% endfor %}-->
+    <!--    </div>-->
+    <!--    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">-->
+    <!--    <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+    <!--    <span class="visually-hidden">Previous</span>-->
+    <!--    </button>-->
+    <!--    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">-->
+    <!--    <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+    <!--    <span class="visually-hidden">Next</span>-->
+    <!--    </button>-->
+    <!--</div>-->
+    <!---->
+    <!---->
+    <!--<div id="revista" class="mt-5 p-4 rounded rounded-3 text-white fw-bold" onclick="adaptLastPosts();">-->
+    <!--    <div id="revista-header" class="d-flex justify-content-between">-->
+    <!--        <p onclick="adaptLastPosts();">Revista</p>-->
+    <!--        <a href="{% url 'revista' %}" class="d-flex flex-nowrap align-items-center p-2 rounded rounded-5 border border-1 text-decoration-none text-white">-->
+    <!--            ver tudo-->
+    <!--            <img src="{% static 'imgs/home/seta.svg' %}" alt="seta" width="30em">-->
+    <!--        </a>-->
+    <!--    </div>-->
+    <!--    <div id="ultimosPosts" class="d-flex align-items-center justify-content-center">-->
+    <!--        {% for post in ultimosPosts %}-->
+    <!--            <a class="d-flex flex-column align-items-center text-decoration-none text-white m-2" href="/revista/{{ post.url }}">-->
+    <!--                <img src="{{ post.capa }}" alt="capa de {{ post.titulo }}" class="m-3 object-fit-cover" id="artigo">-->
+    <!--                <p class="">{{ post.titulo }}</p>-->
+    <!--            </a>-->
+    <!--        {% endfor %}-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!---->
+
+
+    <article class="intro">
+            <div class="text-intro">
+                <h1>display</h1>
+                <p class="about">
+                    Laboratório de Novas Tecnologias e Jogos Digitais <br> Instituto Federal do Norte de Minas Gerais - Campus Januária
+                </p>
+                <p class="motivationalPhrase">Entre em um mundo de inovação e criatividade</p>
+
+                <a href="{% url 'projetos' %}" class="text-decoration-none"><button class="btn-intro border-0">
+                    <p>Conheça nossos Projetos</p>
+                </button></a>
+            </div>
+         </article>
+
+         <article class="magazine">
+            <h3>REVISTA</h3>
+            <div class="magazine-container">
+                {% for post in ultimosPosts %}
+                <div class="notices-magazine-container">
+                    <a href="/revista/{{ post.url }}" class="text-decoration-none">
+                      <img class="w-100" src="{{ post.capa }}" alt="Capa de {{ post.titulo}}">
+                      <h4>{{ post.titulo }}</h4>
                     </a>
-                </div>   
-        {% endfor %}
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+                    <p class="publication-date">{{ post.dataHora }}</p>
+                    <p>
+                        {{ post.resumo }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
 
+            <a href="{% url 'revista' %}" class="text-decoration-none text-white"><button class="magazine-btn">Ver Mais</button></a>
+         </article>
 
-    <div id="revista" class="mt-5 p-4 rounded rounded-3 text-white fw-bold" onclick="adaptLastPosts();">
-        <div id="revista-header" class="d-flex justify-content-between">
-            <p onclick="adaptLastPosts();">Revista</p>
-            <a href="{% url 'revista' %}" class="d-flex flex-nowrap align-items-center p-2 rounded rounded-5 border border-1 text-decoration-none text-white">
-                ver tudo
-                <img src="{% static 'imgs/home/seta.svg' %}" alt="seta" width="30em">
-            </a>
-        </div>
-        <div id="ultimosPosts" class="d-flex align-items-center justify-content-center">
-            {% for post in ultimosPosts %}
-                <a class="d-flex flex-column align-items-center text-decoration-none text-white m-2" href="/revista/{{ post.url }}">
-                    <img src="{{ post.capa }}" alt="capa de {{ post.titulo }}" class="m-3 object-fit-cover" id="artigo">
-                    <p class="">{{ post.titulo }}</p>
-                </a>
-            {% endfor %}
-        </div>
-    </div>
+         <article class="games">
+            <h2>JOGOS</h2>
+            <div class="games-container">
+
+                <div class="game-content">
+                    <div class="picture">
+                        <img src="{% static 'imgs/home/new/games/image 1(1).png' %}" alt="Capa do jogo Peruaçu Digital">
+                        <h3>Peruaçu Digital</h3>
+                    </div>
+                </div>
+
+                <div class="game-content">
+                    <div class="picture">
+                        <img src="{% static 'imgs/home/new/games/image 1(2).png' %}" alt="Capa do jogo Indisciplina 2D">
+                        <h3>Indisciplina 2D</h3>
+                    </div>
+                </div>
+
+                <div class="game-content">
+                    <div class="picture">
+                      <img src="{% static 'imgs/home/new/games/image 1.png' %}" alt="Capa do jogo exterminando drogas">
+                        <h3>Exterminando Drogas</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="games-btn">Mais Jogos Em Breve</button>
+         </article>
+
+         <article class="cast">
+                <div class="bars"></div>
+                <div class="cast-container">
+                    <h2>OUÇA OS <br> NOVOS <br> EPISÓDIOS</h2>
+
+                    <div class="cast-list">
+                        <div class="cast-content">
+                            <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio">
+                            <p>Display Cast #3 - Em breve</p>
+                        </div>
+                        
+                        <div class="cast-content">
+                            <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio">
+                            <p>Display Cast #2 - Em breve</p>
+                        </div>
+
+                        <div class="cast-content">
+                          <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio">
+                            <p>Display Cast #1 - Em breve</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'projetos' %}displaycast/" class="align-self-center text-decoration-none"><button class="cast-btn">Mais Episódios Em Breve</button></a>
+         </article>
+
 {% endcache %}
 {% endblock %}
 
