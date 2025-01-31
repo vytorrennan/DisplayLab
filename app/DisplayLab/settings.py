@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env.bool('DEBUG')
 
 CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0',
                         'http://0.0.0.0:8081',
@@ -104,15 +104,15 @@ DATABASES = {
 }
 
 CACHES = {
-        'default': {
-            # 'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-            'BACKEND': "django_redis.cache.RedisCache",
-            'LOCATION': 'redis://redis:6379',
-            'OPTIONS': {
-                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-                'PASSWORD': env('REDIS_PASSWORD')
-            }
+    'default': {
+        # 'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'BACKEND': "django_redis.cache.RedisCache",
+        'LOCATION': 'redis://redis:6379',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'PASSWORD': env('REDIS_PASSWORD')
         }
+    }
 }
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
