@@ -105,8 +105,8 @@ DATABASES = {
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-        # 'BACKEND': "django_redis.cache.RedisCache",
+        # 'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'BACKEND': "django_redis.cache.RedisCache",
         'LOCATION': 'redis://redis:6379',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
@@ -115,8 +115,8 @@ CACHES = {
     }
 }
 
-# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_CACHE_ALIAS = "default"
 
 # Password validation
