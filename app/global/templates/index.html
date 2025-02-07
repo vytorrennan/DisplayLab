@@ -29,115 +29,116 @@
 </head>
 <body class="position-relative">
 {% cache 300 nav request.user.username %}
-    <!--<nav>-->
-    <!--    <div id="ifnmg-display" class="d-flex justify-content-center align-items-center flex-wrap w-100">-->
-    <!--        <a href="https://www.ifnmg.edu.br/" id="ifnmg-image" style="width: 30%;">-->
-    <!--            <img src="{% static 'imgs/index/ifnmg.jpg' %}" alt="ifnmg" width="100%">-->
-    <!--        </a>-->
-    <!--        <div class="d-flex align-items-center w-25">-->
-    <!--            <img src="{% static 'imgs/index/displayLogo.png' %}" alt="displayLogo" width="35%" id="display-image">-->
-    <!--            <div class="text-center" id="display-name-lab">-->
-    <!--                <p id="display-title" class="fw-bold m-0">display</p>-->
-    <!--                <p id="lab-title" class="fw-bold m-0">Laboratório de Novas Tecnologias e Jogos Digitais</p>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--        <div id="redes-sociais" class="d-flex flex-column position-absolute gap-1">-->
-    <!--            <a href="https://www.instagram.com/displaylabif?utm_source=qr&igshid=OGU0MmVlOWVjOQ%3D%3D">-->
-    <!--                <img src="{% static 'imgs/index/instagram.svg' %}" alt="icone do facebook" width="30vw">-->
-    <!--            </a>-->
-    <!--            <a href="https://www.facebook.com/batepapotecnologico?mibextid=ZbWKwL">-->
-    <!--                <img src="{% static 'imgs/index/facebook.svg' %}" alt="icone do facebook" width="30vw">-->
-    <!--            </a>-->
-    <!--            <a href="https://www.youtube.com/@DisplayLabIF">-->
-    <!--                <img src="{% static 'imgs/index/youtube.svg' %}" alt="icone do facebook" width="30vw">-->
-    <!--            </a>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--    <div class="navbar navbar-expand-lg">-->
-    <!--        <div class="container-fluid">-->
-    <!--            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
-    <!--                <span class="navbar-toggler-icon"></span>-->
-    <!--            </button>-->
-    <!--            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">-->
-    <!--                <div class="navbar-nav gap-5">-->
-    <!--                    <a class="nav-link" id="navHome" aria-current="page" href="{% url 'home' %}">HOME</a>-->
-    <!--                    <a class="nav-link" id="navProjetos" href="{% url 'projetos' %}">PROJETOS</a>-->
-    <!--                    <a class="nav-link" id="navInstitucional" href="{% url 'institucional' %}">INSTITUCIONAL</a>-->
-    <!--                    <a class="nav-link" id="navRevista" href="{% url 'revista' %}">REVISTA</a>-->
-    <!--                    <a class="nav-link" id="navSobre" href="{% url 'sobre' %}">QUEM SOMOS</a>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</nav>-->
+      <!--<nav>-->
+      <!--    <div id="ifnmg-display" class="d-flex justify-content-center align-items-center flex-wrap w-100">-->
+      <!--        <a href="https://www.ifnmg.edu.br/" id="ifnmg-image" style="width: 30%;">-->
+      <!--            <img src="{% static 'imgs/index/ifnmg.jpg' %}" alt="ifnmg" width="100%">-->
+      <!--        </a>-->
+      <!--        <div class="d-flex align-items-center w-25">-->
+      <!--            <img src="{% static 'imgs/index/displayLogo.png' %}" alt="displayLogo" width="35%" id="display-image">-->
+      <!--            <div class="text-center" id="display-name-lab">-->
+      <!--                <p id="display-title" class="fw-bold m-0">display</p>-->
+      <!--                <p id="lab-title" class="fw-bold m-0">Laboratório de Novas Tecnologias e Jogos Digitais</p>-->
+      <!--            </div>-->
+      <!--        </div>-->
+      <!--        <div id="redes-sociais" class="d-flex flex-column position-absolute gap-1">-->
+      <!--            <a href="https://www.instagram.com/displaylabif?utm_source=qr&igshid=OGU0MmVlOWVjOQ%3D%3D">-->
+      <!--                <img src="{% static 'imgs/index/instagram.svg' %}" alt="icone do facebook" width="30vw">-->
+      <!--            </a>-->
+      <!--            <a href="https://www.facebook.com/batepapotecnologico?mibextid=ZbWKwL">-->
+      <!--                <img src="{% static 'imgs/index/facebook.svg' %}" alt="icone do facebook" width="30vw">-->
+      <!--            </a>-->
+      <!--            <a href="https://www.youtube.com/@DisplayLabIF">-->
+      <!--                <img src="{% static 'imgs/index/youtube.svg' %}" alt="icone do facebook" width="30vw">-->
+      <!--            </a>-->
+      <!--        </div>-->
+      <!--    </div>-->
+      <!--    <div class="navbar navbar-expand-lg">-->
+      <!--        <div class="container-fluid">-->
+      <!--            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">-->
+      <!--                <span class="navbar-toggler-icon"></span>-->
+      <!--            </button>-->
+      <!--            <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">-->
+      <!--                <div class="navbar-nav gap-5">-->
+      <!--                    <a class="nav-link" id="navHome" aria-current="page" href="{% url 'home' %}">HOME</a>-->
+      <!--                    <a class="nav-link" id="navProjetos" href="{% url 'projetos' %}">PROJETOS</a>-->
+      <!--                    <a class="nav-link" id="navInstitucional" href="{% url 'institucional' %}">INSTITUCIONAL</a>-->
+      <!--                    <a class="nav-link" id="navRevista" href="{% url 'revista' %}">REVISTA</a>-->
+      <!--                    <a class="nav-link" id="navSobre" href="{% url 'sobre' %}">QUEM SOMOS</a>-->
+      <!--                </div>-->
+      <!--            </div>-->
+      <!--        </div>-->
+      <!--    </div>-->
+      <!--</nav>-->
 
-    <header>
-    <!-- Main Navbar -->
-    <div class="navbar p-0">
-      <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
+      <header>
+      <!-- Main Navbar -->
+      <div class="navbar p-0">
+        <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
 
-      <!-- Desktop Menu -->
-      <nav class="menu">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'projetos' %}">Projetos</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'revista' %}">Revista</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'sobre' %}">Quem somos</a>
-          </li>
-        </ul>
-      </nav>
+        <!-- Desktop Menu -->
+        <nav class="menu">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'projetos' %}">Projetos</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'revista' %}">Revista</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'sobre' %}">Quem somos</a>
+            </li>
+          </ul>
+        </nav>
 
-      <!-- User Options (if logged in) -->
-      {% if request.user.is_authenticated %}
-      <div class="d-flex justify-content-center align-items-center flex-column text-center fs-3">
-        <a href="{% url 'logout' %}" class="text-decoration-none text-dark bg-danger p-2 m-1 rounded w-100">LOGOUT</a>
-        <p class="p-1 rounded bg-secondary-subtle text-primary-emphasis m-1 w-100">{{ request.user.username }}</p>
-        <a href="{% url 'contentManagement' %}" class="text-decoration-none p-1 rounded bg-warning text-primary-emphasis m-1 w-100">Content Management</a>
+        
+        <!-- Extra Button (e.g., Search) -->
+        <button class="btn-default header-btn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <!-- Mobile Toggler Button -->
+        <button class="mobile-btn header-btn" type="button" 
+                data-bs-toggle="collapse" data-bs-target="#mobileMenu" 
+                aria-controls="mobileMenu" aria-expanded="false" 
+                aria-label="Toggle navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
-      {% endif %}
 
-      <!-- Extra Button (e.g., Search) -->
-      <button class="btn-default header-btn">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-
-      <!-- Mobile Toggler Button -->
-      <button class="mobile-btn header-btn" type="button" 
-              data-bs-toggle="collapse" data-bs-target="#mobileMenu" 
-              aria-controls="mobileMenu" aria-expanded="false" 
-              aria-label="Toggle navigation">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </div>
-
-    <!-- Mobile Menu (Bootstrap collapse) -->
-    <div class="collapse mobile-menu" id="mobileMenu">
-      <nav>
-        <ul class="mobile-nav-list">
-          <li class="nav-item">
-            <a href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'projetos' %}">Projetos</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'revista' %}">Revista</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'sobre' %}">Quem somos</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+      <!-- Mobile Menu (Bootstrap collapse) -->
+      <div class="collapse mobile-menu" id="mobileMenu">
+        <nav>
+          <ul class="mobile-nav-list">
+            <li class="nav-item">
+              <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'projetos' %}">Projetos</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'revista' %}">Revista</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'sobre' %}">Quem somos</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 {% endcache %}
+
+    <!-- User Options (if logged in) -->
+    {% if request.user.is_authenticated %}
+    <div class="d-flex justify-content-center align-items-center text-center">
+      <a href="{% url 'logout' %}" class="text-decoration-none text-dark bg-danger p-2 m-1 rounded w-100">LOGOUT</a>
+      <p class="p-1 rounded bg-secondary-subtle text-primary-emphasis m-1 w-100">{{ request.user.username }}</p>
+      <a href="{% url 'contentManagement' %}" class="text-decoration-none p-1 rounded bg-warning text-primary-emphasis m-1 w-100">Content Management</a>
+    </div>
+    {% endif %}
 
     <div id="content" >
         {% block content%}
