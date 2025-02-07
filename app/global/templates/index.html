@@ -23,7 +23,6 @@
     <!--CSS-->
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
     <!--Script-->
-    <script src="{% static 'js/script.js' %}" defer></script>
 
 
     <title>Display Lab</title>
@@ -73,70 +72,71 @@
     <!--</nav>-->
 
     <header>
-        <div class="navbar p-0">
-          <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
+    <!-- Main Navbar -->
+    <div class="navbar p-0">
+      <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
 
-            <nav class="menu">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="{% url 'home' %}">Home</a>
-                    </li>
+      <!-- Desktop Menu -->
+      <nav class="menu">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'projetos' %}">Projetos</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'revista' %}">Revista</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'sobre' %}">Quem somos</a>
+          </li>
+        </ul>
+      </nav>
 
-                    <li class="nav-item">
-                        <a href="{% url 'projetos' %}">Projetos</a>
-                    </li>
+      <!-- User Options (if logged in) -->
+      {% if request.user.is_authenticated %}
+      <div class="d-flex justify-content-center align-items-center flex-column text-center fs-3">
+        <a href="{% url 'logout' %}" class="text-decoration-none text-dark bg-danger p-2 m-1 rounded w-100">LOGOUT</a>
+        <p class="p-1 rounded bg-secondary-subtle text-primary-emphasis m-1 w-100">{{ request.user.username }}</p>
+        <a href="{% url 'contentManagement' %}" class="text-decoration-none p-1 rounded bg-warning text-primary-emphasis m-1 w-100">Content Management</a>
+      </div>
+      {% endif %}
 
-                    <li class="nav-item">
-                        <a href="{% url 'revista' %}">Revista</a>
-                    </li>
+      <!-- Extra Button (e.g., Search) -->
+      <button class="btn-default header-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
 
-                    <li class="nav-item">
-                        <a href="{% url 'sobre' %}">Quem somos</a>
-                    </li>
-                </ul>
-            </nav>
+      <!-- Mobile Toggler Button -->
+      <button class="mobile-btn header-btn" type="button" 
+              data-bs-toggle="collapse" data-bs-target="#mobileMenu" 
+              aria-controls="mobileMenu" aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
 
-            {% if request.user.is_authenticated %}
-                <div class="d-flex justify-content-center align-items-center flex-column text-center fs-3">
-                    <a href="{% url 'logout' %}" class="text-decoration-none text-dark bg-danger p-2 m-1 rounded w-100">LOGOUT</a>
-                    <p class="p-1 rounded bg-secondary-subtle text-primary-emphasis m-1 w-100">{{ request.user.username }}</p>
-                    <a class="text-decoration-none p-1 rounded bg-warning text-primary-emphasis m-1 w-100" href="{% url 'contentManagement' %}">Content Management</a>
-                </div>
-            {% endif %}
-
-
-            <button class="btn-default header-btn">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-
-            <button class="mobile-btn header-btn">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-        
-        <div>
-            <nav class="mobile-menu">
-                <ul class="mobile-nav-list">
-                    <li class="nav-item">
-                        <a href="{% url 'home' %}">Home</a>
-                    </li>
-    
-                    <li class="nav-item">
-                        <a href="{% url 'projetos' %}">Projetos</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a href="{% url 'revista' %}">Revista</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{% url 'sobre' %}">Quem somos</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+    <!-- Mobile Menu (Bootstrap collapse) -->
+    <div class="collapse mobile-menu" id="mobileMenu">
+      <nav>
+        <ul class="mobile-nav-list">
+          <li class="nav-item">
+            <a href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'projetos' %}">Projetos</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'revista' %}">Revista</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'sobre' %}">Quem somos</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 {% endcache %}
 
     <div id="content" >

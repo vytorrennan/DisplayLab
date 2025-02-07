@@ -1,103 +1,115 @@
 /*estilização geral do header*/
-header{
-    width: 100%;
-    height: calc(8.6rem * .6);
-    background-color: var(--color-header);
+header {
+  width: 100%;
+  height: calc(8.6rem * .6);
+  background-color: var(--color-header);
+  position: relative;
+  z-index: 99999;
 }
 
-.navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /*estilizando a logo do display*/
-header img{
-    margin-top: calc(0.5rem * .6);
-    margin-bottom: calc(0.5rem * .6);
-    margin-left: calc(4.6rem * .6);
+header img {
+  margin-top: calc(0.5rem * .6);
+  margin-bottom: calc(0.5rem * .6);
+  margin-left: calc(4.6rem * .6);
 }
 
 /*estilizando a lista das páginas*/
-.nav-list{
-    display: flex;
-    list-style: none;
+.nav-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 /*estilizando os items da lista*/
-.nav-item{
-    display: flex;
-    align-items: center;    
+.nav-item {
+  display: flex;
+  align-items: center;
 }
 
 /*estilizando o conteudo de cada item*/
-.nav-item a{
-    font-size: 16px;
-    color: white;
-    text-decoration: none;
-    margin-right: calc(3.8rem * .6);
+.nav-item a {
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  margin-right: calc(3.8rem * .6);
 }
 
-/*remove a margem do ultimo filho*/
-.nav-item:last-child{
-    margin-right: 0;
+/*remove a margem do último item*/
+.nav-item:last-child a {
+  margin-right: 0;
 }
 
 /*estilizando o botão*/
 .header-btn {
-    height: calc(4.3rem * .6);
-    width: calc(4.3rem * .6);
-    margin-right: calc(8.8rem * .6);
-    border: 2px solid white;
-    border-radius: 50%;
-    background-color: transparent;
+  height: calc(4.3rem * .6);
+  width: calc(4.3rem * .6);
+  margin-right: calc(8.8rem * .6);
+  border: 2px solid white;
+  border-radius: 50%;
+  background-color: transparent;
 }
 
 /*estilizando o conteúdo do botão*/
-.header-btn i{
-    font-size: calc(1.6rem * .6);
-    color: white;
+.header-btn i {
+  font-size: calc(1.6rem * .6);
+  color: white;
 }
 
-/*remove os menus mobile*/
-.mobile-btn,
-.mobile-menu{
+/*remove os menus mobile (desktop default)*/
+.mobile-btn {
+  display: none;
+}
+
+.mobile-menu {
+  display: none;
+  width: 190px;
+  padding: 10px 3% 0px 15px;
+  margin-left: calc(99% - 200px);
+  animation: auto ease 0s 1 normal none running none !important;
+  transition: none !important;
+}
+
+@media screen and (max-width: 1170px) {
+
+  .menu,
+  .btn-default {
     display: none;
-}
+  }
 
-@media screen and (max-width: 1170px){
-    .menu,
-    .btn-default{
-        display: none;
-    }
+  .mobile-btn {
+    display: block;
+    border: none;
+    margin: calc(2.1rem * .6);
+  }
 
-    .mobile-btn{
-        display: block;
-        border: none;
-        margin: calc(2.1rem * .6);
-    }
+  .mobile-btn i {
+    font-size: calc(2.4rem * .6);
+  }
 
-    .mobile-btn i{
-        font-size: calc(2.4rem * .6);
-    }
+  /* Updated to target .show (Bootstrap’s collapse class) */
+  .mobile-menu.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-color-item);
+    border-radius: calc(3rem * .6) calc(3rem * .6) calc(3rem * .6) calc(3rem * .6);
+  }
 
-    .mobile-menu.active{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: var(--background-color-item);
-        border-radius: 0 0 calc(3rem * .6) calc(3rem * .6);
-        margin-left: calc(1rem * .6);
-        margin-right: calc(1rem * .6);
-    }
+  .nav-item a {
+    color: var(--text-color);
+    font-size: calc(1.6rem * .6);
+    line-height: calc(3rem * .6);
+  }
 
-    .nav-item a{
-        color: var(--text-color);
-        font-size: calc(1.6rem * .6);
-        line-height: calc(3rem * .6);
-    }
-
-    .nav-item a:hover{
-        text-decoration: underline;
-    }
+  .nav-item a:hover {
+    text-decoration: underline;
+  }
 }
