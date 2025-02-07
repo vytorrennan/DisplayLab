@@ -74,7 +74,7 @@
       <header>
       <!-- Main Navbar -->
       <div class="navbar p-0">
-        <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
+        <a href="{% url 'home' %}"><img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site"></a>
 
         <!-- Desktop Menu -->
         <nav class="menu">
@@ -96,7 +96,7 @@
 
         
         <!-- Extra Button (e.g., Search) -->
-        <button class="btn-default header-btn">
+        <button class="btn-default header-btn invisible">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
 
@@ -164,10 +164,10 @@
                 <div class="social-media">
                     <h2>Confira nossas redes sociais:</h2>
                     <div class="img-social-media">
-                      <img src="{% static 'imgs/index/new/Ellipse 2.png' %}" alt="instagram">
-                      <img src="{% static 'imgs/index/new/Ellipse 3.png' %}" alt="facebook">
-                      <img src="{% static 'imgs/index/new/Ellipse 4.png' %}" alt="youtube">
-                      <img src="{% static 'imgs/index/new/Ellipse 5.png' %}" alt="tiktok">
+                      <a href="https://www.instagram.com/displaylabif/"><img src="{% static 'imgs/index/new/Ellipse 2.png' %}" alt="instagram"></a>
+                      <!--<a href=""><img src="{% static 'imgs/index/new/Ellipse 3.png' %}" alt="facebook"></a>-->
+                      <a href="https://www.youtube.com/@DisplayLabIF"><img src="{% static 'imgs/index/new/Ellipse 4.png' %}" alt="youtube"></a>
+                      <a href="https://www.tiktok.com/@display.lab"><img src="{% static 'imgs/index/new/Ellipse 5.png' %}" alt="tiktok"></a>
                     </div>
                 </div>  
             </div>
