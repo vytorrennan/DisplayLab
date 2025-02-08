@@ -11,6 +11,10 @@ Website oficial do laboratório Display do Instituto Federal do Norte de Minas G
 
 ---
 
+[Documentação do projeto pode ser encontrada aqui.](docs.md)
+
+---
+
 # Como rodar o projeto
 ### Variaveis de ambiente
 - Crie um arquivo chamado .env dentro da pasta app e cole la o seguinte com os dados preenchidos:
