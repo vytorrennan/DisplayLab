@@ -209,10 +209,12 @@ graph LR
         C --> D[Aplicação Django]
         D --> E[PostgreSQL]
         D --> F[Redis]
-        style B fill:#ccf,stroke:#333,stroke-width:2px
-        style C fill:#fcf,stroke:#333,stroke-width:2px
-        style D fill:#fcc,stroke:#333,stroke-width:2px
-        style E fill:#cff,stroke:#333,stroke-width:2px
+        style B fill:#ccf,stroke:#333,stroke-width:2px,color:black
+        style C fill:#fcf,stroke:#333,stroke-width:2px,color:black
+        style D fill:#fcc,stroke:#333,stroke-width:2px,color:black
+        style E fill:#cff,stroke:#333,stroke-width:2px,color:black
+        style F fill:#FCC,stroke:#333,stroke-width:2px,color:black
+
     end
 
     A -- Requisição HTTP --> B
@@ -221,6 +223,8 @@ graph LR
     D -- Consultas/Escritas --> E
     D -- Ler/Gravar Cache --> F
 
+    %% Estilo para texto fora dos retângulos
+    linkStyle default color:white
 ```
 
 
@@ -2013,11 +2017,13 @@ graph LR
     C --> pgdbData
     D --> redisData
 
-    style A fill:#ccf,stroke:#333,stroke-width:2px
-    style B fill:#fcf,stroke:#333,stroke-width:2px
-    style C fill:#cff,stroke:#333,stroke-width:2px
-    style D fill:#ffc,stroke:#333,stroke-width:2px
-    style E fill:#ccf,stroke:#333,stroke-width:2px
+    style A fill:#ccf,stroke:#333,stroke-width:2px,color:black
+    style B fill:#fcf,stroke:#333,stroke-width:2px,color:black
+    style C fill:#cff,stroke:#333,stroke-width:2px,color:black
+    style D fill:#ffc,stroke:#333,stroke-width:2px,color:black
+    style E fill:#ccf,stroke:#333,stroke-width:2px,color:black
+     %% Estilo para texto fora dos retângulos
+    linkStyle default color:white
 ```
 
 
