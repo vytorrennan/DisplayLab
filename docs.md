@@ -137,7 +137,7 @@
 O DisplayLab é uma aplicação web construída com o framework Django.  Ela serve como uma plataforma para apresentar projetos, publicações (revista/blog), e informações institucionais do DisplayLab (Laboratório de Novas Tecnologias e Jogos Digitais) do IFNMG - Campus Januária.  A aplicação também inclui um sistema de gerenciamento de conteúdo (CMS) para que os administradores possam atualizar o site facilmente. Ele serve como um hub para projetos, publicações (revista), informações institucionais e detalhes sobre a equipe ("Quem Somos").
 
 
-# **Componentes Principais e Tecnologias Utilizadas
+# **Componentes Principais e Tecnologias Utilizadas**
 
 ## **Frontend (Templates e Static Files)**
 
@@ -902,7 +902,7 @@ erDiagram
 - Semelhantes aos modelos de coleção de imagens de `main` e `projetos`, mas para a revista.
 
 
-# **Diagrama de Entidade e Relacionamento (ER)
+# **Diagrama de Entidade e Relacionamento (ER)**
 
 ```mermaid
 erDiagram
