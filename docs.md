@@ -1,6 +1,6 @@
 - [**Tecnologias Utilizadas**](#tecnologias-utilizadas)
 - [**Estrutura do Projeto**](#estrutura-do-projeto)
-- [Análise Detalhada Da Estrutura do Projeto](#análise-detalhada-da-estrutura-do-projeto)
+- [**Análise Detalhada Da Estrutura do Projeto**](#análise-detalhada-da-estrutura-do-projeto)
   * [1. `app/` (Aplicação Django Principal)](#1-app-aplicação-django-principal)
     + [1.1. `DisplayLab/` (Configurações do Projeto)](#11-displaylab-configurações-do-projeto)
     + [1.2. `contentManagement/` (App de Gerenciamento de Conteúdo)](#12-contentmanagement-app-de-gerenciamento-de-conteúdo)
@@ -42,7 +42,7 @@
     + [2.2. Volumes](#22-volumes)
   * [3. `nginx/` (Configuração do Nginx)](#3-nginx-configuração-do-nginx)
   * [4. `scripts/` (Scripts Auxiliares)](#4-scripts-scripts-auxiliares)
-- [**Modelos de Banco de Dados (com Diagramas Mermaid)**](#modelos-de-banco-de-dados-com-diagramas-mermaid)
+- [**Modelos de Banco de Dados**](#modelos-de-banco-de-dados)
   * [Explicação Detalhada dos Modelos:](#explicação-detalhada-dos-modelos)
     + [1. `CAROUSEL_ITEM` (`main/models.py`)](#1-carousel-item-main-modelspy)
     + [2. `MEMBRO_CATEGORIA` (`main/models.py`)](#2-membro-categoria-main-modelspy)
@@ -54,7 +54,8 @@
     + [8. `EDICAO` (`revista/models.py`)](#8-edicao-revista-modelspy)
     + [9. `REVISTA` (`revista/models.py`)](#9-revista-revista-modelspy)
     + [10. `REVISTA_COLECAO` e `REVISTA_IMAGEM` (`revista/models.py`)](#10-revista-colecao-e-revista-imagem-revista-modelspy)
-- [Views (Lógica de Negócio)](#views-lógica-de-negócio)
+- [**Diagrama De Classes**](#diagrama-de-classes)
+- [**Views (Lógica de Negócio)**](#views-lógica-de-negócio)
   * [1. `main/views.py`](#1-main-viewspy)
     + [1.1. `home(View)`](#11-home-view)
     + [1.2. `institucional(View)`](#12-institucional-view)
@@ -77,14 +78,14 @@
   * [**`revista/urls.py`**](#revista-urlspy)
   * [**`contentManagement/urls.py`**](#contentmanagement-urlspy)
   * [**`managementLoginSystem/urls.py`**](#managementloginsystem-urlspy)
-- [Templates (Aparência)](#templates-aparência)
+- [**Templates (Aparência)**](#templates-aparência)
   * [1. `global/templates/index.html`](#1-global-templates-indexhtml)
   * [2. `main/templates/`](#2-main-templates)
   * [3. `projetos/templates/`](#3-projetos-templates)
   * [4. `revista/templates/`](#4-revista-templates)
   * [5. `contentManagement/templates/`](#5-contentmanagement-templates)
   * [6. `managementLoginSystem/templates/`](#6-managementloginsystem-templates)
-- [Arquivos Estáticos (CSS, JavaScript, Imagens)](#arquivos-estáticos-css-javascript-imagens)
+- [**Arquivos Estáticos (CSS, JavaScript, Imagens)**](#arquivos-estáticos-css-javascript-imagens)
   * [1. `global/static/`](#1-global-static)
   * [2. `main/static/`, `projetos/static/`, `revista/static/`, `contentManagement/static/`](#2-main-static-projetos-static-revista-static-contentmanagement-static)
 - [**Scripts**](#scripts)
@@ -599,7 +600,7 @@ Templates HTML para as views do painel. Incluem formulários (`basicForm.html`, 
   Script principal de inicialização da aplicação. Executa as migrações, coleta os arquivos estáticos e inicia o servidor Gunicorn.
 
 
-# **Modelos de Banco de Dados (com Diagramas Mermaid)**
+# **Modelos de Banco de Dados**
 
 ```mermaid
 erDiagram
@@ -790,6 +791,377 @@ erDiagram
 
 ### 10. `REVISTA_COLECAO` e `REVISTA_IMAGEM` (`revista/models.py`)
 - Semelhantes aos modelos de coleção de imagens de `main` e `projetos`, mas para a revista.
+
+
+# Diagrama De Classes
+
+```mermaid
+classDiagram
+    class User {
+        <<abstract>>
+        -username
+        -email
+        -password
+        +create_superuser()
+    }
+
+    class LoginForm {
+        -username : CharField
+        -password : CharField
+        +is_valid()
+        +cleaned_data
+    }
+
+    class SignupForm {
+        -username
+        -password1
+        -password2
+    }    
+    
+    class View {
+        <<abstract>>
+    }
+
+
+    class userLogin {
+        +get(request)
+        +post(request)
+    }
+
+    class userSignup {
+        +get(request)
+        +post(request)
+    }
+
+    class userLogout {
+        +get(request)
+    }
+
+    class Projeto {
+        -id : AutoField
+        -oculto : BooleanField
+        -gosteis : PositiveIntegerField
+        -dataHora : DateTimeField
+        -url : SlugField
+        -titulo : CharField
+        -capa : CharField
+        -resumo : CharField
+        -pagina : TextField
+        +__str__()
+        +save()
+    }
+
+    class projetoColecaoDeImagem {
+        -id : AutoField
+        -colecao : SlugField
+        +__str__()
+    }
+    
+    class projetoImagem {
+        -id : AutoField
+        -colecao : ForeignKey(projetoColecaoDeImagem)
+        -imagem : ImageField
+        +__str__()
+    }
+
+    class projetos {
+        +get(request)
+    }
+    
+    class paginaDeProjeto {
+        +get(request, url)
+    }
+
+    class Revista {
+        -id : AutoField
+        -oculto : BooleanField
+        -gosteis : PositiveIntegerField
+        -edicao : ForeignKey(edicao)
+        -dataHora : DateTimeField
+        -url : SlugField
+        -titulo : CharField
+        -autor : CharField
+        -capa : CharField
+        -resumo : CharField
+        -pagina : TextField
+        +__str__()
+        +save()
+    }
+
+    class edicao {
+        -id : AutoField
+        -edicao : PositiveIntegerField
+        +__str__()
+    }
+    
+    class revistaColecaoDeImagem {
+        -id : AutoField
+        -colecao : SlugField
+        +__str__()
+    }
+
+    class revistaImagem {
+        -id : AutoField
+        -colecao : ForeignKey(revistaColecaoDeImagem)
+        -imagem : ImageField
+        +__str__()
+    }
+
+    class revista {
+        +get(request)
+    }
+
+    class paginaDePost {
+        +get(request, url)
+    }
+
+    class carouselItem {
+        -imagem : CharField
+        -url : CharField
+        +__str__()
+    }
+
+    class membroCategoria {
+        -id : AutoField
+        -oculto : BooleanField
+        -categoria : CharField
+        +__str__()
+    }
+
+    class Membro {
+        -id : AutoField
+        -oculto : BooleanField
+        -nome : CharField
+        -categoria : ForeignKey(membroCategoria)
+        -saibaMais : CharField
+        -foto : CharField
+        -descricao : CharField
+        +__str__()
+    }
+
+     class membroCarouselColecaoDeImagem {
+        -id : AutoField
+        -colecao : SlugField
+        +__str__()
+    }
+
+    class membroCarouselImagem {
+        -id : AutoField
+        -colecao : ForeignKey(membroCarouselColecaoDeImagem)
+        -imagem : ImageField
+        +__str__()
+    }
+    
+    class home {
+        +get(request)
+    }
+
+    class institucional {
+        +get(request)
+    }
+
+    class sobre {
+        +get(request)
+    }
+
+    class contentManagement {
+        +get(request)
+    }
+    
+    class novoItemCarousel {
+        +get(request)
+        +post(request)
+    }
+
+    class editarItemCarousel {
+        +get(request)
+    }
+
+    class editarItemCarouselId {
+        +get(request, id)
+        +post(request, id)
+    }
+    
+    class novoProjeto {
+        +get(request)
+        +post(request)
+    }
+
+    class editarProjeto {
+        +get(request)
+    }
+    
+    class editarProjetoId {
+        +get(request, id)
+        +post(request, id)
+    }
+    
+    class novoPostRevista {
+        +get(request)
+        +post(request)
+    }
+    
+    class editarPostRevista {
+        +get(request)
+    }
+
+    class editarPostRevistaId {
+        +get(request, id)
+        +post(request, id)
+    }
+    
+    class novoMembro {
+        +get(request)
+        +post(request)
+    }
+    
+    class editarMembro {
+        +get(request)
+    }
+
+    class editarMembroId {
+        +get(request, id)
+        +post(request, id)
+    }
+
+    class novaCategoriaDeMembro{
+        +get(request)
+        +post(request)
+    }
+
+    class editarCategoriaDeMembro{
+        +get(request)
+    }
+
+    class editarCategoriaDeMembroId{
+        +get(request, id)
+        +post(request, id)
+    }
+    
+    class novaEdicaoDeRevista{
+        +get(request)
+        +post(request)
+    }
+    
+    class editarEdicaoDeRevista{
+        +get(request)
+    }
+    
+    class editarEdicaoDeRevistaId{
+        +get(request, id)
+        +post(request, id)
+    }
+    
+    class projetoColecoes{
+        +get(request)
+    }
+    
+    class projetoNovaColecao{
+        +get(request)
+        +post(request)
+    }
+    
+    class projetoAdicionarImagem{
+        +get(request)
+        +post(request)
+    }
+
+    class linksImagensProjeto{
+        +get(request, colecao)
+    }
+
+    class revistaColecoes{
+        +get(request)
+    }
+    
+    class revistaNovaColecao{
+        +get(request)
+        +post(request)
+    }
+    
+    class revistaAdicionarImagem{
+        +get(request)
+        +post(request)
+    }
+
+    class linksImagensRevista{
+        +get(request, colecao)
+    }
+
+    class membroCarouselColecoes{
+        +get(request)
+    }
+    
+    class membroCarouselNovaColecao{
+        +get(request)
+        +post(request)
+    }
+    
+    class membroCarouselAdicionarImagem{
+        +get(request)
+        +post(request)
+    }
+
+    class linksImagensMembroCarousel{
+        +get(request, colecao)
+    }
+
+
+    
+
+    User <|-- LoginForm
+    User <|-- SignupForm
+
+    View <|-- userLogin
+    View <|-- userSignup
+    View <|-- userLogout
+    View <|-- projetos
+    View <|-- paginaDeProjeto
+    View <|-- revista
+    View <|-- paginaDePost
+    View <|-- home
+    View <|-- institucional
+    View <|-- sobre
+    View <|-- contentManagement
+    View <|-- novoItemCarousel
+    View <|-- editarItemCarousel
+    View <|-- editarItemCarouselId
+    View <|-- novoProjeto
+    View <|-- editarProjeto
+    View <|-- editarProjetoId
+    View <|-- novoPostRevista
+    View <|-- editarPostRevista
+    View <|-- editarPostRevistaId
+    View <|-- novoMembro
+    View <|-- editarMembro
+    View <|-- editarMembroId
+    View <|-- novaCategoriaDeMembro
+    View <|-- editarCategoriaDeMembro
+    View <|-- editarCategoriaDeMembroId
+    View <|-- novaEdicaoDeRevista
+    View <|-- editarEdicaoDeRevista
+    View <|-- editarEdicaoDeRevistaId
+    View <|-- projetoColecoes
+    View <|-- projetoNovaColecao
+    View <|-- projetoAdicionarImagem
+    View <|-- linksImagensProjeto
+    View <|-- revistaColecoes
+    View <|-- revistaNovaColecao
+    View <|-- revistaAdicionarImagem
+    View <|-- linksImagensRevista
+    View <|-- membroCarouselColecoes
+    View <|-- membroCarouselNovaColecao
+    View <|-- membroCarouselAdicionarImagem
+    View <|-- linksImagensMembroCarousel
+    
+
+    projetoColecaoDeImagem "1" -- "*" projetoImagem : contains
+    revistaColecaoDeImagem "1" -- "*" revistaImagem : contains
+    membroCarouselColecaoDeImagem "1" -- "*" membroCarouselImagem : contains
+
+    Membro -- membroCategoria : belongs to
+    Revista -- edicao : belongs to
+```
 
 
 # Views (Lógica de Negócio)
@@ -1228,4 +1600,3 @@ else:
     *   Exibe os dados do projeto (título, resumo, conteúdo da página).  Usa o filtro `safe` para renderizar o HTML do conteúdo: `{{ projeto.first.pagina | safe }}`.
 30. **Resposta**: O Gunicorn envia a resposta (o HTML renderizado) de volta para o Nginx.
 31. **Nginx (Resposta)**: O Nginx envia a resposta para o navegador do usuário.
-
