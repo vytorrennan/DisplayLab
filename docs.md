@@ -1,122 +1,227 @@
-- [**Tecnologias Utilizadas**](#tecnologias-utilizadas)
-- [**Estrutura do Projeto**](#estrutura-do-projeto)
-- [**Análise Detalhada Da Estrutura do Projeto**](#análise-detalhada-da-estrutura-do-projeto)
-  * [1. `app/` (Aplicação Django Principal)](#1-app-aplicação-django-principal)
-    + [1.1. `DisplayLab/` (Configurações do Projeto)](#11-displaylab-configurações-do-projeto)
-    + [1.2. `contentManagement/` (App de Gerenciamento de Conteúdo)](#12-contentmanagement-app-de-gerenciamento-de-conteúdo)
+# Índice
+
+- [Visão Geral](#visão-geral)
+- [Componentes Principais e Tecnologias Utilizadas](#componentes-principais-e-tecnologias-utilizadas)
+  - [Frontend (Templates e Static Files)](#frontend-templates-e-static-files)
+  - [Backend (Django Apps)](#backend-django-apps)
+  - [Banco de Dados (PostgreSQL)](#banco-de-dados-postgresql)
+  - [Cache (Redis)](#cache-redis)
+  - [Servidor Web (Nginx)](#servidor-web-nginx)
+  - [Servidor de Aplicação (Gunicorn)](#servidor-de-aplicação-gunicorn)
+  - [Outras Dependências](#outras-dependências)
+- [Diagrama de Componentes](#diagrama-de-componentes)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Análise Detalhada da Estrutura do Projeto](#análise-detalhada-da-estrutura-do-projeto)
+  - [1. `app/` (Aplicação Django Principal)](#1-app-aplicação-django-principal)
+    - [1.1. `DisplayLab/` (Configurações do Projeto)](#11-displaylab-configurações-do-projeto)
+    - [1.2. `contentManagement/` (App de Gerenciamento de Conteúdo)](#12-contentmanagement-app-de-gerenciamento-de-conteúdo)
       - [1.2.1. `forms/`](#121-forms)
-        * [1.2.1.1. `home/`](#1211-home)
-        * [1.2.1.2. `projetos/`](#1212-projetos)
-        * [1.2.1.3. `revista/`](#1213-revista)
-        * [1.2.1.4. `sobre/`](#1214-sobre)
+        - [1.2.1.1. `home/`](#1211-home)
+        - [1.2.1.2. `projetos/`](#1212-projetos)
+        - [1.2.1.3. `revista/`](#1213-revista)
+        - [1.2.1.4. `sobre/`](#1214-sobre)
       - [1.2.2. `views/`](#122-views)
-        * [1.2.2.1. `viewsHome.py`](#1221-viewshomepy)
-        * [1.2.2.2. `viewsProjetos.py`](#1222-viewsprojetospy)
-        * [1.2.2.3. `viewsRevista.py`](#1223-viewsrevistapy)
-        * [1.2.2.4. `viewsSobre.py`](#1224-viewssobrepy)
+        - [1.2.2.1. `viewsHome.py`](#1221-viewshomepy)
+        - [1.2.2.2. `viewsProjetos.py`](#1222-viewsprojetospy)
+        - [1.2.2.3. `viewsRevista.py`](#1223-viewsrevistapy)
+        - [1.2.2.4. `viewsSobre.py`](#1224-viewssobrepy)
       - [1.2.3. `static/`](#123-static)
       - [1.2.4. `templates/`](#124-templates)
-    + [1.3. `global/` (Arquivos Globais)](#13-global-arquivos-globais)
+    - [1.3. `global/` (Arquivos Globais)](#13-global-arquivos-globais)
       - [1.3.1. `static/`](#131-static)
       - [1.3.2. `templates/`](#132-templates)
-    + [1.4. `main/` (App Principal)](#14-main-app-principal)
+    - [1.4. `main/` (App Principal)](#14-main-app-principal)
       - [1.4.1. `views.py`](#141-viewspy)
       - [1.4.2. `models.py`](#142-modelspy)
       - [1.4.3. `static/` e `templates/`](#143-static-e-templates)
-    + [1.5. `managementLoginSystem/` (App para Login/Signup)](#15-managementloginsystem-app-para-login-signup)
+    - [1.5. `managementLoginSystem/` (App para Login/Signup)](#15-managementloginsystem-app-para-login-signup)
       - [1.5.1. `views.py`](#151-viewspy)
       - [1.5.2. `forms.py`](#152-formspy)
       - [1.5.3. `templates/`](#153-templates)
       - [1.5.4. `urls.py`](#154-urlspy)
-    + [1.6. `projetos/` (App para Projetos)](#16-projetos-app-para-projetos)
+    - [1.6. `projetos/` (App para Projetos)](#16-projetos-app-para-projetos)
       - [1.6.1. `views.py`](#161-viewspy)
       - [1.6.2. `models.py`](#162-modelspy)
       - [1.6.3. `static/` e `templates/`](#163-static-e-templates)
-    + [1.7. `revista/` (App para a Revista)](#17-revista-app-para-a-revista)
+    - [1.7. `revista/` (App para a Revista)](#17-revista-app-para-a-revista)
       - [1.7.1. `views.py`](#171-viewspy)
       - [1.7.2. `models.py`](#172-modelspy)
       - [1.7.3. `static/` e `templates/`](#173-static-e-templates)
-    + [1.8. Arquivos na raiz do `app/`](#18-arquivos-na-raiz-do-app)
-  * [2. `docker-compose.yml` (Configuração do Docker Compose)](#2-docker-composeyml-configuração-do-docker-compose)
-    + [2.1. Serviços](#21-serviços)
-    + [2.2. Volumes](#22-volumes)
-  * [3. `nginx/` (Configuração do Nginx)](#3-nginx-configuração-do-nginx)
-  * [4. `scripts/` (Scripts Auxiliares)](#4-scripts-scripts-auxiliares)
-- [**Modelos de Banco de Dados**](#modelos-de-banco-de-dados)
-  * [Explicação Detalhada dos Modelos:](#explicação-detalhada-dos-modelos)
-    + [1. `CAROUSEL_ITEM` (`main/models.py`)](#1-carousel-item-main-modelspy)
-    + [2. `MEMBRO_CATEGORIA` (`main/models.py`)](#2-membro-categoria-main-modelspy)
-    + [3. `MEMBRO` (`main/models.py`)](#3-membro-main-modelspy)
-    + [4. `MEMBRO_CAROUSEL_COLECAO` (`main/models.py`)](#4-membro-carousel-colecao-main-modelspy)
-    + [5. `MEMBRO_CAROUSEL_IMAGEM` (`main/models.py`)](#5-membro-carousel-imagem-main-modelspy)
-    + [6. `PROJETO` (`projetos/models.py`)](#6-projeto-projetos-modelspy)
-    + [7. `PROJETO_COLECAO` e `PROJETO_IMAGEM` (`projetos/models.py`)](#7-projeto-colecao-e-projeto-imagem-projetos-modelspy)
-    + [8. `EDICAO` (`revista/models.py`)](#8-edicao-revista-modelspy)
-    + [9. `REVISTA` (`revista/models.py`)](#9-revista-revista-modelspy)
-    + [10. `REVISTA_COLECAO` e `REVISTA_IMAGEM` (`revista/models.py`)](#10-revista-colecao-e-revista-imagem-revista-modelspy)
-- [**Diagrama De Classes**](#diagrama-de-classes)
-- [**Views (Lógica de Negócio)**](#views-lógica-de-negócio)
-  * [1. `main/views.py`](#1-main-viewspy)
-    + [1.1. `home(View)`](#11-home-view)
-    + [1.2. `institucional(View)`](#12-institucional-view)
-    + [1.3. `sobre(View)`](#13-sobre-view)
-  * [2. `projetos/views.py`](#2-projetos-viewspy)
-    + [2.1. `projetos(View)`](#21-projetos-view)
-    + [2.2. `paginaDeProjeto(View)`](#22-paginadeprojeto-view)
-  * [3. `revista/views.py`](#3-revista-viewspy)
-    + [3.1. `revista(View)`](#31-revista-view)
-    + [3.2. `paginaDePost(View)`](#32-paginadepost-view)
-  * [4. `contentManagement/views/`](#4-contentmanagement-views)
-  * [5. `managementLoginSystem/views.py`](#5-managementloginsystem-viewspy)
-    + [5.1. `userSignup(View)`](#51-usersignup-view)
-    + [5.2. `userLogin(View)`](#52-userlogin-view)
-    + [5.3. `userLogout(View)`](#53-userlogout-view)
-- [**URLs (Endpoints)**](#urls-endpoints)
-  * [**`DisplayLab/urls.py` (URLs Globais)**](#displaylab-urlspy-urls-globais)
-  * [**`main/urls.py`**](#main-urlspy)
-  * [**`projetos/urls.py`**](#projetos-urlspy)
-  * [**`revista/urls.py`**](#revista-urlspy)
-  * [**`contentManagement/urls.py`**](#contentmanagement-urlspy)
-  * [**`managementLoginSystem/urls.py`**](#managementloginsystem-urlspy)
-- [**Templates (Aparência)**](#templates-aparência)
-  * [1. `global/templates/index.html`](#1-global-templates-indexhtml)
-  * [2. `main/templates/`](#2-main-templates)
-  * [3. `projetos/templates/`](#3-projetos-templates)
-  * [4. `revista/templates/`](#4-revista-templates)
-  * [5. `contentManagement/templates/`](#5-contentmanagement-templates)
-  * [6. `managementLoginSystem/templates/`](#6-managementloginsystem-templates)
-- [**Arquivos Estáticos (CSS, JavaScript, Imagens)**](#arquivos-estáticos-css-javascript-imagens)
-  * [1. `global/static/`](#1-global-static)
-  * [2. `main/static/`, `projetos/static/`, `revista/static/`, `contentManagement/static/`](#2-main-static-projetos-static-revista-static-contentmanagement-static)
-- [**Scripts**](#scripts)
-  * [**`scripts/displaylab.sh`**](#scripts-displaylabsh)
-  * [**`scripts/cronjobs.sh`**](#scripts-cronjobssh)
-  * [**`app/createSuperUser.py`**](#app-createsuperuserpy)
-- [**Fluxo de Requisição (Exemplo)**](#fluxo-de-requisição-exemplo)
+    - [1.8. Arquivos na raiz do `app/`](#18-arquivos-na-raiz-do-app)
+  - [2. `docker-compose.yml` (Configuração do Docker Compose)](#2-docker-composeyml-configuração-do-docker-compose)
+    - [2.1. Serviços](#21-serviços)
+    - [2.2. Volumes](#22-volumes)
+  - [3. `nginx/` (Configuração do Nginx)](#3-nginx-configuração-do-nginx)
+  - [4. `scripts/` (Scripts Auxiliares)](#4-scripts-scripts-auxiliares)
+- [Modelos de Banco de Dados](#modelos-de-banco-de-dados)
+  - [Explicação Detalhada dos Modelos](#explicação-detalhada-dos-modelos)
+    - [1. `CAROUSEL_ITEM` (`main/models.py`)](#1-carousel-item-main-modelspy)
+    - [2. `MEMBRO_CATEGORIA` (`main/models.py`)](#2-membro-categoria-main-modelspy)
+    - [3. `MEMBRO` (`main/models.py`)](#3-membro-main-modelspy)
+    - [4. `MEMBRO_CAROUSEL_COLECAO` (`main/models.py`)](#4-membro-carousel-colecao-main-modelspy)
+    - [5. `MEMBRO_CAROUSEL_IMAGEM` (`main/models.py`)](#5-membro-carousel-imagem-main-modelspy)
+    - [6. `PROJETO` (`projetos/models.py`)](#6-projeto-projetos-modelspy)
+    - [7. `PROJETO_COLECAO` e `PROJETO_IMAGEM` (`projetos/models.py`)](#7-projeto-colecao-e-projeto-imagem-projetos-modelspy)
+    - [8. `EDICAO` (`revista/models.py`)](#8-edicao-revista-modelspy)
+    - [9. `REVISTA` (`revista/models.py`)](#9-revista-revista-modelspy)
+    - [10. `REVISTA_COLECAO` e `REVISTA_IMAGEM` (`revista/models.py`)](#10-revista-colecao-e-revista-imagem-revista-modelspy)
+- [Diagrama de Entidade e Relacionamento (ER)](#diagrama-de-entidade-e-relacionamento-er)
+- [Casos de Uso](#casos-de-uso)
+  - [I. Casos de Uso de Autenticação e Sessão](#i-casos-de-uso-de-autenticação-e-sessão)
+    - [UC02: Fazer Login](#uc02-fazer-login)
+    - [UC03: Fazer Logout](#uc03-fazer-logout)
+  - [II. Casos de Uso de Visualização (Usuário Comum)](#ii-casos-de-uso-de-visualização-usuário-comum)
+    - [UC04: Visualizar Projetos](#uc04-visualizar-projetos)
+    - [UC05: Visualizar Página de Projeto](#uc05-visualizar-página-de-projeto)
+    - [UC06: Visualizar Revista (Posts)](#uc06-visualizar-revista-posts)
+    - [UC07: Visualizar Página de Post (Revista)](#uc07-visualizar-página-de-post-revista)
+    - [UC08: Visualizar Página "Quem Somos"](#uc08-visualizar-página-quem-somos)
+    - [UC10: Visualizar Home](#uc10-visualizar-home)
+    - [UC11: Visualizar Página Institucional](#uc11-visualizar-página-institucional)
+  - [III. Casos de Uso de Administração (Acesso Restrito)](#iii-casos-de-uso-de-administração-acesso-restrito)
+    - [UC09: Gerenciar Conteúdo (Acesso Restrito)](#uc09-gerenciar-conteúdo-acesso-restrito)
+      - [UC09.1: Gerenciar Itens do Carrossel (Criar, Editar, Excluir)](#uc091-gerenciar-itens-do-carrossel-criar-editar-excluir)
+      - [UC09.2: Gerenciar Coleções de Imagens (Criar, Adicionar Imagens, Listar Links)](#uc092-gerenciar-coleções-de-imagens-criar-adicionar-imagens-listar-links)
+      - [UC09.3: Gerenciar Projetos (Criar, Editar, Excluir)](#uc093-gerenciar-projetos-criar-editar-excluir)
+      - [UC09.4: Gerenciar Posts da Revista (Criar, Editar, Excluir)](#uc094-gerenciar-posts-da-revista-criar-editar-excluir)
+      - [UC09.5: Gerenciar Edições da Revista (Criar, Editar, Excluir)](#uc095-gerenciar-edições-da-revista-criar-editar-excluir)
+      - [UC09.6: Gerenciar Membros (Criar, Editar, Excluir)](#uc096-gerenciar-membros-criar-editar-excluir)
+      - [UC09.7: Gerenciar Categorias de Membros (Criar, Editar, Excluir)](#uc097-gerenciar-categorias-de-membros-criar-editar-excluir)
+  - [IV. Casos de Uso do Sistema](#iv-casos-de-uso-do-sistema)
+    - [UC12: Realizar Backup](#uc12-realizar-backup)
+- [Diagrama De Classes](#diagrama-de-classes)
+- [Views (Lógica de Negócio)](#views-lógica-de-negócio)
+  - [1. `main/views.py`](#1-main-viewspy)
+    - [1.1. `home(View)`](#11-home-view)
+    - [1.2. `institucional(View)`](#12-institucional-view)
+    - [1.3. `sobre(View)`](#13-sobre-view)
+  - [2. `projetos/views.py`](#2-projetos-viewspy)
+    - [2.1. `projetos(View)`](#21-projetos-view)
+    - [2.2. `paginaDeProjeto(View)`](#22-paginadeprojeto-view)
+  - [3. `revista/views.py`](#3-revista-viewspy)
+    - [3.1. `revista(View)`](#31-revista-view)
+    - [3.2. `paginaDePost(View)`](#32-paginadepost-view)
+  - [4. `contentManagement/views/`](#4-contentmanagement-views)
+  - [5. `managementLoginSystem/views.py`](#5-managementloginsystem-viewspy)
+    - [5.1. `userSignup(View)`](#51-usersignup-view)
+    - [5.2. `userLogin(View)`](#52-userlogin-view)
+    - [5.3. `userLogout(View)`](#53-userlogout-view)
+- [URLs (Endpoints)](#urls-endpoints)
+  - [ `DisplayLab/urls.py` (URLs Globais)](#displaylab-urlspy-urls-globais)
+  - [`main/urls.py`](#main-urlspy)
+  - [`projetos/urls.py`](#projetos-urlspy)
+  - [`revista/urls.py`](#revista-urlspy)
+  - [`contentManagement/urls.py`](#contentmanagement-urlspy)
+  - [`managementLoginSystem/urls.py`](#managementloginsystem-urlspy)
+- [Templates (Aparência)](#templates-aparência)
+  - [1. `global/templates/index.html`](#1-global-templates-indexhtml)
+  - [2. `main/templates/`](#2-main-templates)
+  - [3. `projetos/templates/`](#3-projetos-templates)
+  - [4. `revista/templates/`](#4-revista-templates)
+  - [5. `contentManagement/templates/`](#5-contentmanagement-templates)
+  - [6. `managementLoginSystem/templates/`](#6-managementloginsystem-templates)
+- [Arquivos Estáticos (CSS, JavaScript, Imagens)](#arquivos-estáticos-css-javascript-imagens)
+  - [1. `global/static/`](#1-global-static)
+  - [2. `main/static/`, `projetos/static/`, `revista/static/`, `contentManagement/static/`](#2-main-static-projetos-static-revista-static-contentmanagement-static)
+- [Scripts](#scripts)
+  - [`scripts/displaylab.sh`](#scripts-displaylabsh)
+  - [`scripts/cronjobs.sh`](#scripts-cronjobssh)
+  - [`app/createSuperUser.py`](#app-createsuperuserpy)
+- [Diagrama de Implantação (Deployment)](#diagrama-de-implantação-deployment)
+- [Fluxo de Requisição](#fluxo-de-requisição)
+  - [Exemplo de Fluxo de Requisição](#exemplo-de-fluxo-de-requisição)
+  - [Diagrama de Fluxo de Dados (Simplificado)](#diagrama-de-fluxo-de-dados-simplificado)
 
-Este projeto é uma plataforma web construída com Django para o DisplayLab (Laboratório de Novas Tecnologias e Jogos Digitais) do IFNMG - Campus Januária.  Ele serve como um hub para projetos, publicações (revista), informações institucionais e detalhes sobre a equipe ("Quem Somos").
+# **Visão Geral**
+
+O DisplayLab é uma aplicação web construída com o framework Django.  Ela serve como uma plataforma para apresentar projetos, publicações (revista/blog), e informações institucionais do DisplayLab (Laboratório de Novas Tecnologias e Jogos Digitais) do IFNMG - Campus Januária.  A aplicação também inclui um sistema de gerenciamento de conteúdo (CMS) para que os administradores possam atualizar o site facilmente. Ele serve como um hub para projetos, publicações (revista), informações institucionais e detalhes sobre a equipe ("Quem Somos").
 
 
-# **Tecnologias Utilizadas**
+# **Componentes Principais e Tecnologias Utilizadas
 
-*   **Frontend:** HTML, CSS (com temas e estilos personalizados), JavaScript, Bootstrap (para responsividade e componentes).
-*   **Backend:** Python (Django framework).
-*   **Banco de Dados:** PostgreSQL (para armazenamento persistente de dados).
-*   **Cache:** Redis (para otimizar o desempenho, armazenando em cache páginas e dados frequentemente acessados).
-*   **Servidor Web:** Nginx (atuando como proxy reverso e servidor de arquivos estáticos).
-*   **Servidor de Aplicação:** Gunicorn (para executar a aplicação Django em um ambiente de produção).
-*   **Containerização:** Docker e Docker Compose (para facilitar a implantação e o gerenciamento do ambiente).
-*   **Bibliotecas Python:**
-    *   **Django:** Framework web principal.
-    *   **django-dbbackup:** Para backups do banco de dados e mídia.
-    *   **django-environ:** Para gerenciar variáveis de ambiente.
-    *   **django-redis:** Integração com Redis para cache.
-    *   **django-storages:** Suporte para armazenamentos em nuvem (Dropbox neste caso).
-    *   **django-tinymce:** Editor de texto rico (TinyMCE) para criação de conteúdo.
-    *   **Pillow:** Para manipulação de imagens.
-    *   **psycopg2:** Adaptador PostgreSQL para Python.
-    *   **gunicorn:** Servidor WSGI HTTP.
-    *   **django-crontab:** Para agendamento de tarefas (backups).
+## **Frontend (Templates e Static Files)**
+
+*   Utiliza HTML, CSS (com estilos customizados e Bootstrap), e JavaScript para a interface do usuário.
+*   Templates Django são usados para renderizar conteúdo dinâmico.
+*   Arquivos estáticos (CSS, JavaScript, imagens) são organizados em pastas `static` dentro de cada app e em uma pasta `global/static` para estilos e scripts compartilhados.
+*   Faz uso extensivo do sistema de cache do Django para melhorar o desempenho, com caches de 300 segundos para o cabeçalho, navegação e páginas principais.
+
+## **Backend (Django Apps)**
+
+*   **`main`:**  App principal.  Lida com a página inicial (com um carousel de imagens), página institucional, e a página "Quem Somos" (exibindo membros da equipe).
+*   **`projetos`:**  Gerencia a exibição de projetos, incluindo detalhes de cada projeto e imagens associadas.
+*   **`revista`:**  Gerencia posts de revista/blog, organizados por edições.  Inclui funcionalidade de paginação.
+*   **`contentManagement`:**  Fornece uma interface de gerenciamento de conteúdo (CMS) protegida por login.  Permite aos administradores:
+	*   Gerenciar itens do carousel da página inicial.
+	*   Adicionar, editar e excluir projetos.
+	*   Adicionar, editar e excluir posts de revista, e gerenciar edições.
+	*   Adicionar, editar e excluir membros da equipe ("Quem Somos") e suas categorias.
+	*   Gerenciar coleções de imagens para uso em projetos, posts de revista, e perfis de membros.
+*   **`managementLoginSystem`:**  Implementa um sistema básico de login, registro e logout de usuários.  Usa os modelos de usuário padrão do Django.
+*  **`global`:** Pasta que contém os arquivos estáticos (CSS e JavaScript) e templates (HTML) compartilhados entre todos os apps.
+
+## **Banco de Dados (PostgreSQL)**
+
+*   O banco de dados PostgreSQL (versão 16.1) armazena todos os dados da aplicação:
+	*   Usuários (do sistema de autenticação do Django).
+	*   Itens do carousel.
+	*   Projetos, incluindo texto, imagens e metadados.
+	*   Posts de revista, edições, autores, e imagens.
+	*   Membros da equipe, categorias de membros, e imagens.
+	*   Coleções de imagens e as imagens dentro delas.
+
+## **Cache (Redis)**
+
+*   Redis (versão 7.2.4) é usado como um cache em memória para melhorar o desempenho.  O Django é configurado para usar o `django-redis` como backend de cache.
+
+## **Servidor Web (Nginx)**
+
+*   Nginx atua como um servidor web e proxy reverso.  Ele:
+	*   Serve arquivos estáticos diretamente (melhorando o desempenho).
+	*   Encaminha solicitações dinâmicas para o servidor de aplicação Gunicorn.
+	*   Lida com o upload de arquivos (configuração `client_max_body_size`).
+	*   Configurado para lidar com caminhos de mídia específicos para uploads de imagens.
+
+## **Servidor de Aplicação (Gunicorn)**
+
+*   Gunicorn é um servidor WSGI HTTP para aplicações Python.  Ele executa a aplicação Django.
+
+## **Outras Dependências**
+
+*   **`django-dbbackup`:**  Usado para backups e restaurações do banco de dados e de arquivos de mídia.  Configurado para usar o Dropbox como armazenamento.  Um cronjob é configurado para executar backups diários.
+*   **`django-tinymce`:**  Fornece um editor de texto rico (TinyMCE) para campos de conteúdo no CMS (como a descrição de projetos e o conteúdo de posts de revista).
+*   **`django-storages` e `dropbox`:** Usados para integração com o Dropbox para backups.
+*   **`psycopg2`:**  Adaptador PostgreSQL para Python.
+*   **`django-environ`:**  Usado para gerenciar configurações a partir de variáveis de ambiente (arquivo `.env`).
+*   **`pillow`:**  Biblioteca de processamento de imagens para Python (usada para lidar com uploads de imagens).
+*  **`django-crontab`:** Usada para rodar o backup como um cronjob.
+
+# **Diagrama de Componentes:**
+
+```mermaid
+graph LR
+    subgraph Cliente
+        A[Navegador Web]
+    end
+
+    subgraph Servidor
+        B[Nginx] --> C[Gunicorn]
+        C --> D[Aplicação Django]
+        D --> E[PostgreSQL]
+        D --> F[Redis]
+        style B fill:#ccf,stroke:#333,stroke-width:2px
+        style C fill:#fcf,stroke:#333,stroke-width:2px
+        style D fill:#fcc,stroke:#333,stroke-width:2px
+        style E fill:#cff,stroke:#333,stroke-width:2px
+    end
+
+    A -- Requisição HTTP --> B
+    B -- Arquivos Estáticos --> A
+    C -- WSGI --> D
+    D -- Consultas/Escritas --> E
+    D -- Ler/Gravar Cache --> F
+
+```
 
 
 # **Estrutura do Projeto**
@@ -791,6 +896,306 @@ erDiagram
 
 ### 10. `REVISTA_COLECAO` e `REVISTA_IMAGEM` (`revista/models.py`)
 - Semelhantes aos modelos de coleção de imagens de `main` e `projetos`, mas para a revista.
+
+
+# **Diagrama de Entidade e Relacionamento (ER)
+
+```mermaid
+erDiagram
+    CAROUSEL_ITEM {
+        int id PK
+        string imagem
+        string url
+    }
+
+    PROJETO {
+        int id PK
+        boolean oculto
+        int gosteis
+        datetime dataHora
+        string url
+        string titulo
+        string capa
+        string resumo
+        text pagina
+    }
+
+    PROJETO_COLECAO_IMAGEM {
+        int id PK
+        string colecao UK
+    }
+
+    PROJETO_IMAGEM {
+        int id PK
+        int colecao_id FK
+        string imagem
+    }
+
+    REVISTA {
+        int id PK
+        boolean oculto
+        int gosteis
+        int edicao_id FK
+        datetime dataHora
+        string url
+        string titulo
+        string autor
+        string capa
+        string resumo
+        text pagina
+    }
+
+    EDICAO {
+        int id PK
+        int edicao UK
+    }
+
+  REVISTA_COLECAO_IMAGEM {
+      int id PK
+      string colecao UK
+    }
+
+    REVISTA_IMAGEM {
+        int id PK
+        int colecao_id FK
+        string imagem
+    }
+
+    MEMBRO {
+        int id PK
+        boolean oculto
+        string nome
+        int categoria_id FK
+        string saibaMais
+        string foto
+        string descricao
+    }
+
+    MEMBRO_CATEGORIA {
+        int id PK
+        boolean oculto
+        string categoria UK
+    }
+
+    MEMBRO_CAROUSEL_COLECAO_IMAGEM {
+        int id PK
+        string colecao UK
+    }
+
+    MEMBRO_CAROUSEL_IMAGEM {
+        int id PK
+        int colecao_id FK
+        string imagem
+    }
+    
+    auth_user {
+      integer id PK
+      varchar password
+      datetime last_login
+      boolean is_superuser
+      varchar username
+      varchar first_name
+      varchar last_name
+      varchar email
+      boolean is_staff
+      boolean is_active
+      datetime date_joined
+    }
+
+    PROJETO ||--o{ PROJETO_COLECAO_IMAGEM : "possui (0 ou N)"
+    PROJETO_COLECAO_IMAGEM ||--o{ PROJETO_IMAGEM : "contém (0 ou N)"
+    PROJETO_IMAGEM }o--|| PROJETO_COLECAO_IMAGEM : "pertence a (1)"
+    REVISTA ||--o{ EDICAO : "pertence a (1)"
+    EDICAO o{--|| REVISTA : "possui (0 ou N)"
+    REVISTA ||--o{ REVISTA_COLECAO_IMAGEM : "possui (0 ou N)"
+    REVISTA_COLECAO_IMAGEM ||--o{ REVISTA_IMAGEM : "contém (0 ou N)"
+    REVISTA_IMAGEM }o--|| REVISTA_COLECAO_IMAGEM : "pertence a (1)"
+    MEMBRO ||--o{ MEMBRO_CATEGORIA : "pertence a (1)"
+    MEMBRO_CATEGORIA o{--|| MEMBRO : "possui (0 ou N)"
+    MEMBRO_CAROUSEL_COLECAO_IMAGEM ||--o{ MEMBRO_CAROUSEL_IMAGEM : "contém (0 ou N)"
+    MEMBRO_CAROUSEL_IMAGEM }o--|| MEMBRO_CAROUSEL_COLECAO_IMAGEM : "pertence a (1)"
+```
+
+
+# Casos de uso
+
+## I. Casos de Uso de Autenticação e Sessão
+
+### UC02: Fazer Login
+
+*   **Ator(es):** Usuário
+*   **Descrição:** Este caso de uso permite que um usuário registrado faça login no sistema.
+*   **Pré-Condições:** O usuário deve ter uma conta registrada.
+*   **Pós-Condições:**
+    *   O usuário é autenticado e redirecionado para a página inicial (home).
+    *   A sessão do usuário é iniciada.
+*   **Cenário Principal:**
+    1.  [IN] O usuário clica na opção "Login".
+    2.  [OUT] O sistema redireciona para a página de login.
+    3.  [IN] O usuário preenche o formulário de login com nome de usuário e senha. \[Campos], \[Exceção 1], \[Exceção 2]
+    4.  [OUT] O sistema valida as credenciais.
+    5.  [OUT] O sistema autentica o usuário.
+    6.  [OUT] O sistema redireciona o usuário para a página inicial ('home').
+*   **Cenários Alternativos:**
+    *   **Credenciais Inválidas:**
+        1.  [IN] O usuário insere um nome de usuário ou senha incorretos.
+        2.  [OUT] O sistema exibe uma mensagem de erro informando que as credenciais estão incorretas.
+        3.  [OUT] O sistema permanece na página de login.
+*   **Exceções:**
+    *   **Exceção 1:** Dados inválidos:
+        *   [OUT] O sistema exibe uma mensagem informando que algum campo contém dados inválidos.
+        *   [IN] O usuário corrige os campos.
+    *   **Exceção 2:** Campo obrigatório em branco:
+        *   [IN] O usuário tenta enviar o formulário com campos obrigatórios em branco.
+        *   [OUT] O sistema exibe uma mensagem de erro e solicita que o usuário preencha todos os campos obrigatórios.
+*   **Campos:**
+    *   Nome de usuário
+    *   Senha
+
+### UC03: Fazer Logout
+
+*   **Ator(es):** Usuário Autenticado
+*   **Descrição:** Este caso de uso permite que um usuário autenticado saia do sistema.
+*   **Pré-Condições:** O usuário deve estar logado no sistema.
+*   **Pós-Condições:**
+    *   A sessão do usuário é encerrada.
+    *   O usuário é redirecionado para a página de login.
+*   **Cenário Principal:**
+    1.  [IN] O usuário clica na opção "Logout".
+    2.  [OUT] O sistema encerra a sessão do usuário.
+    3.  [OUT] O sistema redireciona o usuário para a página de login.
+
+## II. Casos de Uso de Visualização (Usuário Comum)
+
+### UC04: Visualizar Projetos
+
+*   **Ator(es):** Usuário
+*   **Descrição:** Permite que o usuário visualize a lista de projetos, com paginação.
+*   **Pré-Condições:** Nenhuma.
+*   **Pós-Condições:** O usuário visualiza a lista de projetos.
+*   **Cenário Principal:**
+    1.  [IN] O usuário clica na opção "Projetos" no menu.
+    2.  [OUT] O sistema exibe a lista de projetos, com paginação.
+    3.  [IN] O usuário navega pelas páginas de projetos (opcional).
+* **Cenário Alternativo:**
+    1.  [IN] O usuário clica na opção "Projetos" no menu.
+    2.  [OUT] O sistema exibe a lista de projetos, com paginação.
+    3.  [IN] O usuário clica em um projeto específico.
+    4.  [OUT] O sistema redireciona para a pagina do projeto
+
+### UC05: Visualizar Página de Projeto
+
+*   **Ator(es):** Usuário
+*   **Descrição:** Permite que o usuário visualize os detalhes de um projeto específico.
+*   **Pré-Condições:** O projeto deve existir e não estar oculto.
+*   **Pós-Condições:** O usuário visualiza os detalhes do projeto.
+*   **Cenário Principal:**
+    1.  [IN] O usuário clica em um projeto na lista de projetos ou acessa a URL do projeto diretamente.
+    2.  [OUT] O sistema exibe a página do projeto, com título, capa, resumo e conteúdo completo.
+
+### UC06: Visualizar Revista (Posts)
+
+*   **Ator(es):** Usuário
+*   **Descrição:** Permite que o usuário visualize a lista de posts da revista, com paginação.
+*   **Pré-Condições:** Nenhuma.
+*   **Pós-Condições:** O usuário visualiza a lista de posts.
+*   **Cenário Principal:**
+    1.  [IN] O usuário clica na opção "Revista" no menu.
+    2.  [OUT] O sistema exibe a lista de posts da revista, com paginação.
+    3.  [IN] O usuário navega pelas páginas de posts (opcional).
+*  **Cenário Alternativo:**
+    1.  [IN] O usuário clica na opção "Revista" no menu.
+    2.  [OUT] O sistema exibe a lista de posts da revista, com paginação.
+    3.  [IN] O usuário clica em um post específico.
+    4.  [OUT] O sistema redireciona para a pagina do post.
+
+### UC07: Visualizar Página de Post (Revista)
+
+*   **Ator(es):** Usuário
+*   **Descrição:** Permite que o usuário visualize os detalhes de um post específico da revista.
+*   **Pré-Condições:** O post deve existir e não estar oculto.
+*   **Pós-Condições:** O usuário visualiza os detalhes do post.
+*   **Cenário Principal:**
+    1.  [IN] O usuário clica em um post na lista de posts ou acessa a URL do post diretamente.
+    2.  [OUT] O sistema exibe a página do post, com título, edição, autor, capa, resumo e conteúdo completo.
+
+### UC08: Visualizar Página "Quem Somos"
+
+*   **Ator(es):** Usuário
+*   **Descrição:** Permite que o usuário visualize a página "Quem Somos", com informações sobre os membros da equipe.
+*   **Pré-Condições:** Nenhuma.
+*   **Pós-Condições:** O usuário visualiza a página "Quem Somos".
+*   **Cenário Principal:**
+    1.  [IN] O usuário clica na opção "Quem Somos" no menu.
+    2.  [OUT] O sistema exibe a página "Quem Somos", mostrando os membros da equipe, organizados por categoria.
+
+### UC10: Visualizar Home
+
+*   **Ator(es):** Usuário
+*   **Descrição:** Permite que o usuário visualize a página inicial do site.
+*   **Pré-Condições:** Nenhuma
+*   **Pós-Condições:**
+    *   O usuário visualiza o carrossel de imagens.
+    *   O usuário visualiza os últimos posts da revista.
+    *   O usuário visualiza outras informações/seções da página inicial.
+*   **Cenário Principal:**
+    1.  [IN] O usuário acessa a URL raiz do site.
+    2.  [OUT] O sistema exibe a página inicial.
+
+### UC11: Visualizar Página Institucional
+
+*    **Ator(es):** Usuário
+*   **Descrição:**  O usuário acessa a página "Institucional".
+*    **Pré-Condições:** Nenhuma.
+*    **Pós-Condições:** O usuário visualiza o conteúdo da página.
+*    **Cenário Principal:**
+    1.   [IN] O usuário clica no link "Institucional" no menu.
+    2.  [OUT] O sistema exibe a página "Institucional".
+
+## III. Casos de Uso de Administração (Acesso Restrito)
+
+### UC09: Gerenciar Conteúdo (Acesso Restrito)
+
+*   **Ator(es):** Administrador (Usuário Autenticado com Permissões)
+*   **Descrição:** Permite que um administrador gerencie o conteúdo do site (Home, Projetos, Revista, Quem Somos). Este é um caso de uso "guarda-chuva" para várias operações de CRUD.
+*   **Pré-Condições:** O usuário deve estar logado como administrador.
+*   **Pós-Condições:** O conteúdo do site é gerenciado (criado, editado, excluído).
+*   **Cenário Principal:**
+    1.  [IN] O usuário administrador faz login no sistema.
+    2.  [IN] O usuário administrador acessa a área de gerenciamento de conteúdo.
+    3.  [OUT] O sistema exibe as opções de gerenciamento (Home, Projetos, Revista, Quem Somos).
+    4.  [IN] O usuário administrador escolhe uma opção de gerenciamento.
+    5.  [OUT] O sistema exibe as opções de CRUD (Criar, Ler, Atualizar, Excluir) para a área selecionada.
+    6.  O administrador executa uma das operações de CRUD.
+*   **Sub-Casos de Uso (dentro de UC09):**
+    *   **UC09.1:** Gerenciar Itens do Carrossel (Criar, Editar, Excluir)
+    *   **UC09.2:** Gerenciar Coleções de Imagens (Criar, Adicionar Imagens, Listar Links)
+    *   **UC09.3:** Gerenciar Projetos (Criar, Editar, Excluir)
+    *   **UC09.4:** Gerenciar Posts da Revista (Criar, Editar, Excluir)
+    *   **UC09.5:** Gerenciar Edições da Revista (Criar, Editar, Excluir)
+    *   **UC09.6:** Gerenciar Membros (Criar, Editar, Excluir)
+    *   **UC09.7:** Gerenciar Categorias de Membros (Criar, Editar, Excluir)
+
+    *Observação:* Cada um desses sub-casos de uso teria seus próprios cenários, pré-condições, pós-condições, etc., detalhados como os casos de uso anteriores. Por brevidade, eles foram listados aqui apenas como títulos. O detalhamento completo seguiria o mesmo padrão dos casos de uso anteriores.
+
+## IV. Casos de Uso do Sistema
+
+### UC12: Realizar Backup
+
+*   **Ator(es):** Sistema (Agendado) / Administrador (Indireto)
+*   **Descrição:** O sistema realiza backups do banco de dados e dos arquivos de mídia.
+*   **Pré-Condições:**
+    *   O agendamento (cronjob) deve estar configurado.
+    *   As credenciais de acesso ao Dropbox (ou outro serviço de armazenamento) devem estar configuradas corretamente.
+*   **Pós-Condições:**
+    *   Um backup do banco de dados é criado.
+    *   Um backup dos arquivos de mídia é criado.
+    *   Os backups são armazenados no local configurado (ex: Dropbox).
+*   **Cenário Principal (Agendado):**
+    1.  [IN] O agendador de tarefas (cron) inicia a execução no horário programado.
+    2.  [OUT] O sistema executa o comando `dbbackup`.
+    3.  [OUT] O sistema executa o comando `mediabackup`.
+    4.  [OUT] O sistema armazena os backups gerados.
 
 
 # Diagrama De Classes
@@ -1581,22 +1986,105 @@ else:
 	* Adicionada mensagem mais amigável quando o superusuário já existe.
 
 
-# **Fluxo de Requisição (Exemplo)**
+# **Diagrama de Implantação (Deployment):**
 
-21.  **Usuário acessa `/projetos/projeto-exemplo/`**:
-22.  **Nginx**: O Nginx recebe a requisição na porta 80.
-23.  **Nginx (Proxy Reverso)**:  A regra `location /` no `default.conf` do Nginx direciona a requisição para o Gunicorn (`proxy_pass http://app`).
-24.  **Gunicorn**: O Gunicorn recebe a requisição e a passa para a aplicação Django.
-25.   **Django (URLs)**:  O Django processa a URL.  As URLs globais (`DisplayLab/urls.py`) incluem as URLs do app `projetos` (`path("", include('projetos.urls'))`).
-26.  **Django (URLs - `projetos/urls.py`)**: A URL corresponde à regra `path("projetos/<slug:url>/", views.paginaDeProjeto.as_view(), name="paginaDeProjeto")`.  O valor `projeto-exemplo` é capturado como `url`.
-27.  **Django (View - `projetos/views.py`)**: A view `paginaDeProjeto` é chamada.  O valor `projeto-exemplo` é passado como um argumento (`kwargs["url"]`).
-28.   **View (`paginaDeProjeto`)**:
+```mermaid
+graph LR
+    subgraph Servidor
+      subgraph Docker Compose
+        A[Nginx]
+        B[Gunicorn/DisplayLab]
+        C[PostgreSQL]
+        D[Redis]
+        E[Cronjobs]
+
+        A -- Proxy Reverso --> B
+        B -- Aplicação --> C
+        B -- Aplicação --> D
+        E -- Backup --> C
+      end
+    end
+      subgraph Volumes Docker
+        pgdbData[(Postgres Data)]
+        static[(Static Files)]
+        redisData[(Redis Data)]
+      end
+    B --> static
+    C --> pgdbData
+    D --> redisData
+
+    style A fill:#ccf,stroke:#333,stroke-width:2px
+    style B fill:#fcf,stroke:#333,stroke-width:2px
+    style C fill:#cff,stroke:#333,stroke-width:2px
+    style D fill:#ffc,stroke:#333,stroke-width:2px
+    style E fill:#ccf,stroke:#333,stroke-width:2px
+```
+
+
+# **Fluxo de Requisição**
+
+6.  **Requisição do Usuário:** Um usuário faz uma requisição para uma página do site (ex: `https://displaylab.ifnmg.edu.br/projetos/`).
+7.  **Nginx:** O Nginx recebe a requisição.
+    *   Se a requisição for para um arquivo estático (ex: CSS, JavaScript, imagem), o Nginx serve o arquivo diretamente a partir do sistema de arquivos.
+    *   Se a requisição for para uma URL dinâmica (ex: `/projetos/`), o Nginx encaminha a requisição para o Gunicorn.
+8.  **Gunicorn:** O Gunicorn recebe a requisição e a passa para a aplicação Django.
+9.  **Django:**
+    *   O sistema de roteamento de URLs do Django (definido em `urls.py`) mapeia a URL para uma view.
+    *   A view processa a requisição.  Isso pode envolver:
+        *   Consultar o banco de dados (PostgreSQL) para obter dados (ex: lista de projetos).
+        *   Verificar se a requisição está no cache (Redis). Se sim, retorna os dados do cache.
+        *   Se não estiver no cache, renderizar um template HTML, combinando os dados com o template.
+        *   Salvar os dados renderizados no cache.
+        *   Retornar a resposta HTML.
+10.  **Gunicorn -> Nginx -> Usuário:** O Gunicorn envia a resposta de volta para o Nginx, que a envia para o navegador do usuário.
+
+## **Exemplo de Fluxo de Requisição**
+
+11.  **Usuário acessa `/projetos/projeto-exemplo/`**:
+12.  **Nginx**: O Nginx recebe a requisição na porta 80.
+13.  **Nginx (Proxy Reverso)**:  A regra `location /` no `default.conf` do Nginx direciona a requisição para o Gunicorn (`proxy_pass http://app`).
+14.  **Gunicorn**: O Gunicorn recebe a requisição e a passa para a aplicação Django.
+15.   **Django (URLs)**:  O Django processa a URL.  As URLs globais (`DisplayLab/urls.py`) incluem as URLs do app `projetos` (`path("", include('projetos.urls'))`).
+16.  **Django (URLs - `projetos/urls.py`)**: A URL corresponde à regra `path("projetos/<slug:url>/", views.paginaDeProjeto.as_view(), name="paginaDeProjeto")`.  O valor `projeto-exemplo` é capturado como `url`.
+17.  **Django (View - `projetos/views.py`)**: A view `paginaDeProjeto` é chamada.  O valor `projeto-exemplo` é passado como um argumento (`kwargs["url"]`).
+18.   **View (`paginaDeProjeto`)**:
     *   Obtém o projeto do banco de dados: `Projeto.objects.filter(url="projeto-exemplo", oculto=False)`.
     *   Cria um contexto com o projeto.
     *   Renderiza o template `projetos/templates/paginaDeProjeto.html`, passando o contexto.
-29.   **Template (`paginaDeProjeto.html`)**:
+19.   **Template (`paginaDeProjeto.html`)**:
     *   Estende o template base (`index.html`).
     *   Sobrescreve o bloco `{% block content %}`.
     *   Exibe os dados do projeto (título, resumo, conteúdo da página).  Usa o filtro `safe` para renderizar o HTML do conteúdo: `{{ projeto.first.pagina | safe }}`.
-30. **Resposta**: O Gunicorn envia a resposta (o HTML renderizado) de volta para o Nginx.
-31. **Nginx (Resposta)**: O Nginx envia a resposta para o navegador do usuário.
+20. **Resposta**: O Gunicorn envia a resposta (o HTML renderizado) de volta para o Nginx.
+21. **Nginx (Resposta)**: O Nginx envia a resposta para o navegador do usuário.
+
+## **Diagrama de Fluxo de Dados (Simplificado):**
+
+   ```mermaid
+   sequenceDiagram
+    participant User
+    participant Nginx
+    participant Gunicorn
+    participant DjangoApp
+    participant PostgreSQL
+    participant Redis
+
+    User->>Nginx: Solicita página
+    alt Requisição de arquivo estático
+        Nginx-->>User: Retorna arquivo estático
+    else Requisição dinâmica
+        Nginx->>Gunicorn: Encaminha requisição
+        Gunicorn->>DjangoApp: Passa requisição
+        DjangoApp->>Redis: Verifica cache
+        alt Cache Hit
+            Redis-->>DjangoApp: Retorna dados do cache
+        else Cache Miss
+            DjangoApp->>PostgreSQL: Consulta dados
+            PostgreSQL-->>DjangoApp: Retorna dados
+            DjangoApp->>Redis: Salva dados no cache
+        end
+        DjangoApp-->>Gunicorn: Retorna resposta HTML
+        Gunicorn-->>Nginx: Encaminha resposta
+        Nginx-->>User: Retorna página
+    end
+   ```
