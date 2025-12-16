@@ -34,18 +34,18 @@ services:
     env_file:
       - app/.env
 
-  cronjobs:
+  cron_worker:
     build: .
-    entrypoint: ["/bin/sh", "scripts/cronjobs.sh"]
-    command: crond -f
+    user: root
+    env_file:
+      - app/.env  
+    entrypoint: ["/bin/sh", "/DisplayLab/scripts/cronjobs.sh"]
+    command: ["crond", "-f", "-l", "2"]
     volumes:
       - .:/DisplayLab
-      - static:/static
     depends_on:
       - pgdb
-      - redis
-    env_file:
-      - app/.env
+    restart: always
   
   redis:
     image: redis:7.2.4-alpine

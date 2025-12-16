@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'tinymce',
     'contentManagement',
     'managementLoginSystem',
+    'coletar_noticias',
 ]
 
 MIDDLEWARE = [
@@ -186,7 +187,8 @@ DBBACKUP_STORAGE_OPTIONS = {
 }
 
 CRONJOBS = [
-    ('30 2 * * *', 'DisplayLab.cron.backup')
+    ('30 2 * * *', 'DisplayLab.cron.backup'),
+    ('0 0 * * *', 'DisplayLab.cron.wrapper_coletar_noticias'),
 ]
 
 # Show SQL commands in terminal

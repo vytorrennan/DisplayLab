@@ -1,0 +1,17 @@
+#navSobre {
+    color: black;
+}
+
+.card {
+    border: 0px;
+}
+
+.card img {
+    width: 15vw;
+    border-radius: 50%;
+}
+
+.saiba-mais {
+    background-color: #998700;
+    padding: 5px 20px;
+}
