@@ -1,0 +1,30 @@
+#navSobre {
+    color: black;
+}
+
+.categoria {
+    color: #006674;
+    font-size: 140%;
+}
+
+.categoriaDiv {
+    margin: 0px 6%;
+}
+
+.card {
+    border: 2px solid #9EDAEE;
+    background-color: #8BE3FF47;
+    color: #011B1F;
+    max-width: 300px;
+}
+
+.card img {
+    width: 15vw;
+    border-radius: 50%;
+    max-width: 100%;
+}
+
+.saiba-mais {
+    color: #006674;
+}
+

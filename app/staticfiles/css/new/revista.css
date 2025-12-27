@@ -1,0 +1,71 @@
+#edicao {
+  max-width: 220px;
+  color: #006674;
+  border: 2px solid #00879A;
+  border-radius: 12px;
+  padding: 1% 2% 1% 2%;
+  background-color: #C8E5E9;
+}
+
+#edicao>select {
+  background-color: #C8E5E9;
+  border: 0px;
+  color: #006674;
+}
+
+#content-posts {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#posts {
+  width: 75%;
+}
+
+.card-text {
+  font-size: 0.8rem;
+}
+
+p {
+  margin-bottom: calc(1rem * .6);
+}
+
+#side-bar {
+  width: 25%;
+  border-left: solid 2px;
+  border-color: #9AED8A;
+  height: fit-content;
+  padding: 1%;
+}
+
+.side-bar-text {
+  font-size: 0.8rem;
+}
+
+.line-posts {
+  margin: 30px 0px;
+  border-top: 3px solid #9EDAEE;
+  width: 95%;
+}
+
+.line-side-bar {
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-top: 2px solid #01282D;
+  width: 85%;
+}
+
+
+@media(max-width: 1200px) {
+  #posts {
+    width: 100%;
+  }
+
+  #side-bar {
+    width: 100%;
+    border: 0px;
+  }
+}

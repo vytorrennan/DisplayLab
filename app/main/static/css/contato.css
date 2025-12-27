@@ -1,0 +1,53 @@
+.contato-footer {
+    background-color: #9EDAEE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    padding: 74px;
+}
+
+.contato-info {
+   width: 42.2rem;
+   text-align: justify;
+}
+
+.contato-footer strong{
+    background-color: #00879A;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    border-radius: 40px;
+    padding: 13px 20px;
+}
+
+.contato-footer h2 {
+    color: var(--magazine-title-color);
+    font-size: 2.25rem;
+    font-weight: bold;
+}
+
+.contato-footer p {
+    color: #0A4047;
+    font-size: 1.5rem;
+    margin-top: 12px;
+}
+
+.contato-footer img {
+    height: 55px;
+    width: 55px;
+    background-color: #006977;
+}
+
+.redes-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.redes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
