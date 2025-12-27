@@ -1,0 +1,37 @@
+.content-parceiros {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+#parceiroscontent {
+    display: flex;
+    width: 100%;
+    border: 1px solid #003153;
+    border-radius: 25px;
+    padding:50px 100px;
+    align-items: center; 
+    font-family: 'Sora', sans-serif;
+} 
+
+.partner-info {
+    width: 54rem;
+}
+
+#parceiroscontent img {
+    width: 259px;
+    height: 156px;
+    margin-right: 4.56rem;
+}
+
+.partner-title {
+    font-size: 1.3rem;
+    color: #003153;
+}
+
+.partner-text {
+    font-size: 0.8rem; 
+    color: #003153;
+    text-align: justify;
+}
+    

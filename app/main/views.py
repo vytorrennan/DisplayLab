@@ -26,3 +26,7 @@ class sobre(View):
         categorias = models.membroCategoria.objects.filter(oculto=False)
         context = {"membros": membros, "categorias": categorias}
         return render(request, "sobre.html", context)
+    
+class parceiros(View):
+    def get(self, request):
+        return render(request, "parceiros.html")
