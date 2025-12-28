@@ -22,6 +22,11 @@
     gap: 2.5vw;
 }
 
+.nav-item{
+   color: #ffffff;
+}
+
+
 @media (max-width: 991.98px) {
     .navbar-nav {
         gap: 0px !important;
