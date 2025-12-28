@@ -1,0 +1,75 @@
+.alumniSection {
+    font-family: 'Sora', sans-serif;
+    margin-bottom: 16.6rem;
+}
+
+.alumniTitle {
+    font-size: 2rem;
+    color: var(--cast-btn-color);
+    margin-bottom: 50px;
+}
+
+/* CONTAINER DOS CARDS */
+.alumniContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px 40px;
+    align-items: center;
+    padding-left: 76px;
+}
+
+/* CARD */
+.alumniCard {
+    width: 320px;
+    background-color: var(--games-background);
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 32px 24px;
+    box-sizing: border-box;
+}
+
+/* IMAGEM */
+.alumniImageWrapper {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #006977;
+    margin-bottom: 24px;
+}
+
+.alumniImageWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TEXTOS */
+.alumniText {
+    font-size: 1.3rem;
+    color: #011B1F;
+    margin: 6px 0;
+    text-align: center;
+}
+
+/* LINKS */
+.alumniLinks {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.alumniLink {
+    font-size: 1.2rem;
+    color: var(--cast-btn-color);
+    text-decoration: none;
+}
+
+.alumniLink:hover {
+    text-decoration: underline;
+}

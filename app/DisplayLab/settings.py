@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'main',
     'projetos',
     'revista',
+    'alumni',
     'tinymce',
     'contentManagement',
     'managementLoginSystem',

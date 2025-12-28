@@ -26,4 +26,5 @@ urlpatterns = [
     path("tinymce/", include('tinymce.urls')),
     path("contentManagement/", include('contentManagement.urls')),
     path("", include('managementLoginSystem.urls')),
+    path('alumni/', include('alumni.urls')),
 ]
