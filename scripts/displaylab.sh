@@ -3,7 +3,7 @@
 scripts/wait-for-it.sh pgdb:5432 -t 30
 cd app
 python manage.py migrate --no-input
-#python manage.py collectstatic --no-input
+python manage.py collectstatic --no-input
 #python manage.py coletar_noticias
 python createSuperUser.py
 # PARA PRODUÇÃO:
