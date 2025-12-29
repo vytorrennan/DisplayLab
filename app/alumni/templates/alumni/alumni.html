@@ -15,61 +15,20 @@
     <div class="alumniSection">
         <h2 class="alumniTitle">ACADÊMICOS</h2>
         <div class="alumniContainer">
-            <div class="alumniCard">
-                <div class="alumniImageWrapper">
-                    <img src="https://image.tmdb.org/t/p/original/h0OFD47ep6DRCX9c6v8XFsOCnS9.jpg" alt="Foto do Alumni">
+            {% for aluno in alunos %}
+                <div class="alumniCard">
+                    <div class="alumniImageWrapper">
+                        <img src="{{ aluno.foto.url }}" alt="{{ aluno.nome }}">
+                    </div>
+                    <p class="alumniText">{{ aluno.nome }}</p>
+                    <p class="alumniText">{{ aluno.descricao }}</p>
+                    <div class="alumniLinks">
+                        <a class="alumniLink" href="{{ aluno.curriculo_lattes }}">Currículo Lattes</a>
+                        <a class="alumniLink" href="{{ aluno.linkedin }}">LinkedIn</a>
+                    </div>
                 </div>
-                <p class="alumniText">Nome</p>
-                <p class="alumniText">Descrição</p>
-                <div class="alumniLinks">
-                    <a class="alumniLink" href="">Currículo Lattes</a>
-                    <a class="alumniLink" href="">LinkedIn</a>
-                </div>
-            </div>
-                        <div class="alumniCard">
-                <div class="alumniImageWrapper">
-                    <img src="https://image.tmdb.org/t/p/original/h0OFD47ep6DRCX9c6v8XFsOCnS9.jpg" alt="Foto do Alumni">
-                </div>
-                <p class="alumniText">Nome</p>
-                <p class="alumniText">Descrição</p>
-                <div class="alumniLinks">
-                    <a class="alumniLink" href="">Currículo Lattes</a>
-                    <a class="alumniLink" href="">LinkedIn</a>
-                </div>
-            </div>
-                        <div class="alumniCard">
-                <div class="alumniImageWrapper">
-                    <img src="https://image.tmdb.org/t/p/original/h0OFD47ep6DRCX9c6v8XFsOCnS9.jpg" alt="Foto do Alumni">
-                </div>
-                <p class="alumniText">Nome</p>
-                <p class="alumniText">Descrição</p>
-                <div class="alumniLinks">
-                    <a class="alumniLink" href="">Currículo Lattes</a>
-                    <a class="alumniLink" href="">LinkedIn</a>
-                </div>
-            </div>
-                        <div class="alumniCard">
-                <div class="alumniImageWrapper">
-                    <img src="https://image.tmdb.org/t/p/original/h0OFD47ep6DRCX9c6v8XFsOCnS9.jpg" alt="Foto do Alumni">
-                </div>
-                <p class="alumniText">Nome</p>
-                <p class="alumniText">Descrição</p>
-                <div class="alumniLinks">
-                    <a class="alumniLink" href="">Currículo Lattes</a>
-                    <a class="alumniLink" href="">LinkedIn</a>
-                </div>
-            </div>
-                        <div class="alumniCard">
-                <div class="alumniImageWrapper">
-                    <img src="https://image.tmdb.org/t/p/original/h0OFD47ep6DRCX9c6v8XFsOCnS9.jpg" alt="Foto do Alumni">
-                </div>
-                <p class="alumniText">Nome</p>
-                <p class="alumniText">Descrição</p>
-                <div class="alumniLinks">
-                    <a class="alumniLink" href="">Currículo Lattes</a>
-                    <a class="alumniLink" href="">LinkedIn</a>
-                </div>
-            </div>
+            {% endfor %}
+
         </div>
     </div>
 </main>
