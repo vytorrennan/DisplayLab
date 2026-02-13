@@ -13,7 +13,20 @@
     right: 7vw;
 }
 
+.nav-link {
+    color: #00a0dd;
+}
+
+.navbar-nav {
+    font-size: 1.4vw;
+    gap: 2.5vw;
+}
+
 @media (max-width: 991.98px) {
+    .navbar-nav {
+        gap: 0px !important;
+        font-size: 3.5vw;
+    }
 
     #ifnmg-display {
         justify-content: end !important;
@@ -30,6 +43,12 @@
         flex-direction: row !important;
     }
 
+    nav {
+        display: flex;
+        flex-direction: row-reverse !important;
+        align-items: start;
+        justify-content: space-between;
+    }
 }
 
 @media (max-width: 600px) {
