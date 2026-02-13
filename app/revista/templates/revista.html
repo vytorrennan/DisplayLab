@@ -74,27 +74,40 @@
       <div id="posts">
 
         {% for post in page_obj %}
-        <div class="card border-0">
+        <div class="card">
           <div class="row g-0">
             <div class="col-md-4" style="max-height: 256px;">
               <a href="/revista/{{ post.url }}" class="text-decoration-none text-black"><img src="{{ post.capa }}" class="object-fit-cover rounded-start" alt="Capa do post {{ post.titulo }}"
                 width="100%" height="100%"></a>
+                <span class="revista-edicao badge bg-info-subtle text-info-emphasis">Edição {{ post.edicao }}</span>
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <a href="/revista/{{ post.url }}" class="text-decoration-none text-black"><h5 class="card-title">{{ post.titulo }}</h5></a>
-                <p class="card-text"><small class="text-body-secondary">Por {{ post.autor }} <br /> {{ post.dataHora }} <br /> Edição {{ post.edicao }}</small>
+                
+                <p class="card-text mb-2">
+                  <small class="text-muted d-flex align-items-center">
+                    <i class="fas fa-user me-1"></i> {{ post.autor }}
+                    <span class="mx-2">•</span>
+                    <i class="fas fa-calendar-days me-1"></i> {{ post.dataHora }}
+                  </small>
                 </p>
-                <p class="card-text">{{ post.resumo }}</p>
+                
+                <a href="/revista/{{ post.url }}" class="text-decoration-none text-dark">
+                  <h5 class="card-title d-flex align-items-center">
+                    {{ post.titulo }}
+                  </h5>
+                </a>
+
+                <p class="card-text text-secondary">
+                  {{ post.resumo }}
+                </p>
               </div>
             </div>
+
           </div>
         </div>
 
-
-        <hr class="line-posts">
         {% endfor %}
-
 
         <div class="d-flex justify-content-between w-100 mb-4">
         <div>
@@ -107,9 +120,9 @@
         <div>
             {% for page in rangePages %}
                 {% if page == page_obj.number%}
-                    <a href="?page={{ page }}" class="text-decoration-none text-white bg-primary p-1">{{ page }}</a>
+                    <a href="?page={{ page }}" class="text-decoration-none rounded text-white bg-primary p-2">{{ page }}</a>
                 {% else %}
-                    <a href="?page={{ page }}" class="text-decoration-none text-dark p-1">{{ page }}</a>
+                    <a href="?page={{ page }}" class="text-decoration-none rounded text-dark p-2">{{ page }}</a>
                 {% endif %}
             {% endfor %}    
         </div>
@@ -120,42 +133,6 @@
                 <a href="?page={{ page_obj.paginator.num_pages }}" class="text-decoration-none text-primary">last &raquo;</a>
             {% endif %}
         </div>
-    </div>
-
-
-      </div>
-      <div id="side-bar">
-        <div>
-          <p class="">Display Cast</p>
-          <div class="d-flex mb-1">
-            <img src="{% static 'imgs/revista/new/displayCastCapa.png' %}" alt="Capa do display cast"
-              class="object-fit-cover rounded m-1 me-2" style="max-width: 50px;">
-            <p class="side-bar-text">Display Cast #2 Em breve</p>
-          </div>
-          <div class="d-flex mb-1">
-            <img src="{% static 'imgs/revista/new/displayCastCapa.png' %}" alt="Capa do display cast"
-              class="object-fit-cover rounded m-1 me-2" style="max-width: 50px;">
-            <p class="side-bar-text">Display Cast #1 Em breve</p>
-          </div>
-        </div>
-
-        <hr class="line-side-bar">
-
-        <div>
-          <p class="">Revista</p>
-
-          {% for post in ultimosPosts %}
-          <a href="/revista/{{ post.url }}" class="text-decoration-none text-black">
-          <div class="d-flex mb-1">
-            <img src="{{ post.capa }}" alt="Capa do display cast"
-              class="object-fit-cover rounded m-1 me-2" style="max-width: 50px;">
-            <p class="side-bar-text">{{ post.titulo|truncatechars:50 }}</p>
-          </div>
-          </a>
-          {% endfor %}
-        </div>
-
-        <hr class="line-side-bar">
       </div>
     </article>
   </main>

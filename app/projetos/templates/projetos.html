@@ -66,8 +66,8 @@
       <h1 id="title">PROJETOS</h1>
     </div>
 
-    <article id="content">
-      <div id="projects">
+    <article id="content mb-5">
+      <div id="projects my-5">
 
       {% for p in page_obj %}
         <div class="card border-0">
@@ -84,70 +84,62 @@
             </div>
           </div>
         </div>
-
-        <hr class="line-projects">
         {% endfor %}
 
         <div class="d-flex justify-content-between w-100 mb-4">
-        <div>
-            {% if page_obj.has_previous %}
-                <a href="?page=1" class="text-decoration-none text-primary">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}" class="text-decoration-none text-primary">previous</a>
-            {% endif %}
-        </div>
+          <div>
+              {% if page_obj.has_previous %}
+                  <a href="?page=1" class="text-decoration-none text-primary">&laquo; first</a>
+                  <a href="?page={{ page_obj.previous_page_number }}" class="text-decoration-none text-primary">previous</a>
+              {% endif %}
+          </div>
 
-        <div>
-            {% for page in rangePages %}
-                {% if page == page_obj.number%}
-                    <a href="?page={{ page }}" class="text-decoration-none text-white bg-primary p-1">{{ page }}</a>
-                {% else %}
-                    <a href="?page={{ page }}" class="text-decoration-none text-dark p-1">{{ page }}</a>
-                {% endif %}
-            {% endfor %}    
-        </div>
+          <div>
+              {% for page in rangePages %}
+                  {% if page == page_obj.number%}
+                      <a href="?page={{ page }}" class="text-decoration-none text-white bg-primary p-1">{{ page }}</a>
+                  {% else %}
+                      <a href="?page={{ page }}" class="text-decoration-none text-dark p-1">{{ page }}</a>
+                  {% endif %}
+              {% endfor %}    
+          </div>
 
-        <div>
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}" class="text-decoration-none text-primary">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}" class="text-decoration-none text-primary">last &raquo;</a>
-            {% endif %}
+          <div>
+              {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}" class="text-decoration-none text-primary">next</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}" class="text-decoration-none text-primary">last &raquo;</a>
+              {% endif %}
+          </div>
         </div>
-    </div>
-
       </div>
-      <div id="side-bar">
-        <div>
-          <p class="">Display Cast</p>
-          <div class="d-flex mb-1">
-            <img src="{% static 'imgs/projetos/new/displayCastCapa.png' %}" alt="Capa do display cast"
-              class="object-fit-cover rounded m-1 me-2" style="max-width: 50px;">
-            <p class="side-bar-text">Display Cast #2 Em breve</p>
-          </div>
-          <div class="d-flex mb-1">
-            <img src="{% static 'imgs/projetos/new/displayCastCapa.png' %}" alt="Capa do display cast"
-              class="object-fit-cover rounded m-1 me-2" style="max-width: 50px;">
-            <p class="side-bar-text">Display Cast #1 Em breve</p>
-          </div>
-        </div>
+      
+      <aside id="side-bar">
+        <!-- Seção Display Cast -->
+        <section class="sidebar-section">
+            <h3 class="sidebar-title">Display Cast</h3>
+            
+            <div class="card-item">
+                <img src="{% static 'imgs/projetos/new/displayCastCapa.png' %}" alt="Capa" class="item-img small">
+                <p class="item-text">Display Cast #1</p>
+            </div>
+        </section>
 
-        <hr class="line-side-bar">
+        <hr class="sidebar-divider">
 
-        <div>
-          <p class="">Revista</p>
-
+        <!-- Seção Revista -->
+        <section class="sidebar-section">
+          <h3 class="sidebar-title">Revista</h3>
           {% for post in ultimosPosts %}
-          <a href="/revista/{{ post.url }}" class="text-decoration-none text-black">
-          <div class="d-flex mb-1">
-            <img src="{{ post.capa }}" alt="Capa do display cast"
-              class="object-fit-cover rounded m-1 me-2" style="max-width: 50px;">
-            <p class="side-bar-text">{{ post.titulo|truncatechars:50 }}</p>
-          </div>
-          </a>
+            <a href="/revista/{{ post.url }}" class="card-item-link">
+                <div class="card-item">
+                    <img src="{{ post.capa }}" alt="Capa" class="item-img small">
+                    <p class="item-text">{{ post.titulo|truncatechars:45 }}</p>
+                </div>
+            </a>
           {% endfor %}
-        </div>
+        </section>
+    </aside>
 
-        <hr class="line-side-bar">
-      </div>
     </article>
   </main>
 

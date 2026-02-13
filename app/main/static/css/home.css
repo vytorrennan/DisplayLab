@@ -26,3 +26,14 @@
 #ultimosPosts a {
     overflow: hidden;
 }
+
+/* Carousel das notícias (screpping) */
+:root {
+    --primary-color: #0047ba;
+    --secondary-color: #002d72;
+    --game-color: #e91e63;
+    --science-color: #009688;
+    --text-main: #1a1a1b;
+    --text-muted: #5f6368;
+    --bg-light: #f1f3f4;
+}

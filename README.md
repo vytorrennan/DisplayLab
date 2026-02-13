@@ -19,25 +19,27 @@ Website oficial do laboratório Display do Instituto Federal do Norte de Minas G
 ### Variaveis de ambiente
 - Crie um arquivo chamado .env dentro da pasta app e cole la o seguinte com os dados preenchidos:
 ```
-POSTGRES_DB=
-POSTGRES_USER=
-POSTGRES_PASSWORD=
+```
+POSTGRES_DB=displaylab
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=your_secure_password
 
-REDIS_PASSWORD=
+REDIS_PASSWORD=your_redis_password
 
-SECRET_KEY=
-DEBUG=
-ADMIN_URL=
-LOGIN_URL=
+SECRET_KEY=your_django_secret_key
+DEBUG=False
+ADMIN_URL=/admin/
+LOGIN_URL=/login/
 
-DROPBOX_ACCESS_TOKEN_FOR_BACKUP=
-DROPBOX_REFRESH_TOKEN_FOR_BACKUP=
-DROPBOX_APP_KEY=
-DROPBOX_APP_SECRET=
+DROPBOX_ACCESS_TOKEN_FOR_BACKUP=your_dropbox_access_token
+DROPBOX_REFRESH_TOKEN_FOR_BACKUP=your_dropbox_refresh_token
+DROPBOX_APP_KEY=your_dropbox_app_key
+DROPBOX_APP_SECRET=your_dropbox_app_secret
 
-DJANGO_SUPERUSER_USERNAME=
-DJANGO_SUPERUSER_EMAIL=
-DJANGO_SUPERUSER_PASSWORD=
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=admin@displaylab.com
+DJANGO_SUPERUSER_PASSWORD=your_secure_admin_password
+```
 ```
 
 ### Execute o projeto
