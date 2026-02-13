@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  pgdb:
+    image: postgres:16.1
+    env_file:
+      - app/.env
+    volumes:
+      - pgdbData:/var/lib/postgresql/data
+
+  displaylab:
+    build: .
+    expose:
+      - "8000"
+    # Create Super User
+    #command: /bin/sh -c "scripts/wait-for-it.sh pgdb:5432 -t 30 && python app/manage.py migrate && python app/createSuperUser.py"
+
+    # Make backup
+    #command: /bin/sh -c "scripts/wait-for-it.sh pgdb:5432 -t 30 && python app/manage.py dbbackup && python app/manage.py mediabackup"
+
+    # Restore backup
+    #command: /bin/sh -c "scripts/wait-for-it.sh pgdb:5432 -t 30 && python app/manage.py migrate && python app/manage.py dbrestore --noinput && python app/manage.py mediarestore --noinput"
+    
+    # Run server
+    entrypoint: ["/bin/bash", "scripts/displaylab.sh"]
+    volumes:
+      - .:/DisplayLab
+      - static:/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - pgdb
+      - redis
+    env_file:
+      - app/.env
+
+  cronjobs:
+    build: .
+    entrypoint: ["/bin/sh", "scripts/cronjobs.sh"]
+    command: crond -f
+    volumes:
+      - .:/DisplayLab
+      - static:/static
+    depends_on:
+      - pgdb
+      - redis
+    env_file:
+      - app/.env
+  
+  redis:
+    image: redis:7.2.4-alpine
+    env_file:
+      - app/.env
+    command: /bin/sh -c 'redis-server --requirepass "$${REDIS_PASSWORD:?REDIS_PASSWORD variable is not set}"'
+    volumes:
+      - redisData:/data
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - .:/DisplayLab
+      - static:/static
+    ports:
+      - "8081:80"
+    depends_on:
+      - displaylab
+    
+volumes:
+  pgdbData:
+  static:
+  redisData:

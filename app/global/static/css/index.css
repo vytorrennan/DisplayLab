@@ -1,0 +1,55 @@
+#display-title {
+    color: #00879a;
+    font-size: 2vw;
+}
+
+#lab-title {
+    color: #00a0dd;
+    font-size: 0.9vw;
+}
+
+#redes-sociais {
+    top: 3vw;
+    right: 7vw;
+}
+
+@media (max-width: 991.98px) {
+
+    #ifnmg-display {
+        justify-content: end !important;
+        margin-right: 15px;
+    }
+
+    #display-name-lab {
+        width: 50%;
+    }
+
+    #redes-sociais {
+        top: 0px !important;
+        position: relative !important;
+        flex-direction: row !important;
+    }
+
+}
+
+@media (max-width: 600px) {
+    #ifnmg-image {
+        width: 60% !important;
+    }
+
+    #display-image {
+        width: 60%;
+    }
+
+    #redes-sociais {
+        right: 0px !important;
+    }
+    
+    #redes-sociais img {
+        width: 6vw;
+    }
+}
+
+footer {
+    background-color: #173f44;
+}

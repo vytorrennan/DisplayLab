@@ -1,0 +1,41 @@
+html, body{
+    margin: 0;
+}
+
+/*criando variáveis*/
+:root{
+    --color-header: #129DB0;
+    --background-color-item: #BFE7ED;
+    --text-color: #003153;
+
+    --news-background: #B7F293;
+    --news-text-color: #01282D;
+    --btn-news: #00879A;
+
+    --page-path-color: #05505A;
+    --title-color: #05505A;
+
+    --magazine-title-color: #05505A;
+
+    --games-background: #9EDAEE;
+    --games-font-color-title: #00879AB8;
+    --background-color-picture-game: #F0F9FC;
+
+    --cast-background-color: #BCEBFA;
+    --cast-color-bar:#9AED8A;
+    --cast-btn-color: #006674;
+
+    --footer-background-color: #003153;
+}
+
+* {
+    font-family: "Sora", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+}
