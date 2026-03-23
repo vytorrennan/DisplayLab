@@ -3,44 +3,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 60px;
-    padding: 74px;
+    gap: 40px;
+    padding: 60px 20px;
+    text-align: center;
+    font-family: 'Sora', sans-serif;
 }
 
 .contato-info {
-   width: 42.2rem;
-   text-align: justify;
-}
-
-.contato-footer strong{
-    background-color: #00879A;
-    color: #FFFFFF;
-    font-size: 1.2rem;
-    border-radius: 40px;
-    padding: 13px 20px;
+   width: 100%;
+   max-width: 650px;
+   text-align: center;
 }
 
 .contato-footer h2 {
     color: var(--magazine-title-color);
-    font-size: 2.25rem;
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
     font-weight: bold;
+    margin: 0;
 }
 
 .contato-footer p {
     color: #0A4047;
-    font-size: 1.5rem;
-    margin-top: 12px;
+    font-size: clamp(1rem, 4vw, 1.4rem);
+    margin: 0;
 }
 
-.contato-footer img {
-    height: 55px;
-    width: 55px;
-    background-color: #006977;
+.contato-footer strong {
+    background-color: #00879A;
+    color: #FFFFFF;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    border-radius: 40px;
+    padding: 13px 25px;
+    word-break: break-all;
 }
 
+/* --- REDES SOCIAIS --- */
 .redes-info {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     gap: 20px;
 }
@@ -49,5 +49,47 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.contato-footer img {
+    height: 45px;
+    width: 45px;
+    background-color: #006977;
+    border-radius: 50%;
+    padding: 8px;
+    transition: transform 0.3s ease;
+}
+
+.contato-footer img:hover {
+    transform: scale(1.1);
+}
+
+/* --- MEDIA QUERIES --- */
+
+@media screen and (min-width: 768px) {
+    .contato-footer {
+        gap: 60px;
+        padding: 74px;
+    }
+
+    .redes-info {
+        flex-direction: row;
+    }
+
+    .contato-info {
+        text-align: justify;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contato-footer {
+        gap: 30px;
+    }
+    
+    .redes {
+        gap: 10px;
+    }
 }

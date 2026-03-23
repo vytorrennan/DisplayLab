@@ -71,8 +71,8 @@
       <!--    </div>-->
       <!--</nav>-->
 
-      <header>
-      <!-- Main Navbar -->
+    <header>
+        <!-- Main Navbar -->
         <div class="navbar p-0">
             <!-- Logo -->
             <a href="{% url 'home' %}">
@@ -92,12 +92,12 @@
                             Projetos
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropProjetos">
-                          <li><a class="dropdown-item" href="{% url 'revista' %}">Revista</a></li>
-                          <li><a class="dropdown-item" href="#">Display Cast</a></li>
-                          <li><a class="dropdown-item" href="#">Jogos Digitais</a></li>
-                          <li><a class="dropdown-item" href="#">Projetos em Desenvolvimento</a></li>
-                          <li><a class="dropdown-item" href="{% url 'projetos' %}">Projetos Publicados</a></li>
-                          <li><a class="dropdown-item" href="#">Publicações Técnicas Científica</a></li>
+                            <li><a class="dropdown-item" href="{% url 'revista' %}">Revista</a></li>
+                            <li><a class="dropdown-item" href="#">Display Cast</a></li>
+                            <li><a class="dropdown-item" href="#">Jogos Digitais</a></li>
+                            <li><a class="dropdown-item" href="#">Projetos em Desenvolvimento</a></li>
+                            <li><a class="dropdown-item" href="{% url 'projetos' %}">Projetos Publicados</a></li>
+                            <li><a class="dropdown-item" href="#">Publicações Técnicas Científica</a></li>
                         </ul>
                     </li>
 
@@ -139,49 +139,48 @@
 
         <!-- MOBILE MENU (Collapse) -->
         <div class="collapse mobile-menu" id="mobileMenu">
-          <nav>
-              <ul class="mobile-nav-list">
-                  
-                  <li class="nav-item">
-                      <a href="{% url 'home' %}">Homem</a>
-                  </li>
+            <nav>
+                <ul class="mobile-nav-list">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
 
-                  <li class="nav-item dropdown">
-                      <a href="#" class="nav-link dropdown-toggle" id="mobDropProjetos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Projetos
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="mobDropProjetos">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="mobDropProjetos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Projetos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="mobDropProjetos">
                             <li><a class="dropdown-item" href="{% url 'revista' %}">Revista</a></li>
                             <li><a class="dropdown-item" href="#">Display Cast</a></li>
                             <li><a class="dropdown-item" href="#">Jogos Digitais</a></li>
                             <li><a class="dropdown-item" href="#">Projetos em Desenvolvimento</a></li>
                             <li><a class="dropdown-item" href="{% url 'projetos' %}">Projetos Publicados</a></li>
                             <li><a class="dropdown-item" href="#">Publicações Técnica Científica</a></li>
-                      </ul>
+                        </ul>
                   </li>
 
-                  <li class="nav-item dropdown">
-                      <a href="#" class="nav-link dropdown-toggle" id="mobDropRevista" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Institucional
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="mobDropRevista">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="mobDropRevista" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Institucional
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="mobDropRevista">
                             <li><a class="dropdown-item" href="#">Sobre o Display Lab</a></li>
                             <li><a class="dropdown-item" href="{% url 'parceiros' %}">Parceiros</a></li>
-                      </ul>
-                  </li>
+                        </ul>
+                    </li>
 
-                  <li class="nav-item dropdown">
-                      <a href="#" class="nav-link dropdown-toggle" id="mobDropSobre" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Sobre
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="mobDropSobre">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="mobDropSobre" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sobre
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="mobDropSobre">
                             <li><a class="dropdown-item" href="{% url 'sobre' %}">Quem somos</a></li>
                             <li><a class="dropdown-item" href="{% url 'alumni' %}">Alumni</a></li>
                             <li><a class="dropdown-item" href="#">Expediente</a></li>
-                      </ul>
-                  </li>
+                        </ul>
+                    </li>
 
-              </ul>
+                </ul>
           </nav>
         </div>
     </header>

@@ -5,19 +5,23 @@ header {
   background-color: var(--color-header);
   position: relative;
   z-index: 99999;
+  align-items: center;
 }
 
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 0 2rem !important;
 }
 
 /*estilizando a logo do display*/
 header img {
-  margin-top: calc(0.5rem * .6);
-  margin-bottom: calc(0.5rem * .6);
-  margin-left: calc(4.6rem * .6);
+  margin: 0; 
+  height: calc(6rem * .6);
+  width: auto;
 }
 
 /*estilizando a lista das páginas*/
@@ -51,10 +55,14 @@ header img {
 .header-btn {
   height: calc(4.3rem * .6);
   width: calc(4.3rem * .6);
-  margin-right: calc(8.8rem * .6);
   border: 2px solid white;
   border-radius: 50%;
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  cursor: pointer;
 }
 
 /*estilizando o conteúdo do botão*/
@@ -70,14 +78,16 @@ header img {
 
 /* mostra botão mobile */
 .mobile-btn {
-  display: block;
-  background-color: transparent;
+  display: flex;
+  align-items: center;
+  height: auto;
+  padding: 0;
   border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 10px;
-  margin-left: auto;
+  background: transparent;
+}
+
+.mobile-btn i {
+  font-size: 1.8rem;
 }
 
 /* Menu mobile */
@@ -116,14 +126,13 @@ header img {
   padding-left: 20px;            
 }
 
+
+
 #mobileMenu .dropdown-item {
   color: #ddd !important;
   white-space: normal;
 }
 
-/* =========================================
-   ESTILOS DESKTOP (Telas >= 1000px)
-   ========================================= */
 @media screen and (min-width: 1000px) {
   
   /* Ocultar botão mobile */
