@@ -64,9 +64,22 @@
   margin-bottom: calc(4.3rem * .6);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .cast-content {
     margin-top: calc(2.8rem * .6);
     margin-left: calc(3.6rem * .6);
+  }
+
+  .cast h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--title-color);
+    text-align: center;
+  }
+
+  .bars {
+    width: 100%;
+    height: calc(8.4rem * .8);
+    background-color: var(--cast-color-bar);
   }
 }

@@ -1,5 +1,5 @@
 from coletar_noticias.models import NoticiaExterna
-from .scraper import raspar_SBC, raspar_adrenaline, raspar_criticalhits
+from .scraper import raspar_SBC, raspar_criticalhits
 from django.utils import timezone
 from datetime import datetime
 
@@ -61,7 +61,6 @@ def salvar_noticias_no_banco(noticias):
 def coletar_e_salvar_todas():
     estatisticas = {
         'SBC': {'salvas': 0, 'duplicadas': 0, 'erros': 0, 'atualizadas': 0},
-        'ADRENALINE': {'salvas': 0, 'duplicadas': 0, 'erros': 0, 'atualizadas': 0},
         'CRITICAL_HITS': {'salvas': 0, 'duplicadas': 0, 'erros': 0, 'atualizadas': 0},
     }
     
@@ -74,16 +73,6 @@ def coletar_e_salvar_todas():
     except Exception as e:
         print(f"Erro ao coletar notícias da SBC: {e}")
         estatisticas['SBC']['erros'] = 1
-    
-    # Coleta e salva notícias da Adrenaline
-    try:
-        noticias_adrenaline = raspar_adrenaline()
-        salvas, duplicadas, erros, atualizadas = salvar_noticias_no_banco(noticias_adrenaline)
-        estatisticas['ADRENALINE'] = {'salvas': salvas, 'duplicadas': duplicadas, 'erros': erros, 'atualizadas': atualizadas}
-        print(f"ADRENALINE: {salvas} salvas, {duplicadas} duplicadas, {atualizadas} atualizadas, {erros} erros")
-    except Exception as e:
-        print(f"Erro ao coletar notícias da Adrenaline: {e}")
-        estatisticas['ADRENALINE']['erros'] = 1
     
     # Coleta e salva notícias da Critical Hits
     try:

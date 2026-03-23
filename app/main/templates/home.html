@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content%}
-{% cache 300 home request.get_full_path %}
+{#{% cache 300 home request.get_full_path %}#}
     <!--<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">-->
     <!--    <div class="carousel-indicators">-->
     <!--    {% for num in iterableNumItens %}-->
@@ -90,7 +90,25 @@
             </div>
 
             <!-- Swiper Container Principal -->
-            <div class="swiper mySwiper">
+            <div class="swiper swiperGaming">
+                <div class="swiper-wrapper">
+                    {% for noticia in noticias_games %}
+                        <div class="swiper-slide">
+                            <a href="{{ noticia.url_fonte }}" class="card card-news shadow-sm">
+                                <div class="image-container">
+                                    <span class="source-badge badge-game">{{ noticia.fonte }}</span>
+                                    <img src="{{ noticia.url_imagem}}" class="card-img-top" alt="Jogos">
+                                </div>
+                                <div class="card-body">
+                                    <div class="news-date">{{ noticia.data_publicacao }}</div>
+                                    <h5 class="card-title">{{ noticia.titulo}}</h5>
+                                    <p class="card-text">{{ noticia.descricao}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!--
                 <div class="swiper-wrapper">
 
                     <div class="swiper-slide">
@@ -150,13 +168,16 @@
                     </div>
 
                 </div>
-
+                -->
                 <div class="swiper-pagination"></div>
+                
+                <!-- Controles -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                
             </div>
 
-            <!-- Controles -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            
         </div>
 
         <!-- notícia pesquisas -->
@@ -168,9 +189,24 @@
             </div>
 
             <!-- Swiper Container -->
-            <div class="swiper mySwiper">
+            <div class="swiper swiperPesquisa">
                 <div class="swiper-wrapper">
-
+                    {% for noticia in noticias_sbc %}
+                        <div class="swiper-slide">
+                            <a href="{{ noticia.url_fonte }}" class="card card-news shadow-sm">
+                                <div class="image-container">
+                                    <span class="source-badge badge-game">{{ noticia.fonte }}</span>
+                                    <img src="{{ noticia.url_imagem}}" class="card-img-top" alt="Jogos">
+                                </div>
+                                <div class="card-body">
+                                    <div class="news-date">{{ noticia.data_publicacao }}</div>
+                                    <h5 class="card-title">{{ noticia.titulo}}</h5>
+                                    <p class="card-text">{{ noticia.descricao}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                    <!--
                     <div class="swiper-slide">
                         <a href="#" class="card card-news shadow-sm">
                             <div class="image-container">
@@ -212,14 +248,28 @@
                             </div>
                         </a>
                     </div>
+                    <div class="swiper-slide">
+                        <a href="#" class="card card-news shadow-sm">
+                            <div class="image-container">
+                                <span class="source-badge badge-science">SBC News</span>
+                                <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Physics">
+                            </div>
+                            <div class="card-body">
+                                <div class="news-date">09 JAN 2026</div>
+                                <h5 class="card-title">Computação Quântica atinge estabilidade</h5>
+                                <p class="card-text">Pesquisadores do MIT conseguiram manter qubits operacionais por tempo recorde.</p>
+                            </div>
+                        </a>
+                    </div>
+                -->
 
                 </div>
-
                 <div class="swiper-pagination"></div>
+
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
             
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
     </article>
 
@@ -304,7 +354,7 @@
         <a href="{% url 'projetos' %}displaycast/" class="align-self-center text-decoration-none"><button class="cast-btn">Mais Episódios Em Breve</button></a>
     </article>
 
-{% endcache %}
+{#{% endcache %}#}
 {% endblock %}
 
 {% block script %}

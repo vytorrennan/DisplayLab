@@ -2,6 +2,7 @@ from django.views import View
 from django.shortcuts import render
 from . import models
 from revista.models import Revista
+from coletar_noticias.models import NoticiaExterna
 
 
 class home(View):
@@ -9,9 +10,18 @@ class home(View):
         carousel = models.carouselItem.objects.all()
         numItens = carousel.count()
         ultimosPosts = Revista.objects.filter(oculto=False).order_by("-edicao", "-dataHora")[0:3]
-        context = {"carousel": carousel,
-                   "iterableNumItens": range(numItens),
-                   "ultimosPosts": ultimosPosts}
+        
+        noticias_sbc = NoticiaExterna.objects.filter(fonte='SBC').order_by('-data_publicacao')[0:10]
+        noticias_games = NoticiaExterna.objects.filter(fonte='CRITICAL_HITS').order_by('-data_publicacao')[0:10]
+        context = {
+            "carousel": carousel,
+            "iterableNumItens": range(numItens),
+            "ultimosPosts": ultimosPosts,
+            "noticias_sbc": noticias_sbc,
+            "noticias_games": noticias_games
+        }
+
+                   
         return render(request, "home.html", context)
 
 

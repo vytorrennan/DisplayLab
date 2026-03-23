@@ -107,7 +107,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropRevista">
                             <li><a class="dropdown-item" href="#">Sobre o Display Lab</a></li>
-                            <li><a class="dropdown-item" href="#">Parceiros</a></li>
+                            <li><a class="dropdown-item" href="{% url 'parceiros' %}">Parceiros</a></li>
                         </ul>
                     </li>
 
@@ -117,7 +117,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropSobre">
                             <li><a class="dropdown-item" href="{% url 'sobre' %}">Quem somos</a></li>
-                            <li><a class="dropdown-item" href="#">Alumni</a></li>
+                            <li><a class="dropdown-item" href="{% url 'alumni' %}">Alumni</a></li>
                             <li><a class="dropdown-item" href="#">Expediente</a></li>
                         </ul>
                     </li>
@@ -166,7 +166,7 @@
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="mobDropRevista">
                             <li><a class="dropdown-item" href="#">Sobre o Display Lab</a></li>
-                            <li><a class="dropdown-item" href="#">Parceiros</a></li>
+                            <li><a class="dropdown-item" href="{% url 'parceiros' %}">Parceiros</a></li>
                       </ul>
                   </li>
 
@@ -176,7 +176,7 @@
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="mobDropSobre">
                             <li><a class="dropdown-item" href="{% url 'sobre' %}">Quem somos</a></li>
-                            <li><a class="dropdown-item" href="#">Alumni</a></li>
+                            <li><a class="dropdown-item" href="{% url 'alumni' %}">Alumni</a></li>
                             <li><a class="dropdown-item" href="#">Expediente</a></li>
                       </ul>
                   </li>
@@ -259,23 +259,23 @@
                 </div>
             </div>
         </div>
-    
-    <div class="partners">
-        <h2>PARCEIROS</h2>
-        <div class="img-partners">
-          <img src="{% static 'imgs/index/new/RNP.png' %}" alt="RNP">
-            <img src="{% static 'imgs/index/new/FAPEMIG.png' %}" alt="FAPEMIG">
-            <img src="{% static 'imgs/index/new/CNPq.png' %}" alt="CNPq">
+            
+        <div class="partners">
+            <h2>PARCEIROS</h2>
+            <div class="img-partners"> 
+                <img src="{% static 'imgs/index/new/RNP.png' %}" alt="RNP">
+                <img src="{% static 'imgs/index/new/FAPEMIG.png' %}" alt="FAPEMIG">
+                <img src="{% static 'imgs/index/new/CNPq.png' %}" alt="CNPq">
+            </div>
         </div>
-    </div> 
 
-    <hr>
-    
-    <div class="final-info">
-        <p>Fazenda São Geraldo, S/N Km 06 - Bom Jardim, Januária - MG, 39480-000</p>
-        <p class="bold m-0">Copyright© {% now "Y" %} Display - Todos os direitos reservados <br/><br/><br/>
-        Desenvolvido por Vytor Rennan Alves Carvalho</p>
-    </div>
+        <hr>
+        
+        <div class="final-info">
+            <p>Fazenda São Geraldo, S/N Km 06 - Bom Jardim, Januária - MG, 39480-000</p>
+            <p class="bold m-0">Copyright© {% now "Y" %} Display - Todos os direitos reservados <br/><br/><br/>
+            Desenvolvido por Vytor Rennan Alves Carvalho</p>
+        </div>
     </footer>
 
 

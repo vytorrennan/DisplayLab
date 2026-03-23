@@ -135,6 +135,7 @@ def raspar_SBC():
     return noticias
 
 
+"""
 def raspar_adrenaline():
     url = "https://www.adrenaline.com.br/noticias/"
     
@@ -220,6 +221,7 @@ def raspar_adrenaline():
             continue
 
     return noticias
+"""
 
 
 def raspar_criticalhits():

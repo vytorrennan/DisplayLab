@@ -29,6 +29,7 @@ urlpatterns = [
     path("contentManagement/", include('contentManagement.urls')),
     path("", include('managementLoginSystem.urls')),
     path('alumni/', include('alumni.urls')),
+    path('noticias/', include('coletar_noticias.urls')),
 ]
 
 if settings.DEBUG:
