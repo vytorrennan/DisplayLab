@@ -7,6 +7,7 @@ class AlunoForm(forms.ModelForm):
         fields = [
             "nome",
             "descricao",
+            "funcao",
             "perfilLinkedIn",
             "perfilLattes",
             "foto",

@@ -17,6 +17,7 @@ class Aluno(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=250, unique=True, default="")
     descricao = models.CharField(max_length=250, default="")
+    funcao = models.CharField(max_length=255, default="")
     perfilLinkedIn = models.URLField(max_length=512, default="")
     perfilLattes = models.URLField(max_length=512, default="")
     foto = models.ImageField(
