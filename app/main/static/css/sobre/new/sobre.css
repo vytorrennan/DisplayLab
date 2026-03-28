@@ -15,7 +15,7 @@
     border: 2px solid #9EDAEE;
     background-color: #8BE3FF47;
     color: #011B1F;
-    max-width: 300px;
+    max-width: 350px;
 }
 
 .card img {
@@ -26,5 +26,54 @@
 
 .saiba-mais {
     color: #006674;
+}
+
+/* --- Swiper css --- */
+.swiper {
+    width: 100%;
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #000;
+    background: var(--background-color-item, #fff);
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    top: 50%; 
+    transform: translateY(-50%);
+    margin-top: 0 !important;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-button-prev {
+    left: -45px !important;
+}
+
+.swiper-button-next {
+    right: -45px !important;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--primary-color);
+}
+
+@media (max-width: 767px) {
+    .swiper-button-next, .swiper-button-prev {
+        display: none !important;
+    }
 }
 

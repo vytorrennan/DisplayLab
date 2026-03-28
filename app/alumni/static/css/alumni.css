@@ -19,10 +19,26 @@
     padding-left: 0;
 }
 
+/* FUNÇÃO DO ALUNO (Tag superior) */
+.alumniFuncao {
+    background-color: var(--cast-btn-color, #01859b);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+    width: fit-content;
+}
+.alumniFuncao p {
+    margin: 0;
+}
+
 /* CARD */
 .alumniCard {
     width: 100%;
-    max-width: 320px; 
+    max-width: 350px; 
     background-color: var(--games-background);
     border-radius: 12px;
     display: flex;

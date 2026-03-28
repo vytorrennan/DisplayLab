@@ -40,3 +40,7 @@ class sobre(View):
 class parceiros(View):
     def get(self, request):
         return render(request, "parceiros.html")
+
+class mapa(View):
+    def get(self, request):
+        return render(request, "map.html")

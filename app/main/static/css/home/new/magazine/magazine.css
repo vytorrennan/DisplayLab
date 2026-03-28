@@ -14,6 +14,8 @@
     overflow: hidden;
     transition: all 0.3s ease;
     height: 100%;
+    width: 100%;
+    flex: 1;
     max-width: 400px;
     background: #fff;
     position: relative;
@@ -78,6 +80,7 @@
     margin-bottom: 10px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     min-height: 2.5rem;
@@ -89,6 +92,7 @@
     color: var(--text-muted);
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     margin-bottom: 0;
@@ -149,6 +153,7 @@
 }
 
 /* --- Swiper css --- */
+
 .swiper {
     width: 100%;
     padding-bottom: 40px !important;
@@ -156,31 +161,35 @@
 
 .swiper-slide {
     height: auto;
-    display: flex;
+    display: flex;;
 }
 
 .swiper-button-next, .swiper-button-prev {
     color: #000;
-    background: var(--background-color-item);
-    width: 35px;
-    height: 35px;
+    background: var(--background-color-item, #fff);
+    width: 45px !important;
+    height: 45px !important;
     border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     top: 50%; 
     transform: translateY(-50%);
+    margin-top: 0 !important;
     z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .swiper-button-prev {
-    left: 5px;
+    left: -50px !important;
 }
 
 .swiper-button-next {
-    right: 5px;
+    right: -50px !important;
 }
 
 .swiper-button-next:after, .swiper-button-prev:after {
-    font-size: 12px;
+    font-size: 18px !important;
     font-weight: bold;
 }
 
@@ -192,7 +201,9 @@
     .section-container { padding: 0 15px; }
     .category-line { max-width: 40px; }
     .magazine-container {display: grid;}
-    .swiper-button-next, .swiper-button-prev {
-        display: none;
+    .swiper-button-next, .swiper-button-prev, 
+    .swiper-button-next-gaming, .swiper-button-prev-gaming, 
+    .swiper-button-next-pesquisa, .swiper-button-prev-pesquisa {
+        display: none !important;
     }
 }

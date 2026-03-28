@@ -2,6 +2,45 @@
     color: black;
 }
 
-.card {
-    border: 0px;
+.title-sora {
+    font-family: 'Sora', sans-serif;
+}
+
+.institucional-text p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #444;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Cards de jogos */
+.game-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.game-card img {
+    object-fit: cover;
+    max-height: 180px;
+}
+
+.game-card .card-title {
+    font-family: 'Sora', sans-serif;
+    color: #2c3e50;
+    font-size: 1.3rem;
+}
+
+.game-card .card-text {
+    font-size: 1.05rem;
+    color: #555;
+    text-align: left;
+    margin-bottom: 0;
 }

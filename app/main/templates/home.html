@@ -3,8 +3,6 @@
 {% load static %}
 {% load cache %}
 <title>HOME</title>
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/home/new/home.css' %}">
@@ -90,90 +88,31 @@
             </div>
 
             <!-- Swiper Container Principal -->
-            <div class="swiper swiperGaming">
-                <div class="swiper-wrapper">
-                    {% for noticia in noticias_games %}
-                        <div class="swiper-slide">
-                            <a href="{{ noticia.url_fonte }}" class="card card-news shadow-sm">
-                                <div class="image-container">
-                                    <span class="source-badge badge-game">{{ noticia.fonte }}</span>
-                                    <img src="{{ noticia.url_imagem}}" class="card-img-top" alt="Jogos">
-                                </div>
-                                <div class="card-body">
-                                    <div class="news-date">{{ noticia.data_publicacao }}</div>
-                                    <h5 class="card-title">{{ noticia.titulo}}</h5>
-                                    <p class="card-text">{{ noticia.descricao}}</p>
-                                </div>
-                            </a>
-                        </div>
-                    {% endfor %}
+            <div style="position: relative;">
+                <div class="swiper swiperGaming">
+                    <div class="swiper-wrapper">
+                        {% for noticia in noticias_games %}
+                            <div class="swiper-slide">
+                                <a href="{{ noticia.url_fonte }}" class="card card-news shadow-sm">
+                                    <div class="image-container">
+                                        <span class="source-badge badge-game">{{ noticia.fonte }}</span>
+                                        <img src="{{ noticia.url_imagem}}" class="card-img-top" alt="Jogos">
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="news-date">{{ noticia.data_publicacao }}</div>
+                                        <h5 class="card-title">{{ noticia.titulo }}</h5>
+                                        <p class="card-text">{{ noticia.descricao }}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <!--
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <a href="#" class="card card-news shadow-sm">
-                            <div class="image-container">
-                                <span class="source-badge badge-game">Games</span>
-                                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Jogos">
-                            </div>
-                            <div class="card-body">
-                                <div class="news-date">12 JAN 2026</div>
-                                <h5 class="card-title">Novo RPG de mundo aberto quebra recordes</h5>
-                                <p class="card-text">O lançamento mais aguardado do ano superou todas as expectativas na primeira semana.</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <a href="#" class="card card-news shadow-sm">
-                            <div class="image-container">
-                                <span class="source-badge badge-game">Eurogamer</span>
-                                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Consoles">
-                            </div>
-                            <div class="card-body">
-                                <div class="news-date">12 JAN 2026</div>
-                                <h5 class="card-title">Rumores de novo console portátil</h5>
-                                <p class="card-text">Patentes sugerem hardware focado em alto desempenho e nuvem para o próximo ano.</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <a href="#" class="card card-news shadow-sm">
-                            <div class="image-container">
-                                <span class="source-badge badge-game">Games</span>
-                                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Esports">
-                            </div>
-                            <div class="card-body">
-                                <div class="news-date">11 JAN 2026</div>
-                                <h5 class="card-title">Final de mundial atinge audiência histórica</h5>
-                                <p class="card-text">O evento em Tóquio consolidou a modalidade como a maior do planeta atualmente.</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <a href="#" class="card card-news shadow-sm">
-                            <div class="image-container">
-                                <span class="source-badge badge-game">Games</span>
-                                <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Update">
-                            </div>
-                            <div class="card-body">
-                                <div class="news-date">10 JAN 2026</div>
-                                <h5 class="card-title">Atualização massiva corrige bugs críticos</h5>
-                                <p class="card-text">A comunidade celebrou as melhorias de desempenho no patch mais recente do simulador.</p>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-                -->
-                <div class="swiper-pagination"></div>
                 
                 <!-- Controles -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next swiper-btn-gaming-next"></div>
+                <div class="swiper-button-prev swiper-btn-gaming-prev"></div>
                 
             </div>
 
@@ -189,85 +128,31 @@
             </div>
 
             <!-- Swiper Container -->
-            <div class="swiper swiperPesquisa">
-                <div class="swiper-wrapper">
-                    {% for noticia in noticias_sbc %}
-                        <div class="swiper-slide">
-                            <a href="{{ noticia.url_fonte }}" class="card card-news shadow-sm">
-                                <div class="image-container">
-                                    <span class="source-badge badge-game">{{ noticia.fonte }}</span>
-                                    <img src="{{ noticia.url_imagem}}" class="card-img-top" alt="Jogos">
-                                </div>
-                                <div class="card-body">
-                                    <div class="news-date">{{ noticia.data_publicacao }}</div>
-                                    <h5 class="card-title">{{ noticia.titulo}}</h5>
-                                    <p class="card-text">{{ noticia.descricao}}</p>
-                                </div>
-                            </a>
-                        </div>
-                    {% endfor %}
-                    <!--
-                    <div class="swiper-slide">
-                        <a href="#" class="card card-news shadow-sm">
-                            <div class="image-container">
-                                <span class="source-badge badge-science">Pesquisa</span>
-                                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Lab">
+            <div style="position: relative;">
+                <div class="swiper swiperPesquisa">
+                    <div class="swiper-wrapper">
+                        {% for noticia in noticias_sbc %}
+                            <div class="swiper-slide">
+                                <a href="{{ noticia.url_fonte }}" class="card card-news shadow-sm">
+                                    <div class="image-container">
+                                        <span class="source-badge badge-game">{{ noticia.fonte }}</span>
+                                        <img src="{{ noticia.url_imagem}}" class="card-img-top" alt="Jogos">
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="news-date">{{ noticia.data_publicacao }}</div>
+                                        <h5 class="card-title">{{ noticia.titulo }}</h5>
+                                        <p class="card-text">{{ noticia.descricao }}</p>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="card-body">
-                                <div class="news-date">12 JAN 2026</div>
-                                <h5 class="card-title">Avanço no tratamento de doenças degenerativas</h5>
-                                <p class="card-text">A nova terapia genética demonstrou resultados promissores em testes clínicos iniciais.</p>
-                            </div>
-                        </a>
-                    </div>
+                        {% endfor %}
 
-                    <div class="swiper-slide">
-                        <a href="#" class="card card-news shadow-sm">
-                            <div class="image-container">
-                                <span class="source-badge badge-science">SBC</span>
-                                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Space">
-                            </div>
-                            <div class="card-body">
-                                <div class="news-date">10 JAN 2026</div>
-                                <h5 class="card-title">Telescópio mapeia água em exoplaneta</h5>
-                                <p class="card-text">A descoberta abre novas possibilidades para a busca de vida fora do sistema solar.</p>
-                            </div>
-                        </a>
                     </div>
-
-                    <div class="swiper-slide">
-                        <a href="#" class="card card-news shadow-sm">
-                            <div class="image-container">
-                                <span class="source-badge badge-science">SBC News</span>
-                                <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Physics">
-                            </div>
-                            <div class="card-body">
-                                <div class="news-date">09 JAN 2026</div>
-                                <h5 class="card-title">Computação Quântica atinge estabilidade</h5>
-                                <p class="card-text">Pesquisadores do MIT conseguiram manter qubits operacionais por tempo recorde.</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="card card-news shadow-sm">
-                            <div class="image-container">
-                                <span class="source-badge badge-science">SBC News</span>
-                                <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Physics">
-                            </div>
-                            <div class="card-body">
-                                <div class="news-date">09 JAN 2026</div>
-                                <h5 class="card-title">Computação Quântica atinge estabilidade</h5>
-                                <p class="card-text">Pesquisadores do MIT conseguiram manter qubits operacionais por tempo recorde.</p>
-                            </div>
-                        </a>
-                    </div>
-                -->
-
+                    <div class="swiper-pagination"></div>
                 </div>
-                <div class="swiper-pagination"></div>
 
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next swiper-btn-pesquisa-next"></div>
+                <div class="swiper-button-prev swiper-btn-pesquisa-prev"></div>
             </div>
             
         </div>
@@ -288,7 +173,7 @@
                     <div class="card-body">
                         <div class="news-date">{{ post.dataHora }}</div>
                         <h5 class="card-title">{{ post.titulo }}</h5>
-                        <p class="card-text">A descoberta abre novas possibilidades para a busca de vida fora do sistema solar.</p>
+                        <p class="card-text">{{ post.descricao }}</p>
                     </div>
                 </div>
             {% endfor %}
@@ -323,10 +208,32 @@
                     </div>
                 </a>
 
+                <!-- copia para o loop infinito -->
+                <a href="/peruacu-digital" class="game-content" aria-hidden="true" tabindex="-1">
+                    <div class="picture">
+                        <img src="{% static 'imgs/home/new/games/image 1(1).png' %}" alt="">
+                        <h3>Peruaçu Digital</h3>
+                    </div>
+                </a>
+
+                <a href="/indisciplina-2d" class="game-content" aria-hidden="true" tabindex="-1">
+                    <div class="picture">
+                        <img src="{% static 'imgs/home/new/games/image 1(2).png' %}" alt="">
+                        <h3>Indisciplina 2D</h3>
+                    </div>
+                </a>
+
+                <a href="/exterminando-drogas" class="game-content" aria-hidden="true" tabindex="-1">
+                    <div class="picture">
+                        <img src="{% static 'imgs/home/new/games/image 1.png' %}" alt="">
+                        <h3>Exterminando Drogas</h3>
+                    </div>
+                </a>
+
             </div>
         </div>
 
-        <button class="games-btn">Mais Jogos Em Breve</button>
+        <button class="games-btn">Mais Jogos em breve</button>
     </article>
 
     <article class="cast">
@@ -351,15 +258,13 @@
                 </div>
             </div>
         </div>
-        <a href="{% url 'projetos' %}displaycast/" class="align-self-center text-decoration-none"><button class="cast-btn">Mais Episódios Em Breve</button></a>
+        <a href="{% url 'projetos' %}displaycast/" class="align-self-center text-decoration-none"><button class="cast-btn">Mais em breve</button></a>
     </article>
 
 {#{% endcache %}#}
 {% endblock %}
 
 {% block script %}
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script src="{% static 'js/home.js' %}"></script>
     <script src="{% static 'js/swiper_carousel.js' %}"></script>
