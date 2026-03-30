@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block head %}
+<title>MAPA DO SITE</title>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5" style="min-height: 50vh;">
+    <p id="pagePath">HOME / MAPA DO SITE</p>
+    <div id="titleDiv">
+        <h1 id="title">MAPA DO SITE</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-unstyled sitemap-list fs-5">
+                <li class="mb-4">
+                    <a href="{% url 'home' %}" class="fw-bold text-decoration-none"
+                        style="color: #2F3294;">
+                        Home
+                    </a>
+                </li>
+
+                <li class="mb-4">
+                    <a href="{% url 'parceiros' %}" class="fw-bold text-decoration-none" 
+                        style="color: #2F3294;">
+                        Parceiros
+                    </a>
+                </li>
+                
+                <li class="mb-4">
+                    <div class="fw-bold" style="color: #2F3294;">
+                        Projetos
+                    </div>
+                    <ul class="ms-3 mt-3 fs-6">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Display Cast</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Jogos Digitais</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Projetos em Desenvolvimento</a></li>
+                        <li class="mb-2"><a href="{% url 'projetos' %}" class="text-decoration-none text-dark">Projetos Publicados</a></li>
+                    </ul>
+                </li>
+
+                <li class="mb-4">
+                    <div class="fw-bold" style="color: #2F3294;">
+                        Publicações
+                    </div>
+                    <ul class="ms-3 mt-3 fs-6">
+                        <li class="mb-2"><a href="{% url 'revista' %}" class="text-decoration-none text-dark">Revista</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Publicações Científicas</a></li>
+                    </ul>
+                </li>
+
+                <li class="mb-4">
+                    <div class="fw-bold" style="color: #2F3294;">
+                        Sobre
+                    </div>
+                    <ul class="ms-3 mt-3 fs-6">
+                        <li class="mb-2"><a href="{% url 'institucional' %}" class="text-decoration-none text-dark">Sobre o Display Lab</a></li>
+                        <li class="mb-2"><a href="{% url 'sobre' %}" class="text-decoration-none text-dark">Quem somos</a></li>
+                        <li class="mb-2"><a href="{% url 'alumni' %}" class="text-decoration-none text-dark">Alumni</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Expediente</a></li>
+                    </ul>
+                </li>
+
+                <li class="mb-4">
+                    <a href="{% url 'mapa' %}" class="fw-bold text-decoration-none"
+                        style="color: #2F3294;">
+                        Mapa do Site
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

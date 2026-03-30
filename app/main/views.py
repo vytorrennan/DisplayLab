@@ -44,3 +44,7 @@ class expediente(View):
     def get(sef, request):
         membros = models.Membro.objects.all().order_by('categoria', 'nome')
         return render(request, "expediente.html",{'membros': membros})
+      
+class mapa(View):
+    def get(self, request):
+        return render(request, "map.html")

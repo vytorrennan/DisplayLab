@@ -36,7 +36,7 @@
 <!--{% endfor %}-->
 
 <main class="container mt-4">
-    <p id="pagePath">HOME / QUEM SOMOS</p>
+    <p id="pagePath">HOME / SOBRE / QUEM SOMOS</p>
     <div id="titleDiv">
       <h1 id="title">QUEM SOMOS</h1>
     </div>
@@ -46,26 +46,30 @@
 {% for categ in categorias %}
     <div class="mb-5">
         <h2 class="categoria mb-4">{{ categ }}</h2>
-        <div class="categoriaDiv">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                {% for membro in membros%}
-                    {% if membro.categoria == categ %}
-                        <div class="col">
-                            <div class="card h-100 d-flex align-items-center p-4">
-                                <img src="{{ membro.foto }}" class="card-img-top" alt="foto de {{ membro.nome }}">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">{{ membro.nome }}</h5>
-                                    <p class="card-text">{{ membro.descricao }}</p>
+        <div class="categoriaDiv position-relative">
+            <div class="swiper sobreSwiper pb-5 px-3">
+                <div class="swiper-wrapper">
+                    {% for membro in membros%}
+                        {% if membro.categoria == categ %}
+                            <div class="swiper-slide h-auto">
+                                <div class="card h-100 d-flex align-items-center p-4">
+                                    <img src="{{ membro.foto }}" class="card-img-top" alt="foto de {{ membro.nome }}">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">{{ membro.nome }}</h5>
+                                        <p class="card-text">{{ membro.descricao }}</p>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="{{ membro.saibaMais }}" class="mt-4 saiba-mais text-decoration-none">SAIBA MAIS</a>
+                                    </div>
                                 </div>
-                                <div class="d-flex justify-content-center">
-                                    <a href="{{ membro.saibaMais }}" class="mt-4 saiba-mais text-decoration-none">SAIBA MAIS</a>
-                                </div>
-                                <p>oi</p>   
                             </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
             </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </div>
 {% endfor %}
@@ -78,4 +82,5 @@
 {% endblock %}
 
 {% block script %}
+<script src="{% static 'js/sobre.js' %}"></script>
 {% endblock%}

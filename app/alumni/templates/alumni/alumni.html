@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/alumni.css' %}">
+<link rel="stylesheet" href="{% static 'css/alumni.css' %}">
 {% endblock %}
 
 {% block content %}
 <main class="container mt-4">
-    <p id="pagePath">HOME / QUEM SOMOS / ALUMNI</p>
+    <p id="pagePath">HOME / SOBRE / ALUMNI</p>
     <div id="titleDiv">
         <h1 id="title">ALUMNI</h1>
     </div>
@@ -16,17 +16,25 @@
         <h2 class="alumniTitle">ACADÊMICOS</h2>
         <div class="alumniContainer">
             {% for aluno in alunos %}
-                <div class="alumniCard">
-                    <div class="alumniImageWrapper">
-                        <img src="{{ aluno.foto.url }}" alt="{{ aluno.nome }}">
-                    </div>
-                    <p class="alumniText">{{ aluno.nome }}</p>
-                    <p class="alumniText">{{ aluno.descricao }}</p>
-                    <div class="alumniLinks">
-                        <a class="alumniLink" href="{{ aluno.curriculo_lattes }}">Currículo Lattes</a>
-                        <a class="alumniLink" href="{{ aluno.linkedin }}">LinkedIn</a>
-                    </div>
+            <div class="alumniCard">
+                <div class="alumniFuncao">
+                    <p>{{ aluno.funcao }}</p>
                 </div>
+                <div class="alumniImageWrapper">
+                    <img src="{{ aluno.foto.url }}" alt="{{ aluno.nome }}">
+                </div>
+                <p class="alumniText fw-bold">{{ aluno.nome }}</p>
+                <p class="alumniText">{{ aluno.descricao }}</p>
+                <div class="alumniLinks">
+                    {% if aluno.perfilLattes %}
+                    <a class="alumniLink text-center" href="{{ aluno.perfilLattes }}" target="_blank">Currículo
+                        Lattes</a>
+                    {% endif %}
+                    {% if aluno.perfilLinkedIn %}
+                    <a class="alumniLink text-center" href="{{ aluno.perfilLinkedIn }}" target="_blank">LinkedIn</a>
+                    {% endif %}
+                </div>
+            </div>
             {% endfor %}
 
         </div>

@@ -8,16 +8,16 @@ const swiperGaming = new Swiper(".swiperGaming", {
     autoplay: {
         delay: 3000,
         disableOnInteraction: false,
+        pauseOnMouseEnter: true,
     },
-
 
     pagination: {
         el: ".swiperGaming .swiper-pagination",
         clickable: true,
     },
     navigation: {
-        nextEl: ".swiperGaming .swiper-button-next",
-        prevEl: ".swiperGaming .swiper-button-prev",
+        nextEl: ".swiper-btn-gaming-next",
+        prevEl: ".swiper-btn-gaming-prev",
     },
 
     breakpoints: {
@@ -42,16 +42,16 @@ const swiperPesquisa = new Swiper(".swiperPesquisa", {
     autoplay: {
         delay: 3000,
         disableOnInteraction: false,
+        pauseOnMouseEnter: true,
     },
-
 
     pagination: {
         el: ".swiperPesquisa .swiper-pagination",
         clickable: true,
     },
     navigation: {
-        nextEl: ".swiperPesquisa .swiper-button-next",
-        prevEl: ".swiperPesquisa .swiper-button-prev",
+        nextEl: ".swiper-btn-pesquisa-next",
+        prevEl: ".swiper-btn-pesquisa-prev",
     },
 
     breakpoints: {
