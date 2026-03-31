@@ -24,7 +24,6 @@ class home(View):
                    
         return render(request, "home.html", context)
 
-
 class institucional(View):
     def get(self, request):
         return render(request, "institucional.html")
@@ -40,7 +39,12 @@ class sobre(View):
 class parceiros(View):
     def get(self, request):
         return render(request, "parceiros.html")
-
+    
+class expediente(View):
+    def get(sef, request):
+        membros = models.Membro.objects.all().order_by('categoria', 'nome')
+        return render(request, "expediente.html",{'membros': membros})
+      
 class mapa(View):
     def get(self, request):
-        return render(request, "map.html")
+        return render(request, "map.html")

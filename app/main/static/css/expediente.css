@@ -1,0 +1,15 @@
+.titleExpediente {
+    font-family: 'sora', sans-serif;
+    font-size: 1.4rem;
+    color: #006674;
+    font-weight: 600;
+    text-transform: uppercase
+}
+
+.textExpendiente{
+    font-size: 16px;
+}
+
+.ExpedienteSection{
+    margin-bottom: 74px;
+}
