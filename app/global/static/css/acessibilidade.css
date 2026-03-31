@@ -1,0 +1,210 @@
+
+div[vw] {
+    position: initial !important;
+    transform: none !important;
+}
+
+#dl-painel {
+    top: 25%;
+    margin-top: 0;
+    position: fixed;
+    z-index: 1050;
+    padding: 10px;
+    background: #003e7e;
+    width: 340px;
+    left: 100%;
+    transition: left 0.3s ease;
+    -webkit-border-bottom-left-radius: 25px;
+    -moz-border-radius-bottomleft: 25px;
+    border-bottom-left-radius: 25px;
+    border: 3px solid #003e7e !important;
+}
+
+#dl-painel.open {
+    left: calc(100% - 340px);
+}
+
+#dl-aba {
+    position: absolute;
+    right: 100%;
+    background: #003e7e;
+    -webkit-border-top-left-radius: 40px;
+    -webkit-border-bottom-left-radius: 40px;
+    -moz-border-radius-topleft: 40px;
+    -moz-border-radius-bottomleft: 40px;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    cursor: pointer;
+    top: -2.5px;
+    z-index: 1;
+    border: 3px solid #003e7e !important;
+    padding: 10px 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    user-select: none;
+}
+
+#dl-aba i {
+    font-size: 28px;
+    color: #fff;
+}
+
+#dl-painel-conteudo {
+    color: white;
+    padding: 4px 2px 2px;
+}
+
+#dl-painel-conteudo .active {
+    z-index: 2;
+    position: relative;
+}
+
+/* controles de tamanho de fonte */
+.dl-font-controls {
+    display: inline-flex;
+    margin: 10px !important;
+}
+
+.dl-font-menor, .dl-font-padrao, .dl-font-maior {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px !important;
+    color: #fff;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 4px;
+    padding: 4px 10px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    line-height: 1;
+    font-size: 0.85rem;
+}
+
+.dl-font-menor:hover, .dl-font-padrao:hover, .dl-font-maior:hover {
+    background: rgba(255,255,255,0.3);
+    color: #fff;
+}
+
+/* botão de alto contraste */
+.dl-contraste-container {
+    margin: 10px;
+    display: block !important;
+}
+
+.dl-contraste-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 4px;
+    padding: 5px 12px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.dl-contraste-btn:hover {
+    background: rgba(255,255,255,0.3);
+    color: #fff;
+}
+
+.dl-contraste-btn.ativo {
+    background: #ff0 !important;
+    color: #000 !important;
+    border-color: #ff0 !important;
+    font-weight: bold;
+}
+
+/* modo alto contraste */
+html.alto-contraste,
+html.alto-contraste body {
+    background-color: #000 !important;
+    color: #ff0 !important;
+}
+
+html.alto-contraste *:not(script):not(style) {
+    color: #ff0 !important;
+    background-color: transparent !important;
+    border-color: #ff0 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+html.alto-contraste a,
+html.alto-contraste button,
+html.alto-contraste [role="button"] {
+    color: #ff0 !important;
+    text-decoration: underline;
+}
+
+html.alto-contraste a:hover,
+html.alto-contraste button:hover {
+    color: #000 !important;
+    background-color: #ff0 !important;
+}
+
+html.alto-contraste input,
+html.alto-contraste textarea,
+html.alto-contraste select {
+    background-color: #000 !important;
+    color: #ff0 !important;
+    border: 2px solid #ff0 !important;
+}
+
+html.alto-contraste img {
+    filter: grayscale(100%) contrast(120%) !important;
+}
+
+html.alto-contraste nav,
+html.alto-contraste header,
+html.alto-contraste .navbar,
+html.alto-contraste .navbar-collapse {
+    background-color: #000 !important;
+    border-bottom: 2px solid #ff0 !important;
+}
+
+html.alto-contraste .card,
+html.alto-contraste .card-body,
+html.alto-contraste .card-header,
+html.alto-contraste .card-footer {
+    background-color: #000 !important;
+    border: 1px solid #ff0 !important;
+}
+
+html.alto-contraste footer {
+    background-color: #000 !important;
+    border-top: 2px solid #ff0 !important;
+}
+
+html.alto-contraste #dl-painel,
+html.alto-contraste #dl-aba {
+    background: #000 !important;
+    border-color: #ff0 !important;
+}
+
+html.alto-contraste #dl-aba i,
+html.alto-contraste #dl-painel-conteudo {
+    color: #ff0 !important;
+}
+
+html.alto-contraste .dl-font-menor,
+html.alto-contraste .dl-font-padrao,
+html.alto-contraste .dl-font-maior,
+html.alto-contraste .dl-contraste-btn {
+    background: #000 !important;
+    color: #ff0 !important;
+    border: 1px solid #ff0 !important;
+}
+
+html.alto-contraste .dl-contraste-btn.ativo {
+    background: #ff0 !important;
+    color: #000 !important;
+}

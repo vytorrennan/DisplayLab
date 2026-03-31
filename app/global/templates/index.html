@@ -13,6 +13,7 @@
     {% endblock %}
     <link rel="shortcut icon" href="{% static 'imgs/index/displayLogo.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/acessibilidade.css' %}">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -214,13 +215,8 @@
     {% endif %}
 
     <div id="content">
-        <!-- VLibras -->
-        <div vw class="enabled">
-            <div vw-access-button class="active"></div>
-            <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-            </div>
-        </div>
+        {% include 'components/acessibilidade_button.html' %}
+
         {% block content%}
         {% endblock %}
     </div>
@@ -315,6 +311,9 @@
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
+
+    <!-- Acessibilidade -->
+    <script src="{% static 'js/acessibilidade.js' %}"></script>
 
     {% block script %}
     {% endblock%}
