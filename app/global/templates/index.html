@@ -90,7 +90,7 @@
             </a>
 
             <!-- DESKTOP MENU -->
-            <nav class="menu">
+            <nav class="menu" accesskey="2" tabindex="-1">
                 <ul class="nav-list">
                     <!-- 1. HOME (Geralmente sem dropdown) -->
                     <li class="nav-item">
@@ -214,7 +214,7 @@
     </div>
     {% endif %}
 
-    <div id="content">
+    <div id="content" accesskey="1" tabindex="-1">
         {% include 'components/acessibilidade_button.html' %}
 
         {% block content%}
@@ -222,7 +222,7 @@
     </div>
 
     <footer>
-        <div class="info-main">
+         <div class="info-main" accesskey="3" tabindex="-1">
             <div class="info">
                 <div class="info-display">
                     <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">

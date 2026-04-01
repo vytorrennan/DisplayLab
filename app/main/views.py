@@ -48,3 +48,7 @@ class expediente(View):
 class mapa(View):
     def get(self, request):
         return render(request, "map.html")
+
+class acessibilidade(View):
+    def get(self, request):
+        return render(request, "acessibilidade.html")

@@ -20,9 +20,15 @@
             <a href="#" class="dl-font-maior" id="dl-fonte-maior" title="Aumentar o tamanho da fonte"><span>A</span><span>⁺</span></a>
         </div>
 
-        <div class="dl-contraste-container">
-            <a href="#" class="dl-contraste-btn" id="dl-contraste" title="Alto contraste">
-                <i class="fa-solid fa-circle-half-stroke"></i> Alto contraste
+        <div class="dl-acessibilidade-container">
+            <a href="#" class="dl-contraste-btn" id="dl-contraste" title="Alto contraste" accesskey="4">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+            </a>
+            <a href="{% url 'acessibilidade' %}" class="dl-acessibilidade-btn" title="Acessibilidade">
+                <i class="fa-solid fa-universal-access"></i>
+            </a>
+            <a href="{% url 'mapa' %}" class="dl-site-map-btn" title="Mapa do site">
+                <i class="fa-solid fa-sitemap"></i>
             </a>
         </div>
 

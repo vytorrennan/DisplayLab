@@ -63,44 +63,43 @@ div[vw] {
 }
 
 /* controles de tamanho de fonte */
-.dl-font-controls {
+.dl-font-controls,
+.dl-acessibilidade-container {
+    margin: 10px;
     display: inline-flex;
-    margin: 10px !important;
+    gap: 10px;
+    align-items: center;
 }
 
-.dl-font-menor, .dl-font-padrao, .dl-font-maior {
+.dl-font-menor, 
+.dl-font-padrao, 
+.dl-font-maior {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px !important;
     color: #fff;
     background: rgba(255,255,255,0.15);
     border: 1px solid rgba(255,255,255,0.4);
     border-radius: 4px;
-    padding: 4px 10px;
+    padding: 5px 12px;
     text-decoration: none;
+    font-size: 0.85rem;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
-    line-height: 1;
-    font-size: 0.85rem;
 }
 
-.dl-font-menor:hover, .dl-font-padrao:hover, .dl-font-maior:hover {
+.dl-font-menor:hover, 
+.dl-font-padrao:hover, 
+.dl-font-maior:hover {
     background: rgba(255,255,255,0.3);
     color: #fff;
 }
 
 /* botão de alto contraste */
-.dl-contraste-container {
-    margin: 10px;
-    display: block !important;
-}
-
-.dl-contraste-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+.dl-contraste-btn,
+.dl-acessibilidade-btn,
+.dl-site-map-btn {
     color: #fff;
     border: 1px solid rgba(255,255,255,0.4);
     border-radius: 4px;
@@ -108,20 +107,21 @@ div[vw] {
     text-decoration: none;
     font-size: 0.85rem;
     cursor: pointer;
-    justify-content: center;
 }
 
-.dl-contraste-btn:hover {
+.dl-contraste-btn:hover,
+.dl-acessibilidade-btn:hover,
+.dl-site-map-btn:hover {
     background: rgba(255,255,255,0.3);
     color: #fff;
 }
 
 .dl-contraste-btn.ativo {
     background: #ff0 !important;
-    color: #000 !important;
     border-color: #ff0 !important;
     font-weight: bold;
 }
+.dl-contraste-btn.ativo i { color: #000 !important }
 
 /* modo alto contraste */
 html.alto-contraste,
