@@ -93,3 +93,102 @@
         gap: 10px;
     }
 }
+
+
+.contato-info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+a.contato-info-item {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.contato-info-item:hover {
+    transform: translateX(10px);
+    color: #003153;
+    cursor: pointer;
+}
+
+.contato-info-item span {
+    background: #003153;
+    padding: 6px;
+    border-radius: 50%;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.rede-social {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+.rede-social-info {
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.rede-social-info a {
+    background: #003153;
+    padding: 6px;
+    border-radius: 50%;
+}
+
+.rede-social-info span {
+    font-size: 26px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;  
+    width: 40px;                
+    height: 40px;   
+    color: #fff;
+}
+
+/* contatos grid layout */
+.contatoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+/* maps container */
+.map-container {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    height: 450px;
+}
+
+.map-container:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+@media (min-width: 992px) {
+    .contatoSection {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        align-items: stretch;
+    }
+}

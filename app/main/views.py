@@ -52,3 +52,7 @@ class mapa(View):
 class acessibilidade(View):
     def get(self, request):
         return render(request, "acessibilidade.html")
+
+class contato(View):
+    def get(self, request):
+        return render(request, "contatos.html")

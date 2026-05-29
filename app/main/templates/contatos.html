@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/contato.css' %}">
+{% endblock %}
+
+<title>CONTATOS</title>
+
+{% block content %}
+    <main class="container my-5">
+        <p id="pagePath">HOME / CONTATOS</p>
+        <div id="titleDiv">
+            <h1 id="title" style="font-weight: 600;">CONTATOS</h1>
+        </div>
+
+        <div class="contatoSection">
+            <div class="contato-info">
+                <a href="mailto:displaylab@gmail.com" class="contato-info-item">
+                    <span class="fa-solid fa-envelope"></span>
+                    <div>displaylab@gmail.com</div>
+                </a>
+                <a href="tel:38xxxxxxxx" class="contato-info-item">
+                    <span class="fa-solid fa-phone"></span>
+                    <div>(38) XXXX-XXXX</div>
+                </a>
+                <div class="contato-info-item">
+                    <span class="fa-solid fa-map-marker-alt"></span>
+                    <div>Fazenda São Geraldo, S/N Km 06 - 39480-000 - Januária/MG</div>
+                </div> 
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3082.256268124002!2d-44.37006629942835!3d-15.44626692514276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7542afb7d8fbd9b%3A0x6d26f1ec1c97e190!2sIFNMG%20-%20Campus%20Janu%C3%A1ria!5e1!3m2!1spt-BR!2sbr!4v1780060807964!5m2!1spt-BR!2sbr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <div class="rede-social">
+            <div class="rede-social-info">
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <span class="fa-brands fa-facebook"></span>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <span class="fa-brands fa-instagram"></span>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <span class="fa-brands fa-youtube"></span>
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <span class="fa-brands fa-tiktok"></span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
