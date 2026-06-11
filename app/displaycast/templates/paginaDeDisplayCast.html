@@ -1,0 +1,80 @@
+{% extends "index.html" %}
+
+{% block head %}
+    {% load static %}
+    {% load cache %}
+    <title>{{ displaycast.titulo }}</title>
+    <link rel="stylesheet" href="{% static 'css/displaycast.css' %}">
+{% endblock %}
+
+
+{% block content %}
+{% cache 300 displaycast request.get_full_path %}
+    <main class="container mt-4">
+        <p id="pagePath">HOME / DISPLAY CAST / {{ displaycast.titulo|upper }}</p>
+
+        <div id="titleDiv">
+            <h1 id="title">DISPLAY CAST</h1>
+        </div>
+
+        <div class="displaycast-card">
+            <div class="row align-items-start">
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    {% if displaycast.embed_url %}
+                        <div class="video-container">
+                            <iframe 
+                                src="{{ displaycast.embed_url }}" 
+                                title="YouTube video player" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>Vídeo não disponível:</strong> A URL do YouTube não é válida.
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="info-panel">
+                        <h3>{{ displaycast.titulo }}</h1>
+                        <div class="meta-date mb-4">
+                            <span>{{ displaycast.dataHora|date:"d \d\e F \d\e Y" }}</span>
+                        </div>
+                        <ul class="meta-list">
+                            <li class="meta-item">
+                                <strong>Apresentadores</strong>
+                                <span>{{ displaycast.apresentadores }}</span>
+                            </li>
+                            <li class="meta-item">
+                                <strong>Convidado</strong>
+                                <span>{{ displaycast.convidado }}</span>
+                            </li>
+                            <li class="meta-item">
+                                <strong>Roteirista</strong>
+                                <span>{{ displaycast.roteirista }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if displaycast.conteudo %}
+            <div class="content-section">
+                <div class="content-heading">Neste podcast:</div>
+                <div class="content-text">
+                    {{ displaycast.conteudo | safe }}
+                </div>
+            </div>
+        {% endif %}
+    </main>
+{% endcache %}
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
