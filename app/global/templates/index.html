@@ -88,7 +88,7 @@
             <!-- Logo -->
             <div class="logo-container">
                 <a href="{% url 'home' %}">
-                    <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
+                    <img src="{% static 'imgs/index/new/logo-display.png' %}" alt="Logo do site">
                 </a>
                 <div class="dl-acessibilidade-option">
                     <a href="#" class="dl-font-menor" id="dl-fonte-menor" title="Diminuir o tamanho da fonte">
@@ -165,7 +165,7 @@
 
                     <!-- Display Cast -->
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Display Cast</a>
+                        <a href="{% url 'displaycast' %}" class="nav-link">Display Cast</a>
                     </li>
 
                     <!-- Contato -->
@@ -232,7 +232,7 @@
 
                     <!-- Display Cast -->
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Display Cast</a>
+                        <a href="{% url 'displaycast' %}" class="nav-link">Display Cast</a>
                     </li>
 
                     <!-- Contato -->
