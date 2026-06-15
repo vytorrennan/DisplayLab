@@ -13,7 +13,8 @@
     border-radius: 5px;
     padding: 6px;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 14px !important;
+    line-height: 1;
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -67,6 +68,7 @@ html.alto-contraste body {
 html.alto-contraste *:not(script):not(style) {
     color: #ff0 !important;
     background-color: transparent !important;
+    background-image: none !important;
     border-color: #ff0 !important;
     text-shadow: none !important;
     box-shadow: none !important;
