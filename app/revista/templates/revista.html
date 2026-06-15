@@ -138,20 +138,27 @@
       <aside id="side-bar">
         <div class="mb-5">
           <p class="side-bar-title">Display Cast</p>
-          <div class="side-item">
-            <img src="{% static 'imgs/revista/new/displayCastCapa.png' %}" alt="Capa do display cast">
-            <div>
-              <p class="side-bar-text">Display Cast #2</p>
-              <small class="text-muted">Em breve</small>
+          {% if displaycasts %}
+            {% for dc in displaycasts %}
+            <a href="/displaycast/{{ dc.url }}" class="text-decoration-none text-black">
+              <div class="side-item">
+                <img src="{{ dc.capa }}" alt="Capa do display cast {{ dc.titulo }}">
+                <div>
+                  <p class="side-bar-text">{{ dc.titulo|truncatechars:40 }}</p>
+                  <small class="text-muted">{{ dc.dataHora|date:"d/m/Y" }}</small>
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+          {% else %}
+            <div class="side-item">
+              <img src="{% static 'imgs/revista/new/displayCastCapa.png' %}" alt="Capa do display cast">
+              <div>
+                <p class="side-bar-text">Sem Display Casts</p>
+                <small class="text-muted">Em breve</small>
+              </div>
             </div>
-          </div>
-          <div class="side-item">
-            <img src="{% static 'imgs/revista/new/displayCastCapa.png' %}" alt="Capa do display cast">
-            <div>
-              <p class="side-bar-text">Display Cast #1</p>
-              <small class="text-muted">Em breve</small>
-            </div>
-          </div>
+          {% endif %}
         </div>
 
         <div>

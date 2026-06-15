@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import Revista
 from contentManagement.views.viewsHome import rangePages
+from displaycast.models import DisplayCast
 
 # Create your views here.
 
@@ -16,8 +17,9 @@ class revista(View):
         rangePage = rangePages(12, page_obj)
 
         ultimosPosts = Revista.objects.filter(oculto=False).order_by("-edicao", "-dataHora")[0:2]
+        ultimosDisplaycasts = DisplayCast.objects.order_by('-dataHora')[0:2]
 
-        context = {"page_obj": page_obj, "rangePages": rangePage, "ultimosPosts": ultimosPosts}
+        context = {"page_obj": page_obj, "rangePages": rangePage, "ultimosPosts": ultimosPosts, "displaycasts": ultimosDisplaycasts}
         return render(request, "revista.html", context)
 
 
