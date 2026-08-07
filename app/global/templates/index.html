@@ -24,8 +24,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -82,59 +84,99 @@
     <!--</nav>-->
 
     <header>
+        <div class="acessibilidade-top">
+            <!-- Logo -->
+            <div class="logo-container">
+                <a href="{% url 'home' %}" class="logo-link">
+                    <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
+                </a>
+                <div class="logo-text">
+                    <span class="logo-title">display</span>
+                    <span class="logo-subtitle">laboratório de novas tecnologias</span>
+                </div>
+                <div class="dl-acessibilidade-option">
+                    <a href="#" class="dl-font-menor" id="dl-fonte-menor" title="Diminuir o tamanho da fonte">
+                        <i class="fa-solid fa-minus"></i>
+                    </a>
+                    <a href="#" class="dl-font-padrao" id="dl-fonte-padrao" title="Tamanho da fonte padrão">
+                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                    </a>
+                    <a href="#" class="dl-font-maior" id="dl-fonte-maior" title="Aumentar o tamanho da fonte">
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
+                    <a href="#" class="dl-contraste-btn" id="dl-contraste" title="Alto contraste" accesskey="4">
+                        <i class="fa-solid fa-circle-half-stroke"></i>
+                    </a>
+                    <a href="{% url 'acessibilidade' %}" class="dl-acessibilidade-btn" title="Acessibilidade">
+                        <i class="fa-solid fa-universal-access"></i>
+                    </a>
+                    <a href="{% url 'mapa' %}" class="dl-site-map-btn" title="Mapa do site">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="search" placeholder="Pesquisar conteúdo">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </div>
+
         <!-- Main Navbar -->
         <div class="navbar p-0">
-            <!-- Logo -->
-            <a href="{% url 'home' %}">
-                <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
-            </a>
 
-            <!-- DESKTOP MENU -->
+            <!-- Desktop menu -->
             <nav class="menu" accesskey="2" tabindex="-1">
                 <ul class="nav-list">
-                    <!-- 1. HOME (Geralmente sem dropdown) -->
+                    <!-- Home -->
                     <li class="nav-item">
                         <a href="{% url 'home' %}">Home</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{% url 'parceiros' %}" class="nav-link">Parceiros</a>
-                    </li>
-
+                    <!-- Institucional -->
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="dropProjetos">
-                            Projetos
+                        <a href="#" class="nav-link dropdown-toggle" id="dropInstitucional">
+                            Institucional
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropProjetos">
-                            <li><a class="dropdown-item" href="#">Display Cast</a></li>
-                            <li><a class="dropdown-item" href="#">Jogos Digitais</a></li>
-                            <li><a class="dropdown-item" href="#">Projetos em Desenvolvimento</a></li>
-                            <li><a class="dropdown-item" href="{% url 'projetos' %}">Projetos Publicados</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="dropPublicacoes">
-                            Publicações
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropPublicacoes">
-                            <li><a class="dropdown-item" href="{% url 'revista' %}">Revista</a></li>
-                            <li><a class="dropdown-item" href="#">Publicações Científicas</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="dropSobre">
-                            Sobre
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropSobre">
+                        <ul class="dropdown-menu" aria-labelledby="dropInstitucional">
                             <li><a class="dropdown-item" href="{% url 'institucional' %}">Sobre o Display Lab</a></li>
                             <li><a class="dropdown-item" href="{% url 'sobre' %}">Quem somos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'parceiros' %}">Parceiros</a></li>
                             <li><a class="dropdown-item" href="{% url 'alumni' %}">Alumni</a></li>
-                            <li><a class="dropdown-item" href="#">Expediente</a></li>
+                            <li><a class="dropdown-item" href="{% url 'expediente' %}">Expediente</a></li>
                         </ul>
                     </li>
-                    
+
+                    <!-- Produção -->
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="dropProducao">
+                            Produção
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropProducao">
+                            <li><a class="dropdown-item" href="{% url 'projetos' %}">Projetos</a></li>
+                            <li><a class="dropdown-item" href="#">Jogos Digitais</a></li>
+                            <li><a class="dropdown-item" href="#">Publicações Científicas</a></li>
+                            <li><a class="dropdown-item" href="{% url 'revista' %}">Revista</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Sistemas -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Sistemas</a>
+                    </li>
+
+                    <!-- Display Cast -->
+                    <li class="nav-item">
+                        <a href="{% url 'displaycast' %}" class="nav-link">Display Cast</a>
+                    </li>
+
+                    <!-- Contato -->
+                    <li class="nav-item">
+                        <a href="{% url 'contato' %}" class="nav-link">Contato</a>
+                    </li>
+
                 </ul>
             </nav>
 
@@ -149,55 +191,59 @@
             </button>
         </div>
 
-        <!-- MOBILE MENU (Collapse) -->
+        <!-- Mobile menu -->
         <div class="collapse mobile-menu" id="mobileMenu">
             <nav>
                 <ul class="mobile-nav-list">
+                    <!-- Home -->
                     <li class="nav-item">
                         <a href="{% url 'home' %}">Home</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{% url 'parceiros' %}" class="nav-link">Parceiros</a>
-                    </li>
-
+                    <!-- Institucional -->
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="mobDropProjetos" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Projetos
+                        <a href="#" class="nav-link dropdown-toggle" id="mobDropInstitucional" role="button"
+                            data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            Institucional
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="mobDropProjetos">
-                            <li><a class="dropdown-item" href="#">Display Cast</a></li>
-                            <li><a class="dropdown-item" href="#">Jogos Digitais</a></li>
-                            <li><a class="dropdown-item" href="#">Projetos em Desenvolvimento</a></li>
-                            <li><a class="dropdown-item" href="{% url 'projetos' %}">Projetos Publicados</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="mobDropPublicacoes" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Publicações
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="mobDropPublicacoes">
-                            <li><a class="dropdown-item" href="{% url 'revista' %}">Revista</a></li>
-                            <li><a class="dropdown-item" href="#">Publicações Científicas</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="mobDropSobre" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Sobre
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="mobDropSobre">
+                        <ul class="dropdown-menu" aria-labelledby="mobDropInstitucional">
                             <li><a class="dropdown-item" href="{% url 'institucional' %}">Sobre o Display Lab</a></li>
                             <li><a class="dropdown-item" href="{% url 'sobre' %}">Quem somos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'parceiros' %}">Parceiros</a></li>
                             <li><a class="dropdown-item" href="{% url 'alumni' %}">Alumni</a></li>
-                            <li><a class="dropdown-item" href="#">Expediente</a></li>
+                            <li><a class="dropdown-item" href="{% url 'expediente' %}">Expediente</a></li>
                         </ul>
                     </li>
-  
+
+                    <!-- Produção -->
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="mobDropProducao" role="button"
+                            data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            Produção
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="mobDropProducao">
+                            <li><a class="dropdown-item" href="{% url 'projetos' %}">Projetos</a></li>
+                            <li><a class="dropdown-item" href="#">Jogos Digitais</a></li>
+                            <li><a class="dropdown-item" href="#">Publicações Científicas</a></li>
+                            <li><a class="dropdown-item" href="{% url 'revista' %}">Revista</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Sistemas -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Sistemas</a>
+                    </li>
+
+                    <!-- Display Cast -->
+                    <li class="nav-item">
+                        <a href="{% url 'displaycast' %}" class="nav-link">Display Cast</a>
+                    </li>
+
+                    <!-- Contato -->
+                    <li class="nav-item">
+                        <a href="{% url 'contato' %}" class="nav-link">Contato</a>
+                    </li>
+
                 </ul>
             </nav>
         </div>
@@ -215,14 +261,12 @@
     {% endif %}
 
     <div id="content" accesskey="1" tabindex="-1">
-        {% include 'components/acessibilidade_button.html' %}
-
         {% block content%}
         {% endblock %}
     </div>
 
     <footer>
-         <div class="info-main" accesskey="3" tabindex="-1">
+        <div class="info-main" accesskey="3" tabindex="-1">
             <div class="info">
                 <div class="info-display">
                     <img src="{% static 'imgs/index/new/Logo.png' %}" alt="Logo do site">
@@ -297,15 +341,21 @@
         </div>
     </footer>
 
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vp-plugin-container"></div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous">
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
+
     <!-- VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
@@ -314,6 +364,8 @@
 
     <!-- Acessibilidade -->
     <script src="{% static 'js/acessibilidade.js' %}"></script>
+
+
 
     {% block script %}
     {% endblock%}

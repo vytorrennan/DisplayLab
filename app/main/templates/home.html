@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/home/new/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/home/new/cast/cast.css' %}">
 {% endblock %}
 
 {% block content%}
@@ -237,28 +238,30 @@
     </article>
 
     <article class="cast">
-        <div class="bars"></div>
         <div class="cast-container">
-            <h2>OUÇA OS <br> NOVOS <br> EPISÓDIOS</h2>
+            <div class="cast-header">
+                <div class="bars"></div>
+                <h2>OUÇA OS <br> NOVOS <br> EPISÓDIOS</h2>
+            </div>
 
             <div class="cast-list">
-                <div class="cast-content">
-                    <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio">
-                    <p>Display Cast #3 - Em breve</p>
-                </div>
-
-                <div class="cast-content">
-                    <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio">
-                    <p>Display Cast #2 - Em breve</p>
-                </div>
-
-                <div class="cast-content">
-                    <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio">
-                    <p>Display Cast #1 - Em breve</p>
-                </div>
+                {% for item in displaycasts|slice:":3" %}
+                    <a href="{% url 'displaycast_detail' item.url %}" class="cast-content text-decoration-none">
+                        <img src="{{ item.capa }}" alt="Capa de {{ item.titulo }}" class="cast-cover">
+                        <div>
+                            <p class="cast-title">{{ item.titulo }}</p>
+                            <p class="date-cast-home">{{ item.dataHora|date:"d \d\e F \d\e Y" }}</p>
+                        </div>
+                    </a>
+                {% empty %}
+                    <div class="cast-content">
+                        <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio" class="cast-cover">
+                        <p>Nenhum episódio disponível no momento.</p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-        <a href="{% url 'projetos' %}displaycast/" class="align-self-center text-decoration-none"><button class="cast-btn">Mais em breve</button></a>
+        <a href="{% url 'displaycast' %}" class="align-self-center text-decoration-none"><button class="cast-btn">Ver todos</button></a>
     </article>
 
 {#{% endcache %}#}
