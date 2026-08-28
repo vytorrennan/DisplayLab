@@ -159,7 +159,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR
+MEDIA_ROOT = Path(env('MEDIA_ROOT', default=BASE_DIR))
 STATIC_ROOT = '/static/'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
@@ -178,8 +178,6 @@ TINYMCE_DEFAULT_CONFIG = {
 
 DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
 
-MEDIA_ROOT = BASE_DIR
-
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 DBBACKUP_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
@@ -188,6 +186,15 @@ DBBACKUP_STORAGE_OPTIONS = {
     'oauth2_refresh_token': env('DROPBOX_REFRESH_TOKEN_FOR_BACKUP'),
     'app_key': env('DROPBOX_APP_KEY'),
     'app_secret': env('DROPBOX_APP_SECRET')
+}
+
+# Backups can come from another branch whose schema is not identical to the
+# current database. Keep --clean, but do not fail when an object from the
+# backup is not present locally.
+DBBACKUP_CONNECTORS = {
+    'default': {
+        'RESTORE_SUFFIX': '--if-exists',
+    },
 }
 
 CRONJOBS = [

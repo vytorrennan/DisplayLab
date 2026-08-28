@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   pgdb:
     image: postgres:16.1
@@ -12,14 +10,19 @@ services:
     build: .
     expose:
       - "8000"
+    environment:
+      # Never let a media backup overwrite application source files.
+      MEDIA_ROOT: /tmp/displaylab-media-restore
     # Create Super User
     #command: /bin/sh -c "scripts/wait-for-it.sh pgdb:5432 -t 30 && python app/manage.py migrate && python app/createSuperUser.py"
 
     # Make backup
     #command: /bin/sh -c "scripts/wait-for-it.sh pgdb:5432 -t 30 && python app/manage.py dbbackup && python app/manage.py mediabackup"
 
-    # Restore backup
-    #command: /bin/sh -c "scripts/wait-for-it.sh pgdb:5432 -t 30 && python app/manage.py migrate && python app/manage.py dbrestore --noinput && python app/manage.py mediarestore --noinput"
+    # Restore the latest database and media backups, then bring the restored
+    # database up to date with the migrations from this branch.
+    #command:
+    #  - scripts/restore-backup.sh
     
     # Run server
     entrypoint: ["/bin/bash", "scripts/displaylab.sh"]
