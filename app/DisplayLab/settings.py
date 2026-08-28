@@ -30,12 +30,18 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
 
-CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0',
-                        'http://0.0.0.0:8081',
-                        'http://localhost:8081',
-                        'https://displaylab.ifnmg.edu.br']
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
+    'http://0.0.0.0',
+    'http://0.0.0.0:8000',
+    'http://0.0.0.0:8081',
+    'http://localhost:8000',
+    'http://localhost:8081',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:8081',
+    'https://displaylab.ifnmg.edu.br',
+])
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', default=True)
+SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', default=True)
 ALLOWED_HOSTS = ['*']
 
 # Application definition
