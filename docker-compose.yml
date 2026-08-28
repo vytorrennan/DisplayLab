@@ -10,9 +10,6 @@ services:
     build: .
     expose:
       - "8000"
-    environment:
-      # Never let a media backup overwrite application source files.
-      MEDIA_ROOT: /tmp/displaylab-media-restore
     # Create Super User
     #command: /bin/sh -c "scripts/wait-for-it.sh pgdb:5432 -t 30 && python app/manage.py migrate && python app/createSuperUser.py"
 

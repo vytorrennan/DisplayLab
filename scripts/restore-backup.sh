@@ -16,9 +16,10 @@ PGPASSWORD="${POSTGRES_PASSWORD}" psql \
 python app/manage.py dbrestore --noinput
 python app/manage.py migrate --noinput --fake-initial
 
-# MEDIA_ROOT points to an isolated staging directory for this service. The
-# historical media archive contains app source too, so copy only user uploads.
-python app/manage.py mediarestore --noinput --replace
+# Point MEDIA_ROOT to an isolated staging directory for this restore process.
+# The historical media archive contains app source too, so copy only uploads.
+media_restore_root=/tmp/displaylab-media-restore
+MEDIA_ROOT="${media_restore_root}" python app/manage.py mediarestore --noinput --replace
 
 for media_dir in \
     main/uploadsMain \
@@ -26,13 +27,13 @@ for media_dir in \
     revista/uploadsRevista \
     alumni/uploadsAlunos
 do
-    source_dir="${MEDIA_ROOT}/${media_dir}"
+    source_dir="${media_restore_root}/${media_dir}"
     if [[ -d "${source_dir}" ]]; then
         mkdir -p "app/$(dirname "${media_dir}")"
         cp -a "${source_dir}" "app/$(dirname "${media_dir}")/"
     fi
 done
 
-if [[ -f "${MEDIA_ROOT}/alumni/default.jpg" ]]; then
-    cp -a "${MEDIA_ROOT}/alumni/default.jpg" app/alumni/default.jpg
+if [[ -f "${media_restore_root}/alumni/default.jpg" ]]; then
+    cp -a "${media_restore_root}/alumni/default.jpg" app/alumni/default.jpg
 fi
