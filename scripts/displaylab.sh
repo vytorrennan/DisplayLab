@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ $# -gt 0 ]]; then
+    exec "$@"
+fi
+
 scripts/wait-for-it.sh pgdb:5432 -t 30
 cd app
 python manage.py migrate --no-input

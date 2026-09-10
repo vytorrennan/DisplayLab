@@ -27,6 +27,7 @@ class Revista(models.Model):
     capa = models.CharField(max_length=512, default="")
     resumo = models.CharField(max_length=1000, default="")
     pagina = models.TextField(default="")
+    url_local_publicacao = models.URLField(max_length=512, default="")
 
     def __str__(self):
         return self.titulo

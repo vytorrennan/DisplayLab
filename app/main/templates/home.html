@@ -3,12 +3,14 @@
 {% load static %}
 {% load cache %}
 <title>HOME</title>
+
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/home/new/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/home/new/cast/cast.css' %}">
 {% endblock %}
 
 {% block content%}
-{% cache 300 home request.get_full_path %}
+{#{% cache 300 home request.get_full_path %}#}
     <!--<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">-->
     <!--    <div class="carousel-indicators">-->
     <!--    {% for num in iterableNumItens %}-->
@@ -64,97 +66,209 @@
 
 
     <article class="intro">
-            <div class="text-intro">
-                <h1>display</h1>
-                <p class="about">
-                    Laboratório de Novas Tecnologias e Jogos Digitais <br> Instituto Federal do Norte de Minas Gerais - Campus Januária
-                </p>
-                <p class="motivationalPhrase">Entre em um mundo de inovação e criatividade</p>
+        <div class="text-intro">
+            <h1>display</h1>
+            <p class="about">
+                Laboratório de Novas Tecnologias e Jogos Digitais <br> Instituto Federal do Norte de Minas Gerais - Campus Januária
+            </p>
+            <p class="motivationalPhrase">Entre em um mundo de inovação e criatividade</p>
 
-                <a href="{% url 'projetos' %}" class="text-decoration-none"><button class="btn-intro border-0">
-                    <p>Conheça nossos Projetos</p>
-                </button></a>
+            <a href="{% url 'projetos' %}" class="text-decoration-none"><button class="btn-intro border-0">
+                <p>Conheça nossos Projetos</p>
+            </button></a>
+        </div>
+    </article>
+
+    <article class="notices">
+        <!-- notícias games -->
+        <div class="section-container">
+            <div class="category-header">
+                <div class="category-line"></div>
+                <h3 class="category-title">Universo Gaming</h3>
+                <div class="category-line"></div>
             </div>
-         </article>
 
-         <article class="magazine">
-            <h3>REVISTA</h3>
-            <div class="magazine-container">
-                {% for post in ultimosPosts %}
-                <div class="notices-magazine-container">
-                    <a href="/revista/{{ post.url }}" class="text-decoration-none">
-                      <img class="w-100" src="{{ post.capa }}" alt="Capa de {{ post.titulo}}">
-                      <h4>{{ post.titulo }}</h4>
-                    </a>
-                    <p class="publication-date">{{ post.dataHora }}</p>
-                    <p>
-                        {{ post.resumo }}
-                    </p>
+            <!-- Swiper Container Principal -->
+            <div style="position: relative;">
+                <div class="swiper swiperGaming">
+                    <div class="swiper-wrapper">
+                        {% for noticia in noticias_games %}
+                            <div class="swiper-slide">
+                                <a href="{{ noticia.url_fonte }}" class="card card-news shadow-sm">
+                                    <div class="image-container">
+                                        <span class="source-badge badge-game">{{ noticia.fonte }}</span>
+                                        <img src="{{ noticia.url_imagem}}" class="card-img-top" alt="Jogos">
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="news-date">{{ noticia.data_publicacao }}</div>
+                                        <h5 class="card-title">{{ noticia.titulo }}</h5>
+                                        <p class="card-text">{{ noticia.descricao }}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                {% endfor %}
+
+                <!-- Controles -->
+                <div class="swiper-button-next swiper-btn-gaming-next"></div>
+                <div class="swiper-button-prev swiper-btn-gaming-prev"></div>
+
             </div>
 
-            <a href="{% url 'revista' %}" class="text-decoration-none text-white"><button class="magazine-btn">Ver Mais</button></a>
-         </article>
 
-         <article class="games">
-            <h2>JOGOS</h2>
-            <div class="games-container">
+        </div>
 
-                <div class="game-content">
+        <!-- notícia pesquisas -->
+        <div class="section-container">
+            <div class="category-header">
+                <div class="category-line"></div>
+                <h3 class="category-title">Pesquisas Acadêmicas </h3>
+                <div class="category-line"></div>
+            </div>
+
+            <!-- Swiper Container -->
+            <div style="position: relative;">
+                <div class="swiper swiperPesquisa">
+                    <div class="swiper-wrapper">
+                        {% for noticia in noticias_sbc %}
+                            <div class="swiper-slide">
+                                <a href="{{ noticia.url_fonte }}" class="card card-news shadow-sm">
+                                    <div class="image-container">
+                                        <span class="source-badge badge-game">{{ noticia.fonte }}</span>
+                                        <img src="{{ noticia.url_imagem}}" class="card-img-top" alt="Jogos">
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="news-date">{{ noticia.data_publicacao }}</div>
+                                        <h5 class="card-title">{{ noticia.titulo }}</h5>
+                                        <p class="card-text">{{ noticia.descricao }}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+                <div class="swiper-button-next swiper-btn-pesquisa-next"></div>
+                <div class="swiper-button-prev swiper-btn-pesquisa-prev"></div>
+            </div>
+
+        </div>
+    </article>
+
+    <article class="magazine">
+        <div class="category-header">
+            <div class="category-line"></div>
+            <h3 class="category-title">Revista</h3>
+            <div class="category-line"></div>
+        </div>
+        <div class="magazine-container">
+            {% for post in ultimosPosts %}
+                <div class="card card-news shadow-sm">
+                    <a href="/revista/{{ post.url }}" class="image-container">
+                        <img class="card-img-top" src="{{ post.capa }}" alt="Capa de {{ post.titulo}}">
+                    </a>
+                    <div class="card-body">
+                        <div class="news-date">{{ post.dataHora }}</div>
+                        <h5 class="card-title">{{ post.titulo }}</h5>
+                        <p class="card-text">{{ post.descricao }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'revista' %}" class="text-decoration-none text-white d-flex"><button class="magazine-btn">Ver Mais</button></a>
+    </article>
+
+    <article class="games">
+        <h2>JOGOS</h2>
+        <div class="games-slider">
+            <div class="games-track">
+
+                <a href="{% url 'paginaDeProjeto' 'peruacu-digital' %}" class="game-content">
                     <div class="picture">
-                        <img src="{% static 'imgs/home/new/games/image 1(1).png' %}" alt="Capa do jogo Peruaçu Digital">
+                        <img src="{% static 'imgs/home/new/games/image 1(1).png' %}" alt="Peruaçu Digital">
                         <h3>Peruaçu Digital</h3>
                     </div>
-                </div>
+                </a>
 
-                <div class="game-content">
+                <a href="{% url 'paginaDeProjeto' 'indisciplina-2d' %}" class="game-content">
                     <div class="picture">
-                        <img src="{% static 'imgs/home/new/games/image 1(2).png' %}" alt="Capa do jogo Indisciplina 2D">
+                        <img src="{% static 'imgs/home/new/games/image 1(2).png' %}" alt="Indisciplina 2D">
                         <h3>Indisciplina 2D</h3>
                     </div>
-                </div>
+                </a>
 
-                <div class="game-content">
+                <a href="{% url 'paginaDeProjeto' 'exterminando-drogas' %}" class="game-content">
                     <div class="picture">
-                      <img src="{% static 'imgs/home/new/games/image 1.png' %}" alt="Capa do jogo exterminando drogas">
+                        <img src="{% static 'imgs/home/new/games/image 1.png' %}" alt="Exterminando Drogas">
                         <h3>Exterminando Drogas</h3>
                     </div>
-                </div>
+                </a>
+
+                <!-- copia para o loop infinito -->
+                <a href="{% url 'paginaDeProjeto' 'peruacu-digital' %}" class="game-content" aria-hidden="true" tabindex="-1">
+                    <div class="picture">
+                        <img src="{% static 'imgs/home/new/games/image 1(1).png' %}" alt="">
+                        <h3>Peruaçu Digital</h3>
+                    </div>
+                </a>
+
+                <a href="{% url 'paginaDeProjeto' 'indisciplina-2d' %}" class="game-content" aria-hidden="true" tabindex="-1">
+                    <div class="picture">
+                        <img src="{% static 'imgs/home/new/games/image 1(2).png' %}" alt="">
+                        <h3>Indisciplina 2D</h3>
+                    </div>
+                </a>
+
+                <a href="{% url 'paginaDeProjeto' 'exterminando-drogas' %}" class="game-content" aria-hidden="true" tabindex="-1">
+                    <div class="picture">
+                        <img src="{% static 'imgs/home/new/games/image 1.png' %}" alt="">
+                        <h3>Exterminando Drogas</h3>
+                    </div>
+                </a>
 
             </div>
+        </div>
 
-            <button class="games-btn">Mais Jogos Em Breve</button>
-         </article>
+        <button class="games-btn">Mais Jogos em breve</button>
+    </article>
 
-         <article class="cast">
+    <article class="cast">
+        <div class="cast-container">
+            <div class="cast-header">
                 <div class="bars"></div>
-                <div class="cast-container">
-                    <h2>OUÇA OS <br> NOVOS <br> EPISÓDIOS</h2>
+                <h2>OUÇA OS <br> NOVOS <br> EPISÓDIOS</h2>
+            </div>
 
-                    <div class="cast-list">
-                        <div class="cast-content">
-                            <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio">
-                            <p>Display Cast #3 - Em breve</p>
+            <div class="cast-list">
+                {% for item in displaycasts|slice:":3" %}
+                    <a href="{% url 'displaycast_detail' item.url %}" class="cast-content text-decoration-none">
+                        <img src="{{ item.capa }}" alt="Capa de {{ item.titulo }}" class="cast-cover">
+                        <div>
+                            <p class="cast-title">{{ item.titulo }}</p>
+                            <p class="date-cast-home">{{ item.dataHora|date:"d \d\e F \d\e Y" }}</p>
                         </div>
-                        
-                        <div class="cast-content">
-                            <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio">
-                            <p>Display Cast #2 - Em breve</p>
-                        </div>
-
-                        <div class="cast-content">
-                          <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio">
-                            <p>Display Cast #1 - Em breve</p>
-                        </div>
+                    </a>
+                {% empty %}
+                    <div class="cast-content">
+                        <img src="{% static 'imgs/home/new/cast/Capa DC.png' %}" alt="Capa do episodio" class="cast-cover">
+                        <p>Nenhum episódio disponível no momento.</p>
                     </div>
-                </div>
-                <a href="{% url 'projetos' %}displaycast/" class="align-self-center text-decoration-none"><button class="cast-btn">Mais Episódios Em Breve</button></a>
-         </article>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="{% url 'displaycast' %}" class="align-self-center text-decoration-none"><button class="cast-btn">Ver todos</button></a>
+    </article>
 
-{% endcache %}
+{#{% endcache %}#}
 {% endblock %}
 
 {% block script %}
+
     <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/swiper_carousel.js' %}"></script>
 {% endblock%}

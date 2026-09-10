@@ -6,23 +6,36 @@ RUN apk add --no-cache \
     bash \
     postgresql-client \
     postgresql-dev \
-    pkgconfig \
-    git \
     gcc \
-    libcurl \
+    musl-dev \
     python3-dev \
+    libc-dev \
+    git \
+    pkgconfig \
+    libcurl \
     gpgme-dev \
-    libc-dev
+    dcron \
+    netcat-openbsd
 
 WORKDIR /DisplayLab
 
-COPY ./requirements.txt ./
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install -r requirements.txt --no-cache-dir --disable-pip-version-check
+COPY . .
 
-COPY ./ ./
+# Garantir que scripts são executáveis
+RUN chmod +x scripts/displaylab.sh \
+    && chmod +x scripts/wait-for-it.sh \
+    && chmod +x scripts/cronjobs.sh
 
-EXPOSE 8000
+# Criar log do cron
+RUN mkdir -p /var/log \
+    && touch /var/log/cron.log \
+    && chmod 777 /var/log/cron.log
 
-RUN chmod +x ./scripts/displaylab.sh
-RUN chmod +x ./scripts/wait-for-it.sh
+# Wrapper neutro
+RUN printf '#!/bin/sh\nexec "$@"\n' > /entrypoint.sh \
+    && chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

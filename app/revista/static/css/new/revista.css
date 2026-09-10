@@ -18,54 +18,116 @@
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
+  gap: 5%;
 }
 
 #posts {
-  width: 75%;
-}
-
-.card-text {
-  font-size: 0.8rem;
-}
-
-p {
-  margin-bottom: calc(1rem * .6);
+  width: 70%;
 }
 
 #side-bar {
   width: 25%;
-  border-left: solid 2px;
-  border-color: #9AED8A;
   height: fit-content;
-  padding: 1%;
+  /* removing the gray background and padding box */
+}
+
+.side-bar-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #01282d;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #008eb0;
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+.side-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+.side-item:hover {
+  transform: translateX(4px);
+}
+
+.side-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .side-bar-text {
+  font-size: 0.95rem;
+  font-family: 'Sora', sans-serif;
+  color: #222;
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.side-item small {
+  font-family: 'Inter', sans-serif;
   font-size: 0.8rem;
 }
 
+/* Post list styles */
+.post-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #eee !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.cover-post {
+  height: 100%;
+  min-height: 250px;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.post-title-link h4 {
+  color: #01282d;
+  font-family: 'Sora', sans-serif;
+  transition: color 0.3s ease;
+}
+.post-title-link:hover h4 {
+  color: #008eb0;
+}
+
+.post-resumo {
+  font-family: 'Inter', sans-serif;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
 .line-posts {
-  margin: 30px 0px;
-  border-top: 3px solid #9EDAEE;
-  width: 95%;
+  margin: 40px auto;
+  border-top: 2px solid #e9ecef;
+  width: 100%;
 }
 
-.line-side-bar {
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  border-top: 2px solid #01282D;
-  width: 85%;
-}
-
-
-@media(max-width: 1200px) {
+@media(max-width: 992px) {
   #posts {
     width: 100%;
   }
 
   #side-bar {
     width: 100%;
-    border: 0px;
+    margin-top: 40px;
   }
 }

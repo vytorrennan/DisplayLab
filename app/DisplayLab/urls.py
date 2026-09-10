@@ -17,13 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .settings import env
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path(env('ADMIN_URL'), admin.site.urls),
     path("", include('main.urls')),
     path("", include('projetos.urls')),
     path("", include('revista.urls')),
+    path("displaycast/", include('displaycast.urls')),
     path("tinymce/", include('tinymce.urls')),
     path("contentManagement/", include('contentManagement.urls')),
     path("", include('managementLoginSystem.urls')),
+    path('alumni/', include('alumni.urls')),
+    path('noticias/', include('coletar_noticias.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

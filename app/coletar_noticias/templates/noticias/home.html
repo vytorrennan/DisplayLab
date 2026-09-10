@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+
+{% block head %}
+<title>NOTÍCIAS</title>
+{% endblock %}
+
+{% block content %}
+<main class="container py-5">
+    <h1>Notícias</h1>
+
+    <section class="mt-4" aria-labelledby="noticias-pesquisa">
+        <h2 id="noticias-pesquisa">Pesquisas acadêmicas</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-1">
+            {% for noticia in noticias_sbc %}
+            <div class="col">
+                <a class="card h-100 text-decoration-none text-dark" href="{{ noticia.url_fonte }}">
+                    {% if noticia.url_imagem %}
+                    <img src="{{ noticia.url_imagem }}" class="card-img-top" alt="">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="h5 card-title">{{ noticia.titulo }}</h3>
+                        <p class="card-text">{{ noticia.descricao }}</p>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p>Nenhuma notícia acadêmica disponível.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="mt-5" aria-labelledby="noticias-games">
+        <h2 id="noticias-games">Universo gaming</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-1">
+            {% for noticia in noticias_games %}
+            <div class="col">
+                <a class="card h-100 text-decoration-none text-dark" href="{{ noticia.url_fonte }}">
+                    {% if noticia.url_imagem %}
+                    <img src="{{ noticia.url_imagem }}" class="card-img-top" alt="">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="h5 card-title">{{ noticia.titulo }}</h3>
+                        <p class="card-text">{{ noticia.descricao }}</p>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <p>Nenhuma notícia de jogos disponível.</p>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

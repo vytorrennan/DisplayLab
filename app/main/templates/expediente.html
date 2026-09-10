@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block head %}
+{% load static %}
+{% load cache %}
+<title>EXPEDIENTE</title>
+
+
+<link rel="stylesheet" href="{% static 'css/expediente.css' %}">
+<link rel="stylesheet" href="{% static 'css/home/new/expediente.css' %}">
+{% endblock %}
+
+{% block content%}
+    <main class="container mt-4">
+        <p id="pagePath">HOME / INSTITUCIONAL / EXPEDIENTE</p>
+        <div id="titleDiv">
+            <h1 id="title" style="font-weight: 600;">EXPEDIENTE</h1>
+        </div>
+
+        <div class="ExpedienteSection">
+            <h2 class="titleExpediente">Display Lab</h2>
+            <div class="expedienteContainer">
+                <p class="textExpendiente">O Display lab é um website de divulgação das produções cientificas dos alunos do Laboratório de Jogos e Novas Tecnologias, no Instituto Federal do Norte de Minas Gerais, campus Januária.</p>
+            </div>
+        </div>
+
+        {% for membro in membros %}
+            {% ifchanged membro.categoria.categoria %}
+                {% if not forloop.first %} </div> {% endif %}
+
+                <div class="ExpedienteSection">
+                    <h2 class="titleExpediente">{{ membro.categoria.categoria }}</h2>
+            {% endifchanged %}
+
+            <div class="expedienteContainer">
+                <p class="textExpendiente">{{ membro.nome }}</p>
+            </div>
+
+            {% if forloop.last %} </div> {% endif %}
+        {% endfor %}
+    </main>
+    {% include 'components/contato.html'%}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/expediente.js' %}"></script>
+{% endblock%}

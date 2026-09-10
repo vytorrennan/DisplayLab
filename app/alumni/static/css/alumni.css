@@ -1,0 +1,130 @@
+.alumniSection {
+    font-family: 'Sora', sans-serif;
+    margin-bottom: clamp(4rem, 10vw, 16.6rem);
+    padding: 0 20px;
+}
+
+.alumniTitle {
+    font-size: 2rem;
+    color: var(--cast-btn-color);
+    margin-bottom: 50px;
+}
+
+/* CONTAINER DOS CARDS */
+.alumniContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px;
+    justify-content: center;
+    padding-left: 0;
+}
+
+/* FUNÇÃO DO ALUNO (Tag superior) */
+.alumniFuncao {
+    background-color: var(--cast-btn-color, #01859b);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+    width: fit-content;
+}
+.alumniFuncao p {
+    margin: 0;
+}
+
+/* CARD */
+.alumniCard {
+    width: 100%;
+    max-width: 350px;
+    background-color: var(--games-background);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.alumniCard:hover {
+    transform: translateY(-5px);
+}
+
+/* IMAGEM */
+.alumniImageWrapper {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #006977;
+    margin-bottom: 20px;
+}
+
+.alumniImageWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TEXTOS */
+.alumniText {
+    font-size: 1.3rem;
+    color: #011B1F;
+    margin: 6px 0;
+    text-align: center;
+}
+
+/* LINKS */
+.alumniLinks {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.alumniLink {
+    font-size: 1.2rem;
+    color: var(--cast-btn-color);
+    text-decoration: none;
+}
+
+.alumniLink:hover {
+    text-decoration: underline;
+}
+
+
+@media screen and (max-width: 768px) {
+    .alumniTitle {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .alumniContainer {
+        gap: 30px 15px;
+    }
+
+    #pagePath {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    #title {
+        text-align: center;
+        font-size: 2.2rem;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .alumniCard {
+        padding: 20px 15px;
+    }
+
+    .alumniImageWrapper {
+        width: 150px;
+        height: 150px;
+    }
+}

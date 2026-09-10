@@ -30,12 +30,18 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
 
-CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0',
-                        'http://0.0.0.0:8081',
-                        'http://localhost:8081',
-                        'https://displaylab.ifnmg.edu.br']
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
+    'http://0.0.0.0',
+    'http://0.0.0.0:8000',
+    'http://0.0.0.0:8081',
+    'http://localhost:8000',
+    'http://localhost:8081',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:8081',
+    'https://displaylab.ifnmg.edu.br',
+])
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', default=True)
+SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', default=True)
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -52,9 +58,12 @@ INSTALLED_APPS = [
     'main',
     'projetos',
     'revista',
+    'displaycast',
     'tinymce',
     'contentManagement',
     'managementLoginSystem',
+    'coletar_noticias',
+    'alumni',
 ]
 
 MIDDLEWARE = [
@@ -155,6 +164,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = Path(env('MEDIA_ROOT', default=BASE_DIR))
 STATIC_ROOT = '/static/'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
@@ -173,8 +184,6 @@ TINYMCE_DEFAULT_CONFIG = {
 
 DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
 
-MEDIA_ROOT = BASE_DIR
-
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 DBBACKUP_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
@@ -185,8 +194,18 @@ DBBACKUP_STORAGE_OPTIONS = {
     'app_secret': env('DROPBOX_APP_SECRET')
 }
 
+# Backups can come from another branch whose schema is not identical to the
+# current database. Keep --clean, but do not fail when an object from the
+# backup is not present locally.
+DBBACKUP_CONNECTORS = {
+    'default': {
+        'RESTORE_SUFFIX': '--if-exists',
+    },
+}
+
 CRONJOBS = [
-    ('30 2 * * *', 'DisplayLab.cron.backup')
+    ('30 2 * * *', 'DisplayLab.cron.backup'),
+    ('0 0 * * *', 'DisplayLab.cron.wrapper_coletar_noticias'),
 ]
 
 # Show SQL commands in terminal

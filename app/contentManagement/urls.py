@@ -3,6 +3,7 @@ from .views.viewsHome import *
 from .views.viewsProjetos import *
 from .views.viewsRevista import *
 from .views.viewsSobre import *
+from .views.viewsAlumni import *
 
 urlpatterns = [
     path("", contentManagement.as_view(), name="contentManagement"),
@@ -40,4 +41,10 @@ urlpatterns = [
     path("novaCategoriaDeMembro/", novaCategoriaDeMembro.as_view(), name="novaCategoriaDeMembro"),
     path("editarCategoriaDeMembro/", editarCategoriaDeMembro.as_view(), name="editarCategoriaDeMembro"),
     path("editarCategoriaDeMembro/<int:id>", editarCategoriaDeMembroId.as_view(), name="editarCategoriaDeMembroId"),
+
+    # Alumni URLs
+    path("novoAluno/", novoAluno.as_view(), name="novoAluno"),
+    path("editarAluno/", editarAluno.as_view(), name="editarAluno"),
+    path("editarAluno/<int:id>", editarAlunoId.as_view(), name="editarAlunoId"),
+    path("novaEdicao/", novaEdicao.as_view(), name="novaEdicao")
 ]

@@ -62,13 +62,18 @@ footer {
 }
 
 .footer-project h2,
-.footer-institutional h2,
+.footer-mapa h2,
 .footer-us h2 {
   font-family: "Sora", sans-serif;
   font-weight: 700;
   font-size: calc(1.8rem * .6);
   color: white;
   margin-bottom: calc(2.6rem * .6);
+}
+
+.footer-mapa h2 a {
+  color: white;
+  text-decoration: none;
 }
 
 footer ul,

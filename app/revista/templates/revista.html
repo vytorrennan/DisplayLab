@@ -55,7 +55,7 @@
 
 
     <main class="container mt-4">
-    <p id="pagePath">HOME / REVISTA</p>
+    <p id="pagePath">HOME / PRODUÇÃO / REVISTA</p>
     <div id="titleDiv">
       <h1 id="title">REVISTA</h1>
     </div>
@@ -74,25 +74,36 @@
       <div id="posts">
 
         {% for post in page_obj %}
-        <div class="card border-0">
-          <div class="row g-0">
-            <div class="col-md-4" style="max-height: 256px;">
-              <a href="/revista/{{ post.url }}" class="text-decoration-none text-black"><img src="{{ post.capa }}" class="object-fit-cover rounded-start" alt="Capa do post {{ post.titulo }}"
-                width="100%" height="100%"></a>
+        <div class="card post-card mb-5">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-5 text-center">
+              <a href="/revista/{{ post.url }}" class="text-decoration-none w-100 h-100 d-block">
+                <img src="{{ post.capa }}" class="object-fit-cover cover-post w-100" alt="Capa do post {{ post.titulo }}">
+              </a>
             </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <a href="/revista/{{ post.url }}" class="text-decoration-none text-black"><h5 class="card-title">{{ post.titulo }}</h5></a>
-                <p class="card-text"><small class="text-body-secondary">Por {{ post.autor }} <br /> {{ post.dataHora }} <br /> Edição {{ post.edicao }}</small>
-                </p>
-                <p class="card-text">{{ post.resumo }}</p>
+            <div class="col-md-7 mt-3 mt-md-0">
+              <div class="card-body py-0 ps-md-4 pe-md-4">
+                <a href="/revista/{{ post.url }}" class="text-decoration-none post-title-link">
+                  <h4 class="card-title fw-bold mb-3">{{ post.titulo }}</h4>
+                </a>
+                <p class="card-text text-muted mb-3"><small>
+                  <i class="fa-solid fa-user me-1"></i> {{ post.autor }} &nbsp;&bull;&nbsp;
+                  <i class="fa-regular fa-calendar me-1"></i> {{ post.dataHora|date:"d/m/Y" }} &nbsp;&bull;&nbsp;
+                  Edição {{ post.edicao }}
+                </small></p>
+                <p class="card-text post-resumo">{{ post.resumo }}</p>
+                <div class="d-flex gap-2 flex-wrap mt-2">
+                  <a href="/revista/{{ post.url }}" class="btn btn-outline-primary rounded-pill px-4 fw-bold">Ler edição</a>
+                  {% if post.url_local_publicacao %}
+                  <a href="{{ post.url_local_publicacao }}" target="_blank" class="btn btn-primary rounded-pill px-4 fw-bold">
+                    <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Ler externamente
+                  </a>
+                  {% endif %}
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-
-        <hr class="line-posts">
         {% endfor %}
 
 
@@ -111,7 +122,7 @@
                 {% else %}
                     <a href="?page={{ page }}" class="text-decoration-none text-dark p-1">{{ page }}</a>
                 {% endif %}
-            {% endfor %}    
+            {% endfor %}
         </div>
 
         <div>
@@ -124,39 +135,48 @@
 
 
       </div>
-      <div id="side-bar">
-        <div>
-          <p class="">Display Cast</p>
-          <div class="d-flex mb-1">
-            <img src="{% static 'imgs/revista/new/displayCastCapa.png' %}" alt="Capa do display cast"
-              class="object-fit-cover rounded m-1 me-2" style="max-width: 50px;">
-            <p class="side-bar-text">Display Cast #2 Em breve</p>
-          </div>
-          <div class="d-flex mb-1">
-            <img src="{% static 'imgs/revista/new/displayCastCapa.png' %}" alt="Capa do display cast"
-              class="object-fit-cover rounded m-1 me-2" style="max-width: 50px;">
-            <p class="side-bar-text">Display Cast #1 Em breve</p>
-          </div>
+      <aside id="side-bar">
+        <div class="mb-5">
+          <p class="side-bar-title">Display Cast</p>
+          {% if displaycasts %}
+            {% for dc in displaycasts %}
+            <a href="/displaycast/{{ dc.url }}" class="text-decoration-none text-black">
+              <div class="side-item">
+                <img src="{{ dc.capa }}" alt="Capa do display cast {{ dc.titulo }}">
+                <div>
+                  <p class="side-bar-text">{{ dc.titulo|truncatechars:40 }}</p>
+                  <small class="text-muted">{{ dc.dataHora|date:"d/m/Y" }}</small>
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+          {% else %}
+            <div class="side-item">
+              <img src="{% static 'imgs/revista/new/displayCastCapa.png' %}" alt="Capa do display cast">
+              <div>
+                <p class="side-bar-text">Sem Display Casts</p>
+                <small class="text-muted">Em breve</small>
+              </div>
+            </div>
+          {% endif %}
         </div>
 
-        <hr class="line-side-bar">
-
         <div>
-          <p class="">Revista</p>
+          <p class="side-bar-title">Últimas Publicações</p>
 
           {% for post in ultimosPosts %}
           <a href="/revista/{{ post.url }}" class="text-decoration-none text-black">
-          <div class="d-flex mb-1">
-            <img src="{{ post.capa }}" alt="Capa do display cast"
-              class="object-fit-cover rounded m-1 me-2" style="max-width: 50px;">
-            <p class="side-bar-text">{{ post.titulo|truncatechars:50 }}</p>
+          <div class="side-item">
+            <img src="{{ post.capa }}" alt="Capa de {{ post.titulo }}">
+            <div>
+              <p class="side-bar-text">{{ post.titulo|truncatechars:40 }}</p>
+              <small class="text-muted">Revista</small>
+            </div>
           </div>
           </a>
           {% endfor %}
         </div>
-
-        <hr class="line-side-bar">
-      </div>
+      </aside>
     </article>
   </main>
 
