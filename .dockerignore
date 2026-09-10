@@ -1,0 +1,8 @@
+.git
+.env
+**/.env
+**/__pycache__
+**/*.py[cod]
+app/staticfiles
+static
+report-assets

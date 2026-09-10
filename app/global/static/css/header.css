@@ -296,7 +296,7 @@ header img {
     transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), visibility 0.3s;
     pointer-events: none;
   }
-  
+
   .nav-list>.nav-item.dropdown:hover>.dropdown-menu {
     opacity: 1;
     visibility: visible;
@@ -389,17 +389,30 @@ header img {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-.search-box i {
+.search-box button {
   position: absolute;
-  right: 16px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
   color: rgba(255, 255, 255, 0.7);
   font-size: 15px;
-  pointer-events: none;
   transition: color 0.3s ease;
 }
 
+.search-box button:hover,
+.search-box button:focus-visible {
+  color: #ffffff;
+}
+
 /* icon input focus */
-.search-box input:focus + i {
+.search-box input:focus + button {
   color: #003153;
 }
 
@@ -414,7 +427,7 @@ header img {
     justify-content: center;
     margin-top: 5px;
   }
-  
+
   .search-box {
     width: 100%;
     max-width: 320px;

@@ -14,7 +14,7 @@ display: flex;
     border: 1px solid #003153;
     border-radius: 25px;
     padding: 40px; /* Reduzi o padding fixo de 100px */
-    align-items: center; 
+    align-items: center;
     font-family: 'Sora', sans-serif;
     transition: all 0.3s ease;
 }
@@ -48,7 +48,7 @@ display: flex;
         padding: 30px;
         gap: 20px;
     }
-    
+
     .partner-card img {
         width: 150px;
         margin-right: 1.5rem;

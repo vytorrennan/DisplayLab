@@ -7,7 +7,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         estatisticas = coletar_e_salvar_todas()
         self.stdout.write(self.style.SUCCESS("Coleta finalizada!"))
-        
+
         for fonte, dados in estatisticas.items():
             self.stdout.write(
                 f"{fonte}: {dados['salvas']} salvas, "

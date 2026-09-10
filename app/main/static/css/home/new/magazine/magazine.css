@@ -171,7 +171,7 @@
     height: 45px !important;
     border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    top: 50%; 
+    top: 50%;
     transform: translateY(-50%);
     margin-top: 0 !important;
     z-index: 100;
@@ -201,8 +201,8 @@
     .section-container { padding: 0 15px; }
     .category-line { max-width: 40px; }
     .magazine-container {display: grid;}
-    .swiper-button-next, .swiper-button-prev, 
-    .swiper-button-next-gaming, .swiper-button-prev-gaming, 
+    .swiper-button-next, .swiper-button-prev,
+    .swiper-button-next-gaming, .swiper-button-prev-gaming,
     .swiper-button-next-pesquisa, .swiper-button-prev-pesquisa {
         display: none !important;
     }

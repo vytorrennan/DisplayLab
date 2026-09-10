@@ -1,6 +1,6 @@
 .alumniSection {
     font-family: 'Sora', sans-serif;
-    margin-bottom: clamp(4rem, 10vw, 16.6rem); 
+    margin-bottom: clamp(4rem, 10vw, 16.6rem);
     padding: 0 20px;
 }
 
@@ -14,7 +14,7 @@
 .alumniContainer {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px 20px; 
+    gap: 40px 20px;
     justify-content: center;
     padding-left: 0;
 }
@@ -38,7 +38,7 @@
 /* CARD */
 .alumniCard {
     width: 100%;
-    max-width: 350px; 
+    max-width: 350px;
     background-color: var(--games-background);
     border-radius: 12px;
     display: flex;
@@ -55,7 +55,7 @@
 
 /* IMAGEM */
 .alumniImageWrapper {
-    width: 180px; 
+    width: 180px;
     height: 180px;
     border-radius: 50%;
     overflow: hidden;
@@ -122,7 +122,7 @@
     .alumniCard {
         padding: 20px 15px;
     }
-    
+
     .alumniImageWrapper {
         width: 150px;
         height: 150px;

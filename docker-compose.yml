@@ -20,7 +20,7 @@ services:
     # database up to date with the migrations from this branch.
     #command:
     #  - scripts/restore-backup.sh
-    
+
     # Run server
     entrypoint: ["/bin/bash", "scripts/displaylab.sh"]
     volumes:
@@ -38,7 +38,7 @@ services:
     build: .
     user: root
     env_file:
-      - app/.env  
+      - app/.env
     entrypoint: ["/bin/sh", "/DisplayLab/scripts/cronjobs.sh"]
     command: ["crond", "-f", "-l", "2"]
     volumes:
@@ -46,7 +46,7 @@ services:
     depends_on:
       - pgdb
     restart: always
-  
+
   redis:
     image: redis:7.2.4-alpine
     env_file:
@@ -64,7 +64,7 @@ services:
       - "8081:80"
     depends_on:
       - displaylab
-    
+
 volumes:
   pgdbData:
   static:

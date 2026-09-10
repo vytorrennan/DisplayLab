@@ -9,7 +9,7 @@ class NoticiaExternaAdmin(admin.ModelAdmin):
     search_fields = ('titulo', 'descricao', 'fonte')
     readonly_fields = ('url_fonte', 'url_imagem', 'data_publicacao')
     ordering = ('-data_publicacao',)
-    
+
     fieldsets = (
         ('Informações Básicas', {
             'fields': ('titulo', 'descricao', 'fonte')

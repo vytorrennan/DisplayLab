@@ -110,14 +110,14 @@
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-                
+
                 <!-- Controles -->
                 <div class="swiper-button-next swiper-btn-gaming-next"></div>
                 <div class="swiper-button-prev swiper-btn-gaming-prev"></div>
-                
+
             </div>
 
-            
+
         </div>
 
         <!-- notícia pesquisas -->
@@ -155,7 +155,7 @@
                 <div class="swiper-button-next swiper-btn-pesquisa-next"></div>
                 <div class="swiper-button-prev swiper-btn-pesquisa-prev"></div>
             </div>
-            
+
         </div>
     </article>
 
@@ -188,21 +188,21 @@
         <div class="games-slider">
             <div class="games-track">
 
-                <a href="/peruacu-digital" class="game-content">
+                <a href="{% url 'paginaDeProjeto' 'peruacu-digital' %}" class="game-content">
                     <div class="picture">
                         <img src="{% static 'imgs/home/new/games/image 1(1).png' %}" alt="Peruaçu Digital">
                         <h3>Peruaçu Digital</h3>
                     </div>
                 </a>
 
-                <a href="/indisciplina-2d" class="game-content">
+                <a href="{% url 'paginaDeProjeto' 'indisciplina-2d' %}" class="game-content">
                     <div class="picture">
                         <img src="{% static 'imgs/home/new/games/image 1(2).png' %}" alt="Indisciplina 2D">
                         <h3>Indisciplina 2D</h3>
                     </div>
                 </a>
 
-                <a href="/exterminando-drogas" class="game-content">
+                <a href="{% url 'paginaDeProjeto' 'exterminando-drogas' %}" class="game-content">
                     <div class="picture">
                         <img src="{% static 'imgs/home/new/games/image 1.png' %}" alt="Exterminando Drogas">
                         <h3>Exterminando Drogas</h3>
@@ -210,21 +210,21 @@
                 </a>
 
                 <!-- copia para o loop infinito -->
-                <a href="/peruacu-digital" class="game-content" aria-hidden="true" tabindex="-1">
+                <a href="{% url 'paginaDeProjeto' 'peruacu-digital' %}" class="game-content" aria-hidden="true" tabindex="-1">
                     <div class="picture">
                         <img src="{% static 'imgs/home/new/games/image 1(1).png' %}" alt="">
                         <h3>Peruaçu Digital</h3>
                     </div>
                 </a>
 
-                <a href="/indisciplina-2d" class="game-content" aria-hidden="true" tabindex="-1">
+                <a href="{% url 'paginaDeProjeto' 'indisciplina-2d' %}" class="game-content" aria-hidden="true" tabindex="-1">
                     <div class="picture">
                         <img src="{% static 'imgs/home/new/games/image 1(2).png' %}" alt="">
                         <h3>Indisciplina 2D</h3>
                     </div>
                 </a>
 
-                <a href="/exterminando-drogas" class="game-content" aria-hidden="true" tabindex="-1">
+                <a href="{% url 'paginaDeProjeto' 'exterminando-drogas' %}" class="game-content" aria-hidden="true" tabindex="-1">
                     <div class="picture">
                         <img src="{% static 'imgs/home/new/games/image 1.png' %}" alt="">
                         <h3>Exterminando Drogas</h3>

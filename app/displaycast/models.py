@@ -1,12 +1,12 @@
 from django.db import models
 from django.utils.text import slugify
-from datetime import datetime
+from django.utils import timezone
 from urllib.parse import urlparse, parse_qs
 import re
 
 class DisplayCast(models.Model):
     titulo = models.CharField(max_length=250, unique=True, default="")
-    dataHora = models.DateTimeField(default=datetime.now)
+    dataHora = models.DateTimeField(default=timezone.now)
     conteudo = models.TextField(blank=True, default="")
     capa = models.CharField(max_length=512, blank=True, default="")
     url_youtube = models.URLField(max_length=512, blank=True, default="")

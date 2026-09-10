@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+
+{% block head %}
+<title>BUSCA</title>
+{% endblock %}
+
+{% block content %}
+<main class="container py-5">
+    <h1>Busca</h1>
+
+    {% if termo %}
+    <p>Resultados para "{{ termo }}"</p>
+
+    <section class="mt-4" aria-labelledby="resultados-projetos">
+        <h2 id="resultados-projetos">Projetos</h2>
+        <ul>
+            {% for projeto in projetos %}
+            <li><a href="{% url 'paginaDeProjeto' projeto.url %}">{{ projeto.titulo }}</a></li>
+            {% empty %}
+            <li>Nenhum projeto encontrado.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="mt-4" aria-labelledby="resultados-revista">
+        <h2 id="resultados-revista">Revista</h2>
+        <ul>
+            {% for revista in revistas %}
+            <li><a href="{% url 'paginaDePost' revista.url %}">{{ revista.titulo }}</a></li>
+            {% empty %}
+            <li>Nenhuma publicação encontrada.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="mt-4" aria-labelledby="resultados-displaycast">
+        <h2 id="resultados-displaycast">Display Cast</h2>
+        <ul>
+            {% for displaycast in displaycasts %}
+            <li><a href="{% url 'displaycast_detail' displaycast.url %}">{{ displaycast.titulo }}</a></li>
+            {% empty %}
+            <li>Nenhum episódio encontrado.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="mt-4" aria-labelledby="resultados-noticias">
+        <h2 id="resultados-noticias">Notícias</h2>
+        <ul>
+            {% for noticia in noticias %}
+            <li><a href="{{ noticia.url_fonte }}">{{ noticia.titulo }}</a></li>
+            {% empty %}
+            <li>Nenhuma notícia encontrada.</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% else %}
+    <p>Digite um termo no campo de busca.</p>
+    {% endif %}
+</main>
+{% endblock %}

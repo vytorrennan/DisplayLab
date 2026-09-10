@@ -21,8 +21,8 @@ class Aluno(models.Model):
     perfilLinkedIn = models.URLField(max_length=512, default="")
     perfilLattes = models.URLField(max_length=512, default="")
     foto = models.ImageField(
-            upload_to=aluno_upload_path, 
-            default='alumni/default.jpg' 
+            upload_to=aluno_upload_path,
+            default='alumni/default.jpg'
         )
     dataHora = models.DateTimeField(auto_now_add=True)
 

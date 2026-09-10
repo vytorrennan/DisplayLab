@@ -50,18 +50,18 @@ class editarAlunoId(View):
 
     def post(self, request, id):
         aluno_instance = get_object_or_404(Aluno, id=id)
-        
+
         if "delete" in request.POST:
             aluno_instance.delete()
             messages.success(request, "Registro de Aluno excluído.")
             return redirect("editarAluno")
-            
+
         form = AlunoForm(request.POST, request.FILES, instance=aluno_instance)
         if form.is_valid():
             form.save()
             messages.success(request, "Dados do Aluno atualizados.")
             return redirect("editarAluno")
-            
+
         return render(request, "basicForm.html", {"form": form, "label": f"Editando Aluno: {aluno_instance.nome}"})
 
 @method_decorator(login_required, name="dispatch")

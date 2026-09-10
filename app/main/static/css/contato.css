@@ -88,7 +88,7 @@
     .contato-footer {
         gap: 30px;
     }
-    
+
     .redes {
         gap: 10px;
     }
@@ -150,9 +150,9 @@ a.contato-info-item:hover {
     font-size: 26px;
     display: inline-flex;
     justify-content: center;
-    align-items: center;  
-    width: 40px;                
-    height: 40px;   
+    align-items: center;
+    width: 40px;
+    height: 40px;
     color: #fff;
 }
 

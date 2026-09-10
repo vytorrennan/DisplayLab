@@ -1,88 +1,121 @@
-from coletar_noticias.models import NoticiaExterna
-from .scraper import raspar_SBC, raspar_criticalhits
-from django.utils import timezone
 from datetime import datetime
 
-def salvar_noticias_no_banco(noticias):
+from django.db import transaction
+from django.utils import timezone
+
+from coletar_noticias.models import NoticiaExterna
+
+from .scraper import raspar_SBC, raspar_criticalhits
+
+
+def salvar_noticias_no_banco(noticias, fonte_esperada=None):
     salvas = 0
     duplicadas = 0
     erros = 0
     atualizadas = 0
+    urls_coletadas = []
 
-    for noticia in noticias:
-        try:
-            titulo = noticia['titulo']
-            descricao = noticia['descricao']
-            url_fonte = noticia['url_fonte']
-            fonte = noticia['fonte']
-            data_pub = noticia['data_publicacao']
+    with transaction.atomic():
+        for noticia in noticias:
+            try:
+                titulo = noticia['titulo']
+                descricao = noticia['descricao']
+                url_fonte = noticia['url_fonte']
+                fonte = noticia['fonte']
+                data_pub = noticia['data_publicacao']
 
-            # Ignorar URLs inválidas
-            if not url_fonte or url_fonte in ('N/A', ''):
-                print("URL FONTE VAZIA:", noticia)
-                continue
+                if fonte_esperada and fonte != fonte_esperada:
+                    raise ValueError(
+                        f"Fonte inesperada: {fonte}. Esperada: {fonte_esperada}."
+                    )
 
-            # Converter data para timezone-aware
-            if isinstance(data_pub, datetime) and timezone.is_naive(data_pub):
-                data_pub = timezone.make_aware(data_pub)
+                if not url_fonte or url_fonte in ('N/A', ''):
+                    raise ValueError("URL da fonte vazia")
 
-            # Normalizar imagem
-            url_imagem = noticia.get('url_imagem')
-            if not url_imagem or url_imagem in ('N/A', ''):
-                url_imagem = None
+                if isinstance(data_pub, datetime) and timezone.is_naive(data_pub):
+                    data_pub = timezone.make_aware(data_pub)
 
-            # SALVA OU ATUALIZA A NOTÍCIA
-            obj, created = NoticiaExterna.objects.update_or_create(
-                url_fonte=url_fonte,
-                defaults={
+                url_imagem = noticia.get('url_imagem')
+                if not url_imagem or url_imagem in ('N/A', ''):
+                    url_imagem = None
+
+                defaults = {
                     'titulo': titulo,
                     'descricao': descricao,
                     'url_imagem': url_imagem,
                     'fonte': fonte,
                     'data_publicacao': data_pub,
                 }
-            )
+                existente = NoticiaExterna.objects.filter(
+                    url_fonte=url_fonte
+                ).first()
+                mudou = existente is not None and any(
+                    getattr(existente, campo) != valor
+                    for campo, valor in defaults.items()
+                )
 
-            if created:
-                salvas += 1
-            else:
-                duplicadas += 1
-                # só conta como atualizada se o conteúdo mudou
-                atualizadas += 1
+                _, created = NoticiaExterna.objects.update_or_create(
+                    url_fonte=url_fonte,
+                    defaults=defaults,
+                )
+                urls_coletadas.append(url_fonte)
 
-        except Exception as e:
-            erros += 1
-            print(f"Erro ao salvar notícia ({noticia.get('url_fonte', 'URL desconhecida')}): {e}")
+                if created:
+                    salvas += 1
+                else:
+                    duplicadas += 1
+                    if mudou:
+                        atualizadas += 1
+
+            except (KeyError, TypeError, ValueError) as exc:
+                erros += 1
+                print(
+                    "Erro ao validar notícia "
+                    f"({noticia.get('url_fonte', 'URL desconhecida')}): {exc}"
+                )
+
+        if fonte_esperada and urls_coletadas and erros == 0:
+            NoticiaExterna.objects.filter(fonte=fonte_esperada).exclude(
+                url_fonte__in=urls_coletadas
+            ).delete()
 
     return salvas, duplicadas, erros, atualizadas
 
 
-
 def coletar_e_salvar_todas():
-    estatisticas = {
-        'SBC': {'salvas': 0, 'duplicadas': 0, 'erros': 0, 'atualizadas': 0},
-        'CRITICAL_HITS': {'salvas': 0, 'duplicadas': 0, 'erros': 0, 'atualizadas': 0},
+    fontes = {
+        'SBC': raspar_SBC,
+        'CRITICAL_HITS': raspar_criticalhits,
     }
-    
-    # Coleta e salva notícias da SBC
-    try:
-        noticias_sbc = raspar_SBC()
-        salvas, duplicadas, erros, atualizadas = salvar_noticias_no_banco(noticias_sbc)
-        estatisticas['SBC'] = {'salvas': salvas, 'duplicadas': duplicadas, 'erros': erros, 'atualizadas': atualizadas}
-        print(f"SBC: {salvas} salvas, {duplicadas} duplicadas, {atualizadas} atualizadas, {erros} erros")
-    except Exception as e:
-        print(f"Erro ao coletar notícias da SBC: {e}")
-        estatisticas['SBC']['erros'] = 1
-    
-    # Coleta e salva notícias da Critical Hits
-    try:
-        noticias_critical = raspar_criticalhits()
-        salvas, duplicadas, erros, atualizadas = salvar_noticias_no_banco(noticias_critical)
-        estatisticas['CRITICAL_HITS'] = {'salvas': salvas, 'duplicadas': duplicadas, 'erros': erros, 'atualizadas': atualizadas}
-        print(f"CRITICAL_HITS: {salvas} salvas, {duplicadas} duplicadas, {atualizadas} atualizadas, {erros} erros")
-    except Exception as e:
-        print(f"Erro ao coletar notícias da Critical Hits: {e}")
-        estatisticas['CRITICAL_HITS']['erros'] = 1
-    
-    return estatisticas
+    estatisticas = {}
 
+    for fonte, coletor in fontes.items():
+        try:
+            noticias = coletor()
+            if not noticias:
+                raise ValueError("A fonte não retornou notícias")
+
+            salvas, duplicadas, erros, atualizadas = salvar_noticias_no_banco(
+                noticias,
+                fonte_esperada=fonte,
+            )
+            estatisticas[fonte] = {
+                'salvas': salvas,
+                'duplicadas': duplicadas,
+                'erros': erros,
+                'atualizadas': atualizadas,
+            }
+            print(
+                f"{fonte}: {salvas} salvas, {duplicadas} duplicadas, "
+                f"{atualizadas} atualizadas, {erros} erros"
+            )
+        except Exception as exc:
+            print(f"Erro ao coletar notícias de {fonte}: {exc}")
+            estatisticas[fonte] = {
+                'salvas': 0,
+                'duplicadas': 0,
+                'erros': 1,
+                'atualizadas': 0,
+            }
+
+    return estatisticas

@@ -1,5 +1,5 @@
-.dl-font-menor, 
-.dl-font-padrao, 
+.dl-font-menor,
+.dl-font-padrao,
 .dl-font-maior,
 .dl-contraste-btn,
 .dl-acessibilidade-btn,
@@ -21,8 +21,8 @@
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dl-font-menor span, 
-.dl-font-padrao, 
+.dl-font-menor span,
+.dl-font-padrao,
 .dl-font-maior span,
 .dl-contraste-btn i,
 .dl-acessibilidade-btn i,
@@ -30,8 +30,8 @@
     color: var(--text-color, #003153) !important;
 }
 
-.dl-font-menor:hover, 
-.dl-font-padrao:hover, 
+.dl-font-menor:hover,
+.dl-font-padrao:hover,
 .dl-font-maior:hover,
 .dl-contraste-btn:hover,
 .dl-acessibilidade-btn:hover,
@@ -42,8 +42,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.dl-font-menor:hover span, 
-.dl-font-padrao:hover, 
+.dl-font-menor:hover span,
+.dl-font-padrao:hover,
 .dl-font-maior:hover span,
 .dl-contraste-btn:hover i,
 .dl-acessibilidade-btn:hover i,

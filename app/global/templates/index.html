@@ -116,12 +116,15 @@
                 </div>
             </div>
 
-            <div class="search-container">
+            <form class="search-container" action="{% url 'busca' %}" method="get" role="search">
                 <div class="search-box">
-                    <input type="text" id="search" placeholder="Pesquisar conteúdo">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="search" name="q" value="{{ request.GET.q }}"
+                        placeholder="Pesquisar conteúdo" aria-label="Pesquisar conteúdo">
+                    <button type="submit" aria-label="Pesquisar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
-            </div>
+            </form>
         </div>
 
         <!-- Main Navbar -->
